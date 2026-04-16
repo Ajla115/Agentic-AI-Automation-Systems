@@ -1,0 +1,288 @@
+{
+  "name": "Telegram VA - Event Reminders",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 30
+            }
+          ]
+        }
+      },
+      "id": "tg-remind-sched-001",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        480,
+        464
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_AI_EMAIL@example.com",
+          "mode": "list",
+          "cachedResultName": "YOUR_AI_EMAIL@example.com"
+        },
+        "returnAll": true,
+        "timeMin": "={{ $now.toISO() }}",
+        "timeMax": "={{ $now.plus({ hours: 1 }).toISO() }}",
+        "options": {
+          "orderBy": "startTime"
+        }
+      },
+      "id": "tg-remind-gcal-001",
+      "name": "Get Upcoming Events",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        752,
+        464
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "vgDIWdn7j16Ol1sl",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const results = [];\nconst now = new Date();\nfor (const item of $input.all()) {\n  const startStr = item.json.start?.dateTime || item.json.start?.date;\n  if (!startStr) continue;\n  const eventStart = new Date(startStr);\n  const minutesUntil = Math.round((eventStart - now) / 60000);\n  if (minutesUntil >= 25 && minutesUntil <= 35) {\n    results.push({ json: { ...item.json, minutesUntil } });\n  }\n}\nreturn results;"
+      },
+      "id": "tg-remind-filter-001",
+      "name": "Filter Events (25-35 min)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1008,
+        464
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "condition-0",
+              "leftValue": "={{ $json.summary }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "tg-remind-if-001",
+      "name": "Has Events?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1264,
+        464
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "=⏰ *REMINDER — {{ $json.minutesUntil }} minutes!*\n\n📌 {{ $json.summary }}\n🕐 {{ $json.start.dateTime ? new Date($json.start.dateTime).toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit'}) : 'All day' }}\n📍 {{ $json.location ?? 'No location' }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "tg-remind-send-001",
+      "name": "Send Event Reminder",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1520,
+        352
+      ],
+      "webhookId": "77d9c397-4ca7-4634-bbbc-0d0bf93f5a6b",
+      "credentials": {
+        "telegramApi": {
+          "id": "Z4DjPtixNJvP438S",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "tg-remind-noop-001",
+      "name": "No Events",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1520,
+        592
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\n  json: {\n    timestamp: new Date().toISOString(),\n    trigger_type: 'reminder',\n    command: 'auto_reminder',\n    action_completed: 'true',\n    response_time_ms: String(Date.now() - new Date($execution.startedAt).getTime()),\n    user_confirmed_before_action: 'n/a'\n  }\n};"
+      },
+      "id": "tg-remind-log-prep-001",
+      "name": "Prepare Log Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1792,
+        352
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "YOUR_VA_LOG_SPREADSHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "VA_Metrics"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData"
+        },
+        "options": {}
+      },
+      "id": "tg-remind-log-001",
+      "name": "Log to Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2048,
+        352
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dFwvRpFrU3hj7eAL",
+          "name": "Google Sheets account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "content": "## Telegram VA - Event Reminders (Phase 3)\n\n**Purpose:** Checks every 30 minutes for events starting in ~30 minutes and sends a Telegram reminder.\n\n**Setup Required:**\n1. Update Google Calendar OAuth2 credential\n2. Update Telegram Bot credential and PLACEHOLDER_CHAT_ID\n\n⏰ Runs every 30 minutes, filters events starting in 25-35 min window"
+      },
+      "id": "tg-remind-sticky-001",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        400,
+        240
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Upcoming Events",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Upcoming Events": {
+      "main": [
+        [
+          {
+            "node": "Filter Events (25-35 min)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Events (25-35 min)": {
+      "main": [
+        [
+          {
+            "node": "Has Events?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Events?": {
+      "main": [
+        [
+          {
+            "node": "Send Event Reminder",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Events",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Event Reminder": {
+      "main": [
+        [
+          {
+            "node": "Prepare Log Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Log Data": {
+      "main": [
+        [
+          {
+            "node": "Log to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Sarajevo",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "7929bfed-95c7-47a5-88ca-a1b2625fad38",
+  "meta": {
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "YFbs2xCdueHB80nn",
+  "tags": []
+}

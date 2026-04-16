@@ -1,0 +1,452 @@
+{
+  "name": "HA - Scrapping and Logging Human Sent Replies",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "thread",
+        "returnAll": true,
+        "filters": {
+          "labelIds": [
+            "SENT",
+            "Label_1341859334442668589"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        96,
+        144
+      ],
+      "id": "4ec2deb9-35e3-4235-81cb-4adb1c7c32e3",
+      "name": "Get Messages from Sent + Human Escalation",
+      "webhookId": "8d2e6219-1f7d-41d5-9a62-9ceb744938e8",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "3r2K53nXVGhMLs3f",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -128,
+        144
+      ],
+      "id": "8e3e85e6-4a57-40b7-9cc6-0392468ed8e5",
+      "name": "Operator Reply Tracker"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get all messages from Gmail\nconst messages = $input.all();\n\nconsole.log(\"Total messages received:\", messages.length);\n\n// If no messages, return empty\nif (messages.length === 0) {\n  console.log(\"No messages to process\");\n  return [];\n}\n\n// Calculate time threshold (15 minutes ago to be safe)\nconst now = Date.now();\nconst fiveMinutesAgo = now - (5 * 60 * 1000);\n\nconsole.log(\"Current time:\", new Date(now).toISOString());\nconsole.log(\"Threshold (5 min ago):\", new Date(fiveMinutesAgo).toISOString());\n\n// Function to extract only the newest email content (remove quotes)\nfunction extractLatestEmailContent(text) {\n  if (!text) return '';\n  const quotePatterns = [\n    /\\s*čet,.*?napisao je:\\s*/i,\n    /\\s*\\w+,\\s*\\d{1,2}\\.\\s*\\w+.*?napisao je:\\s*/i,\n    /\\s*On\\s+.*?\\d{4}.*?wrote:\\s*/i,\n    /\\s*<[^>]+>\\s*wrote:\\s*/i,\n    /\\s*napisao je:\\s*/i\n  ];\n  let cleanText = text;\n  for (const pattern of quotePatterns) {\n    const match = cleanText.match(pattern);\n    if (match) {\n      cleanText = cleanText.substring(0, match.index).trim();\n      break;\n    }\n  }\n  cleanText = cleanText.split('\\n').filter(line => !line.trim().startsWith('>')).join('\\n');\n  cleanText = cleanText.replace(/\\n{3,}/g, '\\n\\n').trim();\n  return cleanText;\n}\n\nfunction parseMessageDate(msg) {\n  const dateValue = msg.internalDate || msg.date || msg.receivedDateTime;\n  if (!dateValue) return Date.now();\n  if (typeof dateValue === 'number') return dateValue;\n  if (typeof dateValue === 'string') {\n    const parsed = parseInt(dateValue);\n    if (!isNaN(parsed)) return parsed;\n    const dateObj = new Date(dateValue);\n    if (!isNaN(dateObj.getTime())) return dateObj.getTime();\n  }\n  return Date.now();\n}\n\nconst recentMessages = [];\nmessages.forEach((item, index) => {\n  const msg = item.json;\n  const sentTime = parseMessageDate(msg);\n  if (sentTime > fiveMinutesAgo) {\n    const rawContent = msg.text || msg.snippet || '';\n    const cleanedContent = extractLatestEmailContent(rawContent);\n    recentMessages.push({\n      json: {\n        messageId: msg.id,\n        snippet: cleanedContent,\n        sentTime: sentTime,\n        sentTimeReadable: new Date(sentTime).toISOString()\n      }\n    });\n  }\n});\n\nconsole.log(\"Total recent messages:\", recentMessages.length);\nreturn recentMessages;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        352,
+        144
+      ],
+      "id": "db35f7b9-5bd3-4802-9ad1-b859c5b5a289",
+      "name": "Filter Recent Messages (Last 5 Minutes)",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SUPPORT_LOG_SPREADSHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2068850783,
+          "mode": "list",
+          "cachedResultName": "Interaction_Logs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit#gid=2068850783"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "messageId",
+              "lookupValue": "={{ $json.messageId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        560,
+        144
+      ],
+      "id": "132463ec-69c2-4824-b3a6-28b568495d0a",
+      "name": "Get Previous Ticket Information",
+      "alwaysOutputData": true,
+      "executeOnce": false,
+      "retryOnFail": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dFwvRpFrU3hj7eAL",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SUPPORT_LOG_SPREADSHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2068850783,
+          "mode": "list",
+          "cachedResultName": "Interaction_Logs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit#gid=2068850783"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "messageId": "={{ $json.messageId }}",
+            "timestampEnd": "={{ $('Filter Recent Messages (Last 5 Minutes)').item.json.sentTimeReadable }}",
+            "responseTime": "={{ Math.round((new Date($('Filter Recent Messages (Last 5 Minutes)').item.json.sentTimeReadable).getTime() - new Date($json.timestampStart).getTime()) / 1000) }}",
+            "response": "={{ $('Filter Recent Messages (Last 5 Minutes)').item.json.snippet }}",
+            "wordCount": "={{ $('Filter Recent Messages (Last 5 Minutes)').item.json.snippet.trim().split(/\\s+/).length }}",
+            "messageCount": "={{ $json.messageCount + 1 }}"
+          },
+          "matchingColumns": [
+            "messageId"
+          ],
+          "schema": [
+            {
+              "id": "timestampReceived",
+              "displayName": "timestampReceived",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "timestampStart",
+              "displayName": "timestampStart",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "timestampEnd",
+              "displayName": "timestampEnd",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "responseTime",
+              "displayName": "responseTime",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "threadId",
+              "displayName": "threadId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "messageId",
+              "displayName": "messageId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "channel",
+              "displayName": "channel",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "query",
+              "displayName": "query",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "response",
+              "displayName": "response",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "references",
+              "displayName": "references",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "confidence",
+              "displayName": "confidence",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "confidenceScore",
+              "displayName": "confidenceScore",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "isEscalated",
+              "displayName": "isEscalated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "humanAgentReply",
+              "displayName": "humanAgentReply",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "wordCount",
+              "displayName": "wordCount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "toneUsed",
+              "displayName": "toneUsed",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "contextHistory",
+              "displayName": "contextHistory",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "messageCount",
+              "displayName": "messageCount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "kbLastUpdated",
+              "displayName": "kbLastUpdated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        992,
+        144
+      ],
+      "id": "834cf7e8-cf65-4005-96c7-e4dc847ee6cc",
+      "name": "Update Human Escalated Ticket Information",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dFwvRpFrU3hj7eAL",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Scrapping and Logging Human Sent Replies",
+        "height": 352,
+        "width": 1344
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -176,
+        32
+      ],
+      "id": "8e31ec6b-72f5-4d58-a80a-bafbec858e77",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst results = [];\n\nfor (const item of items) {\n  const timestampEnd = item.json.timestampEnd;\n  if (timestampEnd && timestampEnd !== '') {\n    console.log('Skipping already processed ticket: ' + item.json.messageId);\n    continue;\n  }\n  results.push(item);\n}\n\nconsole.log('Dedup: ' + items.length + ' in, ' + results.length + ' new (' + (items.length - results.length) + ' already processed)');\nreturn results;"
+      },
+      "id": "47ee04b1-6586-4674-b143-212e80b1e5cb",
+      "name": "Skip Already Processed",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        768,
+        144
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Get Messages from Sent + Human Escalation": {
+      "main": [
+        [
+          {
+            "node": "Filter Recent Messages (Last 5 Minutes)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Operator Reply Tracker": {
+      "main": [
+        [
+          {
+            "node": "Get Messages from Sent + Human Escalation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Recent Messages (Last 5 Minutes)": {
+      "main": [
+        [
+          {
+            "node": "Get Previous Ticket Information",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Previous Ticket Information": {
+      "main": [
+        [
+          {
+            "node": "Skip Already Processed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Skip Already Processed": {
+      "main": [
+        [
+          {
+            "node": "Update Human Escalated Ticket Information",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f73b5543-368a-4330-be73-93dcb184ec75",
+  "meta": {
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "GI9y1gz1mKNtOv0T",
+  "tags": []
+}

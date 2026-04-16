@@ -1,0 +1,256 @@
+{
+  "name": "Email VA - On-Demand Drafting",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "options": {
+          "subtitle": "I can help you compose email drafts",
+          "title": "Email Drafting Assistant"
+        }
+      },
+      "id": "email-chat-001",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        640,
+        464
+      ],
+      "webhookId": "6d8a11a0-69f1-44d2-94c1-70ffce754e4b"
+    },
+    {
+      "parameters": {
+        "promptType": "auto",
+        "systemMessage": "You are an Email Drafting Assistant — a virtual assistant that helps users compose email drafts in Gmail.\n\n## Core Rules\n1. You can ONLY create drafts in Gmail. You cannot send emails directly.\n2. When the user wants to compose an email, extract: recipient (To), subject, and body.\n3. If any required information is missing, ask the user for it.\n4. Before creating a draft, you MUST show a summary and ask for confirmation:\n   ---\n   **To:** [recipient]\n   **Subject:** [subject]\n   **Body:**\n   [body text]\n   ---\n   Shall I create this draft? (yes/no)\n5. Only call the Gmail - Create Draft tool AFTER the user confirms with 'yes'.\n6. After creating the draft, confirm success and remind the user to review it in Gmail before sending.\n7. You support composing emails in any language the user prefers.\n8. Keep a professional but friendly tone.\n9. If the user asks you to send an email, explain that you can only create drafts for safety reasons, and they need to send it manually from Gmail.\n\n## Tool Usage\n- Use 'Gmail - Create Draft' only after explicit user confirmation\n- Always include the recipient in the sendTo field\n- Set appropriate subject line\n- Format the email body professionally"
+      },
+      "id": "email-agent-001",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1072,
+        464
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o",
+        "builtInTools": {},
+        "options": {}
+      },
+      "id": "email-llm-001",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        768,
+        704
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "h8C2L4r39uXcmqya",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "id": "email-mem-001",
+      "name": "Window Buffer Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        960,
+        704
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "options": {
+          "sendTo": ""
+        }
+      },
+      "id": "email-gmail-tool-001",
+      "name": "Gmail - Create Draft",
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        1168,
+        704
+      ],
+      "webhookId": "16990027-17a2-4c16-bc83-cc3ab2833d6f",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.output }}",
+        "options": {}
+      },
+      "id": "email-respond-001",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1408,
+        352
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const agentOutput = $json.output || '';\nconst lowerOutput = agentOutput.toLowerCase();\n\n// Detect if a draft was created based on agent response\nconst draftCreated = lowerOutput.includes('draft has been created') ||\n  lowerOutput.includes('draft created') ||\n  lowerOutput.includes('created the draft') ||\n  lowerOutput.includes('draft is ready');\n\n// Try to extract subject and recipient from the conversation\nlet subject = '';\nlet recipient = '';\n\nconst subjectMatch = agentOutput.match(/\\*\\*Subject:\\*\\*\\s*(.+)/i);\nif (subjectMatch) subject = subjectMatch[1].trim();\n\nconst toMatch = agentOutput.match(/\\*\\*To:\\*\\*\\s*(.+)/i);\nif (toMatch) recipient = toMatch[1].trim();\n\nreturn {\n  json: {\n    timestamp: new Date().toISOString(),\n    action_type: 'on_demand',\n    from_email: recipient,\n    subject: subject,\n    category: 'user_requested',\n    draft_created: draftCreated ? 'true' : 'false',\n    user_confirmed: draftCreated ? 'true' : 'false'\n  }\n};"
+      },
+      "id": "email-od-log-prep-001",
+      "name": "Prepare Log Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1408,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "YOUR_VA_LOG_SPREADSHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "VA_Email_Log"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData"
+        },
+        "options": {}
+      },
+      "id": "email-od-log-001",
+      "name": "Log to Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1680,
+        560
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dFwvRpFrU3hj7eAL",
+          "name": "Google Sheets account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "content": "## Email VA - On-Demand Drafting (Phase 2)\n\n**Purpose:** Interactive chat-based assistant for composing email drafts via hosted chat UI.\n\n**Setup Required:**\n1. Create 'VA_Email_Log' sheet tab in Virtual Assistant Logs spreadsheet\n2. Update Gmail OAuth2 credential in the Gmail - Create Draft tool node\n\n⚠️ **Drafts only — always asks for user confirmation before creating**"
+      },
+      "id": "email-od-sticky-001",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        560,
+        240
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail - Create Draft": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Prepare Log Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Log Data": {
+      "main": [
+        [
+          {
+            "node": "Log to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "b8b30473-5254-4316-a72a-b035ec6e4cbc",
+  "meta": {
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "HVbIJBxk9P3Fd4N1",
+  "tags": []
+}

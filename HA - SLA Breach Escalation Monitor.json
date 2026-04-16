@@ -1,0 +1,465 @@
+{
+  "name": "HA - SLA Breach Escalation Monitor",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes"
+            }
+          ]
+        }
+      },
+      "id": "393c71d3-59ec-42e9-b4cf-911e9581eb70",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -32,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SUPPORT_LOG_SPREADSHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2068850783,
+          "mode": "list",
+          "cachedResultName": "Interaction_Logs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit#gid=2068850783"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "isEscalated",
+              "lookupValue": "True"
+            },
+            {
+              "lookupColumn": "response",
+              "lookupValue": "Pending"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a9b21e5e-38dc-4800-b9c0-347f1b7561d5",
+      "name": "Read Escalation Logs",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        160,
+        288
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dFwvRpFrU3hj7eAL",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const escalations = $input.all().map(i => i.json);\nconst now = Date.now();\nconst SLA_THRESHOLD = 60 * 60 * 1000;\n\nconst overdue = escalations.filter(t => {\n  if (t.response !== 'Pending') return false;\n  const escalatedAt = new Date(t.timestampStart).getTime();\n  if (isNaN(escalatedAt)) return false;\n  return (now - escalatedAt) > SLA_THRESHOLD;\n}).map(t => ({\n  ...t,\n  hoursOverdue: ((now - new Date(t.timestampStart).getTime()) / 3600000).toFixed(1)\n}));\n\nconsole.log(`Found ${overdue.length} overdue escalations`);\nreturn overdue.map(r => ({ json: r }));"
+      },
+      "id": "54431b75-75a6-41c8-8063-99dd48e51d1a",
+      "name": "Filter Overdue Escalations",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        352,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "condition-1",
+              "leftValue": "={{ $input.all().length }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "5473cd99-3fee-41d4-98a8-7d9955cb1594",
+      "name": "Has Overdue Escalations?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        576,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SUPPORT_LOG_SPREADSHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "SLA_Breach_Logs",
+          "mode": "name"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "messageId",
+              "lookupValue": "={{ $json.messageId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "24ebbbc6-270e-42d3-84be-e6bf735174c0",
+      "name": "Lookup Alert Count",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "alwaysOutputData": true,
+      "position": [
+        784,
+        176
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dFwvRpFrU3hj7eAL",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const lookupItems = $input.all();\nconst tickets = $('Filter Overdue Escalations').all();\n\nreturn tickets.map((ticket, i) => {\n  const t = ticket.json;\n  let alertCount = 0;\n  const lookup = lookupItems[i]?.json;\n  if (lookup && lookup.alertCount !== undefined && lookup.alertCount !== '') {\n    alertCount = parseInt(lookup.alertCount, 10) || 0;\n  }\n  return { json: { ...t, alertCount, newAlertCount: alertCount + 1 } };\n});"
+      },
+      "id": "15a7a0c9-c4bf-4bd9-9f15-926b72cf4f96",
+      "name": "Merge Alert Count",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1008,
+        176
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SUPPORT_LOG_SPREADSHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "SLA_Breach_Logs",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "timestamp": "={{ new Date().toISOString() }}",
+            "messageId": "={{ $json.messageId }}",
+            "threadId": "={{ $json.threadId }}",
+            "hoursOverdue": "={{ $json.hoursOverdue }}",
+            "alertCount": "={{ $json.newAlertCount }}",
+            "alertSentAt": "={{ new Date().toISOString() }}",
+            "status": "Active"
+          },
+          "matchingColumns": [
+            "messageId"
+          ],
+          "schema": [
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "messageId",
+              "displayName": "messageId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "threadId",
+              "displayName": "threadId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "hoursOverdue",
+              "displayName": "hoursOverdue",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "alertCount",
+              "displayName": "alertCount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "alertSentAt",
+              "displayName": "alertSentAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "resolvedAt",
+              "displayName": "resolvedAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "75ccfcb7-30d5-41ac-bb3c-7036b8ff323b",
+      "name": "Log SLA Breach Alert",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1232,
+        176
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dFwvRpFrU3hj7eAL",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $('Merge Alert Count').all();\nconst total = items.length;\n\nconst maxOverdue = Math.max(...items.map(i => parseFloat(i.json.hoursOverdue) || 0));\nconst firstNotice = items.filter(i => i.json.newAlertCount === 1).length;\nconst secondPlus = items.filter(i => i.json.newAlertCount >= 2).length;\n\nconst top5 = items\n  .sort((a, b) => parseFloat(b.json.hoursOverdue) - parseFloat(a.json.hoursOverdue))\n  .slice(0, 5)\n  .map(i => {\n    const q = (i.json.query || '').substring(0, 50);\n    return `  \\u2022 ${i.json.messageId} \\u2014 ${i.json.hoursOverdue}h overdue (Alert #${i.json.newAlertCount})\\n    ${q}...`;\n  })\n  .join('\\n');\n\nconst summary = `<b>\\ud83d\\udea8 SLA BREACH SUMMARY \\ud83d\\udea8</b>\\n\\n` +\n  `<b>Total overdue:</b> ${total}\\n` +\n  `<b>Max overdue:</b> ${maxOverdue.toFixed(1)}h\\n` +\n  `<b>First notice:</b> ${firstNotice}\\n` +\n  `<b>Repeat notice (2+):</b> ${secondPlus}\\n\\n` +\n  `<b>Top 5 most overdue:</b>\\n${top5}\\n\\n` +\n  `<b>\\u26a0\\ufe0f All ${total} breaches logged to SLA_Breach_Logs sheet.</b>`;\n\nreturn [{ json: { summary } }];"
+      },
+      "id": "b1a2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "Build Summary",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1456,
+        176
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "={{ $json.summary }}",
+        "additionalFields": {
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "62cb316b-2982-4d2f-b233-23c3faa493e2",
+      "name": "Send Summary Alert",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1680,
+        176
+      ],
+      "webhookId": "043df23d-b0fd-4f65-a272-50bc6076fd1c",
+      "credentials": {
+        "telegramApi": {
+          "id": "Z4DjPtixNJvP438S",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "ea077918-a0ce-4ea2-b763-c69dd67bdad6",
+      "name": "No Overdue Escalations",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        784,
+        384
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Service Level Agreement (SLA) Breach Escalation Monitor\n",
+        "height": 608,
+        "width": 2336,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -112,
+        -16
+      ],
+      "typeVersion": 1,
+      "id": "2c1043b4-6076-4677-acac-b1d90764cf35",
+      "name": "Sticky Note2"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read Escalation Logs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Escalation Logs": {
+      "main": [
+        [
+          {
+            "node": "Filter Overdue Escalations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Overdue Escalations": {
+      "main": [
+        [
+          {
+            "node": "Has Overdue Escalations?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Overdue Escalations?": {
+      "main": [
+        [
+          {
+            "node": "Lookup Alert Count",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Overdue Escalations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lookup Alert Count": {
+      "main": [
+        [
+          {
+            "node": "Merge Alert Count",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Alert Count": {
+      "main": [
+        [
+          {
+            "node": "Log SLA Breach Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log SLA Breach Alert": {
+      "main": [
+        [
+          {
+            "node": "Build Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Summary": {
+      "main": [
+        [
+          {
+            "node": "Send Summary Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "89f0571a-25b0-4206-9911-a387ca6b97b4",
+  "meta": {
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "ZeSznKbO9PDeBLPx",
+  "tags": []
+}

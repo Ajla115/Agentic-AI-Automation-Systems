@@ -1,0 +1,369 @@
+{
+  "name": "PageIndex Human Cases Updater (Telegram)",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "tg-trigger-001",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -208,
+        0
+      ],
+      "webhookId": "aa5328e7-e561-40ea-9907-58a8bd1aacd8",
+      "credentials": {
+        "telegramApi": {
+          "id": "Z4DjPtixNJvP438S",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const msg = $input.first().json;\nconst text = msg.message?.text || '';\nconst chatId = msg.message?.chat?.id || '';\n\n// Extract Google Drive file ID from various link formats\nconst patterns = [\n  /drive\\.google\\.com\\/file\\/d\\/([a-zA-Z0-9_-]+)/,\n  /drive\\.google\\.com\\/open\\?id=([a-zA-Z0-9_-]+)/,\n  /id=([a-zA-Z0-9_-]+)/\n];\n\nlet fileId = null;\nfor (const p of patterns) {\n  const match = text.match(p);\n  if (match) { fileId = match[1]; break; }\n}\n\nif (!fileId) {\n  return [{ json: { valid: false, chatId, error: 'No Google Drive link found in message. Please send a link like: https://drive.google.com/file/d/FILE_ID/view' } }];\n}\n\nconst directUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;\n\nreturn [{ json: { valid: true, chatId, fileId, directUrl, originalText: text } }];"
+      },
+      "id": "extract-link-001",
+      "name": "Extract Drive Link & Validate",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        48,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cond-valid",
+              "leftValue": "={{ $json.valid }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "check-valid-001",
+      "name": "Valid Link?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        272,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ $json.error }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "send-error-001",
+      "name": "Send Error Reply",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        480,
+        -160
+      ],
+      "webhookId": "aef592f9-2ac6-4960-97c3-4214822ac78d",
+      "credentials": {
+        "telegramApi": {
+          "id": "Z4DjPtixNJvP438S",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api.pageindex.ai/documents",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_PAGEINDEX_API_KEY"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "list-docs-001",
+      "name": "List PageIndex Docs",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        480,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const response = $input.first().json;\nconst docs = Array.isArray(response) ? response : (response.docs || response.data || response.documents || []);\n\n// Find the old Human_Cases_Consolidated document\nconst oldDoc = docs.find(d => {\n  const name = d.name || d.doc_name || '';\n  return name.toLowerCase().includes('human_cases_consolidated');\n});\n\nconst prev = $('Extract Drive Link & Validate').item.json;\n\nreturn [{\n  json: {\n    oldDocName: oldDoc ? (oldDoc.name || oldDoc.doc_name) : null,\n    oldDocId: oldDoc ? (oldDoc.id || oldDoc.doc_id) : null,\n    hasOldDoc: !!oldDoc,\n    directUrl: prev.directUrl,\n    chatId: prev.chatId,\n    fileId: prev.fileId\n  }\n}];"
+      },
+      "id": "find-old-doc-001",
+      "name": "Find Old Human Cases Doc",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        704,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cond-old",
+              "leftValue": "={{ $json.hasOldDoc }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "has-old-doc-001",
+      "name": "Old Doc Exists?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        928,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "method": "DELETE",
+        "url": "=https://api.pageindex.ai/documents/{{ $json.oldDocName }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_PAGEINDEX_API_KEY"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "delete-old-doc-001",
+      "name": "Delete Old PageIndex Doc",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1152,
+        80
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.pageindex.ai/documents",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_PAGEINDEX_API_KEY"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ url: $('Find Old Human Cases Doc').item.json.directUrl }) }}",
+        "options": {}
+      },
+      "id": "upload-new-001",
+      "name": "Upload New PDF to PageIndex",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1360,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Extract Drive Link & Validate').item.json.chatId }}",
+        "text": "=✅ PageIndex updated successfully!\n\nOld Human_Cases_Consolidated has been replaced with the new PDF.\n\nThe document is now processing and will be queryable shortly.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "confirm-msg-001",
+      "name": "Send Confirmation",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1584,
+        160
+      ],
+      "webhookId": "44f4f3ae-4699-4837-97a2-93780e1a286f",
+      "credentials": {
+        "telegramApi": {
+          "id": "Z4DjPtixNJvP438S",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Extract Drive Link & Validate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Drive Link & Validate": {
+      "main": [
+        [
+          {
+            "node": "Valid Link?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Valid Link?": {
+      "main": [
+        [
+          {
+            "node": "Send Error Reply",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "List PageIndex Docs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List PageIndex Docs": {
+      "main": [
+        [
+          {
+            "node": "Find Old Human Cases Doc",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Old Human Cases Doc": {
+      "main": [
+        [
+          {
+            "node": "Old Doc Exists?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Old Doc Exists?": {
+      "main": [
+        [
+          {
+            "node": "Delete Old PageIndex Doc",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Upload New PDF to PageIndex",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Old PageIndex Doc": {
+      "main": [
+        [
+          {
+            "node": "Upload New PDF to PageIndex",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload New PDF to PageIndex": {
+      "main": [
+        [
+          {
+            "node": "Send Confirmation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Sarajevo",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "f38ef704-b350-4011-8e6d-4db6434c357d",
+  "meta": {
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "rRm8xSqVuggcyScY",
+  "tags": []
+}

@@ -1,0 +1,1522 @@
+{
+  "name": "RAG Workflows for Knowledge Base",
+  "nodes": [
+    {
+      "parameters": {
+        "mode": "insert",
+        "pineconeIndex": {
+          "__rl": true,
+          "mode": "list",
+          "value": "company-files",
+          "cachedResultName": "company-files"
+        },
+        "options": {}
+      },
+      "id": "d0108452-7f5e-48f3-b57e-6cb156b1652a",
+      "name": "Pinecone Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "position": [
+        1840,
+        240
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "pineconeApi": {
+          "id": "ESOHs5j1ToO16UUT",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "binary",
+        "binaryMode": "specificField",
+        "options": {
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "fileId",
+                "value": "={{ $('Code in JavaScript').item.json.id }}"
+              },
+              {
+                "name": "fileName",
+                "value": "={{ $('Code in JavaScript').item.json.name }}"
+              },
+              {
+                "name": "uploadDate",
+                "value": "={{ $now }}"
+              }
+            ]
+          }
+        }
+      },
+      "id": "7376e372-8511-4a40-a9b6-9a042897265e",
+      "name": "Default Data Loader",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "position": [
+        2000,
+        432
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "chunkOverlap": 100,
+        "options": {}
+      },
+      "id": "20d90544-bbaf-4332-bbbd-8d6065ea6603",
+      "name": "Recursive Character Text Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "position": [
+        2000,
+        640
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $json.id }}"
+        },
+        "options": {
+          "fileName": "={{ $json.name }}"
+        }
+      },
+      "id": "fe7f0a6d-6f04-4070-801c-33bd83a32fa7",
+      "name": "Download File From Google Drive",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        1088,
+        240
+      ],
+      "typeVersion": 3,
+      "credentials": {
+        "googleApi": {
+          "id": "fk0RfvebDBM8pQrt",
+          "name": "Google Drive account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "authentication": "serviceAccount",
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "value": "https://drive.google.com/drive/u/2/folders/1KWMwcgm-GaIaGSvdLRUxsppcjdcLV775",
+          "mode": "url"
+        },
+        "event": "fileCreated",
+        "options": {
+          "fileType": "all"
+        }
+      },
+      "id": "9e903efe-b7b8-44a6-a1aa-67cf9c1419b4",
+      "name": "Google Drive File Created",
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "position": [
+        560,
+        240
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "googleApi": {
+          "id": "fk0RfvebDBM8pQrt",
+          "name": "Google Drive account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1808,
+        464
+      ],
+      "id": "af664e67-d0ec-4241-ac69-6fa461c47e62",
+      "name": "Embeddings OpenAI1",
+      "credentials": {
+        "openAiApi": {
+          "id": "h8C2L4r39uXcmqya",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\n\nreturn items.map(item => ({\n  json: {\n    ...item.json,\n    metadata: {\n      source: item.json.name || 'unknown',\n      uploadedAt: new Date().toISOString()\n    }\n  },\n  binary: item.binary\n}));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1360,
+        240
+      ],
+      "id": "f9d46d59-11cd-4d42-a4a9-1f4db68f14b8",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "content": "# RAG  - Adding Knowledge  to the Vector DB\n",
+        "height": 848,
+        "width": 1936,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        448,
+        16
+      ],
+      "id": "183ed86f-c073-49bc-97b9-6163eb63c7bb",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "operation": "removeItemsSeenInPreviousExecutions",
+        "dedupeValue": "={{ $json.md5Checksum }}",
+        "options": {
+          "historySize": 10000
+        }
+      },
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        832,
+        240
+      ],
+      "id": "ea6cfc86-aa76-439e-897d-bdb9180d56b0",
+      "name": "Remove Duplicates"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "authentication": "serviceAccount",
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "mode": "url",
+          "value": "https://drive.google.com/drive/u/2/folders/1KWMwcgm-GaIaGSvdLRUxsppcjdcLV775",
+          "__regex": "https:\\/\\/drive\\.google\\.com(?:\\/.*|)\\/folders\\/([0-9a-zA-Z\\-_]+)(?:\\/.*|)"
+        },
+        "event": "fileUpdated",
+        "options": {}
+      },
+      "id": "30c6dfcb-595f-42ed-860e-1f70e85bb916",
+      "name": "Google Drive File Updated",
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "position": [
+        544,
+        1184
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "googleApi": {
+          "id": "fk0RfvebDBM8pQrt",
+          "name": "Google Drive account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# RAG  - Updating Knowledge  to the Vector DB\n",
+        "height": 848,
+        "width": 1952
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        448,
+        912
+      ],
+      "id": "9a4fb6d6-9eff-4b83-baa3-0fb74f624f72",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://YOUR_PINECONE_HOST/vectors/delete",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Api-Key",
+              "value": "YOUR_PINECONE_API_KEY"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"filter\": { \"fileId\": \"{{ $json.id }}\" }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        784,
+        1184
+      ],
+      "id": "e0818605-caf6-41c6-98db-ef74c1358ccc",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('Google Drive File Updated').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1264,
+        1184
+      ],
+      "id": "12ea3695-b33c-488a-be3d-002e624b95b0",
+      "name": "Download file",
+      "credentials": {
+        "googleApi": {
+          "id": "fk0RfvebDBM8pQrt",
+          "name": "Google Drive account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\n\nreturn items.map(item => ({\n  json: {\n    ...item.json,\n    metadata: {\n      source: item.json.name || 'unknown',\n      uploadedAt: new Date().toISOString()\n    }\n  },\n  binary: item.binary\n}));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1488,
+        1184
+      ],
+      "id": "1333f1a0-22f2-4a03-8d85-0d7b768ef1f0",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "pineconeIndex": {
+          "__rl": true,
+          "mode": "list",
+          "value": "company-files",
+          "cachedResultName": "company-files"
+        },
+        "options": {}
+      },
+      "id": "796ac368-5576-4b6d-a610-dd9ed947d32e",
+      "name": "Pinecone Vector Store1",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "position": [
+        1792,
+        1184
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "pineconeApi": {
+          "id": "ESOHs5j1ToO16UUT",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "binary",
+        "binaryMode": "specificField",
+        "options": {
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "fileId",
+                "value": "={{ $('Code in JavaScript1').item.json.id }}"
+              },
+              {
+                "name": "fileName",
+                "value": "={{ $('Code in JavaScript1').item.json.name }}"
+              },
+              {
+                "name": "uploadDate",
+                "value": "={{ $now }}"
+              }
+            ]
+          }
+        }
+      },
+      "id": "95eeac05-16b9-4026-9583-8c2c7dd02452",
+      "name": "Default Data Loader1",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "position": [
+        2016,
+        1376
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "chunkOverlap": 100,
+        "options": {}
+      },
+      "id": "710e3fee-4243-4319-8189-3f17b854838d",
+      "name": "Recursive Character Text Splitter1",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "position": [
+        2144,
+        1568
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1776,
+        1376
+      ],
+      "id": "028557fc-b7b5-4f3f-aeec-bb07b4397022",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "h8C2L4r39uXcmqya",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9765d185-3140-42f0-9250-eb56bd2ff049",
+              "name": "fileId",
+              "value": "={{ $('Google Drive File Updated').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "cfce6151-afbb-4eae-b81a-3efa8f5265a9",
+              "name": "fileName",
+              "value": "={{ $('Google Drive File Updated').item.json.name }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1024,
+        1184
+      ],
+      "id": "15031e1a-afe3-414d-9161-4b56e96e02d5",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "content": "# RAG  - Deleting Knowledge from the Vector DB\n",
+        "height": 704,
+        "width": 1952,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        448,
+        1824
+      ],
+      "id": "45ca3d2f-60c8-4f85-a0ab-3f1a3da2e6c4",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 2
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        608,
+        2064
+      ],
+      "id": "dc420f84-14a1-43b8-8eb9-079e66d4c157",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "resource": "fileFolder",
+        "returnAll": true,
+        "filter": {
+          "folderId": {
+            "__rl": true,
+            "value": "1KWMwcgm-GaIaGSvdLRUxsppcjdcLV775",
+            "mode": "list",
+            "cachedResultName": "Knowledge_Base",
+            "cachedResultUrl": "https://drive.google.com/drive/folders/1KWMwcgm-GaIaGSvdLRUxsppcjdcLV775"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        848,
+        2064
+      ],
+      "id": "b7d6f55f-a038-4fb2-806d-8022f46d403e",
+      "name": "Search files and folders",
+      "executeOnce": true,
+      "credentials": {
+        "googleApi": {
+          "id": "fk0RfvebDBM8pQrt",
+          "name": "Google Drive account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://YOUR_PINECONE_HOST/vectors/delete",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Api-Key",
+              "value": "YOUR_PINECONE_API_KEY"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"filter\": { \"fileId\": \"{{ $json.id }}\" }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1936,
+        1936
+      ],
+      "id": "58292c09-8429-4a28-a36f-98150d670241",
+      "name": "Delete Vectors HTTP Request"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SUPPORT_LOG_SPREADSHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1121798137,
+          "mode": "list",
+          "cachedResultName": "Rag_File_Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit#gid=1121798137"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "status": "active",
+            "lastChecked": "= {{ $now }}",
+            "fileId": "={{ $('Google Drive File Created').item.json.id }}",
+            "fileName": "={{ $('Google Drive File Created').item.json.name }}",
+            "firstMissingAt": "null"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "fileId",
+              "displayName": "fileId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "fileName",
+              "displayName": "fileName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "firstMissingAt",
+              "displayName": "firstMissingAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "lastChecked",
+              "displayName": "lastChecked",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1584,
+        96
+      ],
+      "id": "af831c13-f0c8-407a-ac15-70d0505410de",
+      "name": "File Creation Logger",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dFwvRpFrU3hj7eAL",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SUPPORT_LOG_SPREADSHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1121798137,
+          "mode": "list",
+          "cachedResultName": "Rag_File_Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit#gid=1121798137"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "fileId": "={{ $json.fileId }}",
+            "fileName": "={{ $json.fileName }}",
+            "status": "updated",
+            "firstMissingAt": "null",
+            "lastChecked": "={{ $now }}",
+            "row_number": 0
+          },
+          "matchingColumns": [
+            "fileId"
+          ],
+          "schema": [
+            {
+              "id": "fileId",
+              "displayName": "fileId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "fileName",
+              "displayName": "fileName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "firstMissingAt",
+              "displayName": "firstMissingAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "lastChecked",
+              "displayName": "lastChecked",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1712,
+        1008
+      ],
+      "id": "e7107bb4-ea66-43b2-a39b-e00058a2df0f",
+      "name": "File Update Logger",
+      "alwaysOutputData": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dFwvRpFrU3hj7eAL",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SUPPORT_LOG_SPREADSHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1121798137,
+          "mode": "list",
+          "cachedResultName": "Rag_File_Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit#gid=1121798137"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1088,
+        2064
+      ],
+      "id": "515d5212-9c03-4953-929a-09d8200536b9",
+      "name": "Read File Tracker Logs",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dFwvRpFrU3hj7eAL",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Current files in Google Drive\nconst driveFiles = $('Search files and folders').all()\n  .map(item => ({\n    fileId: item.json.id,\n    fileName: item.json.name\n  }));\n\n// Tracked files in Google Sheets\nconst trackedFiles = $('Read File Tracker Logs').all()\n  .map(item => item.json);\n\nconst driveFileIds = driveFiles.map(f => f.fileId);\n\nconst toDelete = [];\nconst toMarkMissing = [];\nconst toMarkActive = [];\n\ntrackedFiles.forEach(tracked => {\n  // Skip already deleted\n  if (tracked.status === 'deleted') return;\n\n  const stillInDrive = driveFileIds.includes(tracked.fileId);\n\n  if (!stillInDrive) {\n    if (tracked.status === 'missing_once') {\n      // Missing 2nd time → DELETE!\n      toDelete.push(tracked);\n    } else {\n      // Missing 1st time → just mark\n      toMarkMissing.push(tracked);\n    }\n  } else if (tracked.status === 'missing_once') {\n    // Was missing but came back\n    toMarkActive.push(tracked);\n  }\n});\n\nconsole.log('To Delete:', toDelete.length);\nconsole.log('To Mark Missing:', toMarkMissing.length);\nconsole.log('To Mark Active:', toMarkActive.length);\n\nreturn [{\n  json: {\n    toDelete,\n    toMarkMissing,\n    toMarkActive\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1360,
+        2064
+      ],
+      "id": "e0c5f5ed-966e-4e59-b4f5-9e75bde64027",
+      "name": "Compare & Categorize Files"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4447ccc9-b88e-4324-ab1c-42578b52832e",
+              "leftValue": "={{ $json.toDelete.length }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1632,
+        1952
+      ],
+      "id": "6162ef29-04c0-425b-b3df-d193b4cb0649",
+      "name": "Has Files to Delete"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4447ccc9-b88e-4324-ab1c-42578b52832e",
+              "leftValue": "={{ $json.toMarkMissing.length }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1648,
+        2144
+      ],
+      "id": "4f38b10e-c3ac-4d71-b3d2-11c1c93e02e1",
+      "name": "Has Files to Mark Missing"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4447ccc9-b88e-4324-ab1c-42578b52832e",
+              "leftValue": "={{ $json.toMarkActive.length }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1664,
+        2336
+      ],
+      "id": "524c9394-b4fd-4218-9f8c-123e928b4afe",
+      "name": "Has Files to Mark Active"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SUPPORT_LOG_SPREADSHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1121798137,
+          "mode": "list",
+          "cachedResultName": "Rag_File_Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit#gid=1121798137"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "fileId": "={{ $('Compare & Categorize Files').item.json.toDelete[0].fileId }}",
+            "status": "deleted",
+            "lastChecked": "={{ $now }}"
+          },
+          "matchingColumns": [
+            "fileId"
+          ],
+          "schema": [
+            {
+              "id": "fileId",
+              "displayName": "fileId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "fileName",
+              "displayName": "fileName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "firstMissingAt",
+              "displayName": "firstMissingAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "lastChecked",
+              "displayName": "lastChecked",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2160,
+        1936
+      ],
+      "id": "8c940501-2c9b-4889-b830-1f978ae35493",
+      "name": "Update row in log tracker",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dFwvRpFrU3hj7eAL",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SUPPORT_LOG_SPREADSHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1121798137,
+          "mode": "list",
+          "cachedResultName": "Rag_File_Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit#gid=1121798137"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "fileId": "={{ $('Compare & Categorize Files').item.json.toMarkMissing[2].fileId }}",
+            "status": "missing_once",
+            "lastChecked": "={{ $now }}",
+            "firstMissingAt": "={{ $now }}"
+          },
+          "matchingColumns": [
+            "fileId"
+          ],
+          "schema": [
+            {
+              "id": "fileId",
+              "displayName": "fileId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "fileName",
+              "displayName": "fileName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "firstMissingAt",
+              "displayName": "firstMissingAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "lastChecked",
+              "displayName": "lastChecked",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1936,
+        2128
+      ],
+      "id": "cdbaf20f-d4d1-48f9-9ef9-9c49d70e3d90",
+      "name": "Update row in log tracker2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dFwvRpFrU3hj7eAL",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SUPPORT_LOG_SPREADSHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1121798137,
+          "mode": "list",
+          "cachedResultName": "Rag_File_Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit#gid=1121798137"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "fileId": "={{ $('Compare & Categorize Files').item.json.toMarkActive[0].fileId }}",
+            "status": "active",
+            "lastChecked": "={{ $now }}"
+          },
+          "matchingColumns": [
+            "fileId"
+          ],
+          "schema": [
+            {
+              "id": "fileId",
+              "displayName": "fileId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "fileName",
+              "displayName": "fileName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "firstMissingAt",
+              "displayName": "firstMissingAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "lastChecked",
+              "displayName": "lastChecked",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1952,
+        2336
+      ],
+      "id": "696e9c5c-003c-4d1a-929a-e50b43336df4",
+      "name": "Update row in log tracker3",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dFwvRpFrU3hj7eAL",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Pinecone Vector Store": {
+      "main": [
+        []
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download File From Google Drive": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive File Created": {
+      "main": [
+        [
+          {
+            "node": "Remove Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "File Creation Logger",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove Duplicates": {
+      "main": [
+        [
+          {
+            "node": "Download File From Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive File Updated": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader1": {
+      "ai_document": [
+        [
+          {
+            "node": "Pinecone Vector Store1",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter1": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader1",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "File Update Logger",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Pinecone Vector Store1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Search files and folders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search files and folders": {
+      "main": [
+        [
+          {
+            "node": "Read File Tracker Logs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store1": {
+      "main": [
+        []
+      ]
+    },
+    "Read File Tracker Logs": {
+      "main": [
+        [
+          {
+            "node": "Compare & Categorize Files",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compare & Categorize Files": {
+      "main": [
+        [
+          {
+            "node": "Has Files to Delete",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Has Files to Mark Missing",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Has Files to Mark Active",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Files to Delete": {
+      "main": [
+        [
+          {
+            "node": "Delete Vectors HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Vectors HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Update row in log tracker",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Files to Mark Missing": {
+      "main": [
+        [
+          {
+            "node": "Update row in log tracker2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Files to Mark Active": {
+      "main": [
+        [
+          {
+            "node": "Update row in log tracker3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "File Creation Logger": {
+      "main": [
+        []
+      ]
+    },
+    "File Update Logger": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "7efd7727-2e2f-4386-8904-2c707a429d91",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "JU95XUEfWgCv2ELb",
+  "tags": []
+}

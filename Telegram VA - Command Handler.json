@@ -1,0 +1,670 @@
+{
+  "name": "Telegram VA - Command Handler",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "tg-cmd-trigger-001",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        480,
+        464
+      ],
+      "webhookId": "a91905d9-c9d3-4c0b-ba4e-c64af702a01a",
+      "credentials": {
+        "telegramApi": {
+          "id": "Z4DjPtixNJvP438S",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "rule-help",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/help",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "rule-today",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/today",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra",
+          "ignoreCase": true,
+          "renameFallbackOutput": "Default"
+        }
+      },
+      "id": "tg-cmd-switch-001",
+      "name": "Command Router",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        752,
+        464
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message.chat.id }}",
+        "text": "🤖 *Virtual Assistant Commands:*\n\n📅 /schedule [event] — Add a new calendar event\n📋 /today — See today's events\n🔍 /check [date] — Check availability on a date\n✉️ /email [recipient] [topic] — Draft an email\n💬 Just type naturally — I understand plain language too!\n\n_Powered by N8N + GPT-4o_",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "tg-cmd-help-001",
+      "name": "Send Help",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1072,
+        208
+      ],
+      "webhookId": "b511f185-3aef-447a-b382-1afd2533e91d",
+      "credentials": {
+        "telegramApi": {
+          "id": "Z4DjPtixNJvP438S",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "mode": "id",
+          "value": "primary"
+        },
+        "returnAll": true,
+        "timeMin": "={{ $now.startOf('day').toISO() }}",
+        "timeMax": "={{ $now.endOf('day').toISO() }}",
+        "options": {
+          "orderBy": "startTime"
+        }
+      },
+      "id": "tg-cmd-gcal-001",
+      "name": "Get Today's Events",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        1072,
+        464
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "vgDIWdn7j16Ol1sl",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst now = new Date();\nconst options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };\nconst dateStr = now.toLocaleDateString('en-US', options);\n\nif (!items || items.length === 0 || !items[0].json.summary) {\n  return [{ json: { formatted_schedule: `📋 *Today's Schedule — ${dateStr}*\\n\\n✅ No events scheduled today. Enjoy your free day!` } }];\n}\n\nlet msg = `📋 *Today's Schedule — ${dateStr}*\\n\\n`;\n\nfor (const item of items) {\n  const e = item.json;\n  const startStr = e.start?.dateTime || e.start?.date;\n  let timeDisplay = 'All day';\n  if (e.start?.dateTime) {\n    timeDisplay = new Date(e.start.dateTime).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });\n  }\n  const location = e.location ? ` 📍 ${e.location}` : '';\n  msg += `🕐 ${timeDisplay} — *${e.summary}*${location}\\n`;\n}\n\nmsg += '\\n_Have a productive day!_';\n\nreturn [{ json: { formatted_schedule: msg } }];"
+      },
+      "id": "tg-cmd-format-001",
+      "name": "Format Schedule",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1328,
+        464
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').first().json.message.chat.id }}",
+        "text": "={{ $json.formatted_schedule }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "tg-cmd-send-sched-001",
+      "name": "Send Schedule",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1584,
+        464
+      ],
+      "webhookId": "59760282-b174-4bae-9044-770c5c156421",
+      "credentials": {
+        "telegramApi": {
+          "id": "Z4DjPtixNJvP438S",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message.text }}",
+        "hasOutputParser": false,
+        "options": {
+          "systemMessage": "You are a combined Calendar & Email Virtual Assistant on Telegram. Today's date is {{ $now.format('YYYY-MM-DD') }} ({{ $now.format('dddd') }}).\n\nYou have these tools:\n1. **Google Calendar - List Events**: List events from the calendar\n2. **Google Calendar - Create Event**: Create new calendar events\n3. **Google Calendar - Check Availability**: Check if a time slot is free\n4. **Gmail - Create Draft**: Create email drafts in Gmail\n\n## Commands you handle:\n- /schedule [event] or /add [event] — Create a calendar event\n- /check [date/time] — Check availability\n- /email [recipient] [topic] or /draft — Compose an email draft\n- Free text — Understand natural language requests\n\n## MANDATORY Rules:\n1. **ALWAYS confirm before creating** events or email drafts. Show a summary and ask 'Shall I proceed? (yes/no)'\n2. For events, extract: title, date, start time, end time/duration\n3. For emails, extract: recipient, subject, body content\n4. If details are missing, ask the user\n5. Use Telegram Markdown for formatting\n6. Be concise — this is a chat interface\n7. Support both English and Bosnian languages\n8. Never send emails directly — only create drafts\n9. After creating a draft, remind user to review in Gmail before sending\n\n## Confirmation Flow:\n- Show summary → Wait for yes/no → Execute or cancel\n- Accept: yes, da, sure, go ahead, potvrdi\n- Reject: no, ne, cancel, odustani",
+          "maxIterations": 10
+        }
+      },
+      "id": "tg-cmd-agent-001",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1072,
+        752
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').first().json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "tg-cmd-send-ai-001",
+      "name": "Send AI Response",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1392,
+        752
+      ],
+      "webhookId": "b55b1afd-c837-4821-a767-356df55b8297",
+      "credentials": {
+        "telegramApi": {
+          "id": "Z4DjPtixNJvP438S",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "id",
+          "value": "gpt-4o"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "id": "tg-cmd-llm-001",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        768,
+        992
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "h8C2L4r39uXcmqya",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Telegram Trigger').first().json.message.chat.id }}",
+        "contextWindowLength": 10
+      },
+      "id": "tg-cmd-mem-001",
+      "name": "Window Buffer Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        960,
+        992
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "mode": "id",
+          "value": "primary"
+        },
+        "options": {}
+      },
+      "id": "tg-cmd-gcal-list-001",
+      "name": "GCal - List Events",
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1120,
+        992
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "vgDIWdn7j16Ol1sl",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "mode": "id",
+          "value": "primary"
+        },
+        "additionalFields": {}
+      },
+      "id": "tg-cmd-gcal-create-001",
+      "name": "GCal - Create Event",
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1280,
+        992
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "vgDIWdn7j16Ol1sl",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "calendar",
+        "calendar": {
+          "__rl": true,
+          "mode": "id",
+          "value": "primary"
+        },
+        "options": {}
+      },
+      "id": "tg-cmd-gcal-avail-001",
+      "name": "GCal - Check Availability",
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1440,
+        992
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "vgDIWdn7j16Ol1sl",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "options": {
+          "sendTo": ""
+        }
+      },
+      "id": "tg-cmd-gmail-001",
+      "name": "Gmail - Create Draft",
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        1600,
+        992
+      ],
+      "webhookId": "fe82ae32-ac6c-4c19-8cee-663e91a5c25e",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\n  json: {\n    timestamp: new Date().toISOString(),\n    trigger_type: 'command',\n    command: '/help',\n    action_completed: 'true',\n    response_time_ms: String(Date.now() - new Date($execution.startedAt).getTime()),\n    user_confirmed_before_action: 'n/a'\n  }\n};"
+      },
+      "id": "tg-cmd-log-help-001",
+      "name": "Prepare Log (Help)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1392,
+        208
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\n  json: {\n    timestamp: new Date().toISOString(),\n    trigger_type: 'command',\n    command: '/today',\n    action_completed: 'true',\n    response_time_ms: String(Date.now() - new Date($execution.startedAt).getTime()),\n    user_confirmed_before_action: 'n/a'\n  }\n};"
+      },
+      "id": "tg-cmd-log-today-001",
+      "name": "Prepare Log (Today)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1840,
+        464
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const triggerData = $('Telegram Trigger').first().json;\nconst messageText = triggerData.message?.text || '';\nconst isCommand = messageText.startsWith('/');\n\nreturn {\n  json: {\n    timestamp: new Date().toISOString(),\n    trigger_type: isCommand ? 'command' : 'freeform',\n    command: isCommand ? messageText.split(' ')[0] : 'freeform_text',\n    action_completed: 'true',\n    response_time_ms: String(Date.now() - new Date($execution.startedAt).getTime()),\n    user_confirmed_before_action: 'pending'\n  }\n};"
+      },
+      "id": "tg-cmd-log-ai-001",
+      "name": "Prepare Log (AI)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1648,
+        752
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "YOUR_VA_LOG_SPREADSHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "VA_Metrics"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData"
+        },
+        "options": {}
+      },
+      "id": "tg-cmd-log-001",
+      "name": "Log to Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2048,
+        464
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dFwvRpFrU3hj7eAL",
+          "name": "Google Sheets account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "content": "## Telegram VA - Command Handler (Phase 3)\n\n**Purpose:** Main Telegram bot interface. Routes /help and /today to direct handlers, everything else to AI Agent with calendar + email tools.\n\n**Setup Required:**\n1. Update Telegram Bot credential (this is the ONLY workflow with Telegram Trigger)\n2. Update Google Calendar OAuth2 credential (4 nodes)\n3. Update Gmail OAuth2 credential (1 node)\n4. Create 'VA_Metrics' sheet tab\n\n🤖 Commands: /help, /today, /schedule, /check, /email + free text"
+      },
+      "id": "tg-cmd-sticky-001",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        400,
+        208
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Command Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Command Router": {
+      "main": [
+        [
+          {
+            "node": "Send Help",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Today's Events",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Help": {
+      "main": [
+        [
+          {
+            "node": "Prepare Log (Help)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Today's Events": {
+      "main": [
+        [
+          {
+            "node": "Format Schedule",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Schedule": {
+      "main": [
+        [
+          {
+            "node": "Send Schedule",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Schedule": {
+      "main": [
+        [
+          {
+            "node": "Prepare Log (Today)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Send AI Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send AI Response": {
+      "main": [
+        [
+          {
+            "node": "Prepare Log (AI)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Log (Help)": {
+      "main": [
+        [
+          {
+            "node": "Log to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Log (Today)": {
+      "main": [
+        [
+          {
+            "node": "Log to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Log (AI)": {
+      "main": [
+        [
+          {
+            "node": "Log to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GCal - List Events": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GCal - Create Event": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GCal - Check Availability": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail - Create Draft": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Sarajevo",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "9eaf3936-06ec-425a-b914-f00e66de07bc",
+  "meta": {
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "ltlnCn9QWsPtfZs5",
+  "tags": []
+}

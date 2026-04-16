@@ -1,0 +1,437 @@
+{
+  "name": "PageIndex Query Webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "pageindex-query",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "364cf300-9349-4719-a922-196675a68a20",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -80,
+        0
+      ],
+      "webhookId": "pageindex-webhook",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Capture start time\nconst startTime = Date.now();\n\n// Get incoming request body\nconst body = $input.first().json.body || {};\nconst query = body.query;\n\n// Validation checks\nif (!query || query.trim() === '') {\n  return [{\n    json: {\n      error: true,\n      status: 400,\n      message: \"Bad Request: 'query' field is required and cannot be empty\",\n      startTime: startTime\n    }\n  }];\n}\n\n// Valid input - pass through\nreturn [{\n  json: {\n    error: false,\n    query: query.trim()\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        112,
+        0
+      ],
+      "id": "9688f362-8f03-46c4-99cb-cdccb06dbc88",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "e8c21120-ffb0-4e3a-97b8-43617f39d1a4",
+              "leftValue": "={{ $json.error }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        304,
+        0
+      ],
+      "id": "9d30f4f6-c2a1-4eef-8536-04ddef11aa79",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        848,
+        -16
+      ],
+      "id": "a220102a-f279-4ad2-925b-f38c6eb2d864",
+      "name": "Respond with Error Message"
+    },
+    {
+      "parameters": {
+        "url": "https://api.pageindex.ai/docs",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_PAGEINDEX_API_KEY"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "list-pageindex-docs",
+      "name": "List All PageIndex Docs",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        480,
+        176
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const response = $input.first().json;\nconst docs = Array.isArray(response) ? response : (response.docs || response.data || response.documents || []);\nconst docIds = docs.map(d => d.id || d.doc_id).filter(Boolean);\nconst query = $('Code in JavaScript').item.json.query;\nreturn [{ json: { docIds, query } }];"
+      },
+      "id": "build-doc-id-array",
+      "name": "Build Doc ID Array",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        656,
+        176
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.pageindex.ai/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_PAGEINDEX_API_KEY"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"{{ $json.query }}\"\n    }\n  ],\n  \"doc_id\": {{ JSON.stringify($json.docIds) }}\n}",
+        "options": {}
+      },
+      "id": "f1776c02-781f-446c-9f9f-ad36b59486b0",
+      "name": "PageIndex Query",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        832,
+        176
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract the answer from PageIndex response\nconst response = $input.first().json;\nconst answer = response.choices[0].message.content;\nconst query = $('Webhook').first().json.body.query;\n\nreturn [{\n  json: {\n    query: query,\n    answer: answer,\n    timestamp: new Date().toISOString()\n  }\n}];"
+      },
+      "id": "1d06dfc6-06b6-473c-86cb-f85981cacb26",
+      "name": "Extract Answer",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1008,
+        176
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "fb0f3ed6-0306-4c1b-a68f-8ccb82be6431",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1184,
+        176
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "\n// Get input data\nconst inputData = $input.first().json;\n\n// Calculate response time\nlet responseTime = 'N/A';\ntry {\n  const startTime = $('Code in JavaScript').first().json.startTime;\n  if (startTime) {\n    const endTime = Date.now();\n    const duration = endTime - startTime;\n    responseTime = `${duration}ms`;\n  }\n} catch (e) {\n  try {\n    const pageIndexTime = $('PageIndex Query').first().json?.executionTime;\n    if (pageIndexTime) {\n      responseTime = `${pageIndexTime}ms (API only)`;\n    }\n  } catch (err) {}\n}\n\nlet timestamp = new Date().toISOString();\nlet query = 'N/A';\nlet status = 'unknown';\nlet response = 'N/A';\nlet errorMessage = '';\n\nif (inputData.error === true) {\n  status = 'error';\n  errorMessage = inputData.message || 'Unknown error';\n  query = inputData.query || 'N/A';\n  response = 'N/A';\n} else {\n  status = 'success';\n  query = inputData.query || 'N/A';\n  response = inputData.answer || inputData.response || 'No response';\n  errorMessage = '';\n}\n\nreturn [{\n  json: {\n    timestamp: timestamp,\n    query: query,\n    status: status,\n    response: response,\n    errorMessage: errorMessage,\n    responseTime: responseTime\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1376,
+        -32
+      ],
+      "id": "937cd7f6-358e-4d18-b8a1-7f782703c78c",
+      "name": "Format Response Metadata"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_SUPPORT_LOG_SPREADSHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 927643220,
+          "mode": "list",
+          "cachedResultName": "PageIndex_API_Logs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit#gid=927643220"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "timestamp:": "={{ $json.timestamp }}",
+            "query:": "={{ $json.query }}",
+            "response": "={{ $json.answer }}",
+            "status": "={{ $json.status }}",
+            "responseTime": "={{ $json.responseTime }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "timestamp:",
+              "displayName": "timestamp:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "query:",
+              "displayName": "query:",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "response",
+              "displayName": "response",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "responseTime",
+              "displayName": "responseTime",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1568,
+        -32
+      ],
+      "id": "e90bf995-8750-42bc-896f-9351a4bcf6e5",
+      "name": "Log API Calls",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dFwvRpFrU3hj7eAL",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## PageIndex Query Webhook\n",
+        "height": 656,
+        "width": 1900,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        -240
+      ],
+      "id": "ff858901-b00d-4f6a-9a9e-aa8fbe8a823c",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Respond with Error Message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "List All PageIndex Docs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List All PageIndex Docs": {
+      "main": [
+        [
+          {
+            "node": "Build Doc ID Array",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Doc ID Array": {
+      "main": [
+        [
+          {
+            "node": "PageIndex Query",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PageIndex Query": {
+      "main": [
+        [
+          {
+            "node": "Extract Answer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Answer": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook": {
+      "main": [
+        [
+          {
+            "node": "Format Response Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond with Error Message": {
+      "main": [
+        [
+          {
+            "node": "Format Response Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Response Metadata": {
+      "main": [
+        [
+          {
+            "node": "Log API Calls",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "ea9f720c-2ef5-402f-9139-3d376b152556",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "H4eZXxmmXDTbg6uF",
+  "tags": []
+}

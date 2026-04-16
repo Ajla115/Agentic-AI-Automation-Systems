@@ -1,0 +1,232 @@
+{
+  "name": "HA - Sending Immediate Escalation Alert to a Human Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "threadId"
+            },
+            {
+              "name": "messageId"
+            },
+            {
+              "name": "chatInput"
+            },
+            {
+              "name": "subject"
+            },
+            {
+              "name": "senderEmail"
+            },
+            {
+              "name": "conversationHistory"
+            },
+            {
+              "name": "messageCount",
+              "type": "number"
+            },
+            {
+              "name": "isFirstMessage",
+              "type": "boolean"
+            },
+            {
+              "name": "isEscalated",
+              "type": "boolean"
+            },
+            {
+              "name": "startTime",
+              "type": "any"
+            },
+            {
+              "name": "receivedTime",
+              "type": "any"
+            },
+            {
+              "name": "channel"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -368,
+        0
+      ],
+      "id": "6f1744b4-74dc-482e-ba76-1b6840659448",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $json.threadId }}",
+        "message": "=<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\">\n</head>\n<body style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0; padding: 30px; background-color: #f5f5f5;\">  \n  <div style=\"background-color: #ffffff; padding: 35px; border-radius: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.3);\">\n    \n    <div style=\"width: 48px; height: 4px; background-color: #4A90D9; border-radius: 2px; margin-bottom: 20px;\"></div>\n\n    <h2 style=\"color: #1B2A4A; margin-top: 0; margin-bottom: 20px; font-size: 20px;\">Request Forwarded to Support Team</h2>\n    \n    <p style=\"color: #555; line-height: 1.7; margin-bottom: 15px;\">\n      Hello,\n    </p>\n    \n    <p style=\"color: #555; line-height: 1.7; margin-bottom: 15px;\">\n      Your email has been forwarded to our customer support team for personalized assistance.\n    </p>\n    \n    <p style=\"color: #555; line-height: 1.7; margin-bottom: 20px;\">\n      A human agent will review your request and respond within <strong style=\"color: #1B2A4A;\">1 hour</strong>.\n    </p>\n    \n    <div style=\"background-color: #EBF3FC; padding: 16px 20px; border-left: 4px solid #4A90D9; border-radius: 0 8px 8px 0; margin: 24px 0;\">\n      <p style=\"color: #1B2A4A; margin: 0 0 4px 0; font-size: 0.95em; font-weight: bold;\">What happens next?</p>\n      <p style=\"color: #4A6080; margin: 0; font-size: 0.9em; line-height: 1.6;\">Our support team will contact you directly via email to resolve your issue.</p>\n    </div>\n    \n    <p style=\"color: #555; line-height: 1.6; margin-top: 25px; margin-bottom: 5px;\">\n      Best regards,\n    </p>\n    <p style=\"color: #1B2A4A; font-weight: bold; margin-top: 0;\">\n      Customer Support Team\n    </p>\n    \n  </div>\n  \n  <p style=\"color: #8899BB; font-size: 0.82em; text-align: center; margin-top: 20px;\">\n    This is an automated confirmation. Please do not reply to this email.\n  </p>\n  \n</body>\n</html>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        32,
+        0
+      ],
+      "id": "2aeb8f62-175d-4bac-9bf1-c4f90f5dfccb",
+      "name": "Send Confirmation of Redirection",
+      "webhookId": "a6decf80-c93e-4371-9f00-2a4da1bcd64f",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "3r2K53nXVGhMLs3f",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "=<b>🚨 CUSTOMER SUPPORT ESCALATION</b>\n━━━━━━━━━━━━━━━━━━━━━━━━━━━\n<b>👤 CUSTOMER INFO</b>\n📧 Email: {{ $('When Executed by Another Workflow').item.json.senderEmail }} \n📋 Subject: {{ $('When Executed by Another Workflow').item.json.subject }} \n💬 Message #{{ $('When Executed by Another Workflow').item.json.messageCount }} in thread \n\n<b>📩 LAST CUSTOMER MESSAGE</b>\n{{ $('When Executed by Another Workflow').item.json.chatInput }}\n\n<b>💬 FULL CONVERSATION HISTORY & REFERENCES</b>\n{{ $('When Executed by Another Workflow').item.json.conversationHistory ? '🔗 View complete interaction log:\\nhttps://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit?gid=2068850783#gid=2068850783\\n\\n📌 Filter by Thread ID: ' + $('When Executed by Another Workflow').item.json.threadId : '' || 'No previous conversation - This is the first message' }}\n\n<b>📚 SOURCES USED</b>\n{{ $('When Executed by Another Workflow').item.json.references || 'No documentation referenced' }}  \n\n<b>✅ ACTION REQUIRED</b>\n🔗 REPLY VIA GMAIL: https://mail.google.com/mail/u/0/#inbox/{{ $('When Executed by Another Workflow').item.json.threadId }}  \n⏰ Customer expects response within 1 hour\n📌 Thread ID: {{ $('When Executed by Another Workflow').item.json.threadId }}\n\n⏱️ Received: {{ $('When Executed by Another Workflow').item.json.receivedTime }}\n📡 Channel: {{ $('When Executed by Another Workflow').item.json.channel }}",
+        "additionalFields": {
+          "parse_mode": "HTML"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        432,
+        0
+      ],
+      "id": "c854a41b-edcc-4950-b1df-8f83e6ad69f6",
+      "name": "Alert Human Agent",
+      "webhookId": "e0e10e9e-12e3-4b31-899b-ea60d1dd315d",
+      "credentials": {
+        "telegramApi": {
+          "id": "Z4DjPtixNJvP438S",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Sending Immediate Escalation Alert to a Human Agent\n",
+        "height": 368,
+        "width": 1040,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -432,
+        -128
+      ],
+      "id": "1882af2b-158f-4483-b80c-81fa7b34f242",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $json.threadId }}",
+        "labelIds": [
+          "Label_1341859334442668589"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        -160,
+        0
+      ],
+      "id": "962a027b-4d58-4e71-b517-5abe008737f9",
+      "name": "Add label to message",
+      "webhookId": "bfcd0488-2695-4a91-84c9-9dbb7f9013b1",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "3r2K53nXVGhMLs3f",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "markAsRead",
+        "messageId": "={{ $('When Executed by Another Workflow').item.json.messageId }}"
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        240,
+        0
+      ],
+      "id": "2f5c3911-5ebe-4cbb-92cf-b4b468b813da",
+      "name": "Mark a message as read",
+      "webhookId": "0590d931-bf91-4b9b-b013-e31c013e2165",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "3r2K53nXVGhMLs3f",
+          "name": "Gmail account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Add label to message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add label to message": {
+      "main": [
+        [
+          {
+            "node": "Send Confirmation of Redirection",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Confirmation of Redirection": {
+      "main": [
+        [
+          {
+            "node": "Mark a message as read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark a message as read": {
+      "main": [
+        [
+          {
+            "node": "Alert Human Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timeSavedMode": "fixed",
+    "timezone": "Europe/Sarajevo",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "6f0de970-e61e-47b9-bf56-5af7d69991e8",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "NFYKKeyXOAlvT2aD",
+  "tags": []
+}
