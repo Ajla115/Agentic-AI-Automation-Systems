@@ -1,0 +1,608 @@
+{
+  "name": "Human Cases RAG Updater",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 10
+            }
+          ]
+        }
+      },
+      "id": "rag-trigger-001",
+      "name": "Schedule Trigger (15m for testing)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -400,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "searchMethod": "query",
+        "queryString": "=name = 'Human_Cases.txt' and 'YOUR_GOOGLE_DRIVE_FOLDER_ID' in parents and trashed = false",
+        "limit": 1,
+        "filter": {},
+        "options": {}
+      },
+      "id": "rag-search-old",
+      "name": "Search Old Human_Cases.txt",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -160,
+        0
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_DRIVE_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "cond-old-exists",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "rag-if-old-exists",
+      "name": "Old File Exists?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        80,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "O64StjKhOMjnKHqi",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/O64StjKhOMjnKHqi",
+          "cachedResultName": "RAG Workflow for Knowledge Base - Delete"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "fileId": "={{ $json.id }}",
+            "fileName": "={{ $json.name }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "fileId",
+              "displayName": "fileId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "fileName",
+              "displayName": "fileName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "id": "rag-call-delete",
+      "name": "Call RAG Delete (sub-workflow)",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        320,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2068850783,
+          "mode": "list",
+          "cachedResultName": "Interaction_Logs"
+        },
+        "options": {}
+      },
+      "id": "rag-read-001",
+      "name": "Read Interaction Logs",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        560,
+        0
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const rows = $input.all().map(i => i.json);\n\nconst threads = {};\nfor (const row of rows) {\n  const id = row.threadId;\n  if (!id) continue;\n\n  if (!threads[id]) {\n    threads[id] = {\n      threadId: id,\n      channel: row.channel,\n      priority: row.priority || 'normal',\n      escalated: false,\n      rows: []\n    };\n  }\n  if (String(row.isEscalated).toLowerCase() === 'true') threads[id].escalated = true;\n  threads[id].rows.push(row);\n}\n\nconst cases = [];\nfor (const thread of Object.values(threads)) {\n  if (!thread.escalated) continue;\n\n  const sorted = thread.rows.sort((a, b) =>\n    new Date(a.timestampReceived || a.timestampStart || 0) -\n    new Date(b.timestampReceived || b.timestampStart || 0)\n  );\n\n  const hasResolution = sorted.some(r =>\n    r.response && r.response !== 'Pending' && r.response !== 'None'\n  );\n  if (!hasResolution) continue;\n\n  const queries = sorted\n    .filter(r => r.query && r.query !== 'None')\n    .map(r => r.query.trim())\n    .join(' | ');\n\n  const resolutions = sorted\n    .filter(r => r.response && r.response !== 'Pending' && r.response !== 'None')\n    .map(r => r.response.trim())\n    .join(' | ');\n\n  const date = sorted[0].timestampReceived || sorted[0].timestampStart || 'Unknown';\n\n  cases.push({\n    threadId: thread.threadId,\n    date,\n    priority: thread.priority,\n    query: queries,\n    resolution: resolutions\n  });\n}\n\nreturn [{\n  json: {\n    caseCount: cases.length,\n    cases\n  }\n}];"
+      },
+      "id": "rag-filter-cases",
+      "name": "Filter Resolved+Escalated Cases",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        800,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "cond-has-cases",
+              "leftValue": "={{ $json.caseCount }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "rag-if-has-cases",
+      "name": "Has Cases?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\nconst cases = input.cases || [];\n\nconst formatted = cases.map((c, idx) =>\n  `--- RAW CASE ${idx + 1} ---\\nthreadId: ${c.threadId}\\ndate: ${c.date}\\npriority: ${c.priority}\\ncustomer_query: ${c.query}\\nhuman_resolution: ${c.resolution}`\n).join('\\n\\n');\n\nconst chatInput = `You will receive ${cases.length} resolved customer support cases below. Process them according to the rules in your system instructions and return the consolidated cases as structured JSON.\\n\\n${formatted}`;\n\nreturn [{\n  json: {\n    chatInput,\n    rawCases: cases\n  }\n}];"
+      },
+      "id": "rag-format-llm-input",
+      "name": "Format LLM Input",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1280,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.chatInput }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "You are a knowledge base curator for a customer support team.\n\nYou will receive a list of resolved customer support cases (each with a customer query and the human agent's resolution). Your job:\n\n1. DEDUPLICATE: If multiple cases describe the same underlying issue, keep only ONE entry combining them.\n2. MERGE: When duplicates have differently detailed answers, write ONE comprehensive resolution that covers all useful detail from each.\n3. NEUTRALIZE TONE: Rewrite resolutions in a neutral, professional, third-person knowledge-base style. Strip greetings, sign-offs, agent personality, customer names, ticket references, dates, and any conversational filler. The result should read like an internal procedure / how-to entry, not an email reply.\n4. NORMALIZE QUERIES: Rewrite each customer query as a concise issue description (e.g., 'Customer cannot log in after password reset' rather than 'hi i tried to login but it wont let me!!!').\n\nRules:\n- Do NOT invent details that aren't in the source cases.\n- Do NOT include personal data (names, emails, ticket IDs) in the output.\n- Preserve the threadId of the first case in a merged group as the canonical id; list all merged threadIds in 'mergedThreadIds'.\n- Return ONLY the JSON matching the provided schema."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "id": "rag-llm-chain",
+      "name": "LLM Chain (Dedup + Merge + Neutralize)",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        1520,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "projectId": {
+          "__rl": true,
+          "value": "civil-honor-486310-t3",
+          "mode": "list",
+          "cachedResultName": "My First Project"
+        },
+        "options": {}
+      },
+      "id": "rag-vertex-chat",
+      "name": "Google Vertex Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleVertex",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        224
+      ],
+      "credentials": {
+        "googleApi": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SERVICE_ACCOUNT_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"cases\": [\n    {\n      \"threadId\": \"thread_abc123\",\n      \"mergedThreadIds\": [\"thread_abc123\", \"thread_def456\"],\n      \"query\": \"Customer cannot reset password via email link\",\n      \"resolution\": \"If the password reset email is not received: verify the email address is registered, then trigger a manual password reset from the admin dashboard and notify the customer with a one-time link valid for 24 hours.\"\n    }\n  ]\n}"
+      },
+      "id": "rag-output-parser",
+      "name": "Structured Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        1632,
+        224
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\nconst out = input.output || input;\nconst casesToAdd = Array.isArray(out.cases) ? out.cases : [];\n\nif (casesToAdd.length === 0) {\n  return [{\n    json: {\n      content: 'No cases to add.',\n      caseCount: 0,\n      threadIds: [],\n      hasContent: false,\n      fileName: 'Human_Cases.txt'\n    }\n  }];\n}\n\nlet content = '=== HUMAN CASES KNOWLEDGE BASE ===\\n';\ncontent += 'Generated: ' + new Date().toISOString() + '\\n';\ncontent += 'Total cases: ' + casesToAdd.length + '\\n\\n';\n\nconst allThreadIds = [];\ncasesToAdd.forEach((c, idx) => {\n  content += `=== Case #${idx + 1} ===\\n`;\n  content += 'Issue: ' + (c.query || '') + '\\n';\n  content += 'Resolution: ' + (c.resolution || '') + '\\n';\n  content += '---\\n\\n';\n  const merged = Array.isArray(c.mergedThreadIds) && c.mergedThreadIds.length > 0\n    ? c.mergedThreadIds\n    : (c.threadId ? [c.threadId] : []);\n  merged.forEach(tid => allThreadIds.push(tid));\n});\n\nreturn [{\n  json: {\n    content,\n    caseCount: casesToAdd.length,\n    threadIds: allThreadIds,\n    hasContent: true,\n    fileName: 'Human_Cases.txt'\n  }\n}];"
+      },
+      "id": "rag-build-final",
+      "name": "Build Final Content",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1808,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "content",
+        "options": {
+          "fileName": "Human_Cases.txt"
+        }
+      },
+      "id": "rag-convert-text",
+      "name": "Convert to Text File",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        2048,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "name": "Human_Cases.txt",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_DRIVE_FOLDER_ID",
+          "mode": "list",
+          "cachedResultName": "Knowledge_Base"
+        },
+        "options": {}
+      },
+      "id": "rag-upload",
+      "name": "Upload Human_Cases.txt to Knowledge_Base",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2288,
+        0
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_DRIVE_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "value": "JU95XUEfWgCv2ELb",
+          "cachedResultName": "RAG Workflow for Knowledge Base - Addition"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "fileId": "={{ $json.id }}",
+            "fileName": "={{ $json.name }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "fileId",
+              "displayName": "fileId",
+              "type": "string",
+              "required": false,
+              "display": true,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "fileName",
+              "displayName": "fileName",
+              "type": "string",
+              "required": false,
+              "display": true,
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "id": "rag-call-add",
+      "name": "Call RAG Addition (sub-workflow)",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        2528,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Human Cases RAG Updater (LLM Chain pattern)\n\n### Flow\n1. Schedule fires (15min testing → 24h prod)\n2. Search for existing 'Human_Cases.txt' in Knowledge_Base folder\n3. If exists → Call **RAG Delete** sub-workflow (deletes file + Pinecone vectors + tracker row)\n4. Read Interaction_Logs sheet\n5. Code: filter ALL resolved+escalated, group by threadId\n6. LLM Chain (Vertex Gemini 2.5):\n   - Dedup\n   - Merge same-issue cases into one detailed answer\n   - Neutralize tone (KB-style, no PII)\n   - Returns structured JSON\n7. Code: build .txt content\n8. Convert to .txt file\n9. Upload to Knowledge_Base folder\n10. Call **RAG Addition** sub-workflow (downloads + embeds in Pinecone)\n11. Update kbLastUpdated for all consolidated threadIds\n12. Telegram notify\n\n### Sub-workflows called\n- Delete: O64StjKhOMjnKHqi (Execute Trigger expects fileId, fileName)\n- Addition: JU95XUEfWgCv2ELb (Execute Trigger expects fileId, fileName)\n\n### Notes\n- LLM Chain (NOT Agent) — same pattern as Main CS Workflow\n- Each run rebuilds the entire KB file from scratch\n- kbLastUpdated kept for audit trail (when each thread last entered KB)",
+        "height": 660,
+        "width": 600,
+        "color": 4
+      },
+      "id": "sticky-overview",
+      "name": "Sticky Overview",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -320,
+        -944
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# Human Cases RAG Updater\n\n## Purpose\nTurns resolved human-escalated cases from the Interaction_Logs sheet into a continuously refreshed knowledge-base document so the chatbot can learn from how human agents actually handled past escalations. Each run rebuilds the consolidated `Human_Cases.txt` from scratch and re-embeds it into the vector store and PageIndex.\n\n## How it works\n- Looks up the existing `Human_Cases.txt` in the Knowledge_Base Drive folder and, if it exists, calls the RAG Delete sub-workflow to remove the old file plus its Pinecone vectors and PageIndex doc\n- Reads all rows from Interaction_Logs, groups them by threadId, and keeps only escalated threads that have a real (non-Pending) human response\n- Feeds the cases to an LLM (Vertex Gemini) that deduplicates near-duplicates, merges related answers, neutralizes the tone to KB style, and strips PII\n- Builds a fresh Human_Cases.txt file from the LLM output and uploads it into the Knowledge_Base Drive folder\n- Calls the RAG Addition sub-workflow to embed the new file into Pinecone and PageIndex\n\n## Triggered by\nSchedule trigger  every 10 minutes (intended for 24h cadence in production).\n\n## Calls (sub-workflows)\n- RAG Workflow for Knowledge Base - Delete  removes the previous Human_Cases.txt from Drive, Pinecone, and the tracker before regeneration.\n- RAG Workflow for Knowledge Base - Addition  embeds the freshly rebuilt Human_Cases.txt into Pinecone and propagates to PageIndex.\n\n## Reads/writes\n- Reads Google Sheets `Customer_Support_Data`  `Interaction_Logs`\n- Reads/writes Google Drive `Knowledge_Base` folder (deletes old Human_Cases.txt, uploads new one)\n- Calls Google Vertex (Gemini) for the dedup/merge/neutralize LLM chain",
+        "height": 800,
+        "width": 1100,
+        "color": 4
+      },
+      "id": "sticky-overview-doc",
+      "name": "Workflow Overview",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1504,
+        -928
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger (15m for testing)": {
+      "main": [
+        [
+          {
+            "node": "Search Old Human_Cases.txt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Old Human_Cases.txt": {
+      "main": [
+        [
+          {
+            "node": "Old File Exists?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Old File Exists?": {
+      "main": [
+        [
+          {
+            "node": "Call RAG Delete (sub-workflow)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Read Interaction Logs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call RAG Delete (sub-workflow)": {
+      "main": [
+        [
+          {
+            "node": "Read Interaction Logs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Interaction Logs": {
+      "main": [
+        [
+          {
+            "node": "Filter Resolved+Escalated Cases",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Resolved+Escalated Cases": {
+      "main": [
+        [
+          {
+            "node": "Has Cases?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Cases?": {
+      "main": [
+        [
+          {
+            "node": "Format LLM Input",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Format LLM Input": {
+      "main": [
+        [
+          {
+            "node": "LLM Chain (Dedup + Merge + Neutralize)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Vertex Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "LLM Chain (Dedup + Merge + Neutralize)",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "LLM Chain (Dedup + Merge + Neutralize)",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM Chain (Dedup + Merge + Neutralize)": {
+      "main": [
+        [
+          {
+            "node": "Build Final Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Final Content": {
+      "main": [
+        [
+          {
+            "node": "Convert to Text File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to Text File": {
+      "main": [
+        [
+          {
+            "node": "Upload Human_Cases.txt to Knowledge_Base",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Human_Cases.txt to Knowledge_Base": {
+      "main": [
+        [
+          {
+            "node": "Call RAG Addition (sub-workflow)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call RAG Addition (sub-workflow)": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Sarajevo",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "27cf8cdb-5515-454d-bebc-77056d551636",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "UYREfQD3KpGU59Oo",
+  "tags": []
+}

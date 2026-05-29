@@ -1,0 +1,357 @@
+{
+  "name": "PageIndex Workflow for Knowledge Base - Addition",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "fileId"
+            },
+            {
+              "name": "fileName"
+            }
+          ]
+        }
+      },
+      "id": "pi-add-trigger",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        160,
+        432
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://www.googleapis.com/drive/v3/files/{{ $json.fileId }}/copy",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ name: '_pi_tmp_' + $json.fileName, mimeType: 'application/vnd.google-apps.document', parents: ['root'] }) }}",
+        "options": {}
+      },
+      "id": "pi-add-copy",
+      "name": "Copy as Google Doc",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        400,
+        432
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_DRIVE_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://www.googleapis.com/drive/v3/files/{{ $json.id }}/export",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "mimeType",
+              "value": "application/pdf"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "pi-add-export",
+      "name": "Export as PDF",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        640,
+        432
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_DRIVE_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.pageindex.ai/doc/",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_PAGEINDEX_API_KEY"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "file",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "pi-add-upload",
+      "name": "Upload PDF to PageIndex",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        880,
+        432
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const resp = $input.first().json;\nconst docId = resp.doc_id || resp.id || (resp.data && (resp.data.doc_id || resp.data.id)) || '';\nconst trigger = $('Execute Workflow Trigger').first().json;\nreturn [{ json: { fileId: trigger.fileId, fileName: trigger.fileName, pageindex_doc_id: docId } }];"
+      },
+      "id": "pi-add-extract",
+      "name": "Extract Doc ID",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        432
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "PageIndex_File_Tracker",
+          "mode": "name",
+          "cachedResultName": "PageIndex_File_Tracker"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "fileId": "={{ $json.fileId }}",
+            "fileName": "={{ $json.fileName }}",
+            "pageindex_doc_id": "={{ $json.pageindex_doc_id }}",
+            "status": "active",
+            "firstMissingAt": "",
+            "lastChecked": "={{ $now }}"
+          },
+          "matchingColumns": [
+            "fileId"
+          ],
+          "schema": [
+            {
+              "id": "fileId",
+              "displayName": "fileId",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "fileName",
+              "displayName": "fileName",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "pageindex_doc_id",
+              "displayName": "pageindex_doc_id",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "firstMissingAt",
+              "displayName": "firstMissingAt",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "lastChecked",
+              "displayName": "lastChecked",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "pi-add-log",
+      "name": "Log to PageIndex Tracker",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1360,
+        432
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "DELETE",
+        "url": "=https://www.googleapis.com/drive/v3/files/{{ $('Copy as Google Doc').item.json.id }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "options": {}
+      },
+      "id": "pi-add-cleanup",
+      "name": "Delete Temp Google Doc",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1600,
+        432
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_DRIVE_CREDENTIAL"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "content": "# PageIndex Workflow for Knowledge Base - Addition\n\n## Purpose\nMirrors a knowledge-base file addition from Pinecone into PageIndex so the chatbot's primary KB tool (PageIndex) stays in sync with the vector store. Runs as a sub-workflow right after the Pinecone embed succeeds.\n\n## How it works\n- Receives `fileId` + `fileName` from the caller\n- Copies the source Drive file as a temporary Google Doc (so .docx, .doc, etc. become convertible)\n- Exports the temporary Google Doc as PDF (PageIndex requires PDFs)\n- Multipart-uploads the PDF to the PageIndex `/doc/` endpoint\n- Extracts the returned `doc_id`, upserts a row in the PageIndex_File_Tracker sheet (status = active), and deletes the temporary Google Doc to leave Drive clean\n\n## Triggered by\nExecute Workflow trigger  invoked as a sub-workflow with `fileId` + `fileName`.\n\n## Called by\n- RAG Workflow for Knowledge Base - Addition\n\n## Reads/writes\n- Reads from and writes to Google Drive (creates a temp Google Doc copy, exports as PDF, then deletes the temp copy)\n- Calls the PageIndex API (uploads the new PDF doc)\n- Upserts Google Sheets `Customer_Support_Data`  `PageIndex_File_Tracker`",
+        "height": 700,
+        "width": 1100,
+        "color": 4
+      },
+      "id": "sticky-overview-doc",
+      "name": "Workflow Overview",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1104,
+        112
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Copy as Google Doc",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Copy as Google Doc": {
+      "main": [
+        [
+          {
+            "node": "Export as PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Export as PDF": {
+      "main": [
+        [
+          {
+            "node": "Upload PDF to PageIndex",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload PDF to PageIndex": {
+      "main": [
+        [
+          {
+            "node": "Extract Doc ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Doc ID": {
+      "main": [
+        [
+          {
+            "node": "Log to PageIndex Tracker",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log to PageIndex Tracker": {
+      "main": [
+        [
+          {
+            "node": "Delete Temp Google Doc",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "84ab8273-3bf9-4409-9e05-afcbdf51a4c1",
+  "meta": {
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "VB7Av2RXFkCaRsFH",
+  "tags": []
+}

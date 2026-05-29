@@ -73,18 +73,18 @@
       ],
       "id": "2aeb8f62-175d-4bac-9bf1-c4f90f5dfccb",
       "name": "Send Confirmation of Redirection",
-      "webhookId": "a6decf80-c93e-4371-9f00-2a4da1bcd64f",
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
       "credentials": {
         "gmailOAuth2": {
-          "id": "3r2K53nXVGhMLs3f",
-          "name": "Gmail account 2"
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
         }
       }
     },
     {
       "parameters": {
         "chatId": "YOUR_TELEGRAM_CHAT_ID",
-        "text": "=<b>🚨 CUSTOMER SUPPORT ESCALATION</b>\n━━━━━━━━━━━━━━━━━━━━━━━━━━━\n<b>👤 CUSTOMER INFO</b>\n📧 Email: {{ $('When Executed by Another Workflow').item.json.senderEmail }} \n📋 Subject: {{ $('When Executed by Another Workflow').item.json.subject }} \n💬 Message #{{ $('When Executed by Another Workflow').item.json.messageCount }} in thread \n\n<b>📩 LAST CUSTOMER MESSAGE</b>\n{{ $('When Executed by Another Workflow').item.json.chatInput }}\n\n<b>💬 FULL CONVERSATION HISTORY & REFERENCES</b>\n{{ $('When Executed by Another Workflow').item.json.conversationHistory ? '🔗 View complete interaction log:\\nhttps://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit?gid=2068850783#gid=2068850783\\n\\n📌 Filter by Thread ID: ' + $('When Executed by Another Workflow').item.json.threadId : '' || 'No previous conversation - This is the first message' }}\n\n<b>📚 SOURCES USED</b>\n{{ $('When Executed by Another Workflow').item.json.references || 'No documentation referenced' }}  \n\n<b>✅ ACTION REQUIRED</b>\n🔗 REPLY VIA GMAIL: https://mail.google.com/mail/u/0/#inbox/{{ $('When Executed by Another Workflow').item.json.threadId }}  \n⏰ Customer expects response within 1 hour\n📌 Thread ID: {{ $('When Executed by Another Workflow').item.json.threadId }}\n\n⏱️ Received: {{ $('When Executed by Another Workflow').item.json.receivedTime }}\n📡 Channel: {{ $('When Executed by Another Workflow').item.json.channel }}",
+        "text": "=<b>🚨 CUSTOMER SUPPORT ESCALATION</b>\n━━━━━━━━━━━━━━━━━━━━━━━━━━━\n<b>👤 CUSTOMER INFO</b>\n📧 Email: {{ $('When Executed by Another Workflow').item.json.senderEmail }} \n📋 Subject: {{ $('When Executed by Another Workflow').item.json.subject }} \n💬 Message #{{ $('When Executed by Another Workflow').item.json.messageCount }} in thread \n\n<b>📩 LAST CUSTOMER MESSAGE</b>\n{{ $('When Executed by Another Workflow').item.json.chatInput }}\n\n<b>💬 FULL CONVERSATION HISTORY & REFERENCES</b>\n{{ $('When Executed by Another Workflow').item.json.conversationHistory ? '🔗 View complete interaction log:\\nhttps://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit?gid=2068850783#gid=2068850783\\n\\n📌 Filter by Thread ID: ' + $('When Executed by Another Workflow').item.json.threadId : '' || 'No previous conversation - This is the first message' }}\n\n<b>📚 SOURCES USED</b>\n{{ $('When Executed by Another Workflow').item.json.references || 'No documentation referenced' }}  \n\n<b>✅ ACTION REQUIRED</b>\n🔗 REPLY VIA GMAIL: https://mail.google.com/mail/u/0/#inbox/{{ $('When Executed by Another Workflow').item.json.threadId }}  \n⏰ Customer expects response within 1 hour\n📌 Thread ID: {{ $('When Executed by Another Workflow').item.json.threadId }}\n\n⏱️ Received: {{ $('When Executed by Another Workflow').item.json.receivedTime }}\n📡 Channel: {{ $('When Executed by Another Workflow').item.json.channel }}",
         "additionalFields": {
           "parse_mode": "HTML"
         }
@@ -97,29 +97,13 @@
       ],
       "id": "c854a41b-edcc-4950-b1df-8f83e6ad69f6",
       "name": "Alert Human Agent",
-      "webhookId": "e0e10e9e-12e3-4b31-899b-ea60d1dd315d",
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
       "credentials": {
         "telegramApi": {
-          "id": "Z4DjPtixNJvP438S",
-          "name": "Telegram account"
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_TELEGRAM_CREDENTIAL"
         }
       }
-    },
-    {
-      "parameters": {
-        "content": "## Sending Immediate Escalation Alert to a Human Agent\n",
-        "height": 368,
-        "width": 1040,
-        "color": 3
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        -432,
-        -128
-      ],
-      "id": "1882af2b-158f-4483-b80c-81fa7b34f242",
-      "name": "Sticky Note"
     },
     {
       "parameters": {
@@ -137,11 +121,11 @@
       ],
       "id": "962a027b-4d58-4e71-b517-5abe008737f9",
       "name": "Add label to message",
-      "webhookId": "bfcd0488-2695-4a91-84c9-9dbb7f9013b1",
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
       "credentials": {
         "gmailOAuth2": {
-          "id": "3r2K53nXVGhMLs3f",
-          "name": "Gmail account 2"
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
         }
       }
     },
@@ -158,13 +142,29 @@
       ],
       "id": "2f5c3911-5ebe-4cbb-92cf-b4b468b813da",
       "name": "Mark a message as read",
-      "webhookId": "0590d931-bf91-4b9b-b013-e31c013e2165",
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
       "credentials": {
         "gmailOAuth2": {
-          "id": "3r2K53nXVGhMLs3f",
-          "name": "Gmail account 2"
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
         }
       }
+    },
+    {
+      "parameters": {
+        "content": "# HA - Sending Immediate Escalation Alert to a Human Agent\n\n## Purpose\nThe immediate hand-off step when the main chatbot decides a customer email needs a human. It tells the customer their case has been forwarded, tags the Gmail thread for human visibility, and pings the on-call agent on Telegram with the full case context so they can take over without digging through sheets.\n\n## How it works\n- Receives the full email context (thread/message IDs, subject, sender, last message, conversation history, channel, timestamps) from the calling workflow\n- Labels the Gmail thread so human agents can filter their inbox for escalated cases\n- Sends an automated HTML confirmation reply to the customer setting the 1-hour response expectation\n- Marks the customer's original message as read so it does not re-trigger the main chatbot\n- Pushes a formatted Telegram alert to the on-call human agent with sender info, the latest message, a deep link back to the Gmail thread, and a link to the Interaction_Logs sheet filtered by thread\n\n## Triggered by\nExecute Workflow trigger  invoked as a sub-workflow by the Main AI Customer Support Chatbot Workflow whenever it detects a case that needs human handling.\n\n## Called by\n- Main AI Customer Support Chatbot Workflow\n\n## Reads/writes\n- Writes to Gmail (applies escalation label, sends confirmation reply, marks message read)\n- Sends a Telegram message to the configured human-agent chat\n- Includes a link to Google Sheets `Customer_Support_Data`  `Interaction_Logs` in the Telegram alert (read-only reference)",
+        "height": 750,
+        "width": 1040,
+        "color": 4
+      },
+      "id": "sticky-overview-doc",
+      "name": "Workflow Overview",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1456,
+        -400
+      ]
     }
   ],
   "pinData": {},
@@ -222,7 +222,7 @@
     "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false
   },
-  "versionId": "6f0de970-e61e-47b9-bf56-5af7d69991e8",
+  "versionId": "34795e39-eea5-4547-9a72-f3edabfddc00",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"

@@ -1,0 +1,231 @@
+{
+  "name": "Test Email Sender",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "tes-trigger-001",
+      "name": "Run Tests",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -208,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1q3DpUu25pSSWZeO7rQkJ-5wRpuo7ISzwNIAbWrUWQJM",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "718274144",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "tes-read-001",
+      "name": "Read Test Cases",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        0,
+        0
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 2,
+        "unit": "minutes"
+      },
+      "id": "tes-wait-001",
+      "name": "Wait Between Emails",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        896,
+        16
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID"
+    },
+    {
+      "parameters": {
+        "sendTo": "your-email@example.com",
+        "subject": "={{ $json['TEST ID'] }}",
+        "message": "={{ $json['EMAIL BODY'] }}\n",
+        "options": {}
+      },
+      "id": "tes-send-001",
+      "name": "Send Test Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        656,
+        16
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      },
+      "notes": "IMPORTANT: You need to add Gmail OAuth credentials for your-email@example.com here"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        400,
+        0
+      ],
+      "id": "4db31486-4766-49bc-8cf0-72386c02426b",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "filter-test-id-gte-71",
+              "leftValue": "={{ Number($json['TEST ID'].substring(2)) }}",
+              "rightValue": 73,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "id": "52c92fcf-2bda-4dfc-b4c8-282d72bbda59",
+      "name": "Filter From Test 71",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        192,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# Test Email Sender\n\n## Purpose\nSends test emails to your AI chatbot's inbox, one at a time with a delay between each, so you can exercise the chatbot end-to-end with a batch of test cases without manual sending. Each test case row becomes one email — `TEST ID` is the subject, `EMAIL BODY` is the body.\n\n## How it works\n- Reads test cases from a Google Sheet (your test definition sheet)\n- *(Optional)* Filters down to a subset of tests via the **Filter From Test 71** node\n- Loops over the remaining cases (Split In Batches)\n- For each: sends an email to the chatbot's inbox (current target: `your-email@example.com`)\n- Waits 2 minutes between sends so the chatbot has time to process each one and so Gmail's send-rate limits aren't tripped\n\n## Triggered by\nManual trigger only — click `Run Tests` to send the batch.\n\n## About the Filter From Test 71 node (OPTIONAL)\n\n**This node is not required for the workflow to function.** It's a convenience filter for *resumability* — letting you skip test cases you've already sent and only send the remaining ones.\n\n**Current condition**: keeps test cases where `TEST ID` starts with `TC` and the trailing number is ≥ 73. *(Despite the node name \"Filter From Test 71\", the actual threshold is 73 — the name is stale; rename the node if you change the threshold.)*\n\n**When you'd want it**\n- Resuming a partial batch (last successful send was TC72, restart from TC73)\n- Testing a specific subset without re-running the whole batch\n- Skipping known-broken tests temporarily\n\n**When you'd remove it**\n- First-time test run (send everything)\n- Re-testing the full suite from scratch\n- Your TEST ID format isn't `TC<NUMBER>` (the filter expression `Number($json['TEST ID'].substring(2))` assumes a 2-character prefix + number)\n\n**To remove it**: delete the `Filter From Test 71` node and re-connect `Read Test Cases` → `Loop Over Items` directly.\n\n**To adapt it**: edit the filter's condition expression to match your own logic — e.g. by category column, by a \"skip\" flag, by date range, by a different ID format.\n\n## Reads / writes\n- **Reads**: test case sheet (each row becomes one email)\n- **Writes**: sends emails via Gmail; does NOT write to any sheet\n\n## Configuration to update before reusing this workflow\n- **`Send Test Email` node → `Send To`**: change the recipient to your AI chatbot's inbox address\n- **Gmail credential** on `Send Test Email`: set to the account you want to send FROM (any inbox the chatbot accepts; doesn't have to match the receiver)\n- **`Wait Between Emails`**: tune the 2-minute delay if your chatbot processes faster/slower, or if your Gmail account has stricter send-rate limits\n- **`Read Test Cases`**: point to your own test sheet (current is hard-coded to a specific Google Sheets document ID)",
+        "height": 1248,
+        "width": 940,
+        "color": 4
+      },
+      "id": "tes-sticky-overview",
+      "name": "Workflow Overview",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1264,
+        -1040
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Run Tests": {
+      "main": [
+        [
+          {
+            "node": "Read Test Cases",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait Between Emails": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Send Test Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Test Email": {
+      "main": [
+        [
+          {
+            "node": "Wait Between Emails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Test Cases": {
+      "main": [
+        [
+          {
+            "node": "Filter From Test 71",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter From Test 71": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Sarajevo",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "f4cac97c-13d8-435b-a112-847388c77a77",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "dAMuwJ2LmPr4pJRA",
+  "tags": []
+}

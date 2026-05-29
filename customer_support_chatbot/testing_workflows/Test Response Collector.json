@@ -1,0 +1,326 @@
+{
+  "name": "Test Response Collector",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trc2-trigger-001",
+      "name": "Collect Results",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1q3DpUu25pSSWZeO7rQkJ-5wRpuo7ISzwNIAbWrUWQJM",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "718274144",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "trc2-read-tests-001",
+      "name": "Read Test Cases",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -160,
+        0
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2068850783,
+          "mode": "list",
+          "cachedResultName": "Interaction_Logs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit#gid=2068850783"
+        },
+        "options": {}
+      },
+      "id": "trc2-read-logs-001",
+      "name": "Read Interaction Logs",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        80,
+        0
+      ],
+      "executeOnce": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// =====================================================================\n// MATCHING LOGIC — adapt this for your own test case / log structure\n// =====================================================================\n//\n// For each test case row from the test sheet, find the matching row in\n// the interaction log sheet (the AI's actual response to that test).\n//\n// To adapt this workflow for a different setup, change:\n//   - getCol(...) column-name fallbacks     → match your test sheet headers\n//   - extractTestId() regex patterns         → match your test-ID format\n//   - The 4 matching passes                  → keep, drop, reorder, or\n//                                              swap in your own heuristic\n//                                              (embeddings, edit distance,\n//                                              custom hash, foreign key…)\n//   - The similarity threshold (default 0.25)→ tune for your data noise\n//\n// Output per item: { TEST_ID, testCase: <raw test row>, log: <raw log row | null> }\n// Downstream nodes derive sheet-ready fields from this shape.\n\nconst testCases = $('Read Test Cases').all().map(i => i.json);\nconst logs = $input.all().map(i => i.json);\n\nif (testCases.length === 0) throw new Error('No test cases found.');\nif (logs.length === 0) throw new Error('No interaction logs found.');\n\n// ---- Helpers ----\nconst getCol = (obj, ...names) => {\n  for (const n of names) {\n    if (obj[n] !== undefined && obj[n] !== null && obj[n] !== '') return obj[n];\n  }\n  return '';\n};\n\nconst decodeHtml = s => String(s || '')\n  .replace(/&#0*39;/g, \"'\").replace(/&apos;/g, \"'\")\n  .replace(/&quot;/g, '\"').replace(/&#0*34;/g, '\"')\n  .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')\n  .replace(/&nbsp;/g, ' ').replace(/\\\\#/g, '#');\n\nconst normalize = t => decodeHtml(t).toLowerCase()\n  .replace(/[^a-z0-9\\s]/g, ' ').replace(/\\s+/g, ' ').trim();\n\nconst tokenSet = (t, minLen = 3) =>\n  new Set(normalize(t).split(' ').filter(w => w.length >= minLen));\n\nconst dice = (a, b) => {\n  if (!a.size || !b.size) return 0;\n  let inter = 0;\n  for (const v of a) if (b.has(v)) inter++;\n  return (2 * inter) / (a.size + b.size);\n};\n\nconst overlap = (a, b) => {\n  if (!a.size || !b.size) return 0;\n  let inter = 0;\n  for (const v of a) if (b.has(v)) inter++;\n  return inter / Math.min(a.size, b.size);\n};\n\n// CUSTOMIZE: how is a test ID embedded in the log's query field?\n// Current: recognizes 'TC123' and 'CAT1-A-001' plus a subject=\"…\" wrapper.\nconst extractTestId = text => {\n  if (!text) return null;\n  const s = String(text);\n  const c1 = s.match(/subject\\s*=\\s*\"\\s*(CAT\\d+-[A-Z]-\\d+)/i); if (c1) return c1[1].toUpperCase();\n  const c2 = s.match(/\\bCAT\\d+-[A-Z]-\\d+\\b/i);                  if (c2) return c2[0].toUpperCase();\n  const m1 = s.match(/subject\\s*=\\s*\"\\s*(TC\\d+)/i);             if (m1) return m1[1].toUpperCase();\n  const m2 = s.match(/\\bTC(\\d+)\\b/i);                           if (m2) return ('TC' + m2[1]).toUpperCase();\n  return null;\n};\n\n// ---- Prepare comparable shapes ----\nconst tcs = testCases.map(tc => {\n  const id = String(getCol(tc, 'TEST_ID', 'TEST ID', 'Test ID')).trim().toUpperCase();\n  const subject = getCol(tc, 'TICKET_SUBJECT', 'TICKET SUBJECT', 'SUBJECT');\n  const body = getCol(tc, 'CUSTOMER_QUESTION', 'CUSTOMER QUESTION', 'QUESTION',\n                          'EMAIL_BODY_FOR_AI', 'EMAIL BODY FOR AI', 'EMAIL_BODY', 'EMAIL BODY');\n  const combined = (subject || '') + ' ' + (body || '');\n  return { id, raw: tc, normBody: normalize(body), set: tokenSet(combined) };\n});\n\nconst logInfos = logs.map(l => ({\n  raw: l,\n  normQ: normalize(String(l.query || '')),\n  tcId: extractTestId(String(l.query || '')),\n  set: tokenSet(String(l.query || ''))\n}));\n\n// ---- Match each test case to a log (4-pass strategy) ----\nconst tcToLog = new Map();\nconst used = new Set();\nconst tcIds = new Set(tcs.map(t => t.id));\n\n// Pass 1: explicit test-ID match (log query contains the test ID)\nfor (const li of logInfos) {\n  if (li.tcId && tcIds.has(li.tcId) && !tcToLog.has(li.tcId)) {\n    tcToLog.set(li.tcId, li); used.add(li);\n  }\n}\n\n// Pass 2: exact normalized body match\nfor (const tc of tcs) {\n  if (tcToLog.has(tc.id) || !tc.normBody) continue;\n  for (const li of logInfos) {\n    if (used.has(li) || li.tcId) continue;\n    if (li.normQ === tc.normBody) { tcToLog.set(tc.id, li); used.add(li); break; }\n  }\n}\n\n// Pass 3: substring containment (for sufficiently long bodies)\nfor (const tc of tcs) {\n  if (tcToLog.has(tc.id) || !tc.normBody || tc.normBody.length < 60) continue;\n  let best = null, bestLen = 0;\n  for (const li of logInfos) {\n    if (used.has(li) || li.tcId || !li.normQ) continue;\n    if (li.normQ.includes(tc.normBody) || tc.normBody.includes(li.normQ)) {\n      const len = Math.min(li.normQ.length, tc.normBody.length);\n      if (len > bestLen) { bestLen = len; best = li; }\n    }\n  }\n  if (best) { tcToLog.set(tc.id, best); used.add(best); }\n}\n\n// Pass 4: token-set similarity fallback (Dice or Overlap >= 0.25)\nfor (const tc of tcs) {\n  if (tcToLog.has(tc.id) || !tc.set.size) continue;\n  let best = null, bestScore = 0;\n  for (const li of logInfos) {\n    if (used.has(li) || li.tcId || !li.set.size) continue;\n    const score = Math.max(dice(tc.set, li.set), overlap(tc.set, li.set) * 0.9);\n    if (score > bestScore) { bestScore = score; best = li; }\n  }\n  if (best && bestScore >= 0.25) { tcToLog.set(tc.id, best); used.add(best); }\n}\n\n// ---- Output: one item per test case with its matched log attached ----\nreturn tcs.map(tc => {\n  const li = tcToLog.get(tc.id);\n  return { json: { TEST_ID: tc.id, testCase: tc.raw, log: li ? li.raw : null } };\n}).sort((a, b) =>\n  (a.json.TEST_ID || '').localeCompare(b.json.TEST_ID || '', undefined, { numeric: true })\n);"
+      },
+      "id": "trc2-code-001",
+      "name": "Match Tests to Logs",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        320,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1q3DpUu25pSSWZeO7rQkJ-5wRpuo7ISzwNIAbWrUWQJM",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "1119261313",
+          "mode": "id"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "TEST_ID": "={{ $json.TEST_ID }}",
+            "TIMESTAMP": "={{ $json.TIMESTAMP }}",
+            "ACTUAL_CLASSIFICATION": "={{ $json.ACTUAL_CLASSIFICATION }}",
+            "ACTUAL_ESCALATION": "={{ $json.ACTUAL_ESCALATION }}",
+            "CLASSIFICATION_CORRECT": "={{ $json.CLASSIFICATION_CORRECT }}",
+            "AI_RESPONSE": "={{ $json.AI_RESPONSE }}",
+            "RESPONSE_TIME_MS": "={{ $json.RESPONSE_TIME_MS }}",
+            "CONFIDENCE_SCORE": "={{ $json.CONFIDENCE_SCORE }}"
+          },
+          "matchingColumns": [
+            "TEST_ID"
+          ],
+          "schema": [
+            {
+              "id": "TEST_ID",
+              "displayName": "TEST_ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "TIMESTAMP",
+              "displayName": "TIMESTAMP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ACTUAL_CLASSIFICATION",
+              "displayName": "ACTUAL_CLASSIFICATION",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ACTUAL_ESCALATION",
+              "displayName": "ACTUAL_ESCALATION",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CLASSIFICATION_CORRECT",
+              "displayName": "CLASSIFICATION_CORRECT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "AI_RESPONSE",
+              "displayName": "AI_RESPONSE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "RESPONSE_TIME_MS",
+              "displayName": "RESPONSE_TIME_MS",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CONFIDENCE_SCORE",
+              "displayName": "CONFIDENCE_SCORE",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": " ",
+              "displayName": " ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "trc2-write-001",
+      "name": "Write Test Results",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        800,
+        0
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Standard output formatter — derives sheet-ready fields from each\n// { TEST_ID, testCase, log } pair produced by the matching node above.\n// Edit this if your results sheet uses different columns or you want to\n// surface additional log fields.\n\nconst NONE_VALS = new Set(['None', 'none', 'N/A', 'n/a', 'null', 'undefined', '']);\nconst cleanNone = v => {\n  if (v === undefined || v === null || v === false) return '';\n  const s = String(v).trim();\n  return NONE_VALS.has(s) ? '' : s;\n};\nconst num = v => {\n  if (v === '' || v === null || v === undefined) return null;\n  const n = parseFloat(String(v).replace(',', '.'));\n  return isNaN(n) ? null : n;\n};\nconst toBool = v => {\n  if (v === true) return true;\n  if (v === false) return false;\n  const s = String(v == null ? '' : v).trim().toLowerCase();\n  return s === 'true' || s === 'yes' || s === '1';\n};\n\nreturn $input.all().map(item => {\n  const { TEST_ID, testCase, log } = item.json;\n\n  if (!log) {\n    return { json: {\n      TEST_ID,\n      TIMESTAMP: '',\n      ACTUAL_CLASSIFICATION: '',\n      ACTUAL_ESCALATION: '',\n      CLASSIFICATION_CORRECT: '',\n      AI_RESPONSE: '',\n      RESPONSE_TIME_MS: '',\n      CONFIDENCE_SCORE: ''\n    }};\n  }\n\n  const aiResponse = cleanNone(log.response);\n  const timestamp = cleanNone(log.timestampReceived) || cleanNone(log.timestampStart) || cleanNone(log.timestampEnd);\n  const tStart = cleanNone(log.timestampStart) || cleanNone(log.timestampReceived);\n  const tEnd = cleanNone(log.timestampEnd);\n\n  let aiMs = '';\n  if (tStart && tEnd) {\n    const ms = new Date(tEnd).getTime() - new Date(tStart).getTime();\n    if (!isNaN(ms) && ms >= 0) aiMs = ms;\n  }\n  if (aiMs === '') {\n    const sec = num(log.responseTime);\n    if (sec !== null) aiMs = Math.round(sec * 1000);\n  }\n\n  const isEscalated = toBool(cleanNone(log.isEscalated));\n  const actualClassification = isEscalated ? 'HUMAN_REQUIRED' : 'AI_HANDLES';\n  const actualEscalation = isEscalated ? 'YES' : 'NO';\n\n  const expected = String(\n    testCase.EXPECTED_CLASSIFICATION ||\n    testCase['EXPECTED CLASSIFICATION'] ||\n    ''\n  ).trim().toUpperCase();\n  const classificationCorrect = expected\n    ? (expected === actualClassification ? 'TRUE' : 'FALSE')\n    : '';\n\n  return { json: {\n    TEST_ID,\n    TIMESTAMP: timestamp,\n    ACTUAL_CLASSIFICATION: actualClassification,\n    ACTUAL_ESCALATION: actualEscalation,\n    CLASSIFICATION_CORRECT: classificationCorrect,\n    AI_RESPONSE: aiResponse,\n    RESPONSE_TIME_MS: aiMs,\n    CONFIDENCE_SCORE: cleanNone(log.confidenceScore)\n  }};\n});"
+      },
+      "id": "trc2-format-001",
+      "name": "Format Results for Sheet",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        560,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# Test Response Collector\n\n## Purpose\nCompares your AI chatbot's actual runtime behavior against a set of pre-defined test cases. For each test row in your test sheet, this workflow finds the matching interaction-log row produced by the live chatbot and writes a per-test result showing classification correctness, escalation decision, response time, and confidence score.\n\n## How it works\n- Reads test cases from a test definition sheet\n- Reads interaction logs from the chatbot's runtime log sheet (`Customer_Support_Data → Interaction_Logs`)\n- **Match Tests to Logs** — pairs each test case with its matching log row using a 4-pass strategy: explicit test-ID match → exact body match → substring containment → token-set similarity. THIS is the customizable block.\n- **Format Results for Sheet** — derives sheet-ready fields (classification, timing, etc.) from each matched pair\n- Writes per-test result rows back to a results sheet\n\n## Triggered by\nManual trigger only — run it after a test batch finishes to collect results.\n\n## Reads / writes\n- **Reads**: test sheet (your test case definitions), `Customer_Support_Data → Interaction_Logs` (live AI runtime logs)\n- **Writes**: test sheet results tab\n\n## Adapting this workflow for your project\n\nThe `Match Tests to Logs` code node is the matching template. To reuse this workflow for a different test setup, edit that node only:\n\n1. **Column names** — update the `getCol(...)` fallback lists to match your test sheet headers (e.g. if your sheet uses `customer_input` instead of `CUSTOMER_QUESTION`)\n2. **Test-ID format** — update `extractTestId()` regex patterns to recognize your test IDs (current: `TC123`, `CAT1-A-001`, and `subject=\"...\"` wrapper)\n3. **Matching strategy** — keep, drop, or reorder the 4 passes; or replace them with your own heuristic (vector embeddings, Levenshtein distance, a foreign-key lookup, etc.)\n4. **Similarity threshold** — tune the `0.25` cutoff in Pass 4 for your data's noise level (lower = looser matches, higher = stricter)\n\nThe `Format Results for Sheet` node and the `Write Test Results` node also reference column names — update those to match the result columns you want.",
+        "height": 952,
+        "width": 940,
+        "color": 4
+      },
+      "id": "trc2-sticky-overview",
+      "name": "Workflow Overview",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -512,
+        -1200
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Collect Results": {
+      "main": [
+        [
+          {
+            "node": "Read Test Cases",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Test Cases": {
+      "main": [
+        [
+          {
+            "node": "Read Interaction Logs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Interaction Logs": {
+      "main": [
+        [
+          {
+            "node": "Match Tests to Logs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Match Tests to Logs": {
+      "main": [
+        [
+          {
+            "node": "Format Results for Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Results for Sheet": {
+      "main": [
+        [
+          {
+            "node": "Write Test Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Sarajevo",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "1bf493cd-96b1-4606-af76-c8c87566151f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "IBFzD8zdLCOSUgrE",
+  "tags": []
+}

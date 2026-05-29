@@ -1,0 +1,956 @@
+{
+  "name": "RAG Workflow for Knowledge Base - Delete",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Sub-Workflow Path (called from Human Cases RAG Updater)\n\nReceives `fileId` + `fileName` from caller.\nDeletes file from Drive, removes vectors from Pinecone, marks tracker row as deleted.",
+        "height": 320,
+        "width": 1700,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        768
+      ],
+      "id": "sticky-sub-delete",
+      "name": "Sticky Sub-Workflow"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 2
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        160,
+        240
+      ],
+      "id": "3decf906-b458-45ec-a72e-0d066a7b5041",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "resource": "fileFolder",
+        "returnAll": true,
+        "filter": {
+          "folderId": {
+            "__rl": true,
+            "value": "YOUR_GOOGLE_DRIVE_FOLDER_ID",
+            "mode": "list",
+            "cachedResultName": "Knowledge_Base",
+            "cachedResultUrl": "https://drive.google.com/drive/folders/YOUR_GOOGLE_DRIVE_FOLDER_ID"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        400,
+        240
+      ],
+      "id": "ba1f47cf-1bed-4523-8b4c-bf0b0f4d8962",
+      "name": "Search files and folders",
+      "executeOnce": true,
+      "credentials": {
+        "googleApi": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SERVICE_ACCOUNT_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://company-files-mc8jzo0.svc.aped-4627-b74a.pinecone.io/vectors/delete",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Api-Key",
+              "value": "YOUR_PINECONE_API_KEY"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"filter\": { \"fileId\": \"{{ $json.id }}\" }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1488,
+        112
+      ],
+      "id": "76c2a022-b111-4f50-840b-540abbea17f1",
+      "name": "Delete Vectors HTTP Request"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1121798137,
+          "mode": "list",
+          "cachedResultName": "Rag_File_Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit#gid=1121798137"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        640,
+        240
+      ],
+      "id": "ec244197-1c46-4b77-8bc4-1968602ffdf2",
+      "name": "Read File Tracker Logs",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const driveFiles = $('Search files and folders').all().map(item => ({fileId: item.json.id, fileName: item.json.name}));\nconst trackedFiles = $('Read File Tracker Logs').all().map(item => item.json);\nconst driveFileIds = driveFiles.map(f => f.fileId);\nconst toDelete = [];\nconst toMarkMissing = [];\nconst toMarkActive = [];\ntrackedFiles.forEach(tracked => {\n  if (tracked.status === 'deleted') return;\n  const stillInDrive = driveFileIds.includes(tracked.fileId);\n  if (!stillInDrive) {\n    if (tracked.status === 'missing_once') toDelete.push(tracked);\n    else toMarkMissing.push(tracked);\n  } else if (tracked.status === 'missing_once') {\n    toMarkActive.push(tracked);\n  }\n});\nreturn [{json: {toDelete, toMarkMissing, toMarkActive}}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        912,
+        240
+      ],
+      "id": "d3b2e67a-b50b-4f29-b64f-93253dfe9b33",
+      "name": "Compare & Categorize Files"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4447ccc9-b88e-4324-ab1c-42578b52832e",
+              "leftValue": "={{ $json.toDelete.length }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1184,
+        128
+      ],
+      "id": "2d4dea41-84c1-486a-80d4-49146c8a96bc",
+      "name": "Has Files to Delete"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4447ccc9-b88e-4324-ab1c-42578b52832e",
+              "leftValue": "={{ $json.toMarkMissing.length }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1200,
+        320
+      ],
+      "id": "e6087f38-f368-47f9-9ebe-1d5e933f46c2",
+      "name": "Has Files to Mark Missing"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4447ccc9-b88e-4324-ab1c-42578b52832e",
+              "leftValue": "={{ $json.toMarkActive.length }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1200,
+        528
+      ],
+      "id": "459e0d01-3f7d-49b7-916c-d7fb3a66c99a",
+      "name": "Has Files to Mark Active"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1121798137,
+          "mode": "list",
+          "cachedResultName": "Rag_File_Tracker"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "fileId": "={{ $('Compare & Categorize Files').item.json.toDelete[0].fileId }}",
+            "fileName": "={{ $('Compare & Categorize Files').item.json.toDelete[0].fileName }}",
+            "status": "deleted",
+            "lastChecked": "={{ $now }}"
+          },
+          "matchingColumns": [
+            "fileId"
+          ],
+          "schema": [
+            {
+              "id": "fileId",
+              "displayName": "fileId",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "fileName",
+              "displayName": "fileName",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "firstMissingAt",
+              "displayName": "firstMissingAt",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "lastChecked",
+              "displayName": "lastChecked",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1712,
+        112
+      ],
+      "id": "dd5df94b-bae9-4d32-87d4-5b082cd9581a",
+      "name": "Update row in log tracker",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1121798137,
+          "mode": "list",
+          "cachedResultName": "Rag_File_Tracker"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "fileId": "={{ $('Compare & Categorize Files').item.json.toMarkMissing[0].fileId }}",
+            "fileName": "={{ $('Compare & Categorize Files').item.json.toMarkMissing[0].fileName }}",
+            "status": "missing_once",
+            "firstMissingAt": "={{ $now }}",
+            "lastChecked": "={{ $now }}"
+          },
+          "matchingColumns": [
+            "fileId"
+          ],
+          "schema": [
+            {
+              "id": "fileId",
+              "displayName": "fileId",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "fileName",
+              "displayName": "fileName",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "firstMissingAt",
+              "displayName": "firstMissingAt",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "lastChecked",
+              "displayName": "lastChecked",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1488,
+        304
+      ],
+      "id": "12223b5c-6e95-4c86-be60-670c1ecf8236",
+      "name": "Update row in log tracker2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1121798137,
+          "mode": "list",
+          "cachedResultName": "Rag_File_Tracker"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "fileId": "={{ $('Compare & Categorize Files').item.json.toMarkActive[0].fileId }}",
+            "fileName": "={{ $('Compare & Categorize Files').item.json.toMarkActive[0].fileName }}",
+            "status": "active",
+            "firstMissingAt": "",
+            "lastChecked": "={{ $now }}"
+          },
+          "matchingColumns": [
+            "fileId"
+          ],
+          "schema": [
+            {
+              "id": "fileId",
+              "displayName": "fileId",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "fileName",
+              "displayName": "fileName",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "firstMissingAt",
+              "displayName": "firstMissingAt",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "lastChecked",
+              "displayName": "lastChecked",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1504,
+        512
+      ],
+      "id": "6357acc9-709f-4dfd-938b-a8909acaaa0a",
+      "name": "Update row in log tracker3",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "fileId"
+            },
+            {
+              "name": "fileName"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        160,
+        912
+      ],
+      "id": "exec-trigger-delete",
+      "name": "Execute Workflow Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "deleteFile",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.fileId }}",
+          "mode": "id",
+          "cachedResultName": "(from caller)"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        400,
+        912
+      ],
+      "id": "exec-drive-delete",
+      "name": "Delete File from Drive (sub)",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_DRIVE_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://company-files-mc8jzo0.svc.aped-4627-b74a.pinecone.io/vectors/delete",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Api-Key",
+              "value": "YOUR_PINECONE_API_KEY"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"filter\": { \"fileId\": \"{{ $('Execute Workflow Trigger').item.json.fileId }}\" }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        656,
+        912
+      ],
+      "id": "exec-pinecone-delete",
+      "name": "Delete Pinecone Vectors (sub)"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1121798137,
+          "mode": "list",
+          "cachedResultName": "Rag_File_Tracker"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "fileId": "={{ $('Execute Workflow Trigger').item.json.fileId }}",
+            "fileName": "={{ $('Execute Workflow Trigger').item.json.fileName }}",
+            "status": "deleted",
+            "firstMissingAt": "",
+            "lastChecked": "={{ $now }}"
+          },
+          "matchingColumns": [
+            "fileId"
+          ],
+          "schema": [
+            {
+              "id": "fileId",
+              "displayName": "fileId",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "fileName",
+              "displayName": "fileName",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "firstMissingAt",
+              "displayName": "firstMissingAt",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "lastChecked",
+              "displayName": "lastChecked",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        912,
+        912
+      ],
+      "id": "exec-tracker-update",
+      "name": "Update Tracker (sub)",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "WIL2OUKUkYfULWGB",
+          "mode": "list",
+          "cachedResultName": "PageIndex Workflow for Knowledge Base - Delete"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "fileId": "={{ $('Execute Workflow Trigger').item.json.fileId }}",
+            "fileName": "={{ $('Execute Workflow Trigger').item.json.fileName }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "fileId",
+              "displayName": "fileId",
+              "type": "string",
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "fileName",
+              "displayName": "fileName",
+              "type": "string",
+              "display": true,
+              "required": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "trigger-pi-del",
+      "name": "Trigger PageIndex Delete",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        1152,
+        912
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "WIL2OUKUkYfULWGB",
+          "mode": "list",
+          "cachedResultName": "PageIndex Workflow for Knowledge Base - Delete"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "fileId": "={{ $('Compare & Categorize Files').item.json.toDelete[0].fileId }}",
+            "fileName": "={{ $('Compare & Categorize Files').item.json.toDelete[0].fileName }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "fileId",
+              "displayName": "fileId",
+              "type": "string",
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "fileName",
+              "displayName": "fileName",
+              "type": "string",
+              "display": true,
+              "required": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "trigger-pi-del-sweep",
+      "name": "Trigger PageIndex Delete (sweep)",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        1952,
+        112
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "content": "# RAG Workflow for Knowledge Base - Delete\n\n## Purpose\nRemoves knowledge-base files from the Pinecone vector store (and downstream PageIndex) so the chatbot stops retrieving deleted or stale content. Supports both an autonomous Drive-sweep (detects files that disappeared from the Knowledge_Base folder) and a programmatic sub-workflow path used by other automations.\n\n## How it works\n- Scheduled-sweep path (every 2 minutes): lists everything in the Knowledge_Base Drive folder, compares against the Rag_File_Tracker sheet, and categorizes tracked files as `toDelete` (missing on second check), `toMarkMissing` (missing once  give it a grace period), or `toMarkActive` (reappeared after being missing). For toDelete files it removes vectors from Pinecone, marks the tracker row deleted, then forwards to the PageIndex delete sub-workflow\n- Sub-workflow path: receives `fileId` + `fileName` from a caller, deletes the file from Drive, removes its Pinecone vectors, marks the tracker row deleted, then forwards to the PageIndex delete sub-workflow\n- Both paths converge on the same PageIndex cleanup so the two stores stay aligned\n\n## Triggered by\n- Schedule trigger  every 2 minutes (autonomous Drive sweep)\n- Execute Workflow trigger with `fileId` + `fileName` (sub-workflow path)\n\n## Calls (sub-workflows)\n- PageIndex Workflow for Knowledge Base - Delete  called from BOTH the scheduled-sweep path (after the tracker row is marked deleted) and the explicit sub-workflow path, so PageIndex stays consistent with Pinecone regardless of how the deletion was triggered.\n\n## Called by\n- Human Cases RAG Updater\n\n## Reads/writes\n- Reads (and on the sub-workflow path, deletes from) Google Drive `Knowledge_Base` folder\n- Deletes vectors from Pinecone index `company-files`\n- Reads and upserts Google Sheets `Customer_Support_Data`  `Rag_File_Tracker`",
+        "height": 900,
+        "width": 1100,
+        "color": 4
+      },
+      "id": "sticky-overview-doc",
+      "name": "Workflow Overview",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1200,
+        -400
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Search files and folders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search files and folders": {
+      "main": [
+        [
+          {
+            "node": "Read File Tracker Logs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Vectors HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Update row in log tracker",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read File Tracker Logs": {
+      "main": [
+        [
+          {
+            "node": "Compare & Categorize Files",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compare & Categorize Files": {
+      "main": [
+        [
+          {
+            "node": "Has Files to Delete",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Has Files to Mark Missing",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Has Files to Mark Active",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Files to Delete": {
+      "main": [
+        [
+          {
+            "node": "Delete Vectors HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Files to Mark Missing": {
+      "main": [
+        [
+          {
+            "node": "Update row in log tracker2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Files to Mark Active": {
+      "main": [
+        [
+          {
+            "node": "Update row in log tracker3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Delete File from Drive (sub)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete File from Drive (sub)": {
+      "main": [
+        [
+          {
+            "node": "Delete Pinecone Vectors (sub)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Pinecone Vectors (sub)": {
+      "main": [
+        [
+          {
+            "node": "Update Tracker (sub)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Tracker (sub)": {
+      "main": [
+        [
+          {
+            "node": "Trigger PageIndex Delete",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in log tracker": {
+      "main": [
+        [
+          {
+            "node": "Trigger PageIndex Delete (sweep)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "c456ad99-7279-4b48-89af-f786543f815f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "O64StjKhOMjnKHqi",
+  "tags": []
+}

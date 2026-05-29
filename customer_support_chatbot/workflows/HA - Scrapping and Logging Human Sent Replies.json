@@ -3,13 +3,10 @@
   "nodes": [
     {
       "parameters": {
-        "resource": "thread",
+        "operation": "getAll",
         "returnAll": true,
         "filters": {
-          "labelIds": [
-            "SENT",
-            "Label_1341859334442668589"
-          ]
+          "q": "in:sent newer_than:1d"
         }
       },
       "type": "n8n-nodes-base.gmail",
@@ -20,11 +17,11 @@
       ],
       "id": "4ec2deb9-35e3-4235-81cb-4adb1c7c32e3",
       "name": "Get Messages from Sent + Human Escalation",
-      "webhookId": "8d2e6219-1f7d-41d5-9a62-9ceb744938e8",
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
       "credentials": {
         "gmailOAuth2": {
-          "id": "3r2K53nXVGhMLs3f",
-          "name": "Gmail account 2"
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
         }
       }
     },
@@ -49,7 +46,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Get all messages from Gmail\nconst messages = $input.all();\n\nconsole.log(\"Total messages received:\", messages.length);\n\n// If no messages, return empty\nif (messages.length === 0) {\n  console.log(\"No messages to process\");\n  return [];\n}\n\n// Calculate time threshold (15 minutes ago to be safe)\nconst now = Date.now();\nconst fiveMinutesAgo = now - (5 * 60 * 1000);\n\nconsole.log(\"Current time:\", new Date(now).toISOString());\nconsole.log(\"Threshold (5 min ago):\", new Date(fiveMinutesAgo).toISOString());\n\n// Function to extract only the newest email content (remove quotes)\nfunction extractLatestEmailContent(text) {\n  if (!text) return '';\n  const quotePatterns = [\n    /\\s*čet,.*?napisao je:\\s*/i,\n    /\\s*\\w+,\\s*\\d{1,2}\\.\\s*\\w+.*?napisao je:\\s*/i,\n    /\\s*On\\s+.*?\\d{4}.*?wrote:\\s*/i,\n    /\\s*<[^>]+>\\s*wrote:\\s*/i,\n    /\\s*napisao je:\\s*/i\n  ];\n  let cleanText = text;\n  for (const pattern of quotePatterns) {\n    const match = cleanText.match(pattern);\n    if (match) {\n      cleanText = cleanText.substring(0, match.index).trim();\n      break;\n    }\n  }\n  cleanText = cleanText.split('\\n').filter(line => !line.trim().startsWith('>')).join('\\n');\n  cleanText = cleanText.replace(/\\n{3,}/g, '\\n\\n').trim();\n  return cleanText;\n}\n\nfunction parseMessageDate(msg) {\n  const dateValue = msg.internalDate || msg.date || msg.receivedDateTime;\n  if (!dateValue) return Date.now();\n  if (typeof dateValue === 'number') return dateValue;\n  if (typeof dateValue === 'string') {\n    const parsed = parseInt(dateValue);\n    if (!isNaN(parsed)) return parsed;\n    const dateObj = new Date(dateValue);\n    if (!isNaN(dateObj.getTime())) return dateObj.getTime();\n  }\n  return Date.now();\n}\n\nconst recentMessages = [];\nmessages.forEach((item, index) => {\n  const msg = item.json;\n  const sentTime = parseMessageDate(msg);\n  if (sentTime > fiveMinutesAgo) {\n    const rawContent = msg.text || msg.snippet || '';\n    const cleanedContent = extractLatestEmailContent(rawContent);\n    recentMessages.push({\n      json: {\n        messageId: msg.id,\n        snippet: cleanedContent,\n        sentTime: sentTime,\n        sentTimeReadable: new Date(sentTime).toISOString()\n      }\n    });\n  }\n});\n\nconsole.log(\"Total recent messages:\", recentMessages.length);\nreturn recentMessages;"
+        "jsCode": "// Filter sent messages: keep only recent human-agent replies\n// (within the last 5 minutes), skip the automated 'Request Forwarded\n// to Support Team' confirmation that goes out on every escalation.\nconst items = $input.all();\nconsole.log('Messages in:', items.length);\n\nif (items.length === 0) return [];\n\nconst now = Date.now();\nconst fiveMinutesAgo = now - (5 * 60 * 1000);\nconst AUTO_REPLY_SNIPPET_PREFIX = 'Request Forwarded to Support Team';\n\nfunction stripQuotedReply(text) {\n  if (!text) return '';\n  const quotePatterns = [\n    /\\s*On\\s+.*?\\d{4}.*?wrote:\\s*/i,\n    /\\s*<[^>]+>\\s*wrote:\\s*/i,\n    /\\s*\\w+\\s+napisao je:\\s*/i\n  ];\n  let clean = text;\n  for (const p of quotePatterns) {\n    const m = clean.match(p);\n    if (m) { clean = clean.substring(0, m.index).trim(); break; }\n  }\n  clean = clean.split('\\n').filter(l => !l.trim().startsWith('>')).join('\\n');\n  return clean.replace(/\\n{3,}/g, '\\n\\n').trim();\n}\n\nconst out = [];\nfor (const item of items) {\n  const msg = item.json || {};\n\n  // Parse send time from Gmail's internalDate (ms-since-epoch as string).\n  if (!msg.internalDate) {\n    console.log('Skip (no internalDate):', msg.id);\n    continue;\n  }\n  const sentTime = parseInt(msg.internalDate, 10);\n  if (isNaN(sentTime) || sentTime <= fiveMinutesAgo) {\n    console.log('Skip (too old):', msg.id, sentTime);\n    continue;\n  }\n\n  const snippet = (msg.snippet || '').trim();\n\n  // Skip the system's automated 'Request Forwarded' confirmation.\n  if (snippet.startsWith(AUTO_REPLY_SNIPPET_PREFIX)) {\n    console.log('Skip (auto-reply):', msg.id);\n    continue;\n  }\n\n  if (!msg.id || !msg.threadId) {\n    console.log('Skip (missing id/threadId):', msg.id);\n    continue;\n  }\n\n  out.push({\n    json: {\n      messageId: msg.id,\n      threadId: msg.threadId,\n      subject: msg.Subject || msg.subject || '',\n      snippet: stripQuotedReply(snippet),\n      sentTime,\n      sentTimeReadable: new Date(sentTime).toISOString()\n    }\n  });\n}\n\nconsole.log('Human replies passing filter:', out.length);\nreturn out;"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -59,29 +56,29 @@
       ],
       "id": "db35f7b9-5bd3-4802-9ad1-b859c5b5a289",
       "name": "Filter Recent Messages (Last 5 Minutes)",
-      "alwaysOutputData": true
+      "alwaysOutputData": false
     },
     {
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "YOUR_SUPPORT_LOG_SPREADSHEET_ID",
+          "value": "YOUR_GOOGLE_SHEET_ID",
           "mode": "list",
           "cachedResultName": "Customer_Support_Data",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": 2068850783,
           "mode": "list",
           "cachedResultName": "Interaction_Logs",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit#gid=2068850783"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit#gid=2068850783"
         },
         "filtersUI": {
           "values": [
             {
-              "lookupColumn": "messageId",
-              "lookupValue": "={{ $json.messageId }}"
+              "lookupColumn": "threadId",
+              "lookupValue": "={{ $json.threadId }}"
             }
           ]
         },
@@ -100,8 +97,8 @@
       "retryOnFail": false,
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "dFwvRpFrU3hj7eAL",
-          "name": "Google Sheets account"
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
         }
       }
     },
@@ -110,30 +107,32 @@
         "operation": "update",
         "documentId": {
           "__rl": true,
-          "value": "YOUR_SUPPORT_LOG_SPREADSHEET_ID",
+          "value": "YOUR_GOOGLE_SHEET_ID",
           "mode": "list",
           "cachedResultName": "Customer_Support_Data",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": 2068850783,
           "mode": "list",
           "cachedResultName": "Interaction_Logs",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit#gid=2068850783"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit#gid=2068850783"
         },
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
+            "threadId": "={{ $json.threadId }}",
             "messageId": "={{ $json.messageId }}",
             "timestampEnd": "={{ $('Filter Recent Messages (Last 5 Minutes)').item.json.sentTimeReadable }}",
             "responseTime": "={{ Math.round((new Date($('Filter Recent Messages (Last 5 Minutes)').item.json.sentTimeReadable).getTime() - new Date($json.timestampStart).getTime()) / 1000) }}",
             "response": "={{ $('Filter Recent Messages (Last 5 Minutes)').item.json.snippet }}",
             "wordCount": "={{ $('Filter Recent Messages (Last 5 Minutes)').item.json.snippet.trim().split(/\\s+/).length }}",
-            "messageCount": "={{ $json.messageCount + 1 }}"
+            "messageCount": "={{ $json.messageCount + 1 }}",
+            "humanAgentReply": "True"
           },
           "matchingColumns": [
-            "messageId"
+            "threadId"
           ],
           "schema": [
             {
@@ -347,29 +346,14 @@
       "name": "Update Human Escalated Ticket Information",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "dFwvRpFrU3hj7eAL",
-          "name": "Google Sheets account"
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
         }
       }
     },
     {
       "parameters": {
-        "content": "## Scrapping and Logging Human Sent Replies",
-        "height": 352,
-        "width": 1344
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        -176,
-        32
-      ],
-      "id": "8e31ec6b-72f5-4d58-a80a-bafbec858e77",
-      "name": "Sticky Note1"
-    },
-    {
-      "parameters": {
-        "jsCode": "const items = $input.all();\nconst results = [];\n\nfor (const item of items) {\n  const timestampEnd = item.json.timestampEnd;\n  if (timestampEnd && timestampEnd !== '') {\n    console.log('Skipping already processed ticket: ' + item.json.messageId);\n    continue;\n  }\n  results.push(item);\n}\n\nconsole.log('Dedup: ' + items.length + ' in, ' + results.length + ' new (' + (items.length - results.length) + ' already processed)');\nreturn results;"
+        "jsCode": "// Pass only rows that are still awaiting a human reply.\n// Interaction_Logs uses three states for timestampEnd:\n//   - real ISO timestamp  -> AI already responded, or human reply already logged\n//   - 'None' or empty     -> escalated ticket still waiting for the human agent\n//   - undefined/null      -> no matching row at all (lookup miss)\nconst items = $input.all();\nconst results = [];\n\nfor (const item of items) {\n  const messageId = item.json.messageId;\n  const threadId = item.json.threadId;\n  const timestampEnd = item.json.timestampEnd;\n\n  // Lookup miss: no Interaction_Logs row for this thread.\n  if (!threadId && !messageId) {\n    console.log('Skip (no matching ticket row)');\n    continue;\n  }\n\n  // Already processed: real timestamp present and not the placeholder 'None'.\n  const alreadyDone =\n    timestampEnd &&\n    timestampEnd !== '' &&\n    timestampEnd !== 'None' &&\n    timestampEnd !== 'none';\n  if (alreadyDone) {\n    console.log('Skip (already processed):', messageId || threadId);\n    continue;\n  }\n\n  results.push(item);\n}\n\nconsole.log('Pending human-reply rows:', results.length, '/', items.length);\nreturn results;"
       },
       "id": "47ee04b1-6586-4674-b143-212e80b1e5cb",
       "name": "Skip Already Processed",
@@ -378,6 +362,93 @@
       "position": [
         768,
         144
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "SLA_Breach_Logs",
+          "mode": "name"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "threadId",
+              "lookupValue": "={{ $('Filter Recent Messages (Last 5 Minutes)').item.json.threadId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "66ef2072-3bcd-4601-91d4-e22812ebbd83",
+      "name": "Lookup SLA Breach Row",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1216,
+        144
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "SLA_Breach_Logs",
+          "mode": "name"
+        },
+        "startIndex": "={{ $json.row_number }}"
+      },
+      "id": "7ac0830d-4e42-41e9-b0a4-9f7f1eec8770",
+      "name": "Delete SLA Breach Row",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1440,
+        144
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# HA - Scrapping and Logging Human Sent Replies\n\n## Purpose\nKeeps Interaction_Logs in sync with what human agents actually reply to escalated customers. Without this, every escalation row sits as `response = Pending` forever and downstream automations (SLA monitor, KB updater, AI Agent context) cannot tell a case has been resolved.\n\n## How it works\n- Polls the support Gmail Sent folder every minute for messages sent in the last day\n- Filters to keep only messages sent in the last 5 minutes that are NOT the system's automated 'Request Forwarded to Support Team' confirmation\n- Looks up the matching Interaction_Logs row by threadId; skips threads that already have a non-pending response\n- Strips quoted-reply text from the agent's reply body and writes it back into the existing pending row, updating response, timestampEnd, response time, word count, message count, and flagging humanAgentReply = True\n- If an SLA_Breach_Logs row exists for the same thread, removes it (the breach is now resolved)\n\n## Triggered by\nSchedule trigger  every minute.\n\n## Reads/writes\n- Reads Gmail Sent folder\n- Reads/updates Google Sheets `Customer_Support_Data`  `Interaction_Logs` (matches by threadId, updates the pending escalation row)\n- Reads and deletes rows from Google Sheets `Customer_Support_Data`  `SLA_Breach_Logs` when the matching breach is resolved",
+        "height": 760,
+        "width": 1040,
+        "color": 4
+      },
+      "id": "sticky-overview-doc",
+      "name": "Workflow Overview",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1200,
+        -256
       ]
     }
   ],
@@ -437,13 +508,37 @@
           }
         ]
       ]
+    },
+    "Update Human Escalated Ticket Information": {
+      "main": [
+        [
+          {
+            "node": "Lookup SLA Breach Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lookup SLA Breach Row": {
+      "main": [
+        [
+          {
+            "node": "Delete SLA Breach Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
   },
-  "versionId": "f73b5543-368a-4330-be73-93dcb184ec75",
+  "versionId": "bf4431e6-9f2a-414b-a42e-1df3249f1db0",
   "meta": {
     "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
   },

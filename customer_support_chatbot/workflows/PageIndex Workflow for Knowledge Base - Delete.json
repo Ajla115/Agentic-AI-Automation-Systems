@@ -1,0 +1,321 @@
+{
+  "name": "PageIndex Workflow for Knowledge Base - Delete",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "fileId"
+            },
+            {
+              "name": "fileName"
+            }
+          ]
+        }
+      },
+      "id": "pi-del-trigger",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        160,
+        432
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.pageindex.ai/docs",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "limit",
+              "value": "100"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_PAGEINDEX_API_KEY"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "pi-del-list",
+      "name": "List PageIndex Docs",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        400,
+        432
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const response = $input.first().json;\nconst docs = Array.isArray(response) ? response : (response.documents || response.docs || response.data || []);\nconst trigger = $('Execute Workflow Trigger').first().json;\nconst fileName = trigger.fileName || '';\nconst baseName = fileName.replace(/\\.[^/.]+$/, '').toLowerCase();\nconst oldDoc = docs.find(d => {\n  const name = (d.name || d.doc_name || '').toLowerCase();\n  return baseName && name.includes(baseName);\n});\nreturn [{ json: { fileId: trigger.fileId, fileName, hasOldDoc: !!oldDoc, oldDocId: oldDoc ? (oldDoc.id || oldDoc.doc_id) : '' } }];"
+      },
+      "id": "pi-del-find",
+      "name": "Find Doc By Name",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        640,
+        432
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "del-exists",
+              "leftValue": "={{ $json.hasOldDoc }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "pi-del-if",
+      "name": "Doc Exists in PageIndex?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        880,
+        432
+      ]
+    },
+    {
+      "parameters": {
+        "method": "DELETE",
+        "url": "=https://api.pageindex.ai/doc/{{ $json.oldDocId }}/",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_PAGEINDEX_API_KEY"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "pi-del-delete",
+      "name": "Delete PageIndex Doc",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1120,
+        304
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "PageIndex_File_Tracker",
+          "mode": "name",
+          "cachedResultName": "PageIndex_File_Tracker"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "fileId": "={{ $('Find Doc By Name').item.json.fileId }}",
+            "fileName": "={{ $('Find Doc By Name').item.json.fileName }}",
+            "pageindex_doc_id": "={{ $('Find Doc By Name').item.json.oldDocId }}",
+            "status": "deleted",
+            "firstMissingAt": "",
+            "lastChecked": "={{ $now }}"
+          },
+          "matchingColumns": [
+            "fileId"
+          ],
+          "schema": [
+            {
+              "id": "fileId",
+              "displayName": "fileId",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "fileName",
+              "displayName": "fileName",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "pageindex_doc_id",
+              "displayName": "pageindex_doc_id",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "firstMissingAt",
+              "displayName": "firstMissingAt",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "lastChecked",
+              "displayName": "lastChecked",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "pi-del-log",
+      "name": "Log Deletion to Tracker",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1360,
+        432
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# PageIndex Workflow for Knowledge Base - Delete\n\n## Purpose\nMirrors knowledge-base file deletions into PageIndex so the chatbot's primary KB tool stops retrieving content for files that no longer exist. Called by the RAG Delete workflow on both of its deletion paths (scheduled Drive-sweep and direct sub-workflow call) so PageIndex stays consistent with Pinecone regardless of how the deletion was triggered.\n\n## How it works\n- Receives `fileId` + `fileName` from the caller\n- Lists all PageIndex documents and finds the matching entry by fuzzy-matching the base name\n- If a match exists, sends a DELETE request to the PageIndex `/doc/{id}/` endpoint (errors are tolerated so an already-missing doc does not block the run)\n- Always upserts the PageIndex_File_Tracker row (status = deleted) so the tracker reflects reality even if the PageIndex doc was never created\n\n## Triggered by\nExecute Workflow trigger  invoked as a sub-workflow with `fileId` + `fileName`.\n\n## Called by\n- RAG Workflow for Knowledge Base - Delete (called from BOTH the scheduled-sweep path after the tracker row is marked deleted, AND the direct sub-workflow path)\n\n## Reads/writes\n- Calls the PageIndex API (lists docs, deletes the matched doc)\n- Upserts Google Sheets `Customer_Support_Data`  `PageIndex_File_Tracker`",
+        "height": 700,
+        "width": 1100,
+        "color": 4
+      },
+      "id": "sticky-overview-doc",
+      "name": "Workflow Overview",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1104,
+        112
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "List PageIndex Docs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List PageIndex Docs": {
+      "main": [
+        [
+          {
+            "node": "Find Doc By Name",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Doc By Name": {
+      "main": [
+        [
+          {
+            "node": "Doc Exists in PageIndex?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Doc Exists in PageIndex?": {
+      "main": [
+        [
+          {
+            "node": "Delete PageIndex Doc",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Log Deletion to Tracker",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete PageIndex Doc": {
+      "main": [
+        [
+          {
+            "node": "Log Deletion to Tracker",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "0472cb0c-c63a-4b60-a949-b93af2f84db9",
+  "meta": {
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "WIL2OUKUkYfULWGB",
+  "tags": []
+}

@@ -21,7 +21,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Capture start time\nconst startTime = Date.now();\n\n// Get incoming request body\nconst body = $input.first().json.body || {};\nconst query = body.query;\n\n// Validation checks\nif (!query || query.trim() === '') {\n  return [{\n    json: {\n      error: true,\n      status: 400,\n      message: \"Bad Request: 'query' field is required and cannot be empty\",\n      startTime: startTime\n    }\n  }];\n}\n\n// Valid input - pass through\nreturn [{\n  json: {\n    error: false,\n    query: query.trim()\n  }\n}];"
+        "jsCode": "// Capture start time\nconst startTime = Date.now();\n\n// Get incoming request body\nconst body = $input.first().json.body || {};\nconst query = body.query;\n\n// Validation checks\nif (!query || query.trim() === '') {\n  return [{\n    json: {\n      error: true,\n      status: 400,\n      message: \"Bad Request: 'query' field is required and cannot be empty\",\n      startTime: startTime\n    }\n  }];\n}\n\n// Valid input - pass through\nreturn [{\n  json: {\n    error: false,\n    query: query.trim(),\n    startTime: startTime\n  }\n}];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -193,24 +193,24 @@
         "operation": "append",
         "documentId": {
           "__rl": true,
-          "value": "YOUR_SUPPORT_LOG_SPREADSHEET_ID",
+          "value": "YOUR_GOOGLE_SHEET_ID",
           "mode": "list",
           "cachedResultName": "Customer_Support_Data",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": 927643220,
           "mode": "list",
           "cachedResultName": "PageIndex_API_Logs",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit#gid=927643220"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit#gid=927643220"
         },
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
             "timestamp:": "={{ $json.timestamp }}",
             "query:": "={{ $json.query }}",
-            "response": "={{ $json.answer }}",
+            "response": "={{ $json.response }}",
             "status": "={{ $json.status }}",
             "responseTime": "={{ $json.responseTime }}"
           },
@@ -279,26 +279,26 @@
       "name": "Log API Calls",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "dFwvRpFrU3hj7eAL",
-          "name": "Google Sheets account"
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
         }
       }
     },
     {
       "parameters": {
-        "content": "## PageIndex Query Webhook\n",
-        "height": 656,
-        "width": 1900,
-        "color": 3
+        "content": "# PageIndex Query Webhook\n\n## Purpose\nExposes the PageIndex document-QA service as a simple HTTP endpoint that other workflows can call to answer customer questions against the knowledge base. Used by the Main AI Customer Support Chatbot's AI Agent as its primary KB retrieval tool before falling back to the Pinecone vector store.\n\n## How it works\n- Receives POST requests with a `{ query: '...' }` JSON body on the `/pageindex-query` webhook\n- Validates that the query is non-empty; if invalid, immediately responds with an error and logs it\n- Lists all documents currently registered in PageIndex and builds the doc-ID array\n- Calls the PageIndex chat-completions API with the customer query and the full doc-ID list, letting PageIndex pick the relevant passages\n- Extracts the answer text and responds to the original webhook caller as JSON\n- Logs every call (timestamp, query, status, response, response time) to a dedicated sheet for later analysis\n\n## Triggered by\nWebhook POST to `/pageindex-query`.\n\n## Called by\n- Main AI Customer Support Chatbot Workflow (via HTTP request from the AI Agent's `search_pageindex` tool, not as an Execute-Sub-workflow call)\n\n## Reads/writes\n- Calls the PageIndex API (lists docs, runs chat completion)\n- Appends to Google Sheets `Customer_Support_Data`  `PageIndex_API_Logs`",
+        "height": 800,
+        "width": 1100,
+        "color": 4
       },
+      "id": "sticky-overview-doc",
+      "name": "Workflow Overview",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -112,
-        -240
-      ],
-      "id": "ff858901-b00d-4f6a-9a9e-aa8fbe8a823c",
-      "name": "Sticky Note"
+        -160,
+        -976
+      ]
     }
   ],
   "pinData": {},
@@ -427,7 +427,7 @@
     "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false
   },
-  "versionId": "ea9f720c-2ef5-402f-9139-3d376b152556",
+  "versionId": "8b59bb56-3efb-424c-ae9e-85e4fb5e70ae",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"

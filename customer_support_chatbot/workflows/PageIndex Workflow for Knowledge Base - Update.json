@@ -1,0 +1,511 @@
+{
+  "name": "PageIndex Workflow for Knowledge Base - Update",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "fileId"
+            },
+            {
+              "name": "fileName"
+            }
+          ]
+        }
+      },
+      "id": "pi-upd-trigger",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        160,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.pageindex.ai/docs",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "limit",
+              "value": "100"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_PAGEINDEX_API_KEY"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "pi-upd-list",
+      "name": "List PageIndex Docs",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        400,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const response = $input.first().json;\nconst docs = Array.isArray(response) ? response : (response.documents || response.docs || response.data || []);\nconst trigger = $('Execute Workflow Trigger').first().json;\nconst fileName = trigger.fileName || '';\nconst baseName = fileName.replace(/\\.[^/.]+$/, '').toLowerCase();\nconst oldDoc = docs.find(d => {\n  const name = (d.name || d.doc_name || '').toLowerCase();\n  return baseName && name.includes(baseName);\n});\nreturn [{ json: { fileId: trigger.fileId, fileName, hasOldDoc: !!oldDoc, oldDocId: oldDoc ? (oldDoc.id || oldDoc.doc_id) : null } }];"
+      },
+      "id": "pi-upd-find",
+      "name": "Find Old Doc By Name",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        640,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "old-exists",
+              "leftValue": "={{ $json.hasOldDoc }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "pi-upd-if",
+      "name": "Old Doc Exists?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        880,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "method": "DELETE",
+        "url": "=https://api.pageindex.ai/doc/{{ $json.oldDocId }}/",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_PAGEINDEX_API_KEY"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "pi-upd-delete",
+      "name": "Delete Old PageIndex Doc",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1120,
+        352
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://www.googleapis.com/drive/v3/files/{{ $('Execute Workflow Trigger').first().json.fileId }}/copy",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ name: '_pi_tmp_' + $('Execute Workflow Trigger').first().json.fileName, mimeType: 'application/vnd.google-apps.document', parents: ['root'] }) }}",
+        "options": {}
+      },
+      "id": "pi-upd-copy",
+      "name": "Copy as Google Doc",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1360,
+        480
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_DRIVE_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://www.googleapis.com/drive/v3/files/{{ $json.id }}/export",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "mimeType",
+              "value": "application/pdf"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "pi-upd-export",
+      "name": "Export as PDF",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1600,
+        480
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_DRIVE_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.pageindex.ai/doc/",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_PAGEINDEX_API_KEY"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "file",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "pi-upd-upload",
+      "name": "Upload PDF to PageIndex",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1840,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const resp = $input.first().json;\nconst docId = resp.doc_id || resp.id || (resp.data && (resp.data.doc_id || resp.data.id)) || '';\nconst trigger = $('Execute Workflow Trigger').first().json;\nreturn [{ json: { fileId: trigger.fileId, fileName: trigger.fileName, pageindex_doc_id: docId } }];"
+      },
+      "id": "pi-upd-extract",
+      "name": "Extract Doc ID",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2080,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "PageIndex_File_Tracker",
+          "mode": "name",
+          "cachedResultName": "PageIndex_File_Tracker"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "fileId": "={{ $json.fileId }}",
+            "fileName": "={{ $json.fileName }}",
+            "pageindex_doc_id": "={{ $json.pageindex_doc_id }}",
+            "status": "updated",
+            "firstMissingAt": "",
+            "lastChecked": "={{ $now }}"
+          },
+          "matchingColumns": [
+            "fileId"
+          ],
+          "schema": [
+            {
+              "id": "fileId",
+              "displayName": "fileId",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "fileName",
+              "displayName": "fileName",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "pageindex_doc_id",
+              "displayName": "pageindex_doc_id",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "firstMissingAt",
+              "displayName": "firstMissingAt",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "lastChecked",
+              "displayName": "lastChecked",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "pi-upd-log",
+      "name": "Log to PageIndex Tracker",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2320,
+        480
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "DELETE",
+        "url": "=https://www.googleapis.com/drive/v3/files/{{ $('Copy as Google Doc').item.json.id }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "options": {}
+      },
+      "id": "pi-upd-cleanup",
+      "name": "Delete Temp Google Doc",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2560,
+        480
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_DRIVE_CREDENTIAL"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "content": "# PageIndex Workflow for Knowledge Base - Update\n\n## Purpose\nMirrors a knowledge-base file update from Pinecone into PageIndex. Removes the previous PageIndex copy of the document and re-uploads the latest version so chatbot retrieval never serves stale answers from PageIndex.\n\n## How it works\n- Receives `fileId` + `fileName` from the caller\n- Lists all PageIndex documents and finds the existing entry by fuzzy-matching the file's base name\n- If a matching doc exists, deletes it via the PageIndex API (errors are tolerated so a missing doc does not block the update)\n- Copies the source Drive file as a temporary Google Doc, exports it as PDF, and multipart-uploads the PDF to the PageIndex `/doc/` endpoint\n- Extracts the new `doc_id`, upserts the PageIndex_File_Tracker row (status = updated), and deletes the temporary Google Doc\n\n## Triggered by\nExecute Workflow trigger  invoked as a sub-workflow with `fileId` + `fileName`.\n\n## Called by\n- RAG Workflow for Knowledge Base - Update\n\n## Reads/writes\n- Reads from and writes to Google Drive (creates a temp Google Doc copy, exports as PDF, deletes the temp copy)\n- Calls the PageIndex API (lists docs, deletes the old doc, uploads the new one)\n- Upserts Google Sheets `Customer_Support_Data`  `PageIndex_File_Tracker`",
+        "height": 750,
+        "width": 1100,
+        "color": 4
+      },
+      "id": "sticky-overview-doc",
+      "name": "Workflow Overview",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1104,
+        160
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "List PageIndex Docs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List PageIndex Docs": {
+      "main": [
+        [
+          {
+            "node": "Find Old Doc By Name",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Old Doc By Name": {
+      "main": [
+        [
+          {
+            "node": "Old Doc Exists?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Old Doc Exists?": {
+      "main": [
+        [
+          {
+            "node": "Delete Old PageIndex Doc",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Copy as Google Doc",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Old PageIndex Doc": {
+      "main": [
+        [
+          {
+            "node": "Copy as Google Doc",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Copy as Google Doc": {
+      "main": [
+        [
+          {
+            "node": "Export as PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Export as PDF": {
+      "main": [
+        [
+          {
+            "node": "Upload PDF to PageIndex",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload PDF to PageIndex": {
+      "main": [
+        [
+          {
+            "node": "Extract Doc ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Doc ID": {
+      "main": [
+        [
+          {
+            "node": "Log to PageIndex Tracker",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log to PageIndex Tracker": {
+      "main": [
+        [
+          {
+            "node": "Delete Temp Google Doc",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "85fa91fa-c776-4337-9de3-71debb5b9082",
+  "meta": {
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "cHLI5buwv4CSBeaE",
+  "tags": []
+}

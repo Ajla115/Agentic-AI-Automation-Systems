@@ -24,17 +24,17 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "YOUR_SUPPORT_LOG_SPREADSHEET_ID",
+          "value": "YOUR_GOOGLE_SHEET_ID",
           "mode": "list",
           "cachedResultName": "Customer_Support_Data",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": 2068850783,
           "mode": "list",
           "cachedResultName": "Interaction_Logs",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit#gid=2068850783"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit#gid=2068850783"
         },
         "filtersUI": {
           "values": [
@@ -60,14 +60,14 @@
       ],
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "dFwvRpFrU3hj7eAL",
-          "name": "Google Sheets account"
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
         }
       }
     },
     {
       "parameters": {
-        "jsCode": "const escalations = $input.all().map(i => i.json);\nconst now = Date.now();\nconst SLA_THRESHOLD = 60 * 60 * 1000;\n\nconst overdue = escalations.filter(t => {\n  if (t.response !== 'Pending') return false;\n  const escalatedAt = new Date(t.timestampStart).getTime();\n  if (isNaN(escalatedAt)) return false;\n  return (now - escalatedAt) > SLA_THRESHOLD;\n}).map(t => ({\n  ...t,\n  hoursOverdue: ((now - new Date(t.timestampStart).getTime()) / 3600000).toFixed(1)\n}));\n\nconsole.log(`Found ${overdue.length} overdue escalations`);\nreturn overdue.map(r => ({ json: r }));"
+        "jsCode": "const escalations = $input.all().map(i => i.json);\nconst now = Date.now();\nconst SLA_THRESHOLD = 60 * 60 * 1000;\n\nconst overdue = escalations.filter(t => {\n  if (t.response !== 'Pending') return false;\n  const escalatedAt = new Date(t.timestampStart).getTime();\n  if (isNaN(escalatedAt)) return false;\n  return (now - escalatedAt) > SLA_THRESHOLD;\n}).map(t => ({\n  ...t,\n  hoursOverdue: ((now - new Date(t.timestampStart).getTime()) / 3600000).toFixed(1)\n}));\n\nconsole.log(`Found ${overdue.length} overdue escalations`);\n\nreturn overdue.map(r => ({ json: r }));"
       },
       "id": "54431b75-75a6-41c8-8063-99dd48e51d1a",
       "name": "Filter Overdue Escalations",
@@ -115,10 +115,10 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "YOUR_SUPPORT_LOG_SPREADSHEET_ID",
+          "value": "YOUR_GOOGLE_SHEET_ID",
           "mode": "list",
           "cachedResultName": "Customer_Support_Data",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
@@ -146,8 +146,8 @@
       ],
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "dFwvRpFrU3hj7eAL",
-          "name": "Google Sheets account"
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
         }
       }
     },
@@ -169,10 +169,10 @@
         "operation": "appendOrUpdate",
         "documentId": {
           "__rl": true,
-          "value": "YOUR_SUPPORT_LOG_SPREADSHEET_ID",
+          "value": "YOUR_GOOGLE_SHEET_ID",
           "mode": "list",
           "cachedResultName": "Customer_Support_Data",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_SUPPORT_LOG_SPREADSHEET_ID/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
@@ -282,8 +282,8 @@
       ],
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "dFwvRpFrU3hj7eAL",
-          "name": "Google Sheets account"
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
         }
       }
     },
@@ -316,11 +316,11 @@
         1680,
         176
       ],
-      "webhookId": "043df23d-b0fd-4f65-a272-50bc6076fd1c",
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
       "credentials": {
         "telegramApi": {
-          "id": "Z4DjPtixNJvP438S",
-          "name": "Telegram account"
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_TELEGRAM_CREDENTIAL"
         }
       }
     },
@@ -337,19 +337,19 @@
     },
     {
       "parameters": {
-        "content": "## Service Level Agreement (SLA) Breach Escalation Monitor\n",
-        "height": 608,
-        "width": 2336,
-        "color": 6
+        "content": "# HA - SLA Breach Escalation Monitor\n\n## Purpose\nWatches escalated customer tickets that are still waiting for a human reply and alerts the on-call agent on Telegram when they breach the 1-hour SLA. Provides accountability and a paging mechanism so escalations do not silently rot in the queue.\n\n## How it works\n- Scans Interaction_Logs every minute for rows where `isEscalated = True` AND `response = Pending`\n- Flags tickets where more than 1 hour has passed since the escalation start time\n- Looks up SLA_Breach_Logs to track how many alerts have already been sent for each ticket (first notice vs repeat notice)\n- Upserts a breach record per ticket (messageId, threadId, hoursOverdue, alertCount, status = Active) and increments the counter\n- Sends a single Telegram summary message: total overdue count, max hours overdue, first-time vs repeat-notice breakdown, and the top 5 most overdue tickets\n- Stops cleanly when nothing is overdue\n\n## Triggered by\nSchedule trigger  every minute.\n\n## Reads/writes\n- Reads Google Sheets `Customer_Support_Data`  `Interaction_Logs`\n- Reads and upserts Google Sheets `Customer_Support_Data`  `SLA_Breach_Logs`\n- Sends a Telegram summary alert to the on-call agent chat",
+        "height": 760,
+        "width": 1040,
+        "color": 4
       },
+      "id": "sticky-overview-doc",
+      "name": "Workflow Overview",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        -112,
-        -16
-      ],
       "typeVersion": 1,
-      "id": "2c1043b4-6076-4677-acac-b1d90764cf35",
-      "name": "Sticky Note2"
+      "position": [
+        -1296,
+        -304
+      ]
     }
   ],
   "pinData": {},
@@ -456,7 +456,7 @@
     "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false
   },
-  "versionId": "89f0571a-25b0-4206-9911-a387ca6b97b4",
+  "versionId": "726b9333-d23b-45c9-9b2e-bfb1e013582e",
   "meta": {
     "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
   },

@@ -1,0 +1,573 @@
+{
+  "name": "RAG Workflow for Knowledge Base - Update",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "authentication": "serviceAccount",
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "mode": "url",
+          "value": "https://drive.google.com/drive/u/2/folders/YOUR_GOOGLE_DRIVE_FOLDER_ID"
+        },
+        "event": "fileUpdated",
+        "options": {}
+      },
+      "id": "d03db811-8bef-45bd-abd9-7bad5eed720a",
+      "name": "Google Drive File Updated",
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "position": [
+        48,
+        272
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "googleApi": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SERVICE_ACCOUNT_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://company-files-mc8jzo0.svc.aped-4627-b74a.pinecone.io/vectors/delete",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Api-Key",
+              "value": "YOUR_PINECONE_API_KEY"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"filter\": { \"fileId\": \"{{ $json.id }}\" }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        560,
+        272
+      ],
+      "id": "f61e7d25-c2ba-45cb-912c-7d4c28ec98b5",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('Normalize Input').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1040,
+        272
+      ],
+      "id": "442e8384-be99-4872-ab9c-433eead77e10",
+      "name": "Download file",
+      "credentials": {
+        "googleApi": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SERVICE_ACCOUNT_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\n\nreturn items.map(item => ({\n  json: {\n    ...item.json,\n    metadata: {\n      source: item.json.name || 'unknown',\n      uploadedAt: new Date().toISOString()\n    }\n  },\n  binary: item.binary\n}));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1280,
+        272
+      ],
+      "id": "63954086-c7e7-4dda-a5af-55add6c8100f",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "pineconeIndex": {
+          "__rl": true,
+          "mode": "list",
+          "value": "company-files",
+          "cachedResultName": "company-files"
+        },
+        "options": {}
+      },
+      "id": "829d5dd4-be54-494d-8ae4-5fb0562d8dfb",
+      "name": "Pinecone Vector Store1",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "position": [
+        1584,
+        272
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "pineconeApi": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_PINECONE_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "binary",
+        "binaryMode": "specificField",
+        "options": {
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "fileId",
+                "value": "={{ $('Normalize Input').item.json.id }}"
+              },
+              {
+                "name": "fileName",
+                "value": "={{ $('Normalize Input').item.json.name }}"
+              },
+              {
+                "name": "uploadDate",
+                "value": "={{ $now }}"
+              }
+            ]
+          }
+        }
+      },
+      "id": "5133dd12-36f4-48e8-98e9-b582061be38a",
+      "name": "Default Data Loader1",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "position": [
+        1808,
+        464
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "chunkOverlap": 100,
+        "options": {}
+      },
+      "id": "cffef850-095d-43de-924e-ab050d95f484",
+      "name": "Recursive Character Text Splitter1",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "position": [
+        1936,
+        656
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1568,
+        464
+      ],
+      "id": "c4a0da16-2688-4d47-8d0e-6fbad94c10b7",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_OPENAI_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9765d185-3140-42f0-9250-eb56bd2ff049",
+              "name": "fileId",
+              "value": "={{ $('Normalize Input').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "cfce6151-afbb-4eae-b81a-3efa8f5265a9",
+              "name": "fileName",
+              "value": "={{ $('Normalize Input').item.json.name }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        800,
+        272
+      ],
+      "id": "b10edc24-25a0-4601-8977-9b32b96618a9",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1121798137,
+          "mode": "list",
+          "cachedResultName": "Rag_File_Tracker"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "fileId": "={{ $json.fileId }}",
+            "fileName": "={{ $json.fileName }}",
+            "status": "updated",
+            "firstMissingAt": "null",
+            "lastChecked": "={{ $now }}"
+          },
+          "matchingColumns": [
+            "fileId"
+          ],
+          "schema": [
+            {
+              "id": "fileId",
+              "displayName": "fileId",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "fileName",
+              "displayName": "fileName",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "firstMissingAt",
+              "displayName": "firstMissingAt",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "lastChecked",
+              "displayName": "lastChecked",
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "display": true,
+              "required": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1504,
+        96
+      ],
+      "id": "d88579c6-c6d9-4130-a58b-f36148399bd7",
+      "name": "File Update Logger",
+      "alwaysOutputData": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "fileId"
+            },
+            {
+              "name": "fileName"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        128,
+        544
+      ],
+      "id": "exec-trigger-update",
+      "name": "Execute Workflow Trigger"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "norm-id",
+              "name": "id",
+              "value": "={{ $json.id || $json.fileId }}",
+              "type": "string"
+            },
+            {
+              "id": "norm-name",
+              "name": "name",
+              "value": "={{ $json.name || $json.fileName }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        336,
+        272
+      ],
+      "id": "normalize-input-upd",
+      "name": "Normalize Input"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "cHLI5buwv4CSBeaE",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/cHLI5buwv4CSBeaE",
+          "cachedResultName": "PageIndex Workflow for Knowledge Base - Update"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "fileId": "={{ $('Normalize Input').item.json.id }}",
+            "fileName": "={{ $('Normalize Input').item.json.name }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "fileId",
+              "displayName": "fileId",
+              "type": "string",
+              "display": true,
+              "required": false
+            },
+            {
+              "id": "fileName",
+              "displayName": "fileName",
+              "type": "string",
+              "display": true,
+              "required": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "trigger-pi-upd",
+      "name": "Trigger PageIndex Update",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        2032,
+        272
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "content": "# RAG Workflow for Knowledge Base - Update\n\n## Purpose\nKeeps the Pinecone vector store consistent with edits to existing knowledge-base files. When a KB document is modified in Drive (or programmatically by another workflow), this pipeline removes the old vectors and re-embeds the latest content so retrieval never serves stale answers.\n\n## How it works\n- Two entry points: a Google Drive trigger that watches the Knowledge_Base folder for file updates, and an Execute-Workflow trigger that accepts `fileId` + `fileName` from other workflows\n- Normalizes input fields, then deletes all existing Pinecone vectors for the file via a metadata-filter HTTP request to the Pinecone API\n- Downloads the latest file binary from Drive, attaches fresh metadata (fileId, fileName, uploadDate)\n- Re-splits and re-embeds the document with OpenAI embeddings and inserts the new chunks into the Pinecone `company-files` index\n- Upserts the tracker row in Rag_File_Tracker (status = updated) and forwards to the PageIndex update sub-workflow\n\n## Triggered by\n- Google Drive trigger on the `Knowledge_Base` folder (fileUpdated, polled every minute)\n- Execute Workflow trigger with `fileId` + `fileName` (called by other workflows)\n\n## Calls (sub-workflows)\n- PageIndex Workflow for Knowledge Base - Update  refreshes the same document in PageIndex after the Pinecone re-embed succeeds.\n\n## Reads/writes\n- Reads from Google Drive `Knowledge_Base` folder\n- Deletes from and writes to Pinecone index `company-files` (with OpenAI embeddings)\n- Upserts Google Sheets `Customer_Support_Data`  `Rag_File_Tracker`",
+        "height": 800,
+        "width": 1100,
+        "color": 4
+      },
+      "id": "sticky-overview-doc",
+      "name": "Workflow Overview",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1200,
+        -400
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Drive File Updated": {
+      "main": [
+        [
+          {
+            "node": "Normalize Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Normalize Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Input": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "File Update Logger",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Pinecone Vector Store1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader1": {
+      "ai_document": [
+        [
+          {
+            "node": "Pinecone Vector Store1",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter1": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader1",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store1": {
+      "main": [
+        [
+          {
+            "node": "Trigger PageIndex Update",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "c2b9f95f-3002-4d24-8eb5-795870c92817",
+  "meta": {
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "UsTKdgP2CZMW6bzS",
+  "tags": []
+}

@@ -1,0 +1,3206 @@
+{
+  "name": "Main AI Customer Support Chatbot Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Detect Priority & Sentiment').item.json.escalationFlag\n  ? '\\n## ⚠️ Priority & Sentiment Alert\\nDetected keywords: ' + $('Detect Priority & Sentiment').item.json.detectedKeywords.join(', ') + '\\nHandle with extra care and empathy. Acknowledge the customer\\'s frustration directly.\\n'\n  : '' }}## ⚠️ Edge Case Detection — Long Email\n\nIf the customer's message (`chatInput`) begins with `[INTERNAL DIRECTIVE — LONG EMAIL`, the customer's email is very long. Identify the most recent customer question or any explicit action keyword and answer that. Use PageIndex/Vector Store as normal. Confidence depends on retrieval quality.\n\nIf no directive marker is present, proceed with the normal protocol below.\n\n---\n\n## Email Thread Context\n\n**This is message #{{ $('Format Current Email Data').item.json.messageCount }} in this conversation.**\n\n{{ $('Format Current Email Data').item.json.isFirstMessage ? '**This is the first message sent from this customer.**' : '**Previous conversation history is avaliable here:**' }}\n\n{{ $('Format Current Email Data').item.json.conversationHistory }}\n\n---\n\n## Current Customer Query\n\n**Subject:** {{ $('Format Current Email Data').item.json.subject }}\n\n⚠️ **IMPORTANT - Subject Line Parsing:** The subject line may start with an internal reference code (e.g., TC211, TC182, TC300). These are NOT product names, model numbers, or device names. Ignore them completely - do not mention them in your response. Focus only on the actual topic described after the reference code.\n\n**Customer's Latest Message:**\n{{ $('Format Current Email Data').item.json.chatInput }}\n\n---\n\n## **Instructions**:\n\n{{ $('Format Current Email Data').item.json.isFirstMessage ? '### First Contact - Provide Complete Answer' : '### Follow-up Message - Build on Previous Context' }}\n\n1. **MANDATORY**: Follow the two-tier search protocol:\n   - **TIER 1**: Call `search_pageindex` tool with the customer query FIRST\n   - **TIER 2**: Call `company_documents_tool` tool ONLY if search_pageindex fails or returns incomplete information\n   - Use retrieved information to formulate your response\n\n2. **Context Awareness**:\n{{ $('Format Current Email Data').item.json.isFirstMessage ? '- This is a new inquiry - provide complete information\\n    - Cover all relevant details' : '- Review the conversation history above\\n   - Reference what was previously suggested if relevant\\n   - DO NOT repeat the same solution already provided\\n   - If user says \"still not working\" or \"tried that\", acknowledge it and offer alternative solutions\\n   - Build on previous responses with NEW information or troubleshooting steps' }}\n\n3. **Tone Matching**: Apply the same tone the customer used in their message (formal, casual, professional, etc.). In case customer's tone is frustrated, anger or any other negative emotion, be extra polite. \n\n4. **Base Your Answer**: Use retrieved information from company_documents_tool and assign appropriate confidence level.\n\n5. **Provide References**: Tell me what document and section you used to answer this query.\n\n\n  ⚠️ IMPORTANT: When you cannot find a specific answer in the documentation, branch your behavior:\n\n  **For INFORMATIONAL or CONCEPTUAL questions** (e.g., \"how does pro-rated billing work\", \"is X compatible with Y\", \"where do I find the settings menu\", \"how does the export feature work\"):\n  - Provide a best-effort answer using general knowledge or common product conventions\n  - Set confidenceLevel to MEDIUM (not LOW)\n  - Briefly note that specific documentation was not found, but give the customer useful direction\n  - DO NOT write phrases like \"I'm escalating this\" or \"a human agent will reach out\" — the customer expects an answer, not a hand-off\n\n  **For ACCOUNT-SPECIFIC ACTIONS** (modifying a specific charge, unlocking an account, processing a refund over $100, identity verification, fraud reports, looking up a specific order by ID):\n  - Set confidenceLevel to LOW\n  - Explain to the customer that a human agent will follow up because the issue requires account access\n\n  **Mild customer frustration** (\"a bit annoyed\", \"a little frustrated\", \"confused\", \"I think it might be a learning curve issue\") is NOT an escalation trigger — acknowledge with empathy and answer the question.",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=# Enhanced Customer Support AI Agent\n\n## Role\nYou are an autonomous customer support AI agent resolving customer inquiries accurately and efficiently.\n\n## Pricing & Currency Conventions\n- The default currency is **USD** ($). When quoting prices, refund thresholds, or any monetary amount that isn't explicitly tagged with a different currency, assume USD.\n- If a retrieved KB document explicitly states a different currency (e.g. \"€29.99\", \"EUR 14.99\"), quote it EXACTLY as written and clarify the currency to the customer (\"the listed price is €29.99 EUR\").\n- Never silently convert between currencies. If the customer asks for a conversion, reply with the original currency and direct them to use today's exchange rate or contact billing for an exact figure.\n- All refund authority thresholds in this prompt (e.g. \"refund over $100\") are in USD.\n\n---\n\nTOOL PRIORITY:\n1. Search PageIndex HTTP Request (PRIMARY) - Fast, accurate, official docs\n   - Try this FIRST for all queries\n   - If it returns an answer, use it\n   - If it fails or returns \"not found\" or any type of error (500, 400), proceed to step 2\n\n2. Vector Store Database Tool (FALLBACK) - Comprehensive search\n   - Use ONLY if search_pageindex fails\n   - Use if search_pageindex answer is incomplete\n   - Last resort for complex queries\n\n---\n\n## Email Thread Context\n\nThis is message #{{ $('Format Current Email Data').item.json.messageCount }} in this email conversation.\n\nIf this is an email thread with more than 1 message, you have access to the full conversation history with this customer.\n\n{{ $('Format Current Email Data').item.json.isFirstMessage ? \n   'This is the customer\\'s first message to us, therefore there is no conversation history.' : \n   'This customer has previously communicated with us. See conversation history in user message prompt.' }}\n\n---\n\nCRITICAL CONTEXT AWARENESS RULES:\n\n{{ $('Format Current Email Data').item.json.isFirstMessage ? '- Provide complete, thorough answer\\n- Introduce our support warmly\\n- No need to reference previous messages (there are none)' : '- Review previous conversation carefully\\n- If you previously suggested a solution and user says \"it didn\\'t work\" or \"still having issues\":\\n  * Acknowledge what was tried before\\n  * Offer DIFFERENT troubleshooting steps\\n  * DO NOT just repeat the same instructions\\n- Reference previous context naturally: \"I see you tried X earlier...\"\\n- Build on previous responses with new information\\n- If the same issue persists after multiple attempts, consider escalating' }}\n\n{{ $('Format Current Email Data').item.json.isEscalated ? '⚠️ ESCALATION STATUS: This case was previously escalated to a human agent. Customer is now following up. Be aware this might indicate:\\n- Issue was not fully resolved\\n- Customer needs additional help\\n- Consider re-escalation if problem persists' : '' }}\n---\n\n## Current Turn Input\n\nThe customer's current message and prior conversation history are provided in the user prompt below — treat that as the authoritative input for this turn. Do not re-state or echo it here.\n\n---\n\n## Response Instructions\n\n### 1. Information Retrieval\n\nMANDATORY TOOL USAGE PROTOCOL:\n\nStep 1: Try PageIndex First\n- ALWAYS call `search_pageindex` tool with the user's question FIRST\n- This is the fastest and most accurate source for official documentation\n- Wait for the result before proceeding\n\nStep 2: Evaluate PageIndex Result\n- If `search_pageindex` returns a complete answer → use it and skip to synthesis\n- If `search_pageindex` returns partial info → proceed to Step 3\n- If `search_pageindex` fails or returns \"not found\" → proceed to Step 3\n\nStep 3: Fallback to Vector Store (if needed)\n- Call `company_documents_tool` tool ONLY if:\n  * `search_pageindex` failed completely, OR\n  * `search_pageindex` answer is incomplete/insufficient, OR\n  * Question requires broader context than PageIndex provided\n\nSynthesis:\n- If relevant passages found → synthesize into coherent, conversational answer\n- If both tools return no relevant info → explicitly state this limitation\n- NEVER make up information if tools don't provide it\n- Extract and cite all source references (document names, sections, page numbers)\n\nSource Attribution:\n- PageIndex results: Include specific document names and sections\n- Vector Store results: Include specific document names and sections\n- If combining both sources: Clearly indicate which info came from where\n\nExamples:\n\nGood (PageIndex succeeded):\n\"According to our official documentation, the password reset process is...\"\n\nGood (PageIndex failed, Vector Store used):\n\"Based on our technical documentation (Section 2.3, Technical Issues Guide), you can reset your password by...\"\n\nGood (Combined sources):\n\"Our refund policy (from official docs) states that... Additionally, our escalation procedures (Technical Support Guide, page 5) indicate...\"\n\nBad (no tool calls):\n\"I believe the password reset works like...\" ❌ NEVER DO THIS\n\nBad (making assumptions):\n\"The policy probably allows...\" ❌ NEVER DO THIS\n\n### 2. Assess Confidence Level\n\nBased on retrieved information quality:\n\nHIGH (0.85-1.0):\n- Answer directly supported by documents\n- Complete, specific information\n- No ambiguity\n\nMEDIUM (0.6-0.84):\n- Answer requires interpretation\n- Combines multiple sources\n- Some minor gaps\n\nLOW (0.0-0.59):\n- Information is partial or unclear\n- Significant gaps\n- Potentially outdated\n\n### 3. Determine Appropriate Tone\n\nMatch the customer's tone:\n\nProfessional: Formal, clear, direct language\nFriendly: Warm, conversational, \"Happy to help!\"\nEmpathetic: Acknowledge frustration, show understanding\nConcise/Standard/Thorough: Match complexity to question\n\n### 4. Structure Your Response\n\nWrite a clear, helpful answer following tone guidelines above.\n\nKeep it clean:\n- NO `[CONFIDENCE: ...]` tags in response body\n- NO inline references or citations in response body\n- Just the direct answer to the customer\n- 2-6 sentences for simple queries\n- Use bullet points for multi-step instructions\n\n### 5. Extract References\n\nFrom your knowledge base search, list ALL sources used:\n- Document names\n- Section titles\n\nFormat: `[\"Document1.docx - Section A\", \"Document2.docx - Section B\"]`\n\n---\n\n## Output Format\n\nReturn a JSON object with these 6 fields:\n```json\n{\n  \"confidenceLevel\": \"HIGH\",\n  \"confidenceScore\": 0.92,\n  \"reasoning\": \"Complete step-by-step instructions found in FAQ documentation.\",\n  \"query\": \"How do I reset my password?\",\n  \"response\": \"To reset your password, visit the login page and click 'Forgot Password' below the login fields. Enter your registered email address and check your inbox for a reset link. The link expires after 24 hours, so use it promptly. If you don't receive the email within 5 minutes, check your spam folder.\",\n  \"references\": [\n    \"01_FAQ_General.docx - Password Reset section\",\n    \"06_Response_Templates.docx - Account Access\"\n  ]\n}\n```\n\n---\n\n## Field Requirements\n\nconfidenceLevel:\n- Must be: \"HIGH\", \"MEDIUM\", or \"LOW\"\n- Based on information quality\n\nconfidenceScore:\n- Numeric value 0.0 to 1.0\n- Align with confidence level ranges\n\nreasoning:\n- One sentence (max 200 chars)\n- Explain WHY this confidence level\n\nquery:\n- The customer's question/request\n- Copy from chatInput or summarize if long\n\nresponse:\n- Your answer to the customer\n- NO confidence tags\n- NO inline references\n- Clean, readable text\n\nreferences:\n- Array of strings\n- Each entry: \"Filename - Section\"\n- Empty array if no sources used: `[]`\n\n---\n\n## Escalation Triggers\n\nSet confidenceLevel: \"LOW\" and suggest human assistance when:\n- Customer expresses frustration/dissatisfaction\n- Account-specific sensitive information needed\n- Complaints, refunds, or legal matters\n- Technical issue beyond documentation\n- Multiple exchanges without resolution\n- Customer says solution didn't work after following your instructions\n- Same issue mentioned 2+ times in conversation history\n- Previously escalated case with unresolved issue\n\n---\n\n## Examples\n\n### Example 1: High Confidence\n\nUser Query: \"What's your return policy on software devices?\"\n\nRetrieved: Clear 14-day policy in FAQ\n\nOutput:\n```json\n{\n  \"confidenceLevel\": \"HIGH\",\n  \"confidenceScore\": 0.95,\n  \"reasoning\": \"Complete return policy found with specific timeframes and conditions.\",\n  \"query\": \"What's your return policy?\",\n  \"response\": \"We offer a 14-day return policy on software devices.\",\n  \"references\": [\n    \"03_Billing_Refunds_Policy.docx - Return Policy section\"\n  ]\n}\n```\n\n### Example 2: Medium Confidence\n\nUser Query: \"My WiFi keeps disconnecting on my laptop\"\n\nRetrieved: WiFi Connectivity Issues section in Technical Issues Guide\n\nOutput:\n```json\n{\n  \"confidenceLevel\": \"MEDIUM\",\n  \"confidenceScore\": 0.7,\n  \"reasoning\": \"Standard WiFi troubleshooting steps documented; exact cause requires the user's device model.\",\n  \"query\": \"My WiFi keeps disconnecting on my laptop\",\n  \"response\": \"WiFi disconnections are usually caused by interference, signal strength, or device-specific issues. Try these in order: 1) Restart your device and router, 2) Move closer to the router, 3) Check whether your device supports your WiFi frequency (2.4GHz vs 5GHz), 4) Reset network settings on the device. If the issue continues, please share your laptop model and we can dig deeper.\",\n  \"references\": [\n    \"02_Technical_Issues_Guide.docx - WiFi Connectivity Issues\"\n  ]\n}\n```\n\n### Example 3: Low Confidence - Escalation\n\nUser Query: \"I was charged twice and my account is locked!\"\n\nRetrieved: No specific billing dispute process\n\nOutput:\n```json\n{\n  \"confidenceLevel\": \"LOW\",\n  \"confidenceScore\": 0.3,\n  \"reasoning\": \"Account-specific billing issue requires human agent with system access.\",\n  \"query\": \"I was charged twice and my account is locked!\",\n  \"response\": \"I understand this is frustrating, and I want to make sure you get immediate help with your account and billing issue. I'm connecting you with a human agent who has access to your account details and can resolve the duplicate charge and account lock right away. A support specialist will reach out within the next hour.\",\n  \"references\": []\n}\n```\n\n---\n\n## Critical Requirements\n\n✅ DO:\n- Call company_documents_tool FIRST\n- Return all 6 required fields\n- Keep response body clean (no tags)\n- Provide specific, actionable answers\n- List all sources in references array\n\n❌ DON'T:\n- Include `[CONFIDENCE: ...]` tags in response\n- Add inline citations in response text\n- Invent information not in documents\n- Share internal system details\n- Return nested \"output\" wrapper\n\n---\n\n## Output Validation\n\nBefore returning, verify:\n1. ✅ All 6 fields present\n2. ✅ confidenceLevel is HIGH/MEDIUM/LOW\n3. ✅ confidenceScore matches level (HIGH: 0.85-1.0, MEDIUM: 0.6-0.84, LOW: 0-0.59)\n4. ✅ response is clean text (no tags, no citations)\n5. ✅ references is array of strings\n6. ✅ No \"output\" wrapper - flat JSON structure\n\nReturn the JSON object directly.\n\n## System Capabilities & Boundaries\n\n### Your Role & Access Level\n\nYou are an information assistant with access to:\n- ✅ Company documentation and knowledge base\n- ✅ General policies, procedures, and guides\n- ✅ Public information and FAQs\n\nYou do NOT have access to SENSITIVE INFORMATION, such as:\n- ❌ User accounts or profiles\n- ❌ Billing systems or payment information\n- ❌ Order history or transaction details\n- ❌ Internal databases or CRM systems\n- ❌ Identity verification systems\n\n### Response Strategy\n\nWhen user needs account-specific help:\n\n1. Acknowledge the request\n2. Don't over-apologize for limitations\n3. Provide solution:\n   - Self-service instructions (if documented and possible)\n   - OR automatic escalation to human agent (if self-service impossible or requires account access)\n\nIMPORTANT: Do NOT offer escalation as a choice. Either provide self-service solution OR escalate automatically when required.\n\n\nNever say:\n- \"I can manually assist you with...\"\n- \"Please provide your [sensitive info] so I can verify...\"\n- \"Let me check your account...\"\n- \"I'll process that for you...\"\n\nInstead say:\n- \"You can securely [action] through [self-service method]...\" (if existing)\n- \"Our support team can help with account-specific requests...\"\n- \"For security, I'll connect you with an agent who can access your account...\"\n\n### Example Scenarios\n\nScenario 1: Password Reset\n\n❌ Wrong:\n\"I can help reset your password. Please provide your billing zip code to verify your identity.\"\n\n✅ Correct:\n\"You can securely reset your password through our self-service portal:\n1. Visit the login page\n2. Click 'Forgot Password'\n3. Enter your registered email\n4. Follow the link sent to your inbox\n\nThe link expires in 24 hours. If you don't receive the email within 10 minutes, check your spam folder and let me know - I'll help troubleshoot.\"\n```\n\n---\n\nScenario 2: Refund Request\n\n❌ Wrong:\n\"I can process your refund. Please confirm the last 4 digits of your payment method.\"\n\n✅ Correct:\n\"Refund requests require account verification for security. I'm escalating this to our billing team who can verify your identity and process the refund. A specialist will contact you within 2 hours to resolve this.\"\n\n\n---\n\nScenario 3: Account Locked\n\n❌ Wrong:\n\"Let me unlock your account. Can you provide your billing zip code?\"\n\n✅ Correct:\n\"Account lockouts require secure verification that I don't have access to. Our support team can verify your identity and unlock your account right away. I'm escalating this to a human agent now - you should hear from them within one hour.\"\n\n---\n\nScenario 4a: Informational Billing Question (HANDLE — do NOT escalate)\n\n❌ Wrong:\n\"Billing inquiries require account access. I'm connecting you with our billing team.\"\n\n✅ Correct:\n\"Our accepted payment methods are credit card, PayPal, and bank transfer. Monthly subscriptions are billed on the same day each month. [Reference: 03_Billing_Refunds_Policy.docx]\"\n\nScenario 4b: Account-Specific Billing Action (ESCALATE)\n\n❌ Wrong:\n\"You can review your charges in your account dashboard.\"\n\n✅ Correct:\n\"To investigate the duplicate charge on your account, I'm escalating this to our billing team who can review your transaction history and process any refund needed. A specialist will contact you within 2 hours.\"\n\n---\n\n### Confidence Levels for Escalation\n\nSet confidenceLevel: \"LOW\" and escalate when:\n- Request requires account/system access\n- Identity verification needed\n- User expresses frustration with self-service\n- Multiple failed self-service attempts\n- Payment disputes or billing errors\n- Account security issues\n\n---\n\n## Self-Service Priority\n\nAlways check documentation FIRST for self-service options (if existing):\n\nIf user can solve issue themselves:\n1. Provide clear self-service instructions from documents \n\n\nIf user says they cannot solve the issue themselves:\n1. Offer additional troubleshooting steps that were not previously mentioned\n2. If additional steps also fail, automatically escalate (don't ask if they want escalation)\n3. Don't waste time with impossible solutions - escalate directly when self-service is not feasible\n\nCRITICAL: Never say \"Would you like me to connect you with someone?\" - either solve it yourself or escalate automatically.\n"
+        }
+      },
+      "id": "90bcb41a-23a5-413b-af9f-f29ae05355c7",
+      "name": "AI Agent (Context-Aware)",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        4624,
+        4416
+      ],
+      "typeVersion": 1.7,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract confidence, calculate metrics, determine escalation.\n// DEFENSIVE: if the upstream Email Formatter's Structured Output Parser2\n// fails (LLM returns malformed JSON), Email Formatter has\n// onError: 'continueRegularOutput' and emits { error: '...' } instead of\n// the expected { output: { greeting, mainContent, ... } } shape. Without\n// this guard the whole workflow crashes here and the customer gets no reply.\nconst upstream = $input.first().json || {};\nconst parserFailed = !upstream.output || !!upstream.error;\n\nlet greeting, mainContent, closing, footer, confidence, confidenceScore, references, detectedTone;\n\nif (parserFailed) {\n  // Safe fallback — generic apology + force escalation so a human follows up.\n  greeting = 'Hello,';\n  mainContent = 'Thank you for reaching out. We received your message but ran into a brief issue processing it automatically. A member of our support team has been notified and will follow up with you shortly.';\n  closing = 'Best regards,';\n  footer = 'This is an automated response. A human agent has been notified and will reach out shortly.';\n  confidence = 'LOW';\n  confidenceScore = 0; // <= 0.5 triggers the escalation branch in 'Check if Escalation Needed'\n  references = [];\n  detectedTone = 'neutral';\n} else {\n  const out = upstream.output;\n  greeting = out.greeting;\n  mainContent = out.mainContent;\n  closing = out.closing;\n  footer = out.footer;\n  confidence = out.confidence;\n  confidenceScore = out.confidenceScore;\n  references = out.references;\n  detectedTone = out.detectedTone;\n}\n\nconst timestampStart = $('Format Current Email Data').first().json.startTime;\nconst timestampReceived = $('Format Current Email Data').first().json.receivedTime;\nconst timestampEnd = new Date().toISOString();\nconst responseTime = (new Date(timestampEnd).getTime() - new Date(timestampStart).getTime()) / 1000;\n\n// Trust the LLM Human Escalation Detection classifier as the single source of truth.\n// If upstream parsing failed, force escalation so a human picks it up.\nconst isEscalated = parserFailed || $('If').first().json.output.humanEscalation === true;\n\nconst wordCount = (mainContent || '').split(/\\s+/).filter(Boolean).length;\nconst query = $('Format Current Email Data').first().json.chatInput;\nconst threadId = $('Format Current Email Data').first().json.threadId;\nconst channel = $('Format Current Email Data').first().json.channel;\n\nreturn {\n  json: {\n    greeting: greeting,\n    response: mainContent,\n    closing: closing,\n    footer: footer,\n    references: references,\n    detectedTone: detectedTone,\n    confidence: confidence,\n    confidenceScore: confidenceScore,\n    isEscalated: isEscalated,\n    responseTime: responseTime.toFixed(2),\n    wordCount: wordCount,\n    query: query,\n    threadId: threadId,\n    channel: channel,\n    timestampReceived: timestampReceived,\n    timestampStart: timestampStart,\n    timestampEnd: timestampEnd,\n    parserFailed: parserFailed\n  }\n};"
+      },
+      "id": "5550411c-f875-4d0f-839d-f77679f128d7",
+      "name": "Calculate Metrics & Extract Confidence",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        5632,
+        4352
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "escalation-condition",
+              "leftValue": "={{ $('Calculate Metrics & Extract Confidence').item.json.isEscalated }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "sentiment-escalation",
+              "leftValue": "={{ $('Detect Priority & Sentiment').item.json.escalationFlag }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "7e56e543-a9d2-4f0f-8d22-4417fe9d1bfb",
+              "leftValue": "={{ $('Calculate Metrics & Extract Confidence').item.json.confidenceScore }}",
+              "rightValue": 0.5,
+              "operator": {
+                "type": "number",
+                "operation": "lte"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "5c1c6eb4-17eb-4cab-9442-e9605644a076",
+      "name": "Check if Escalation Needed",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        5968,
+        4032
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2068850783,
+          "mode": "list",
+          "cachedResultName": "Interaction_Logs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit#gid=2068850783"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "channel": "={{ $('Calculate Metrics & Extract Confidence').item.json.channel }}",
+            "query": "={{ $('Calculate Metrics & Extract Confidence').item.json.query }}",
+            "response": "={{ $('Email Formatter').item.json.output.greeting }}\n\n{{ $('Email Formatter').item.json.output.mainContent }}\n\n{{ $('Email Formatter').item.json.output.closing }},\nCustomer Support Team\n\n\n--\n{{ $('Email Formatter').item.json.output.footer }}",
+            "confidenceScore": "={{ $('Calculate Metrics & Extract Confidence').item.json.confidenceScore }}",
+            "isEscalated": "={{ $('Calculate Metrics & Extract Confidence').item.json.isEscalated }}",
+            "responseTime": "={{ $('Calculate Metrics & Extract Confidence').item.json.responseTime }}",
+            "wordCount": "={{ $('Calculate Metrics & Extract Confidence').item.json.wordCount }}",
+            "toneUsed": "={{ $('Calculate Metrics & Extract Confidence').item.json.detectedTone }}",
+            "timestampEnd": "={{ $('Calculate Metrics & Extract Confidence').item.json.timestampEnd }}",
+            "timestampStart": "={{ $('Format Current Email Data').item.json.startTime }}",
+            "timestampReceived": "={{ $('Format Current Email Data').item.json.receivedTime }}",
+            "threadId": "={{ $('Format Current Email Data').item.json.threadId }}",
+            "references": "={{ $('Calculate Metrics & Extract Confidence').item.json.references.join('\\n')  }}",
+            "confidence": "={{ $('Calculate Metrics & Extract Confidence').item.json.confidence }}",
+            "contextHistory": "={{ $('Format Current Email Data').item.json.conversationHistory }}",
+            "messageCount": "={{ $('Format Current Email Data').item.json.messageCount }}",
+            "messageId": "={{ $('Format Current Email Data').item.json.messageId }}",
+            "humanAgentReply": "None",
+            "kbLastUpdated": "None"
+          },
+          "matchingColumns": [
+            "sessionId"
+          ],
+          "schema": [
+            {
+              "id": "timestampReceived",
+              "displayName": "timestampReceived",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "timestampStart",
+              "displayName": "timestampStart",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "timestampEnd",
+              "displayName": "timestampEnd",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "responseTime",
+              "displayName": "responseTime",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "threadId",
+              "displayName": "threadId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "messageId",
+              "displayName": "messageId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "channel",
+              "displayName": "channel",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "query",
+              "displayName": "query",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "response",
+              "displayName": "response",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "references",
+              "displayName": "references",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "confidence",
+              "displayName": "confidence",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "confidenceScore",
+              "displayName": "confidenceScore",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "isEscalated",
+              "displayName": "isEscalated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "humanAgentReply",
+              "displayName": "humanAgentReply",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "wordCount",
+              "displayName": "wordCount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "toneUsed",
+              "displayName": "toneUsed",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "contextHistory",
+              "displayName": "contextHistory",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "messageCount",
+              "displayName": "messageCount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "kbLastUpdated",
+              "displayName": "kbLastUpdated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "6228e82a-0029-46f6-b5a7-2c4679f7bd13",
+      "name": "Log Interaction to Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "position": [
+        6512,
+        4112
+      ],
+      "typeVersion": 4,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "filters": {
+          "includeSpamTrash": false,
+          "labelIds": [
+            "UNREAD"
+          ]
+        }
+      },
+      "id": "57cc8457-65aa-4bdc-b3f1-b922c0d84460",
+      "name": "Gmail Trigger (Email Support)",
+      "type": "n8n-nodes-base.gmailTrigger",
+      "position": [
+        272,
+        4288
+      ],
+      "typeVersion": 1,
+      "alwaysOutputData": false,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "company_documents_tool",
+        "description": "Retrieve information from company documents, FAQs, policies, and knowledge base. Use this for ANY question about products, services, policies, or procedures."
+      },
+      "id": "3da52e5d-f6cc-4657-b7d6-b076ee2bd26c",
+      "name": "Vector Store Tool1",
+      "type": "@n8n/n8n-nodes-langchain.toolVectorStore",
+      "position": [
+        4640,
+        4656
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Format Current Email Data').item.json.threadId }}",
+        "contextWindowLength": 50
+      },
+      "id": "736a2334-82a6-4e8d-9e86-c9baa2456d5d",
+      "name": "Window Buffer Memory1",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "position": [
+        4432,
+        5088
+      ],
+      "typeVersion": 1.3
+    },
+    {
+      "parameters": {
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "company-files",
+          "mode": "list",
+          "cachedResultName": "company-files"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1.3,
+      "position": [
+        4512,
+        4832
+      ],
+      "id": "c333de24-641f-4227-8362-dab8cfbe7a29",
+      "name": "Pinecone Vector Store3",
+      "credentials": {
+        "pineconeApi": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_PINECONE_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        4560,
+        4960
+      ],
+      "id": "b6896ab9-2068-4265-91d6-7f81698a72de",
+      "name": "Embeddings OpenAI2",
+      "credentials": {
+        "openAiApi": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_OPENAI_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "7acdb81f-62e1-4b1b-981a-d857295dc570",
+              "leftValue": "={{ $json.output.humanEscalation }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        4352,
+        4416
+      ],
+      "id": "5f5e3e8d-5b23-47c4-825c-ebbec5778277",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"humanEscalation\": {\n      \"type\": \"boolean\",\n      \"description\": \"Whether user requests human assistance\"\n    }\n  },\n  \"required\": [\"humanEscalation\"]\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        4176,
+        4640
+      ],
+      "id": "9fcbde12-2263-42c6-97ff-f25a7fd2d17d",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Previous Escalation: {{ $('Format Conversation History from Sheets').item.json.lastEscalated }}\n\nCurrent Message: {{ $('Format Current Email Data').item.json.edgeCaseFlag === 'LONG_EMAIL' ? $('Pack Summarized Data').item.json.chatInput : $('Format Current Email Data').item.json.chatInput }}\n\nConversation History: {{ $('Format Current Email Data').item.json.conversationHistory }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=# Human Escalation Detection\n\nYou are an escalation detection assistant analyzing whether the user needs human assistance.\n\n---\n\n## Context Awareness\n\n- You will use information stored in the three nodes written below to determine whether immediate escalation to a human agent BASED ON THE RULES WRITTEN BELOW is needed. \n\n1. Previous Escalation Status: {{ $('Format Conversation History from Sheets').item.json.lastEscalated }}\n\n2. Current User Message: {{ $('Format Current Email Data').item.json.edgeCaseFlag === 'LONG_EMAIL' ? $('Pack Summarized Data').item.json.chatInput : $('Format Current Email Data').item.json.chatInput }}\n\n3. Previous Conversation History: {{ $json.conversationHistory }}\n\n---\n\n## Decision Logic\n\n### Step 1: Check Previous Escalation Status\n\nIf lastEscalated = true:\n\n- First case scenario: \nThe previous interaction was already escalated to a human agent, and user is now following up on that escalated case, therefore you will continue redirecting this problem to a human agent\n\n- Second case scenario:\nAnalyze current message and previous conversation history to determine:\n  - If a user is asking a new/different question in the same thread, which is not related to the previous issue, based on your analysis on the conversation history, then delegate this email to the AI\n  - If a user is still frustrated, angry or impatient based on the email tone, or the issue is still unresolved, or they are explicitly requesting human, then escalate this to a human agent\n\n**If lastEscalated = false:**\n- This is a normal flow\n- Analyze current message for escalation signals below to determine whether this email ticket will be redirected to a human agent or AI will continue working on this issue\n\n---\n\n## Escalation Indicators\n\n### Explicit Human Requests:\n- Mentions of \"human\", \"person\", \"agent\", \"representative\", \"operator\"\n- Requests for \"manager\", \"supervisor\", \"someone in charge\"\n- Phrases like \"talk to a real person\", \"speak with someone\", \"transfer me\"\n\n### Implicit Escalation Signals:\n- Expressions of extreme frustration or anger (e.g., \"furious\", \"disgusted\", \"livid\", \"outraged\", \"incensed\", \"appalled\")\n- Mentions of legal action (\"lawyer\", \"lawsuit\", \"sue\", \"court\", \"legal action\")\n- Reports of fraud, unauthorized access, or account security breach\n- Safety hazards (overheating, fire risk, swollen battery, burning smell)\n- Complaints about previous AI interactions (\"bot isn't helping\", \"stop giving automated responses\", \"AI agent is useless\")\n\n### Follow-up on Escalated Case (when lastEscalated = true):\n- User says issue is \"still not resolved\", \"still having problems\"\n- User expresses continued frustration: \"this isn't working\", \"I'm still stuck\"\n- User explicitly asks for human again: \"can someone call me?\", \"I need to speak with support\"\n- In cases like these, escalate the issue to a human agent\n\n### User Accepting AI Help Again (when lastEscalated = true):\n- User uses phrases that mean closing or ending of that conversation \"let me try this\", \"okay I'll do that\", \"thanks for the help\"\n- User asks a NEW question unrelated to previous issue\n- User shows willingness to work with AI on new topics unrelated to previously mentioned issue without mentioning of assistance from human agent: \"can you help me with...\", \"how do I...\"\n- In cases like these, let AI take the case. \n\n---\n\n## IMPORTANT RULES FOR ESCALATION DECISIONS\n\nThese rules override the general indicators above when in tension. Apply them strictly.\n\n**DO NOT escalate just because:**\n- The customer uses urgency words like \"urgently\", \"immediately\", \"as soon as possible\" — urgency alone is NOT a reason to escalate. Many routine questions are asked urgently.\n- The technical problem sounds complex — if it involves standard troubleshooting (WiFi, Bluetooth, software updates, display issues, audio problems, peripherals, data recovery, touch screen issues), the AI agent has access to a comprehensive Technical Issues Guide and can handle these.\n- The customer asks about support hours, contact methods, or fastest way to get help — these are FAQ questions, not escalation triggers.\n- The customer describes a problem they have been experiencing for multiple days — duration of a problem is not an escalation trigger if the AI can still provide troubleshooting steps.\n- The customer says they \"prefer to discuss over the phone\" or \"would like to call\" — this is expressing a communication preference, NOT requesting to speak with a human agent. These are FAQ questions about support hours and contact methods.\n- The customer says \"I need help as quickly as possible\" or \"urgent issue\" — this is expressing time pressure, NOT requesting human escalation.  First let the AI try to answer this.\n- The technical problem involves multiple brands or devices connected together (e.g., Samsung soundbar + Sony TV + HDMI) — multi-device setups are standard troubleshooting covered in the Technical Issues Guide.\n- The customer uses mild frustration words (\"annoyed\", \"frustrated\", \"confused\", \"irritated\", \"a bit upset\", \"a little frustrating\") — these are NOT extreme emotion. ONLY the explicitly listed extreme words (furious, livid, outraged, disgusted, incensed, appalled) qualify as escalation-worthy emotional distress.\n- The customer self-mitigates the issue (\"probably something simple\", \"might be a learning curve on my side\", \"I think it might be user error\", \"small thing\", \"likely simple\") — self-mitigation signals the customer expects a routine answer the AI can give.\n- The customer is asking a how-to / explanation / product compatibility / feature question, even if prefaced with mild frustration — the request type is FAQ-style, not a complaint. Look at WHAT they're asking, not just HOW they feel.\n- The customer asks to speak by phone or wants to call (\"can I call\", \"prefer to call\", \"talk over the phone\", \"phone support\") — this is a communication-channel preference and an FAQ about support hours, NOT a request for human escalation. Provide support hours and contact info.\n- The customer references an order/ticket/account but does not provide the identifier (\"my order\", \"my ticket\", \"my recent purchase\" without a number) — this is a routine clarification scenario. The AI should ask for the order number, NOT escalate to a human.\n- The email is empty, contains only a single word, or the chatInput begins with `[INTERNAL DIRECTIVE — EMPTY EMAIL BODY]` or `[INTERNAL DIRECTIVE — MINIMAL INPUT]` — these are graceful-clarification cases, NEVER escalate.\n- The email is in a non-English language (German, Bosnian/Croatian, Turkish, etc.) and contains routine support intent — do not escalate based on accidental keyword matches; judge by intent. If the message is a clear cancellation request, refund dispute, or legal threat in any language, then escalate; otherwise let the AI handle it.\n\n**ESCALATE when:**\n- The customer has contacted support 3+ times about the same unresolved issue (signal: phrasing like \"this is my third time\", \"I've reached out before\", \"as I mentioned in my previous email\", \"still not resolved after multiple emails\") — a repeat-contact pattern indicates the AI's previous attempts failed and a human is needed. This applies even when the third message itself is calm.\n\n**ONLY escalate when:**\n- The customer EXPLICITLY asks for a human agent or manager\n- The customer threatens legal action or mentions a lawyer\n- The customer reports fraud, unauthorized access, or security breach\n- The customer describes a safety hazard (overheating, fire risk, swollen battery)\n- The issue requires access to backend systems the AI cannot reach (payment verification, account investigation, shipping investigation)\n- The customer has contacted support 3+ times about the same unresolved issue\n- The customer is a VIP/enterprise client requesting dedicated support\n- The customer expresses extreme emotional distress using words like \"furious\", \"disgusted\", \"livid\", \"outraged\", \"incensed\"\n- The customer threatens to involve media (reporter, journalist, news article, going public, viral social media post) — KB Section 2 Media category\n- The customer mentions filing or threatening a regulatory complaint (BBB / Better Business Bureau, FDA, FCC, attorney general, consumer protection) — KB Section 2 Regulatory category\n- The customer demands escalation to executives or named senior people (CEO, president, board, corporate headquarters) — KB Section 2 Executives category. Note: a passing mention (\"who is your CEO?\") is NOT a demand and does NOT escalate.\n\n**When in doubt about a technical issue, let the AI agent TRY to answer first.** The AI agent has a comprehensive knowledge base. If the AI agent cannot find a good answer, it will escalate through the confidence score check later.\n\n---\n\n## Output Format\n\nReturn ONLY a JSON object:\n```json\n{\n  \"humanEscalation\": true\n}\n```\n\nOR\n```json\n{\n  \"humanEscalation\": false\n}\n```\n\n---\n\n## Decision Rules\n\n**Set humanEscalation: true if:**\n- User explicitly requests human assistance\n- User shows extreme frustration (furious, disgusted, livid, outraged) or mentions legal action\n- User reports fraud, security breach, or safety hazard\n- Issue requires backend system access that AI cannot provide\n- (When lastEscalated = true) User indicates issue is still unresolved or needs human again\n\n**Set humanEscalation: false if:**\n- User is asking a regular question, even if phrased urgently\n- User is asking a technical question, even if it sounds complex\n- User is asking about support hours or contact methods\n- User mentions wanting to call or discuss over the phone without explicitly requesting human help\n- (When lastEscalated = true) User asks new question without mentioning of human assistance, so AI will assist user\n\n---\n\n## Examples\n\n### Example 1: First Time Escalation Request\nlastEscalated: false\nchatInput: \"I need to speak with a manager immediately!\"\nResponse: {\"humanEscalation\": true}\n\n### Example 2: Regular Question\nlastEscalated: false\nchatInput: \"How do I reset my password?\"\nResponse: {\"humanEscalation\": false}\n\n### Example 3: Follow-up After Escalation - Still Needs Human\nlastEscalated: true\nchatInput: \"I'm still having the same problem. Can someone help me?\"\nResponse: {\"humanEscalation\": true}\n\n### Example 4: Follow-up After Escalation - Accepts AI Help\nlastEscalated: true\nchatInput: \"Actually, can you help me with something else? How do I update my billing info?\"\nResponse: {\"humanEscalation\": false}\n\n### Example 5: Follow-up - Issue Unresolved\nlastEscalated: true\nchatInput: \"This still isn't working. I've been waiting for 2 days. I want to talk to someone.\"\nResponse: {\"humanEscalation\": true}\n\n### Example 6: Bot Complaint\nlastEscalated: false\nchatInput: \"This bot isn't helping. Connect me to a real person.\"\nResponse: {\"humanEscalation\": true}\n\n### Example 7: Urgent but routine - DO NOT escalate\nlastEscalated: false\nchatInput: \"I accidentally deleted important files and I need them urgently! Is there any way to recover them?\"\nResponse: {\"humanEscalation\": false}\n\n### Example 8: Technical problem with urgency - DO NOT escalate\nlastEscalated: false\nchatInput: \"My software update keeps failing every time. I've been trying for 3 days. Is there a way to fix this?\"\nResponse: {\"humanEscalation\": false}\n\n### Example 9: FAQ question about contact - DO NOT escalate\nlastEscalated: false\nchatInput: \"What are your support hours? I'd prefer to discuss over the phone.\"\nResponse: {\"humanEscalation\": false}\n\n### Example 10: Complex technical issue - DO NOT escalate\nlastEscalated: false\nchatInput: \"My Bluetooth headphones keep cutting out every few seconds. I'm in a busy office. Could interference be causing this?\"\nResponse: {\"humanEscalation\": false}\n\n### Example 11: Phone preference is NOT human request - DO NOT escalate\nlastEscalated: false\nchatInput: \"I would prefer to discuss my question over the phone. What are your support hours?\"\nResponse: {\"humanEscalation\": false}\n\n### Example 12: Multi-device audio setup - DO NOT escalate\nlastEscalated: false\nchatInput: \"I connected my Samsung Soundbar to my Sony TV via HDMI eARC but there is no sound. The TV speakers work fine. What am I missing?\"\nResponse: {\"humanEscalation\": false}\n\n### Example 13: Urgent help request when mentioning team, human agents, etc. should be escalacted\nlastEscalated: false\nchatInput: \"I am experiencing an urgent issue and need help as quickly as possible. What is the fastest way to reach your support team?\"\nResponse: {\"humanEscalation\": true}\n\n### Example 14: Mild annoyance + self-mitigation + how-to question - DO NOT escalate\nlastEscalated: false\nchatInput: \"I'm a bit annoyed because I can't find the settings menu I need. It's probably something simple. Can you walk me through where to find the notification settings?\"\nResponse: {\"humanEscalation\": false}\n\n### Example 15: Mild frustration + self-acknowledged learning curve + feature question - DO NOT escalate\nlastEscalated: false\nchatInput: \"The app has been a little frustrating to use but I think it might be a learning curve issue on my side. Could you explain how the dashboard export feature works?\"\nResponse: {\"humanEscalation\": false}\n\n### Example 16: Mild confusion + billing concept explanation request - DO NOT escalate\nlastEscalated: false\nchatInput: \"I'm a bit confused about how the pro-rated charge works for upgrading mid-cycle. Could you explain it in simple terms?\"\nResponse: {\"humanEscalation\": false}\n\n### Example 17: Pure factual product compatibility question - DO NOT escalate\nlastEscalated: false\nchatInput: \"Is the Samsung Galaxy compatible with Bluetooth headphones? I want to make sure before I buy some.\"\nResponse: {\"humanEscalation\": false}\n\n### Example 18: Phone-call preference - DO NOT escalate (TC585)\nlastEscalated: false\nchatInput: \"Hi, I'd prefer to discuss this over the phone. Can I call you, or do you have a number I can reach?\"\nResponse: {\"humanEscalation\": false}\n\n### Example 19: Reference to order without identifier - DO NOT escalate (TC629)\nlastEscalated: false\nchatInput: \"I have a question about my recent order, can you check the status?\"\nResponse: {\"humanEscalation\": false}\n\n### Example 20: Empty body / clarification scenario - DO NOT escalate\nlastEscalated: false\nchatInput: \"[INTERNAL DIRECTIVE — EMPTY EMAIL BODY] The customer sent an email with no body content. Subject line: 'URGENT — please help'. Respond by acknowledging and asking for details.\"\nResponse: {\"humanEscalation\": false}\n\n### Example 21: Repeat-contact escalation - DO ESCALATE (TC616)\nlastEscalated: false\nchatInput: \"This is my third time emailing about this. The issue is still not resolved. I've tried everything you suggested.\"\nResponse: {\"humanEscalation\": true}\n\n### Example 22: German cancellation - DO ESCALATE (TC588)\nlastEscalated: false\nchatInput: \"Ich möchte mein Abonnement kündigen, da ich mit dem Service unzufrieden bin.\"\nResponse: {\"humanEscalation\": true}\n\n### Example 23: Bosnian routine billing question - DO NOT escalate (TC589)\nlastEscalated: false\nchatInput: \"Pozdrav, imam pitanje o naplati za prošli mjesec. Možete li mi pojasniti?\"\nResponse: {\"humanEscalation\": false}\n\n### Example 24: Turkish password reset - DO NOT escalate (TC595)\nlastEscalated: false\nchatInput: \"Merhaba, şifremi unuttum. Nasıl sıfırlayabilirim?\"\nResponse: {\"humanEscalation\": false}\n---\n\n## Critical Instructions\n\n- ALWAYS check lastEscalated value first\n- If lastEscalated = true, be MORE sensitive to continued frustration\n- User saying \"still\" + problem = likely needs human again\n- User asking NEW question = likely accepting AI help again\n- Urgency words alone (urgently, immediately, as soon as possible) are NEVER a reason to escalate\n- Technical complexity alone is NEVER a reason to escalate — the AI has a comprehensive knowledge base\n- Return ONLY valid JSON, no additional text"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        3968,
+        4416
+      ],
+      "id": "23606ad8-6e45-4a6c-8885-0ffc08e1a3b3",
+      "name": "Human Escalation Detection",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"greeting\": {\n      \"type\": \"string\"\n    },\n    \"mainContent\": {\n      \"type\": \"string\"\n    },\n    \"closing\": {\n      \"type\": \"string\"\n    },\n    \"footer\": {\n      \"type\": \"string\"\n    },\n    \"confidence\": {\n      \"type\": \"string\",\n      \"enum\": [\"HIGH\", \"MEDIUM\", \"LOW\"]\n    },\n    \"confidenceScore\": {\n      \"type\": \"number\",\n      \"minimum\": 0,\n      \"maximum\": 1\n    },\n    \"references\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n      }\n    },\n    \"detectedTone\": {\n      \"type\": \"string\",\n      \"enum\": [\"formal\", \"neutral\", \"casual\"]\n    }\n  },\n  \"required\": [\"greeting\", \"mainContent\", \"closing\", \"footer\", \"confidence\", \"references\", \"detectedTone\"],\n  \"additionalProperties\": false\n}",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        5440,
+        4688
+      ],
+      "id": "b47f916d-be57-491e-a515-9f8471127100",
+      "name": "Structured Output Parser2"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={\n\"confidenceLevel\" : {{ $json.confidenceLevel }},\n\"confidenceScore\" : {{ $json.confidenceScore }},\n\"reasoning\" : {{ $json.reasoning }},\n\"customers_question\" : {{ $json.query }},\n\"response\" :{{ $json.response }},\n\"references\" : {{ $json.references }}\n}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=# Professional Email Formatter & Response Parser\n\nYou are an email formatting assistant that transforms AI-generated responses into professional, well-formatted emails.\n\n---\n\n## Input Data\n\nYou will receive structured data from the AI agent:\n\n**Original User Message:**\n{{ $json.query }}\n\n**AI Generated Response:**\n{{ $json.response }}\n\n**Confidence Information:**\n- Level: {{ $json.confidenceLevel }}\n- Score: {{ $json.confidenceScore }}\n- Reasoning: {{ $json.reasoning }}\n\n**Source References:**\n{{ $json.references }}\n\n---\n\n## Your Tasks\n\n### 1. Response is Already Clean\n\nThe AI response has already been parsed and cleaned:\n- ✅ No `[CONFIDENCE: ...]` tags present\n- ✅ No `[REFERENCES: ...]` tags present\n- ✅ References are already separated in the `references` field\n\n**Your job:** Format it into a professional email, don't parse tags.\n\n---\n\n### 2. Analyze User's Tone\n\nExamine the original user message to determine communication style:\n\n**Formal indicators:**\n- Professional language, proper grammar\n- Titles (Mr., Mrs., Dr.)\n- Complex vocabulary\n- Structured sentences\n\n**Casual indicators:**\n- Informal language, contractions\n- Emojis, exclamation marks\n- Simple vocabulary\n- Conversational tone\n\n**Neutral indicators:**\n- Standard business communication\n- Neither overly formal nor casual\n\n---\n\n### 3. Match Complexity Level\n\nAdapt response to match user's communication style:\n- Complex words → maintain professional terminology\n- Simple language → simplify response\n- Short sentences → use concise replies\n- Long paragraphs → provide detailed explanations\n\n---\n\n### 4. Format Email Structure\n\n**A. Greeting (based on detected tone):**\n- **Formal**: \"Dear Sir/Madam,\" or \"Respected [Name],\"\n- **Neutral**: \"Hello,\" or \"Hi [Name],\"\n- **Casual**: \"Hi there!\" or \"Hey!\"\n\n**B. Main Content:**\n- Format the AI response clearly with proper paragraphs\n- Use bullet points (•) for lists\n- Use numbered lists (1. 2. 3.) for sequential steps\n- Keep paragraphs short (2-4 sentences max)\n- Add line breaks between sections\n- Preserve the meaning and flow\n\n**C. Closing (based on detected tone):**\n- **Formal**: \"Sincerely,\" or \"Respectfully,\"\n- **Neutral**: \"Best regards,\" or \"Kind regards,\"\n- **Casual**: \"Cheers,\" or \"Thanks!\"\n\n**D. Footer (always include):**\n```\nThis is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.\n```\n\n---\n\n### 5. Content Formatting Rules\n\n**For instructions/steps:**\nUse numbered lists:\n1. First step with clear action\n2. Second step with details\n3. Final step\n\n**For multiple points:**\nUse bullet points:\n- First benefit or feature\n- Second benefit or feature\n- Third benefit or feature\n\n**For policies/information:**\nUse clear paragraphs with spacing\n\n---\n\n### 6. Clean Markdown Formatting\n\nThe AI response may contain Markdown formatting that must be converted to plain text for email:\n\n**Remove these patterns:**\n- `**text**` (bold) → `text`\n- `*text*` (italic) → `text`\n- `__text__` (underline) → `text`\n- `_text_` (italic) → `text`\n- `` `code` `` (inline code) → `code`\n- `[link](url)` → `link`\n\n**Keep these for email:**\n- Line breaks (`\\n`)\n- Numbered lists (1. 2. 3.)\n- Bullet points (•)\n\n**Example transformation:**\n```\nInput: \"**Verify your email address**: Can you please confirm...\"\nOutput: \"Verify your email address: Can you please confirm...\"\n```\n\nApply this cleanup to the response before formatting the email.\n\n⚠️ **CRITICAL**: You MUST strip ALL markdown syntax from the final output. The email is sent as plain text - any remaining ** or * characters will appear literally in the customer's inbox. Double-check your mainContent field contains ZERO markdown formatting before returning.\n\n## Output Format\n\nReturn a structured JSON object with all components:\n```json\n{\n  \"greeting\": \"Hello!\",\n  \"mainContent\": \"Formatted email body...\",\n  \"closing\": \"Best regards,\",\n  \"footer\": \"This is an automated response...\",\n  \"confidence\": \"HIGH\",\n  \"confidenceScore\": 0.95,\n  \"references\": [\"Doc1.docx - Section A\", \"Doc2.docx - Section B\"],\n  \"detectedTone\": \"casual\"\n}\n```\n\n---\n\n## Field Requirements\n\n**greeting:**\n- Match detected tone (formal/neutral/casual)\n- Keep it simple and friendly\n\n**mainContent:**\n- Take the AI response from input\n- Format with proper structure (bullets, numbers, paragraphs)\n- Ensure readability with line breaks\n- Match user's complexity level\n\n**closing:**\n- Match detected tone\n- Professional sign-off\n\n**footer:**\n- Always use the standard AI disclaimer message\n\n**confidence:**\n- Copy from input: {{ $json.confidenceLevel }}\n\n**confidenceScore:**\n- Copy from input: {{ $json.confidenceScore }}\n\n**references:**\n- Copy DIRECTLY from input: {{ $json.references }}\n- This is already an array of strings\n- DO NOT parse from response text\n- DO NOT leave empty - use the input value\n\n**detectedTone:**\n- Analyze user query tone\n- Return: \"formal\", \"neutral\", or \"casual\"\n\n---\n\n## Examples\n\n### Example 1: Casual Tone\n\n**Input:**\n```\nquery: \"hey how do i reset my password?\"\nresponse: \"To reset your password, visit the login page and click 'Forgot Password'...\"\nconfidenceLevel: \"HIGH\"\nconfidenceScore: 0.95\nreferences: [\"FAQ_General.docx - Password Reset section\"]\n```\n\n**Output:**\n```json\n{\n  \"greeting\": \"Hi there!\",\n  \"mainContent\": \"To reset your password, just follow these simple steps:\\n\\n1. Visit the login page\\n2. Click 'Forgot Password' below the login fields\\n3. Enter your email address\\n4. Check your inbox for the reset link\\n\\nThe link expires after 24 hours, so use it promptly!\",\n  \"closing\": \"Cheers,\",\n  \"footer\": \"This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.\",\n  \"confidence\": \"HIGH\",\n  \"confidenceScore\": 0.95,\n  \"references\": [\"FAQ_General.docx - Password Reset section\"],\n  \"detectedTone\": \"casual\"\n}\n```\n\n### Example 2: Formal Tone\n\n**Input:**\n```\nquery: \"Dear Support, I would like to inquire about your return policy.\"\nresponse: \"We offer a 30-day return policy on all products...\"\nconfidenceLevel: \"HIGH\"\nconfidenceScore: 0.92\nreferences: [\"Billing_Refunds_Policy.docx - Return Policy\"]\n```\n\n**Output:**\n```json\n{\n  \"greeting\": \"Dear Valued Customer,\",\n  \"mainContent\": \"Thank you for your inquiry regarding our return policy.\\n\\nWe offer a 30-day return policy on all products. Items must be unused and in original packaging. To initiate a return, please visit your account dashboard and select 'Request Return' or contact our support team with your order number.\\n\\nWe appreciate your business and are here to assist with any questions.\",\n  \"closing\": \"Sincerely,\",\n  \"footer\": \"This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.\",\n  \"confidence\": \"HIGH\",\n  \"confidenceScore\": 0.92,\n  \"references\": [\"Billing_Refunds_Policy.docx - Return Policy\"],\n  \"detectedTone\": \"formal\"\n}\n```\n\n---\n\n## Critical Instructions\n\n✅ **DO:**\n- Copy confidence and references DIRECTLY from input\n- Format the response for readability\n- Match user's tone and complexity\n- Use proper email structure\n\n❌ **DON'T:**\n- Try to parse [CONFIDENCE] or [REFERENCES] tags (they don't exist!)\n- Leave references empty\n- Over-complicate the formatting\n- Change the meaning of the AI response\n\n---\n\n## Validation\n\nBefore returning, verify:\n1. ✅ greeting matches detected tone\n2. ✅ mainContent is well-formatted\n3. ✅ closing matches tone\n4. ✅ footer is present\n5. ✅ confidence copied from input\n6. ✅ confidenceScore copied from input\n7. ✅ references copied from input (NOT empty!)\n8. ✅ detectedTone is formal/neutral/casual\n\nReturn the complete JSON object.\n```\n\n---\n\n## 🎯 **KEY CHANGES:**\n\n**BEFORE (wrong):**\n```\nAI Generated Response:\n{{ $json.response }}\n[tries to parse [REFERENCES: ...] tag that doesn't exist]\n```\n\n**AFTER (correct):**\n```\nAI Generated Response:\n{{ $json.response }}\n\nSource References:\n{{ $json.references }}\n\n[copy references directly from input]\n```\n\n---\n\n## 📋 **WHY IT WAS EMPTY:**\n```\nAI Agent returns:\n{\n  \"response\": \"Clean text without tags\",\n  \"references\": [\"Doc1\", \"Doc2\"]  ← Separated!\n}\n\nEmail Formatter looked for:\n\"... [REFERENCES: Doc1] ...\"  ← Doesn't exist!\n\nResult: []  ← Empty array!\n\n"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        5248,
+        4400
+      ],
+      "id": "ccaef617-ebfa-46c2-b7a2-f7459da464ca",
+      "name": "Email Formatter",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "markAsRead",
+        "messageId": "={{ $json.threadId }}"
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        6864,
+        4112
+      ],
+      "id": "64c7921b-b6a5-40e7-ae6c-babb143a1bbe",
+      "name": "Mark a message as read",
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "thread",
+        "operation": "get",
+        "threadId": "={{ $json.threadId }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        816,
+        4176
+      ],
+      "id": "b0dc3213-6f11-478f-9ee1-79cb43af8385",
+      "name": "Get a thread",
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "alwaysOutputData": false,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get the output from Confidence Calculator\nlet data = $input.first().json;\n\n// Check if wrapped in \"output\" and unwrap\nif (data.output) {\n  data = data.output;\n}\n\n// Ensure all required fields exist\nconst result = {\n  confidenceLevel: data.confidenceLevel || 'UNKNOWN',\n  confidenceScore: data.confidenceScore || 0.5,\n  reasoning: data.reasoning || '',\n  query: data.query || '',\n  response: data.response || '',\n  references: data.references || []\n};\n\nreturn {\n  json: result\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5008,
+        4400
+      ],
+      "id": "b4a79a3c-c4a4-4a89-9c65-c5bcf17e0ad7",
+      "name": "Unwrap Output"
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"confidenceLevel\": {\n      \"type\": \"string\",\n      \"enum\": [\"HIGH\", \"MEDIUM\", \"LOW\"],\n      \"description\": \"Confidence level based on information quality\"\n    },\n    \"confidenceScore\": {\n      \"type\": \"number\",\n      \"minimum\": 0,\n      \"maximum\": 1,\n      \"description\": \"Numeric confidence score from 0.0 to 1.0\"\n    },\n    \"reasoning\": {\n      \"type\": \"string\",\n      \"maxLength\": 200,\n      \"description\": \"One sentence explaining the confidence level\"\n    },\n    \"query\": {\n      \"type\": \"string\",\n      \"description\": \"The customer's original question\"\n    },\n    \"response\": {\n      \"type\": \"string\",\n      \"description\": \"Your answer to the customer (without confidence tags or references)\"\n    },\n    \"references\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n      },\n      \"description\": \"List of source documents and sections used\"\n    }\n  },\n  \"required\": [\n    \"confidenceLevel\",\n    \"confidenceScore\",\n    \"reasoning\",\n    \"query\",\n    \"response\",\n    \"references\"\n  ],\n  \"additionalProperties\": false\n}",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        4960,
+        4800
+      ],
+      "id": "a86bfecb-f736-499b-826c-304740b28c31",
+      "name": "Structured Output Parser3"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2068850783,
+          "mode": "list",
+          "cachedResultName": "Interaction_Logs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit#gid=2068850783"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "threadId",
+              "lookupValue": "={{ $('Get a thread').first().json.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1040,
+        4176
+      ],
+      "id": "b4a1fc83-5cd4-4187-84f7-29cad0f922d3",
+      "name": "Get Thread History",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get all Sheets rows\nconst sheetRows = $input.all();\n\n// ===== CHECK FOR EMPTY HISTORY (includes empty objects!) =====\n// Google Sheets returns [{}] when no results, not []\nif (sheetRows.length === 0 || \n    !sheetRows[0]?.json || \n    Object.keys(sheetRows[0].json).length === 0) {\n  \n  return { \n    json: { \n      conversationHistory: '', \n      messageCount: 0,\n      lastEscalated: false\n    } \n  };\n}\n\n// ===== FILTER OUT EMPTY OBJECTS (double safety) =====\nconst validRows = sheetRows.filter(row => \n  row.json && Object.keys(row.json).length > 0\n);\n\nif (validRows.length === 0) {\n  return { \n    json: { \n      conversationHistory: '', \n      messageCount: 0,\n      lastEscalated: false\n    } \n  };\n}\n\n// ===== SORT CHRONOLOGICALLY (oldest first) =====\nconst sortedRows = validRows.sort((a, b) => {\n  const timeA = new Date(a.json.timestampReceived || a.json.timestampStart || 0);\n  const timeB = new Date(b.json.timestampReceived || b.json.timestampStart || 0);\n  return timeA.getTime() - timeB.getTime();\n});\n\n// ===== BUILD CONVERSATION HISTORY =====\nlet conversationHistory = '';\nlet messageIndex = 1;\n\nsortedRows.forEach((row) => {\n  const data = row.json;\n  \n  const userTimestamp = data.timestampReceived || data.timestampStart || new Date().toISOString();\n  const aiTimestamp = data.timestampEnd || new Date().toISOString();\n  \n  const userDate = new Date(userTimestamp);\n  const aiDate = new Date(aiTimestamp);\n  \n  const userDateStr = isNaN(userDate.getTime()) ? 'Date unavailable' : userDate.toLocaleString();\n  const aiDateStr = isNaN(aiDate.getTime()) ? 'Date unavailable' : aiDate.toLocaleString();\n  \n  // User message\n  conversationHistory += `[Message ${messageIndex}]\nFrom: Customer\nDate: ${userDateStr}\nContent: ${data.query || '[No content]'}\n\n---\n\n`;\n  messageIndex++;\n  \n  // AI or human response — label by humanAgentReply flag\n  const isHumanReply = data.humanAgentReply === 'True' || data.humanAgentReply === true;\n  const responderLabel = isHumanReply ? 'Human Support Agent' : 'AI Customer Support Team';\nconversationHistory += `[Message ${messageIndex}]\nFrom: ${responderLabel}\nDate: ${aiDateStr}\nContent: ${data.response || '[No response]'}\n\n---\n\n`;\n  messageIndex++;\n});\n\n// ===== CLEAN UP =====\nconversationHistory = conversationHistory.trim();\nif (conversationHistory.endsWith('---')) {\n  conversationHistory = conversationHistory.slice(0, -3).trim();\n}\n\n// ===== GET LAST ESCALATED =====\nconst lastRow = sortedRows[sortedRows.length - 1]?.json || {};\nconst lastEscalated = lastRow.isEscalated || false;\n\n// ===== RETURN DATA =====\nreturn {\n  json: {\n    conversationHistory: conversationHistory,\n    messageCount: sortedRows.length * 2,\n    lastEscalated: lastEscalated\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1296,
+        4176
+      ],
+      "id": "cc974be1-12ad-4ec0-979c-faff6a78de9d",
+      "name": "Format Conversation History from Sheets"
+    },
+    {
+      "parameters": {
+        "jsCode": "// ===== GET THREAD DATA =====\nconst threadData = $('Get a thread').first().json;\nconst threadMessages = threadData.messages || [];\n\n// AI email for filtering\nconst AI_EMAIL = 'your-email@example.com';\n\n// ===== FILTER TO GET ONLY USER MESSAGES =====\nconst userMessages = threadMessages.filter(msg => {\n  const msgFrom = msg.From || '';\n  const emailMatch = msgFrom.match(/<([^>]+)>/);\n  const msgSenderEmail = emailMatch ? emailMatch[1] : msgFrom;\n  \n  return msgSenderEmail.toLowerCase() !== AI_EMAIL.toLowerCase();\n});\n\n// Sort USER messages by date (oldest to newest)\nconst sortedUserMessages = userMessages.sort((a, b) => {\n  return parseInt(a.internalDate) - parseInt(b.internalDate);\n});\n\n// Safety check\nif (sortedUserMessages.length === 0) {\n  throw new Error('No user messages found in thread');\n}\n\n// ===== GET CURRENT (LAST) USER MESSAGE =====\nconst lastUserMessage = sortedUserMessages[sortedUserMessages.length - 1];\n\n// Extract sender info from FIRST user message\nconst fromField = userMessages[0].From;\nconst emailMatch = fromField.match(/<([^>]+)>/);\nconst senderEmail = emailMatch ? emailMatch[1] : fromField;\nconst subject = userMessages[0].Subject;\n\n// ===== CLEAN MESSAGE BODY (remove quoted text) =====\nlet chatInput = lastUserMessage.text || lastUserMessage.snippet || '';\n\n// Remove quoted text patterns\nchatInput = chatInput.split(/On\\s+\\w+,\\s+\\d+\\s+\\w+\\s+\\d+\\s+at\\s+\\d+:\\d+/i)[0].trim();\n\nif (chatInput.includes('wrote:')) {\n  chatInput = chatInput.split('wrote:')[0].trim();\n}\n\n// Remove lines starting with \">\"\nchatInput = chatInput\n  .split('\\n')\n  .filter(line => !line.trim().startsWith('>'))\n  .join('\\n')\n  .trim();\n\n// Remove HTML entities\nchatInput = chatInput\n  .replace(/&lt;/g, '<')\n  .replace(/&gt;/g, '>')\n  .replace(/&amp;/g, '&')\n  .replace(/&quot;/g, '\"');\n\n// Strip n8n test-sender footer (\"--- This email was sent automatically with n8n\").\n// Without this, empty-body test emails carry the footer through and look non-empty\n// to downstream classifiers.\nchatInput = chatInput.split(/\\n?---\\s*\\n?/)[0].trim();\nchatInput = chatInput\n  .replace(/This email was sent automatically with n8n\\.?$/i, '')\n  .trim();\n\n// ===== GET DATA FROM SHEETS HISTORY NODE =====\nconst sheetsHistory = $('Format Conversation History from Sheets').first().json;\n\n// Extract values from Sheets\nconst conversationHistory = sheetsHistory.conversationHistory || '';\nconst previousMessageCount = sheetsHistory.messageCount || 0; // Previous messages\nconst isEscalated = sheetsHistory.lastEscalated || false; // Renamed for clarity\n\n// Calculate current state\nconst isFirstMessage = previousMessageCount === 0; // True if no previous messages\nconst messageCount = 1; // Always 1 - representing current user message\n\n// ===== EDGE CASE DETECTION (Category 7 — Group A & B) =====\n// Detect empty body, minimal input, very long body and inject directives\n// for the AI Agent. This avoids adding new branches — the existing AI Agent\n// can produce graceful clarification responses when given the right context.\nconst trimmedInput = (chatInput || '').trim();\nconst wordCount = trimmedInput ? trimmedInput.split(/\\s+/).filter(Boolean).length : 0;\nconst charCount = trimmedInput.length;\n\nconst isEmptyBody = charCount === 0;\nconst isMinimalInput = !isEmptyBody && (wordCount <= 1 || charCount < 5);\nconst isLongEmail = wordCount > 800;\n\nlet edgeCaseFlag = null;\nlet originalChatInput = chatInput;\n// For EMPTY_BODY and MINIMAL_INPUT: only set the flag here.\n// The 'Route: Empty/Minimal?' node downstream will short-circuit the pipeline\n// and send an immediate clarification reply, bypassing classification + AI Agent.\nif (isEmptyBody) {\n  edgeCaseFlag = 'EMPTY_BODY';\n} else if (isMinimalInput) {\n  edgeCaseFlag = 'MINIMAL_INPUT';\n} else if (isLongEmail) {\n  edgeCaseFlag = 'LONG_EMAIL';\n  chatInput = `[INTERNAL DIRECTIVE — LONG EMAIL (${wordCount} words)] When deciding intent and confidence, focus on: (1) the customer's most recent question or request (typically the closing paragraph), (2) any explicit action keywords (escalate, refund, cancel, lawsuit, security breach, fraud, overheating), and (3) the sign-off context. Long context with a routine closing question is a routine question; long context with buried escalation signals must escalate. Original email follows:]\\n\\n${chatInput}`;\n}\n\n// ===== RETURN DATA =====\nreturn {\n  json: {\n    // ===== Thread Identifiers =====\n    threadId: threadData.id,\n    messageId: lastUserMessage.id,\n    \n    // ===== Edge case flag for downstream nodes =====\n    edgeCaseFlag: edgeCaseFlag,\n    originalChatInput: originalChatInput,\n    wordCount: wordCount,\n    \n    // ===== Current Message (from Gmail, possibly directive-wrapped) =====\n    chatInput: chatInput,\n    subject: subject,\n    senderEmail: senderEmail,\n    \n    // ===== Conversation Context (from Sheets) =====\n    conversationHistory: conversationHistory,\n    \n    // ===== Message Metadata =====\n    messageCount: messageCount, // Current message count = 1\n    isFirstMessage: isFirstMessage, // True if previousMessageCount === 0\n    isEscalated: isEscalated, // Previous escalation status\n    \n    // ===== Timestamps =====\n    startTime: new Date().toISOString(), // When workflow started\n    receivedTime: new Date(parseInt(lastUserMessage.internalDate)).toISOString(), // When user sent email\n    \n    // ===== Channel =====\n    channel: 'email'\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1536,
+        4176
+      ],
+      "id": "69c0cd37-2d8f-46fd-94a6-fe0068fe06c0",
+      "name": "Format Current Email Data"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "NFYKKeyXOAlvT2aD",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/NFYKKeyXOAlvT2aD",
+          "cachedResultName": "Escalation SLA Monitor"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "isFirstMessage": "={{ $('Format Current Email Data').item.json.isFirstMessage }}",
+            "isEscalated": "={{ $json.output.humanEscalation }}",
+            "messageCount": "={{ $('Format Current Email Data').item.json.messageCount }}",
+            "threadId": "={{ $('Format Current Email Data').item.json.threadId }}",
+            "messageId": "={{ $('Format Current Email Data').item.json.messageId }}",
+            "chatInput": "={{ $('Format Current Email Data').item.json.chatInput }}",
+            "subject": "={{ $('Format Current Email Data').item.json.subject }}",
+            "senderEmail": "={{ $('Format Current Email Data').item.json.senderEmail }}",
+            "conversationHistory": "={{ $('Format Current Email Data').item.json.conversationHistory }}",
+            "startTime": "={{ $('Format Current Email Data').item.json.startTime }}",
+            "receivedTime": "={{ $('Format Current Email Data').item.json.receivedTime }}",
+            "channel": "={{ $('Format Current Email Data').item.json.channel }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "threadId",
+              "displayName": "threadId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "messageId",
+              "displayName": "messageId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "chatInput",
+              "displayName": "chatInput",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "subject",
+              "displayName": "subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "senderEmail",
+              "displayName": "senderEmail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "conversationHistory",
+              "displayName": "conversationHistory",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "messageCount",
+              "displayName": "messageCount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "number",
+              "removed": false
+            },
+            {
+              "id": "isFirstMessage",
+              "displayName": "isFirstMessage",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "boolean",
+              "removed": false
+            },
+            {
+              "id": "isEscalated",
+              "displayName": "isEscalated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "boolean",
+              "removed": false
+            },
+            {
+              "id": "startTime",
+              "displayName": "startTime",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "receivedTime",
+              "displayName": "receivedTime",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "channel",
+              "displayName": "channel",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        6880,
+        3728
+      ],
+      "id": "16708b8a-9f0c-4bcc-bb17-9b7840119897",
+      "name": "Call 'Human Escalation Handler Workflow'"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2068850783,
+          "mode": "list",
+          "cachedResultName": "Interaction_Logs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit#gid=2068850783"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "channel": "={{ $('Format Current Email Data').item.json.channel }}",
+            "query": "={{ $('Format Current Email Data').item.json.chatInput }}",
+            "response": "=Pending",
+            "confidenceScore": "=None",
+            "isEscalated": "=True",
+            "responseTime": "=None",
+            "wordCount": "=None",
+            "toneUsed": "=None",
+            "timestampEnd": "=None",
+            "timestampStart": "={{ $('Format Current Email Data').item.json.startTime }}",
+            "timestampReceived": "={{ $('Format Current Email Data').item.json.receivedTime }}",
+            "threadId": "={{ $('Format Current Email Data').item.json.threadId }}",
+            "references": "=None",
+            "confidence": "=None",
+            "contextHistory": "={{ $('Format Current Email Data').item.json.conversationHistory }}",
+            "messageCount": "={{ $('Format Current Email Data').item.json.messageCount }}",
+            "messageId": "={{ $('Format Current Email Data').item.json.messageId }}",
+            "humanAgentReply": "None",
+            "kbLastUpdated": "None"
+          },
+          "matchingColumns": [
+            "sessionId"
+          ],
+          "schema": [
+            {
+              "id": "timestampReceived",
+              "displayName": "timestampReceived",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "timestampStart",
+              "displayName": "timestampStart",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "timestampEnd",
+              "displayName": "timestampEnd",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "responseTime",
+              "displayName": "responseTime",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "threadId",
+              "displayName": "threadId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "messageId",
+              "displayName": "messageId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "channel",
+              "displayName": "channel",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "query",
+              "displayName": "query",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "response",
+              "displayName": "response",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "references",
+              "displayName": "references",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "confidence",
+              "displayName": "confidence",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "confidenceScore",
+              "displayName": "confidenceScore",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "isEscalated",
+              "displayName": "isEscalated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "humanAgentReply",
+              "displayName": "humanAgentReply",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "wordCount",
+              "displayName": "wordCount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "toneUsed",
+              "displayName": "toneUsed",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "contextHistory",
+              "displayName": "contextHistory",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "messageCount",
+              "displayName": "messageCount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "kbLastUpdated",
+              "displayName": "kbLastUpdated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "6f15d805-f406-4650-9ede-9a86da478f99",
+      "name": "Log Pending Interaction to Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "position": [
+        6320,
+        3648
+      ],
+      "typeVersion": 4,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "Search company documentation using PageIndex API. \nFast and accurate for FAQs, policies, and product info. \nTry this FIRST before using vector_store.",
+        "method": "POST",
+        "url": "https://automated-work.app.n8n.cloud/webhook/pageindex-query",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"query\": \"{{ $('Gmail Trigger (Email Support)').item.json.snippet }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.3,
+      "position": [
+        4928,
+        5120
+      ],
+      "id": "533bd594-2d34-4fb3-8a76-c6d40781d4b9",
+      "name": "Search PageIndex HTTP Request",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2068850783,
+          "mode": "list",
+          "cachedResultName": "Interaction_Logs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit#gid=2068850783"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "=threadId",
+              "lookupValue": "={{ $('Format Current Email Data').item.json.threadId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "Check Active Escalation",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        3184,
+        4384
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const rows = $input.all();\n\n// Google Sheets returns [{}] on no match (confirmed in existing Format Conversation History code)\nconst validRows = rows.filter(row =>\n  row.json && Object.keys(row.json).length > 0\n);\n\nconst isReEscalation = validRows.some(row => {\n  const isEsc = String(row.json.isEscalated ?? '').toLowerCase();\n  const response = String(row.json.response ?? '').toLowerCase();\n  return (isEsc === 'true') && response === 'pending';\n});\n\nreturn { json: { isReEscalation } };"
+      },
+      "id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+      "name": "Escalation Guard",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3424,
+        4400
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "cond-reesc-001",
+              "leftValue": "={{ $json.isReEscalation }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+      "name": "Route: Re-escalated Thread?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        3680,
+        4400
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "d4e5f6a7-b8c9-0123-defa-234567890123",
+      "name": "Set Re-escalation Flag",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [
+        3904,
+        4112
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2068850783,
+          "mode": "list",
+          "cachedResultName": "Interaction_Logs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit#gid=2068850783"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "channel": "={{ $('Format Current Email Data').item.json.channel }}",
+            "query": "={{ $('Format Current Email Data').item.json.chatInput }}",
+            "response": "=Pending",
+            "confidenceScore": "=None",
+            "isEscalated": "=True",
+            "responseTime": "=None",
+            "wordCount": "=None",
+            "toneUsed": "=None",
+            "timestampEnd": "=None",
+            "timestampStart": "={{ $('Format Current Email Data').item.json.startTime }}",
+            "timestampReceived": "={{ $('Format Current Email Data').item.json.receivedTime }}",
+            "threadId": "={{ $('Format Current Email Data').item.json.threadId }}",
+            "references": "=None",
+            "confidence": "=None",
+            "contextHistory": "={{ $('Format Current Email Data').item.json.conversationHistory }}",
+            "messageCount": "={{ $('Format Current Email Data').item.json.messageCount }}",
+            "messageId": "={{ $('Format Current Email Data').item.json.messageId }}",
+            "kbLastUpdated": ""
+          },
+          "matchingColumns": [
+            "sessionId"
+          ],
+          "schema": [
+            {
+              "id": "timestampReceived",
+              "displayName": "timestampReceived",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "timestampStart",
+              "displayName": "timestampStart",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "timestampEnd",
+              "displayName": "timestampEnd",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "responseTime",
+              "displayName": "responseTime",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "threadId",
+              "displayName": "threadId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "messageId",
+              "displayName": "messageId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "channel",
+              "displayName": "channel",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "query",
+              "displayName": "query",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "response",
+              "displayName": "response",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "references",
+              "displayName": "references",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "confidence",
+              "displayName": "confidence",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "confidenceScore",
+              "displayName": "confidenceScore",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "isEscalated",
+              "displayName": "isEscalated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "wordCount",
+              "displayName": "wordCount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "toneUsed",
+              "displayName": "toneUsed",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "contextHistory",
+              "displayName": "contextHistory",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "messageCount",
+              "displayName": "messageCount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "kbLastUpdated",
+              "displayName": "kbLastUpdated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "a9ad6e87-986d-4063-993a-71e3c9a7446e",
+      "name": "Log Re-escalation to Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        4160,
+        4112
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Read email data from Format Current Email Data (or Pack Summarized Data on long-email path).\n// Don't read from $input — upstream is now Spam Filter (chainLlm) whose output replaces the data shape.\nconst fced = $('Format Current Email Data').first().json;\nconst isLongEmail = fced.edgeCaseFlag === 'LONG_EMAIL';\nconst data = isLongEmail\n  ? $('Pack Summarized Data').first().json\n  : fced;\nconst emailBody = (data.chatInput || '').toLowerCase()\n  .replace(/i'm/g, 'i am')\n  .replace(/can't/g, 'cannot')\n  .replace(/it's/g, 'it is')\n  .replace(/don't/g, 'do not')\n  .replace(/won't/g, 'will not')\n  .replace(/i've/g, 'i have')\n  .replace(/i'd/g, 'i would')\n  .replace(/i'll/g, 'i will');\n\n// KEYWORDS THAT ALWAYS TRIGGER ESCALATION (no context check needed)\n// Multilingual additions for Category 7 Group C (TC588 — German cancel/legal terms missed in round 1)\nconst alwaysEscalate = [\n  // English - legal/fraud\n  'lawyer', 'legal action', 'fraud', 'chargeback', 'sue', 'court', 'lawsuit',\n  // Regulatory / Media / Executive threats (KB 05_Escalation_Guidelines Section 2)\n  'attorney general', 'consumer protection', 'bbb', 'better business bureau',\n  'fda complaint', 'fcc complaint', 'filed a complaint', 'complaint filed',\n  'reporter', 'journalist', 'news article', 'viral', 'going public',\n  // Safety (KB 05_Escalation_Guidelines Section 2 Safety category) — multi-word forms to avoid false positives\n  'overheating', 'fire risk', 'caught fire', 'catches fire', 'electric shock',\n  'burning smell', 'safety hazard', 'physical injury', 'swollen battery',\n  'product recall', 'dangerous',\n  // Security beyond fraud (KB Section 2 Security category)\n  'hacked', 'data breach', 'security breach', 'stolen', 'identity theft', 'unauthorized access',\n  // German (Group C — TC588)\n  'klage', 'anwalt', 'betrug', 'rechtlich',\n  // Bosnian/Croatian (Group C — TC589)\n  'tužba', 'prevara', 'odvjetnik', 'advokat',\n  // Turkish (Group C — TC595)\n  'dava', 'avukat', 'dolandırıcılık'\n];\n\n// KEYWORDS THAT NEED CONTEXT CHECK\n// Multilingual additions for cancellation/refund intent\nconst contextKeywords = [\n  // English\n  'refund', 'cancel', 'charged', 'authorize', 'unauthorize',\n  // German (TC588)\n  'kündigen', 'kündigung', 'erstattung', 'rückerstattung',\n  // Bosnian/Croatian\n  'otkazati', 'povrat', 'naplata',\n  // Turkish\n  'iptal', 'ıade'\n];\n\n// INFORMATIONAL PATTERNS - if ANY of these appear alongside a context keyword,\n// the email is likely a routine question and should NOT be escalated\nconst informationalPatterns = [\n  // Question starters\n  'how do i', 'how can i', 'can i', 'could i', 'is it possible',\n  'is this possible', 'is there any way', 'is there a',\n  'what is your', 'what is the', 'what are my', 'what could cause',\n  'what happens if', 'what should i',\n  // Timeline questions  \n  'when will', 'when can i', 'how long', 'how far in advance',\n  // Policy questions\n  'will i get', 'will i receive', 'will i be', 'will there be',\n  'do i need to', 'do i have to', 'am i eligible',\n  'if i cancel', 'if i return',\n  // Requests for guidance\n  'walk me through', 'guide me', 'could you please explain',\n  'can you tell me', 'please advise', 'could you advise',\n  'i would like to', 'i want to make sure',\n  // Confusion (not anger)\n  'i am confused', 'i am not sure', 'i am quite confused',\n  'i just realised', 'i just realized', 'i forgot to',\n  // Preference/option exploration\n  'instead of', 'rather than', 'prefer to', 'would prefer',\n  'i do not want', 'i would prefer'\n];\n\n// DISPUTE PATTERNS - if ANY of these appear alongside a context keyword,\n// the email IS a dispute and SHOULD be escalated\nconst disputePatterns = [\n  // Emotional escalation\n  'demand', 'unacceptable', 'furious', 'disgusted', 'livid',\n  'outraged', 'incensed', 'appalled', 'fed up', 'done with',\n  // Ultimatums\n  'last chance', 'final warning', 'never again', 'or else',\n  // Aggressive refund demands\n  'i want my money', 'full refund now', 'give me back', 'refund immediately',\n  'i demand a refund', 'right now or',\n  // Threats\n  'i will report', 'i will file', 'going public', 'social media'\n];\n// NOTE: \"immediately\" was REMOVED from disputePatterns because customers \n// often use it descriptively (\"I immediately realised\") not as a demand\n\n// === DETECTION LOGIC ===\n\n// Word-boundary matcher. Keywords are plain ascii words (no regex metachars),\n// so no escape needed. This avoids 'sue' matching inside 'issue' / 'tissue' / 'pursue'.\nconst wordIncludes = (text, kw) => new RegExp('\\\\b' + kw + '\\\\b', 'i').test(text);\n\n// Always escalate for legal/fraud keywords\nconst mustEscalate = alwaysEscalate.some(kw => wordIncludes(emailBody, kw));\n\n// Check context keywords\nconst hasContextKeyword = contextKeywords.some(kw => wordIncludes(emailBody, kw));\nconst isInformational = informationalPatterns.some(p => emailBody.includes(p));\nconst isDispute = disputePatterns.some(p => emailBody.includes(p));\n\nlet shouldEscalate = false;\n\nif (mustEscalate) {\n  shouldEscalate = true;\n} else if (hasContextKeyword && isDispute && !isInformational) {\n  shouldEscalate = true;  // \"cancel\" + \"furious\" = escalate\n} else if (hasContextKeyword && isInformational) {\n  shouldEscalate = false;  // \"how do I cancel\" = AI handles\n} else if (hasContextKeyword && !isInformational && !isDispute) {\n  shouldEscalate = false;  // CHANGED: default to AI handles, let LLM decide later\n}\n// If no context keyword at all, shouldEscalate stays false (normal flow)\n\n// Logging (word-boundary match for single-word keywords)\nconst detectedAlways = alwaysEscalate.filter(kw => wordIncludes(emailBody, kw));\nconst detectedContext = contextKeywords.filter(kw => wordIncludes(emailBody, kw));\nconst detectedInfo = informationalPatterns.filter(p => emailBody.includes(p));\nconst detectedDispute = disputePatterns.filter(p => emailBody.includes(p));\n\n// Backward-compatible output\nconst hasPriorityKeyword = mustEscalate || (hasContextKeyword && isDispute && !isInformational);\nconst hasNegativeSentiment = isDispute;\n\nreturn [{\n  json: {\n    ...data,\n    hasPriorityKeyword,\n    hasNegativeSentiment,\n    detectedKeywords: [...detectedAlways, ...detectedContext],\n    detectedInfoPatterns: detectedInfo,\n    detectedDisputePatterns: detectedDispute,\n    escalationFlag: shouldEscalate,\n    originalEmailContent: data.chatInput || ''\n  }\n}];"
+      },
+      "id": "detect-priority-001",
+      "name": "Detect Priority & Sentiment",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2944,
+        4384
+      ]
+    },
+    {
+      "parameters": {
+        "projectId": {
+          "__rl": true,
+          "value": "civil-honor-486310-t3",
+          "mode": "list",
+          "cachedResultName": "My First Project"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleVertex",
+      "typeVersion": 1,
+      "position": [
+        4336,
+        4928
+      ],
+      "id": "531fe652-55bd-4f68-a642-c0c855c65711",
+      "name": "Google Vertex Chat Model",
+      "credentials": {
+        "googleApi": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SERVICE_ACCOUNT_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "projectId": {
+          "__rl": true,
+          "value": "civil-honor-486310-t3",
+          "mode": "list",
+          "cachedResultName": "My First Project"
+        },
+        "modelName": "gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleVertex",
+      "typeVersion": 1,
+      "position": [
+        3920,
+        4656
+      ],
+      "id": "4cd0311a-5716-4d8b-827e-31fabbb9b586",
+      "name": "Google Vertex Chat Model1",
+      "credentials": {
+        "googleApi": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SERVICE_ACCOUNT_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "projectId": {
+          "__rl": true,
+          "value": "civil-honor-486310-t3",
+          "mode": "list",
+          "cachedResultName": "My First Project"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleVertex",
+      "typeVersion": 1,
+      "position": [
+        4784,
+        4944
+      ],
+      "id": "0cb24fa8-9045-462c-a3e4-3b67e9bc5fc8",
+      "name": "Google Vertex Chat Model2",
+      "credentials": {
+        "googleApi": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SERVICE_ACCOUNT_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "projectId": {
+          "__rl": true,
+          "value": "civil-honor-486310-t3",
+          "mode": "list",
+          "cachedResultName": "My First Project"
+        },
+        "modelName": "gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleVertex",
+      "typeVersion": 1,
+      "position": [
+        5264,
+        4672
+      ],
+      "id": "fc1623d4-5ff3-488a-9ac9-40cdc292e8df",
+      "name": "Google Vertex Chat Model3",
+      "credentials": {
+        "googleApi": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SERVICE_ACCOUNT_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "projectId": {
+          "__rl": true,
+          "value": "civil-honor-486310-t3",
+          "mode": "list",
+          "cachedResultName": "My First Project"
+        },
+        "modelName": "gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleVertex",
+      "typeVersion": 1,
+      "position": [
+        5024,
+        5024
+      ],
+      "id": "81014f1f-957d-4afc-886e-c97f0cd07940",
+      "name": "Google Vertex Chat Model4",
+      "credentials": {
+        "googleApi": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SERVICE_ACCOUNT_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 3,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "edge-case-empty",
+              "leftValue": "={{ $json.edgeCaseFlag }}",
+              "rightValue": "EMPTY_BODY",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "edge-case-minimal",
+              "leftValue": "={{ $json.edgeCaseFlag }}",
+              "rightValue": "MINIMAL_INPUT",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "de91a274-025a-4a54-982f-fdaed4b40254",
+      "name": "Route: Empty/Minimal?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1824,
+        4176
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $('Format Current Email Data').item.json.messageId }}",
+        "message": "=<!DOCTYPE html>\n<html>\n<head><meta charset=\"UTF-8\"></head>\n<body>\n<p>Hello,</p>\n<p>Thank you for contacting us regarding \"{{ $('Format Current Email Data').item.json.subject || 'your inquiry' }}\". We received your email, but we couldn't find any details in the message body.</p>\n<p>To help you effectively, could you please share:</p>\n<ul>\n<li>What product or service you're contacting us about</li>\n<li>The specific question or issue you need help with</li>\n<li>Any relevant order or account number, if applicable</li>\n</ul>\n<p>We'll be happy to assist as soon as we have more details.</p>\n<p>Best regards,<br>Customer Support Team</p>\n<hr>\n<p><small>This is an automated response. If you would like to speak with a human representative, please mention this in your reply.</small></p>\n</body>\n</html>",
+        "options": {
+          "replyToSenderOnly": true
+        }
+      },
+      "id": "2aad7051-5970-4713-ada3-d4769ad9d10b",
+      "name": "Reply: Empty Body Clarification",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1984,
+        3808
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "markAsRead",
+        "messageId": "={{ $('Format Current Email Data').item.json.messageId }}"
+      },
+      "id": "6d5b60c5-28cc-47f4-8ea7-7dacc33178ee",
+      "name": "Mark Empty Email as Read",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2272,
+        3648
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Subject: {{ $('Format Current Email Data').item.json.subject }}\nFrom: {{ $('Format Current Email Data').item.json.senderEmail }}\nBody: {{ $('Format Current Email Data').item.json.edgeCaseFlag === 'LONG_EMAIL' ? $('Pack Summarized Data').item.json.chatInput : $('Format Current Email Data').item.json.chatInput }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=# Email Classification: Spam vs Out-of-Scope vs Customer Support\n\nYou are a classifier for incoming emails to TechFlow's customer support inbox. You output TWO booleans: `isSpam` and `isOutOfScope`. They are mutually exclusive — at most one is true. If both could apply, prefer `isSpam`.\n\n---\n\n## Set `isSpam: true` when the email is NOT from a real human asking us anything:\n\n- Marketing email, promotional offer, sales pitch, advertisement\n- Newsletter, blog digest, content subscription, industry update\n- Out-of-office auto-reply, vacation responder, absence notification\n- Job application, internship inquiry, partnership pitch, business proposal unrelated to product support\n- Scam, phishing, lottery/prize notification, cryptocurrency solicitation, fraudulent offer\n- Chain message, prayer request, unrelated donation appeal\n- Test email, automated system message, empty notification with no human intent\n\n## Set `isOutOfScope: true` when the email IS from a real human, but the question is NOT a TechFlow customer-support request:\n\n- Off-topic chitchat or general-knowledge questions (weather, restaurants, recipes, vitamins, geography, who-is-the-CEO-of-some-other-company, visa rules, economic forecasts)\n- Using the chatbot as a free general-purpose assistant (write a cover letter, write a poem, translate this document, write Python code, jailbreak my phone)\n- Questions about other companies' products / competitor comparisons unrelated to a TechFlow purchase decision (e.g. \"what's the stock price of company X\", \"compare your prices to Amazon\", \"best laptop brand other than yours\")\n- Requests for TechFlow internal/confidential info that we wouldn't share with a customer (internal hiring process, internal sales numbers, source code, partnership terms, financial projections, employee personal addresses)\n- Speculation / prediction / advice we shouldn't give (legal advice, investment advice, medical advice, predicting whether a laptop will break, predicting future product releases)\n- Malicious or abusive requests (access another customer's account, hack someone's email, scrape another website, use TechFlow's address as personal mail)\n- Formal complaints about a named employee, requests to record statements for legal use, etc.\n\n## Set BOTH FALSE (genuine customer support) when the email is:\n\n- A real product/service question, complaint, technical issue, billing/account/refund/cancellation/compatibility/feature inquiry about TechFlow\n- A follow-up to a previous support thread\n- A clarification, acknowledgement, or thank-you from a customer\n- A real customer email even if the body is empty, minimal, or vague — these are real customers, just sparse content\n- A non-English customer message (Bosnian, German, Turkish, etc.) with support intent\n\n---\n\n## Examples\n\nEmail: \"🚀 LIMITED TIME OFFER! 50% OFF our premium SEO services.\"\n→ {\"isSpam\": true, \"isOutOfScope\": false}\n\nEmail: \"I am currently out of office until Monday.\"\n→ {\"isSpam\": true, \"isOutOfScope\": false}\n\nEmail: \"Hello, I am interested in joining your team as a software engineer.\"\n→ {\"isSpam\": true, \"isOutOfScope\": false}\n\nEmail: \"What is the weather like in Sarajevo today?\"\n→ {\"isSpam\": false, \"isOutOfScope\": true}\n\nEmail: \"Can you write me a cover letter for a job application?\"\n→ {\"isSpam\": false, \"isOutOfScope\": true}\n\nEmail: \"Who is the CEO of Apple Inc.?\"\n→ {\"isSpam\": false, \"isOutOfScope\": true}\n\nEmail: \"Can you give me access to another customer's account?\"\n→ {\"isSpam\": false, \"isOutOfScope\": true}\n\nEmail: \"What is the exact source code of the TechFlow chatbot?\"\n→ {\"isSpam\": false, \"isOutOfScope\": true}\n\nEmail: \"What are TechFlow's internal financial projections for the next 5 years?\"\n→ {\"isSpam\": false, \"isOutOfScope\": true}\n\nEmail: \"Can you hack into my ex's email account?\"\n→ {\"isSpam\": false, \"isOutOfScope\": true}\n\nEmail: \"I want to sue TechFlow. Can you give me legal advice?\"\n→ {\"isSpam\": false, \"isOutOfScope\": true}\n\nEmail: \"How do I reset my password?\"\n→ {\"isSpam\": false, \"isOutOfScope\": false}\n\nEmail: \"I want to cancel my subscription, please help.\"\n→ {\"isSpam\": false, \"isOutOfScope\": false}\n\nEmail: \"Ich möchte mein Abonnement kündigen.\"\n→ {\"isSpam\": false, \"isOutOfScope\": false}\n\nEmail: (body empty, subject: \"URGENT — please help\")\n→ {\"isSpam\": false, \"isOutOfScope\": false}\n\n---\n\n## Output Format\n\nReturn ONLY a JSON object. No prose. No markdown fences. No preamble. No explanation.\n\nYour response MUST start with `{` and end with `}`. The object MUST contain exactly two boolean fields named `isSpam` and `isOutOfScope`.\n\nValid response example:\n```\n{\"isSpam\": false, \"isOutOfScope\": true}\n```\n\nIf the email body is empty, very short, or only contains an n8n footer, default to `{\"isSpam\": false, \"isOutOfScope\": false}` — it's a real customer with sparse content. NEVER return an empty object, never return prose, never return null."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "id": "9327c8cf-8484-4dc4-8045-a9ddd3f4fd37",
+      "name": "Spam Filter",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        2208,
+        4096
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"isSpam\": {\n      \"type\": \"boolean\",\n      \"description\": \"Whether the email is spam, marketing, newsletter, scam, out-of-office reply, job application, or otherwise NOT from a real human seeking customer support\"\n    },\n    \"isOutOfScope\": {\n      \"type\": \"boolean\",\n      \"description\": \"Whether the email is from a real human but the question is not a TechFlow customer-support request (off-topic, free-assistant abuse, confidential-info fishing, predictions/advice, malicious requests). Mutually exclusive with isSpam.\"\n    }\n  },\n  \"required\": [\"isSpam\", \"isOutOfScope\"]\n}",
+        "autoFix": true
+      },
+      "id": "ee578752-143a-4aa8-897d-9116d5ce8bfa",
+      "name": "Spam Filter Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        2448,
+        4352
+      ]
+    },
+    {
+      "parameters": {
+        "projectId": {
+          "__rl": true,
+          "value": "civil-honor-486310-t3",
+          "mode": "list",
+          "cachedResultName": "My First Project"
+        },
+        "modelName": "gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "id": "42788ace-85b8-4f0e-ba00-41f3916fbb27",
+      "name": "Spam Filter LLM",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleVertex",
+      "typeVersion": 1,
+      "position": [
+        2288,
+        4352
+      ],
+      "credentials": {
+        "googleApi": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SERVICE_ACCOUNT_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 3,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "spam-check",
+              "leftValue": "={{ $json.output.isSpam }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "def513d4-2dd6-4afb-b349-1b0bfd3ea3b1",
+      "name": "Route: Is Spam?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2688,
+        4176
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "markAsRead",
+        "messageId": "={{ $('Format Current Email Data').item.json.messageId }}"
+      },
+      "id": "eea3d71a-300b-4f55-99fb-524e66f3a439",
+      "name": "Drop Spam Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2832,
+        3968
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Format Current Email Data').item.json.messageId }}",
+        "labelIds": [
+          "SPAM"
+        ]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        3040,
+        3968
+      ],
+      "id": "d4ec847e-a811-48f7-843b-be6ce93c6e76",
+      "name": "Add label to message",
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// ========================================================================\n// SENDER ALLOWLIST FILTER — docx Section 5.1.7.5 #3 (Group E)\n// ========================================================================\n// Drops emails from senders not on the allowlist OR matching system/spoofed\n// address patterns. Runs at the very start of the workflow before any\n// thread/history fetching, classification, or LLM calls.\n//\n// To add an allowed sender: append to `allowedSenders` array.\n// To add a blocked pattern: append to `blockedPatterns` array.\n// ========================================================================\n\nconst fromField = ($input.first().json.From || '').toLowerCase();\n\n// Allowlist — only emails from these senders are processed.\nconst allowedSenders = [\n  'your-email@example.com',\n  'your-email@example.com'\n];\n\n// Blocklist — system / automated / spoofed address patterns.\nconst blockedPatterns = [\n  'noreply@',\n  'no-reply@',\n  'do-not-reply@',\n  'mailer-daemon',\n  'postmaster@',\n  'bounces@',\n  'notification@',\n  'automated@'\n];\n\nconst isAllowed = allowedSenders.some(s => fromField.includes(s.toLowerCase()));\nconst isBlocked = blockedPatterns.some(p => fromField.includes(p.toLowerCase()));\n\nif (!isAllowed || isBlocked) {\n  // Drop — returning [] halts downstream processing for this run.\n  return [];\n}\n\n// Pass-through unchanged.\nreturn $input.all();"
+      },
+      "id": "0afa3a03-932c-45ae-960e-04445d6c9a6d",
+      "name": "Filter: Allowed Sender",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        544,
+        4288
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 3,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "long-email-check",
+              "leftValue": "={{ $('Format Current Email Data').item.json.edgeCaseFlag }}",
+              "rightValue": "LONG_EMAIL",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "5d825e40-56f8-46f5-8c87-3db2f8bdfae8",
+      "name": "Route: Long Email?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1920,
+        4384
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Original email body ({{ $('Format Current Email Data').item.json.wordCount }} words):\n\n{{ $('Format Current Email Data').item.json.chatInput }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=# Long Email Summarizer\n\nYou are a customer support email summarizer. The customer has sent a very long email and downstream classifiers (spam filter, escalation detector) need a concise version to make a reliable decision.\n\n## Your Task\n\nProduce a concise summary that PRESERVES these signals:\n\n1. The customer's MOST RECENT question or request (typically in the closing paragraph)\n2. ANY explicit action keywords if present: cancel, refund, lawsuit, lawyer, sue, fraud, security breach, overheating, swollen battery, fire risk, escalate, manager, supervisor, complaint, chargeback, kündigen (DE), tužba (BS/HR), dava (TR)\n3. The closing/sign-off context (urgency level, customer name, contact preferences)\n4. The overall problem type (technical, billing, account, complaint, etc.)\n\n## Constraints\n\n- Keep the summary under 200 words\n- Output PLAIN TEXT only — no JSON, no headers, no markdown, no preamble\n- Write in the same language as the customer\n- Focus on what a classifier needs to decide: is this routine support, escalation, or spam?\n\n## Output\n\nThe summary text only — nothing else."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "id": "6f5b3082-b91b-449c-83a2-ce9dd2f56af5",
+      "name": "Long Email Summarizer",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        1872,
+        4640
+      ]
+    },
+    {
+      "parameters": {
+        "projectId": {
+          "__rl": true,
+          "value": "civil-honor-486310-t3",
+          "mode": "list",
+          "cachedResultName": "My First Project"
+        },
+        "modelName": "gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "id": "054b2829-6bfc-4fc8-8764-1d112daecef3",
+      "name": "Long Email Summarizer LLM",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleVertex",
+      "typeVersion": 1,
+      "position": [
+        1888,
+        4896
+      ],
+      "credentials": {
+        "googleApi": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SERVICE_ACCOUNT_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// ========================================================================\n// PACK SUMMARIZED DATA — docx Section 5.1.7.5 #5 (Group B — Long Email)\n// ========================================================================\n// Replaces chatInput with the LLM-generated summary while preserving every\n// other field from Format Current Email Data. Downstream classifiers should\n// use $json.chatInput (which becomes the summary on this branch) instead of\n// referencing Format Current Email Data directly when on the long-email path.\n// ========================================================================\n\nconst llmOutput = $input.first().json;\nconst fced = $('Format Current Email Data').first().json;\n\n// chainLlm without an output parser returns the raw text under `text` (or\n// occasionally under `output.text` depending on n8n version). Be defensive.\nconst summary = (typeof llmOutput === 'string')\n  ? llmOutput\n  : (llmOutput.text || llmOutput.output?.text || llmOutput.output || JSON.stringify(llmOutput));\n\nreturn [{\n  json: {\n    ...fced,\n    chatInput: summary,\n    originalLongChatInput: fced.chatInput,\n    wasSummarized: true\n  }\n}];"
+      },
+      "id": "aa0ec5d0-ea60-439f-bc37-bb191630eee7",
+      "name": "Pack Summarized Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2400,
+        4704
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2068850783,
+          "mode": "list",
+          "cachedResultName": "Interaction_Logs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit#gid=2068850783"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "channel": "={{ $json.channel }}",
+            "query": "={{ $json.query }}",
+            "response": "={{ $json.greeting }}\n\n{{ $json.response }}\n\n{{ $json.closing }}\nCustomer Support Team\n\n\n--\n{{ $json.footer }}",
+            "confidenceScore": "={{ $json.confidenceScore }}",
+            "isEscalated": "={{ $json.isEscalated }}",
+            "responseTime": "={{ $json.responseTime }}",
+            "wordCount": "={{ $json.wordCount }}",
+            "toneUsed": "={{ $json.detectedTone }}",
+            "timestampEnd": "={{ $json.timestampEnd }}",
+            "timestampStart": "={{ $('Format Current Email Data').item.json.startTime }}",
+            "timestampReceived": "={{ $('Format Current Email Data').item.json.receivedTime }}",
+            "threadId": "={{ $('Format Current Email Data').item.json.threadId }}",
+            "references": "={{ $json.references.join('\\n') }}\n",
+            "confidence": "={{ $json.confidence }}",
+            "contextHistory": "={{ $('Format Current Email Data').item.json.conversationHistory }}",
+            "messageCount": "={{ $('Format Current Email Data').item.json.messageCount }}",
+            "messageId": "={{ $('Format Current Email Data').item.json.messageId }}",
+            "humanAgentReply": "None",
+            "kbLastUpdated": "None"
+          },
+          "matchingColumns": [
+            "sessionId"
+          ],
+          "schema": [
+            {
+              "id": "timestampReceived",
+              "displayName": "timestampReceived",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "timestampStart",
+              "displayName": "timestampStart",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "timestampEnd",
+              "displayName": "timestampEnd",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "responseTime",
+              "displayName": "responseTime",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "threadId",
+              "displayName": "threadId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "messageId",
+              "displayName": "messageId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "channel",
+              "displayName": "channel",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "query",
+              "displayName": "query",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "response",
+              "displayName": "response",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "references",
+              "displayName": "references",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "confidence",
+              "displayName": "confidence",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "confidenceScore",
+              "displayName": "confidenceScore",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "isEscalated",
+              "displayName": "isEscalated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "humanAgentReply",
+              "displayName": "humanAgentReply",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "wordCount",
+              "displayName": "wordCount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "toneUsed",
+              "displayName": "toneUsed",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "contextHistory",
+              "displayName": "contextHistory",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "messageCount",
+              "displayName": "messageCount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "kbLastUpdated",
+              "displayName": "kbLastUpdated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "66dfe259-cc74-45b9-bc14-9809af2aa778",
+      "name": "Log Interaction to Sheets1",
+      "type": "n8n-nodes-base.googleSheets",
+      "position": [
+        2880,
+        3552
+      ],
+      "typeVersion": 4,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Build the log payload for the EMPTY_BODY / MINIMAL_INPUT branch.\n// This branch never reaches AI Agent / Email Formatter / Calculate Metrics nodes,\n// so we synthesize the same shape of data 'Log Interaction to Sheets1' reads from $json.\n\nconst fmt = $('Format Current Email Data').first().json;\n\nconst subject = fmt.subject || '';\nconst originalInput = (fmt.originalChatInput || fmt.chatInput || '').trim();\nconst edgeCase = fmt.edgeCaseFlag || '';\nconst threadId = fmt.threadId || '';\nconst messageId = fmt.messageId || '';\nconst channel = fmt.channel || 'email';\nconst conversationHistory = fmt.conversationHistory || '';\nconst messageCount = fmt.messageCount || 1;\n\n// Timestamps\nconst timestampReceived = fmt.receivedTime || '';\nconst timestampStart = fmt.startTime || '';\nconst timestampEnd = new Date().toISOString();\n\nconst startMs = timestampStart ? new Date(timestampStart).getTime() : null;\nconst endMs = new Date(timestampEnd).getTime();\nconst responseTime = (startMs && !isNaN(startMs))\n  ? ((endMs - startMs) / 1000).toFixed(2)\n  : '0.00';\n\n// Reconstruct the clarification reply that 'Reply: Empty Body Clarification' just sent\nconst greeting = 'Hello,';\nconst mainContent = `Thank you for contacting us regarding \"${subject || 'your inquiry'}\". We received your email, but we couldn't find any details in the message body.\\n\\nTo help you effectively, could you please share:\\n• What product or service you're contacting us about\\n• The specific question or issue you need help with\\n• Any relevant order or account number, if applicable\\n\\nWe'll be happy to assist as soon as we have more details.`;\nconst closing = 'Best regards,';\nconst footer = 'This is an automated response. If you would like to speak with a human representative, please mention this in your reply.';\n\nconst wordCount = mainContent.split(/\\s+/).filter(Boolean).length;\n\n// Build query field — log what came in, with edge-case marker\nlet query;\nif (edgeCase === 'EMPTY_BODY') {\n  query = `[EMPTY_BODY] subject=\"${subject}\"`;\n} else if (edgeCase === 'MINIMAL_INPUT') {\n  query = `[MINIMAL_INPUT] \"${originalInput}\" subject=\"${subject}\"`;\n} else {\n  query = originalInput || `[${edgeCase || 'NO_BODY'}] subject=\"${subject}\"`;\n}\n\nreturn {\n  json: {\n    // Fields that 'Log Interaction to Sheets1' mapping reads via $json.X:\n    greeting: greeting,\n    response: mainContent,\n    closing: closing,\n    footer: footer,\n    references: [],            // No KB used for clarification reply\n    detectedTone: 'neutral',\n    confidence: 'N/A',\n    confidenceScore: 0,\n    isEscalated: false,\n    responseTime: responseTime,\n    wordCount: wordCount,\n    query: query,\n    channel: channel,\n    threadId: threadId,\n    messageId: messageId,\n    timestampReceived: timestampReceived,\n    timestampStart: timestampStart,\n    timestampEnd: timestampEnd,\n    contextHistory: conversationHistory,\n    messageCount: messageCount\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2512,
+        3632
+      ],
+      "id": "55758509-8b86-43ff-a5c0-e34f3c30ca8a",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $('Format Current Email Data').item.json.messageId }}",
+        "message": "=<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\">\n</head>\n<body>\n\n<p>{{ $('Calculate Metrics & Extract Confidence').item.json.greeting.replace(/\\n/g, '<br>') }}</p>\n\n{{ $('Calculate Metrics & Extract Confidence').item.json.response\n  .replace(/\\n\\n/g, '</p><p>')\n  .replace(/\\n•/g, '<br>• ') }}\n\n<p>{{ $('Calculate Metrics & Extract Confidence').item.json.closing.replace(/\\n/g, '<br>') }}</p>\n\n  <p>Customer Support Team</p>\n\n  <hr>\n\n  <p>{{ $('Calculate Metrics & Extract Confidence').item.json.footer }}</p>\n\n</body>\n</html>",
+        "options": {
+          "replyToSenderOnly": true
+        }
+      },
+      "id": "53af31f3-c24c-4edc-a01d-d31c4290287b",
+      "name": "Reply to Customer1",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        6064,
+        4368
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 3,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "out-of-scope-check",
+              "leftValue": "={{ $json.output.isOutOfScope }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "ae20bfae-ea26-4d79-b97d-8e8ac50ec390",
+      "name": "Route: Out of Scope?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2752,
+        4528
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $('Format Current Email Data').item.json.messageId }}",
+        "message": "=<!DOCTYPE html>\n<html>\n<head><meta charset=\"UTF-8\"></head>\n<body>\n<p>Hello,</p>\n<p>Thank you for reaching out to TechFlow. I'm the automated customer support assistant, and I'm only able to help with questions related to your TechFlow products, orders, account, billing, or service.</p>\n<p>Your message doesn't appear to be a TechFlow customer-support request, so I'm not able to assist with it here. If you do have a TechFlow-related question — for example a product issue, an order question, a technical problem, or a billing or account matter — please reply with those details and I'll be happy to help.</p>\n<p>For any non-support questions, please consult an appropriate resource elsewhere.</p>\n<p>Best regards,<br>TechFlow Customer Support</p>\n<hr>\n<p><small>This is an automated response.</small></p>\n</body>\n</html>",
+        "options": {
+          "replyToSenderOnly": true
+        }
+      },
+      "id": "eb47138c-85f5-489d-8587-d33e37bef909",
+      "name": "Reply: Out of Scope Decline",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        3056,
+        4720
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Format Current Email Data').item.json.messageId }}",
+        "labelIds": [
+          "Label_8452603149384975140"
+        ]
+      },
+      "id": "81f84656-4ab9-44fc-b8cd-22655a3d85ae",
+      "name": "Label as Not Customer Support",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        3264,
+        4720
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "list",
+          "cachedResultName": "Customer_Support_Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2068850783,
+          "mode": "list",
+          "cachedResultName": "Interaction_Logs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/YOUR_GOOGLE_SHEET_ID/edit#gid=2068850783"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "channel": "email",
+            "query": "={{ $('Format Current Email Data').item.json.chatInput }}",
+            "response": "Out-of-scope automated decline: thank-you message explaining the chatbot is for TechFlow customer support only and cannot answer non-support questions.",
+            "confidenceScore": "100",
+            "isEscalated": "false",
+            "responseTime": "={{ (new Date().getTime() - new Date($('Format Current Email Data').item.json.startTime).getTime()) / 1000 }}",
+            "wordCount": "={{ $('Format Current Email Data').item.json.wordCount }}",
+            "toneUsed": "Out-Of-Scope-Decline",
+            "timestampEnd": "={{ new Date().toISOString() }}",
+            "timestampStart": "={{ $('Format Current Email Data').item.json.startTime }}",
+            "timestampReceived": "={{ $('Format Current Email Data').item.json.receivedTime }}",
+            "threadId": "={{ $('Format Current Email Data').item.json.threadId }}",
+            "references": "None",
+            "confidence": "n/a",
+            "contextHistory": "={{ $('Format Current Email Data').item.json.conversationHistory }}",
+            "messageCount": "={{ $('Format Current Email Data').item.json.messageCount }}",
+            "messageId": "={{ $('Format Current Email Data').item.json.messageId }}",
+            "humanAgentReply": "None",
+            "kbLastUpdated": "None"
+          },
+          "matchingColumns": [
+            "sessionId"
+          ],
+          "schema": [
+            {
+              "id": "timestampReceived",
+              "displayName": "timestampReceived",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "timestampStart",
+              "displayName": "timestampStart",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "timestampEnd",
+              "displayName": "timestampEnd",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "responseTime",
+              "displayName": "responseTime",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "threadId",
+              "displayName": "threadId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "messageId",
+              "displayName": "messageId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "channel",
+              "displayName": "channel",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "query",
+              "displayName": "query",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "response",
+              "displayName": "response",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "references",
+              "displayName": "references",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "confidence",
+              "displayName": "confidence",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "confidenceScore",
+              "displayName": "confidenceScore",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "isEscalated",
+              "displayName": "isEscalated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "humanAgentReply",
+              "displayName": "humanAgentReply",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "wordCount",
+              "displayName": "wordCount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "toneUsed",
+              "displayName": "toneUsed",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "contextHistory",
+              "displayName": "contextHistory",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "messageCount",
+              "displayName": "messageCount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "kbLastUpdated",
+              "displayName": "kbLastUpdated",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "b3376507-d16f-4b3f-908f-6916157f42e7",
+      "name": "Log Out-of-Scope to Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        3472,
+        4720
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# Main AI Customer Support Chatbot Workflow\n\n## Purpose\nThe central inbound pipeline that turns customer emails into automated support replies. Reads new messages from the support Gmail inbox, classifies and routes them, drafts a context-aware answer from the company knowledge base, and either replies to the customer or escalates to a human agent. All activity is logged to Google Sheets so other workflows (SLA monitor, human-reply scraper, KB updater) can act on it.\n\n## How it works\n- Polls the support Gmail inbox for unread messages and filters by sender allowlist\n- Loads the full thread plus prior interaction history from Google Sheets to build conversation context\n- Detects edge cases (empty body, minimal input, very long email) and routes empty/minimal emails directly to a clarification reply\n- Long emails are summarized by an LLM before classification\n- Classifies the email as spam, out-of-scope, or in-scope customer support and replies/labels accordingly\n- Runs keyword + LLM escalation detection (priority words, dispute patterns, prior-escalation state) to decide if a human is needed\n- For in-scope cases, an AI Agent answers using PageIndex (via HTTP) as the primary KB and a Pinecone vector store as fallback, then a separate LLM formats the email body\n- Sends the reply via Gmail, logs the full interaction (query, response, confidence, tone, references, escalation state) to Interaction_Logs, and on escalation hands off to the human escalation handler\n\n## Triggered by\nGmail trigger polling the support inbox every minute for unread messages.\n\n## Calls (sub-workflows)\n- HA - Sending Immediate Escalation Alert to a Human Agent  Executed when the LLM classifier or the confidence/keyword checks flag a case for human handling; also called on re-escalation of an already-pending thread.\n- PageIndex Query Webhook  Called via HTTP POST to the `/pageindex-query` webhook from the AI Agent's PageIndex tool to retrieve passages from the knowledge base.\n\n## Reads/writes\n- Reads/writes Gmail (support inbox: fetches threads, sends replies, marks read, applies spam / not-customer-support labels)\n- Reads/writes Google Sheets `Customer_Support_Data`  `Interaction_Logs` (thread history, new interaction rows, pending-escalation rows, out-of-scope log)\n- Queries Pinecone index `company-files` for KB retrieval and uses OpenAI embeddings\n- Uses Google Vertex (Gemini) for the AI Agent, escalation classifier, spam classifier, email formatter, and long-email summarizer",
+        "height": 900,
+        "width": 1100,
+        "color": 4
+      },
+      "id": "sticky-overview-doc",
+      "name": "Workflow Overview",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        496,
+        2976
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "AI Agent (Context-Aware)": {
+      "main": [
+        [
+          {
+            "node": "Unwrap Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculate Metrics & Extract Confidence": {
+      "main": [
+        [
+          {
+            "node": "Reply to Customer1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check if Escalation Needed": {
+      "main": [
+        [
+          {
+            "node": "Log Pending Interaction to Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Log Interaction to Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vector Store Tool1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent (Context-Aware)",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent (Context-Aware)",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store3": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Store Tool1",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI2": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store3",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Log Pending Interaction to Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Agent (Context-Aware)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Human Escalation Detection",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser2": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Email Formatter",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email Formatter": {
+      "main": [
+        [
+          {
+            "node": "Calculate Metrics & Extract Confidence",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a thread": {
+      "main": [
+        [
+          {
+            "node": "Get Thread History",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Unwrap Output": {
+      "main": [
+        [
+          {
+            "node": "Email Formatter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser3": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent (Context-Aware)",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Thread History": {
+      "main": [
+        [
+          {
+            "node": "Format Conversation History from Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Conversation History from Sheets": {
+      "main": [
+        [
+          {
+            "node": "Format Current Email Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Pending Interaction to Sheets": {
+      "main": [
+        [
+          {
+            "node": "Call 'Human Escalation Handler Workflow'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search PageIndex HTTP Request": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent (Context-Aware)",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Active Escalation": {
+      "main": [
+        [
+          {
+            "node": "Escalation Guard",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Escalation Guard": {
+      "main": [
+        [
+          {
+            "node": "Route: Re-escalated Thread?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route: Re-escalated Thread?": {
+      "main": [
+        [
+          {
+            "node": "Set Re-escalation Flag",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Human Escalation Detection",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Re-escalation Flag": {
+      "main": [
+        [
+          {
+            "node": "Log Re-escalation to Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Re-escalation to Sheets": {
+      "main": [
+        [
+          {
+            "node": "Call 'Human Escalation Handler Workflow'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Detect Priority & Sentiment": {
+      "main": [
+        [
+          {
+            "node": "Check Active Escalation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Interaction to Sheets": {
+      "main": [
+        [
+          {
+            "node": "Mark a message as read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Vertex Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent (Context-Aware)",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Vertex Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Human Escalation Detection",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Vertex Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Vector Store Tool1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Vertex Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Email Formatter",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Structured Output Parser2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Vertex Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Structured Output Parser3",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Human Escalation Detection": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route: Empty/Minimal?": {
+      "main": [
+        [
+          {
+            "node": "Reply: Empty Body Clarification",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Route: Long Email?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reply: Empty Body Clarification": {
+      "main": [
+        [
+          {
+            "node": "Mark Empty Email as Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spam Filter LLM": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Spam Filter",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Spam Filter Output Parser",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spam Filter Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Spam Filter",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spam Filter": {
+      "main": [
+        [
+          {
+            "node": "Route: Is Spam?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route: Is Spam?": {
+      "main": [
+        [
+          {
+            "node": "Drop Spam Email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Route: Out of Scope?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Drop Spam Email": {
+      "main": [
+        [
+          {
+            "node": "Add label to message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail Trigger (Email Support)": {
+      "main": [
+        [
+          {
+            "node": "Filter: Allowed Sender",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter: Allowed Sender": {
+      "main": [
+        [
+          {
+            "node": "Get a thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route: Long Email?": {
+      "main": [
+        [
+          {
+            "node": "Long Email Summarizer",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Spam Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Long Email Summarizer LLM": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Long Email Summarizer",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Long Email Summarizer": {
+      "main": [
+        [
+          {
+            "node": "Pack Summarized Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pack Summarized Data": {
+      "main": [
+        [
+          {
+            "node": "Spam Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Empty Email as Read": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Log Interaction to Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reply to Customer1": {
+      "main": [
+        [
+          {
+            "node": "Check if Escalation Needed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route: Out of Scope?": {
+      "main": [
+        [
+          {
+            "node": "Reply: Out of Scope Decline",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Detect Priority & Sentiment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reply: Out of Scope Decline": {
+      "main": [
+        [
+          {
+            "node": "Label as Not Customer Support",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Label as Not Customer Support": {
+      "main": [
+        [
+          {
+            "node": "Log Out-of-Scope to Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Current Email Data": {
+      "main": [
+        [
+          {
+            "node": "Route: Empty/Minimal?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "4cfdd054-726f-46f0-a748-da8850c40104",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "x73IKEwzZjgQUlNt",
+  "tags": []
+}
