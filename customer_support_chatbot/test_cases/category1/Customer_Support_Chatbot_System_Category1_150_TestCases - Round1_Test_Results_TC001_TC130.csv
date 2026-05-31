@@ -1,0 +1,1887 @@
+TEST_ID,TIMESTAMP,ACTUAL_CLASSIFICATION,ACTUAL_ESCALATION,CLASSIFICATION_CORRECT,AI_RESPONSE,RESPONSE_TIME_MS,CONFIDENCE_SCORE,NOTES
+TC001,2026-04-05T15:33:41.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+Thank you for contacting TechFlow Support! I'm sorry to hear you're having trouble accessing your account, and I'm here to help you resolve this.
+
+Based on your description, it sounds like you're receiving an ""Invalid Credentials"" error when trying to log in. This typically occurs when:
+
+• The email address is misspelled - Please double-check for any typos
+• The password is incorrect - Remember that passwords are case-sensitive
+• The account may be locked after multiple failed login attempts
+
+Here's what I recommend:
+
+1. Reset your password by clicking ""Forgot Password"" on the login page - you'll receive a reset link via email
+2. Make sure you're using the correct registered email address
+3. Clear your browser cache and cookies, then try again
+
+I noticed your message appears to have been cut off. If you could share the complete error message you're seeing, I can provide more specific assistance. If the password reset doesn't resolve the issue or you continue experiencing problems, please let me know and I'll escalate this to our technical team who can investigate your account directly.
+
+I'm here to help get you back into your account as quickly as possible!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",53260,0.9,Match score: 1.00
+TC002,2026-04-05T15:36:41.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+I understand how frustrating it is when you can't access your account. Let me help you troubleshoot the password reset email issue.
+
+Please try these steps:
+
+1. Check your spam/junk folder - Password reset emails sometimes get filtered there. Look for an email from TechFlow Solutions.
+
+2. Wait a bit longer - Reset emails can take up to 30 minutes to arrive, though they're usually delivered within a few minutes. Since it's been 20 minutes, it may still be on its way.
+
+3. Verify your email address - Make sure you entered the exact email address associated with your TechFlow account (check for typos or extra spaces).
+
+4. Check email server issues - If you use a corporate or school email, their server might be blocking or delaying the email.
+
+5. Try requesting another reset - If it's been over 30 minutes, you can request a new password reset link.
+
+If you still don't receive the email after trying these steps, let me know and I'll escalate this to our technical support team who can verify your account status and assist with account access directly.
+
+Please reply back if you need further assistance!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",82500,0.92,Match score: 1.00
+TC003,2026-04-05T15:39:42.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+Thank you for reaching out, and congratulations on your move! I'm happy to help you update your account information.
+
+To update your billing address and phone number, please follow these steps:
+
+1. Log into your account (which you've already done)
+2. Navigate to ""Account Settings"" or ""Profile"" - this is typically found in the top navigation menu or under your account icon/username
+3. Update your billing address and phone number in the appropriate fields
+4. Save your changes
+
+Please note that changes to your billing address may require additional verification for security purposes.
+
+If you're having trouble locating the Account Settings or Profile section, look for your account icon or username at the top of the page. If you encounter any issues during the update process or need further assistance, please don't hesitate to reach out.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",40770,0.92,Match score: 1.00
+TC004,2026-04-05T15:42:42.000Z,ESCALATED,YES,TRUE,"Request Forwarded to Support Team Hello, Your email has been forwarded to our customer support team for personalized assistance. A human agent will review your request and respond within 1 hour. What",73645000,None,Match score: 1.00
+TC005,2026-04-05T15:45:43.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+Thank you for reaching out, and I'm truly sorry to hear about the delays with your order. I understand how frustrating this must be, especially when tracking information stops updating.
+
+Since your delivery is 4+ business days late with no tracking updates, here's what I can do to help:
+
+Immediate action needed:
+To investigate this quickly, please reply with:
+• Your order number
+• The email address associated with your order
+
+What happens next:
+Once I have your order details, I will:
+1. Verify your shipping address and tracking status
+2. File a carrier investigation immediately if needed
+3. Arrange either a replacement shipment or full refund
+4. Provide compensation for the delay
+
+Compensation for the delay:
+Since your order is significantly late, you're eligible for either:
+• 20% discount on your next order, OR
+• Free shipping on your next purchase
+
+I'll personally follow up with you within 24 hours after receiving your order information. I'm committed to making this right for you.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",66390,0.92,Match score: 0.89
+TC006,2026-04-05T15:48:43.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+Good news - yes, your delivery address can be changed, but only if your order hasn't shipped yet. Since you just placed the order, there's a good chance we can update it in time.
+
+You'll need to contact our support team immediately with your order number (ORD-2024-91023) and your correct delivery address. Time is critical here, as address changes are only possible before the order ships.
+
+For the fastest response, I recommend:
+
+• Using our 24/7 chat support to maximize your chances of catching the order before it ships
+• Calling us Monday-Friday 8AM-8PM or Saturday 9AM-5PM EST
+• Email support is also available, but may take up to 24 hours, which might be too slow for this situation
+
+If the order has already shipped by the time you contact us, you may be able to coordinate a delivery redirect directly with the carrier using your tracking number, or you can refuse delivery so it returns to us.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",57290,0.95,Match score: 1.00
+TC007,2026-04-05T15:51:43.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+Thank you for reaching out before placing your large order. I'm happy to confirm that yes, we do accept bank transfer as a payment method!
+
+Here are all our accepted payment methods:
+
+• Credit Card (Visa, Mastercard, Amex, Discover) - Instant processing, no fees
+• Debit Card - Instant processing, no fees
+• PayPal - Instant processing, no fees
+• Apple Pay / Google Pay - Instant processing, no fees
+• Bank Transfer - 2-3 business days processing, no fees, $500 minimum order required
+• Store Credit - Instant processing, no fees
+
+Since you mentioned this is a large order, bank transfer should work perfectly for you as long as your order total meets the $500 minimum. Please note that bank transfer payments take 2-3 business days to process, so factor that into your timeline. There are no additional fees for using bank transfer.
+
+If you have any questions about the ordering process or need assistance with payment setup, feel free to ask!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",44090,0.95,Match score: 1.00
+TC008,2026-04-05T15:54:44.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+I'm sorry to hear you're experiencing payment issues. Even with sufficient funds, card declines can happen for several reasons. Here's what you can do:
+
+First, verify your card details are entered correctly:
+• Card number
+• Expiration date
+• CVV code
+• Billing address matches exactly what's on your card statement
+
+Since you've tried twice, I recommend contacting your bank directly. They may have flagged the transaction for fraud protection, which is common with online purchases. Ask them to:
+• Authorize online transactions
+• Confirm there are no holds on your account
+
+You can also try:
+• Using a different browser
+• Clearing your cache and cookies
+• Attempting the purchase in incognito/private browsing mode
+
+If the issue continues, we accept alternative payment methods including PayPal, Apple Pay, Google Pay, or you can try a different card.
+
+If you'd like our billing team to investigate further, please reply with the specific error message you're seeing and the last 4 digits of your card, and we'll have someone look into this within 24 hours.
+
+Cheers,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",42670,0.92,Match score: 1.00
+TC009,2026-04-05T15:57:44.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+Thank you for reaching out proactively about updating your payment information. I'm happy to help ensure there's no interruption to your service.
+
+To update your credit card details, please follow these steps:
+
+1. Log into your account
+2. Navigate to Account Settings > Payment Methods
+3. Add your new payment method and set it as the default
+4. You can remove your expired card once the new one is saved
+
+Since you mentioned your card expired last month, I recommend updating this as soon as possible before your next billing cycle to ensure seamless service continuation.
+
+If you encounter any issues while updating your payment information, please don't hesitate to reach out and I'll be glad to assist further.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",21180,0.93,Match score: 1.00
+TC010,2026-04-05T16:00:45.000Z,ESCALATED,YES,TRUE,"Request Forwarded to Support Team Hello, Your email has been forwarded to our customer support team for personalized assistance. A human agent will review your request and respond within 1 hour. What",72505000,None,Match score: 1.00
+TC011,2026-04-05T16:03:45.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+I'm happy to help with your return. Good news - since you purchased the product 2 weeks ago, you're well within our 30-day return window.
+
+Here's how to start the return process:
+
+Option 1 - Online (Fastest):
+1. Log into your account and go to ""Order History""
+2. Select your order and click ""Return Item""
+3. Choose your return reason and preferred refund method
+4. Print the prepaid shipping label we provide
+
+Option 2 - Contact Support:
+Simply reply with your order number and we'll process the return for you.
+
+What to do next:
+• Package the item securely with all accessories and components
+• Include the Return Merchandise Authorization (RMA) number (you'll receive this) inside and outside the box
+• Use the prepaid shipping label and ship within 14 days of receiving your RMA
+• Keep your tracking number for reference
+
+Refund timing: Once we receive your return, refunds typically process within 5-7 business days for credit cards, 7-10 days for debit cards, or 3-5 days for PayPal.
+
+If you'd prefer to exchange the item for something else instead of a refund, you can select that option when initiating the return. Let me know if you have any questions!
+
+Cheers,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",32800,0.95,Match score: 1.00
+TC012,2026-04-05T16:06:46.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+Thank you for contacting us about your return. I'm happy to walk you through the process.
+
+To start your return, please follow these steps:
+
+1. Initiate Your Return
+   • Log into your account and go to Order History
+   • Select the order containing the product you wish to return
+   • Click ""Return Item""
+   • Alternatively, you can contact our support team directly with your order number
+
+2. Provide Return Details
+   You'll need to specify your reason for return and preferred refund method. Since your item is in perfect condition with all original packaging and accessories, you meet our return requirements.
+
+3. Receive Your Return Authorization
+   You'll receive a Return Merchandise Authorization (RMA) number and a prepaid shipping label. You'll have 14 days from receiving the RMA to ship the item back.
+
+4. Ship Your Return
+   Package the item securely and include the RMA number both inside and outside the box. Use the prepaid shipping label and keep your tracking number for reference.
+
+5. Refund Processing
+   Once we receive your return, inspection takes 2-3 business days. If approved, your refund will be processed within 5-7 business days, and you'll receive a confirmation email.
+
+Good news: Since you purchased the product last week and it's in perfect condition with all original packaging, you're well within our 30-day return window. If you need any assistance with your specific order, please provide your order number and I'll be happy to help further.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",34560,0.95,Match score: 1.00
+TC013,2026-04-05T16:09:46.000Z,ESCALATED,YES,FALSE,"Request Forwarded to Support Team Hello, Your email has been forwarded to our customer support team for personalized assistance. A human agent will review your request and respond within 1 hour. What",71966000,None,Match score: 1.00
+TC014,2026-04-05T16:12:47.000Z,ESCALATED,YES,FALSE,"Request Forwarded to Support Team Hello, Your email has been forwarded to our customer support team for personalized assistance. A human agent will review your request and respond within 1 hour. What",71786000,None,Match score: 1.00
+TC015,2026-04-05T16:15:47.000Z,ESCALATED,,FALSE,"Request Forwarded to Support Team Hello, Your email has been forwarded to our customer support team for personalized assistance. A human agent will review your request and respond within 1 hour. What",71605000,None,Match score: 1.00
+TC016,2026-04-05T16:18:48.000Z,ESCALATED,YES,FALSE,"Request Forwarded to Support Team Hello, Your email has been forwarded to our customer support team for personalized assistance. A human agent will review your request and respond within 1 hour. What",71426000,None,Match score: 1.00
+TC017,2026-04-05T16:21:48.000Z,ESCALATED,YES,FALSE,"Request Forwarded to Support Team Hello, Your email has been forwarded to our customer support team for personalized assistance. A human agent will review your request and respond within 1 hour. What",71246000,None,Match score: 1.00
+TC018,2026-04-05T16:24:49.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+I'm happy to help you safely update your device firmware. I completely understand wanting to avoid any issues during the update process.
+
+There are three methods you can use to update your firmware:
+
+Method 1: Automatic Updates (Recommended)
+• Enable auto-updates in your device settings
+• Updates will install automatically when available while connected to WiFi and charging
+
+Method 2: Manual Updates
+• Go to your device settings
+• Look for ""Software Update"" or ""Firmware Update"" section
+• Check for available updates and follow the prompts to install
+
+Method 3: Via Companion App
+• Open the mobile app connected to your device
+• Navigate to device settings within the app
+• Look for ""Check for Updates"" and follow the installation prompts
+
+Important Safety Tips:
+• Ensure your device has at least 50% battery or is connected to power
+• Connect to a stable WiFi network
+• Make sure you have at least 2GB of free storage space
+• Don't interrupt the update process once it begins
+• If the update fails, simply restart your device and try again
+
+Following these steps will ensure a smooth, safe update. If you encounter any issues during the update process, please let me know and I'll help troubleshoot!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",28750,0.93,Match score: 1.00
+TC019,2026-04-05T16:27:49.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+Thank you for reaching out. I understand how frustrating it can be when a new device won't connect to your WiFi network. Let me help you resolve this issue.
+
+Since you're experiencing password failures and timeouts, here are the most effective troubleshooting steps:
+
+First, verify your password carefully:
+• WiFi passwords are case-sensitive - double-check uppercase and lowercase letters
+• Watch for commonly confused characters like 0 (zero) vs O (letter), or 1 (one) vs l (lowercase L)
+• If possible, try copying and pasting the password instead of typing it
+
+Check your network frequency:
+• Many smart devices only support 2.4GHz networks, not 5GHz
+• If your router broadcasts both frequencies, make sure you're connecting to the 2.4GHz network specifically
+
+Try these quick fixes:
+• Restart both your smart device and WiFi router (power off for 30 seconds, then turn back on)
+• Move your device within 10 feet of the router during initial setup
+• Verify that other devices can connect to your WiFi network successfully
+
+If those don't work:
+• Check if your router has MAC address filtering enabled, which can block new devices
+• Temporarily disable router security features like firewalls during setup
+• Reset your smart device's network settings and try again
+
+To provide more specific guidance, it would be helpful to know:
+1. What exact error message appears on your device?
+2. Your device model
+3. Whether your router uses 2.4GHz, 5GHz, or both
+
+Please try these steps and let me know the results. I'm here to help if you need further assistance!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",39920,0.9,Match score: 1.00
+TC020,2026-04-05T16:30:50.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+You can find your warranty information in a few convenient places:
+
+1. Your Online Account - Log in and check the ""My Products"" section for your warranty details
+2. Product Documentation - The warranty card that came with your product packaging
+3. Our Website - Visit the product page for your specific item
+4. Contact Support - Reach out with your product's serial number and we can provide the exact details
+
+Regarding your 8-month-old product, most of our products carry at least a 1-year warranty. Our warranty periods vary by category: Electronics and Computers have 1 year coverage, while TVs and Appliances have 2 years. The warranty covers manufacturing defects and hardware issues.
+
+Since you're experiencing an issue with your product and it's within the typical warranty period, I recommend checking your account or contacting our support team with your serial number so they can verify your specific coverage and help you with next steps for resolution.
+
+Feel free to reach out if you need any additional assistance!
+
+Cheers,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",29970,0.9,Match score: 1.00
+TC021,2026-04-05T16:33:50.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+I understand how frustrating it is when your device won't respond, especially after charging overnight. Let's work through some troubleshooting steps to get your device working again.
+
+First, try these quick fixes:
+
+• Perform a hard reset - Press and hold the power button for 15-20 seconds, then try turning it on again
+• Check your charging setup - Try a different power outlet (plug directly into the wall, not a power strip) and use a different charging cable and adapter if available
+• Clean the charging port - Use compressed air to remove any debris or lint that might be blocking the connection
+• Let it charge longer - Connect it to power for at least 30 minutes using the original charger before attempting to turn it on
+
+If you've tried these steps and your device still won't turn on, it may require warranty service since you've had it for 6 months. Our support team can help you with warranty options and next steps - just let me know the results of the troubleshooting, and I'll make sure you get the assistance you need.
+
+Cheers,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",28730,0.9,Match score: 1.00
+TC022,2026-04-05T16:36:51.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+Thank you for reaching out about the app crashing issue on your Android 13 device. I understand how frustrating it is when the app won't even load. Let's work through these troubleshooting steps:
+
+1. Force Close and Restart: Go to Settings > Apps > [App Name], tap 'Force Stop', then reopen the app.
+
+2. Clear App Cache: Navigate to Settings > Apps > [App Name] > Storage, then select 'Clear Cache' first. If that doesn't work, try 'Clear Data' (this will reset app settings).
+
+3. Check for Updates: Open Google Play Store, search for the app, and install any available updates. Android 13 may require the latest app version.
+
+4. Restart Your Device: Hold the power button, select 'Restart', and try opening the app again.
+
+5. Reinstall the App: Long-press the app icon, select 'Uninstall', then reinstall from the Play Store. This often resolves corruption issues.
+
+If the crash persists after trying these steps, please reply with your device model, the exact app version (found in Play Store), and when this started happening. I'll escalate this to our technical team for an Android 13 compatibility review and can submit a bug report on your behalf.
+
+Cheers,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",29430,0.9,Match score: 1.00
+TC023,2026-04-05T16:39:51.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+I understand how frustrating screen flickering can be, especially after a software update. This is a known issue that can occur after updates, and I'm happy to help you resolve it.
+
+Since the flickering started after yesterday's software update, this is likely a software-related issue rather than hardware damage. Here are the steps to resolve it:
+
+Quick Fixes to Try First:
+
+1. Restart your device - This often resolves temporary software glitches from updates
+2. Check for a newer update - Sometimes a patch is released quickly to fix issues like this. Go to Settings > Software Update
+3. Disable adaptive brightness - Go to Settings > Display > Adaptive Brightness and turn it Off. Auto-brightness features can sometimes cause flickering after updates
+4. Adjust brightness manually - Try raising or lowering your screen brightness to see if it affects the flickering
+
+If the issue persists after trying these steps:
+
+A factory reset may be necessary as a last resort (be sure to back up your data first), or contact us back with your device model and serial number so we can look into a replacement if it's under warranty.
+
+Please try these steps and let me know if the flickering continues. I'm here to help!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",32410,0.9,Match score: 1.00
+TC024,2026-04-05T16:42:52.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+I understand how frustrating sudden battery drain can be, especially when your device used to last much longer. Since this started recently and your device is about 2 years old, there are several things you can try:
+
+First, check which apps are consuming the most battery by going to Settings > Battery. Force close or uninstall any battery-intensive apps you don't need. Next, adjust your screen settings by reducing brightness or enabling auto-brightness, and shorten your screen timeout to 30 seconds or 1 minute.
+
+Disable features you're not actively using like:
+• WiFi
+• Bluetooth
+• GPS
+• Background app refresh for non-essential apps
+
+Also, check for software updates in Settings > System Update, as these often include battery optimization improvements.
+
+Since your device is about 2 years old, it's also possible the battery has naturally degraded. Batteries typically retain around 80% capacity after 500 charge cycles. You might also try battery calibration:
+
+1. Fully discharge the device until it powers off
+2. Charge to 100% without interruption
+3. Restart the device
+
+If these steps don't significantly improve your battery life, the battery may need replacement. Let me know how these solutions work for you, or if you'd like information about battery replacement options!
+
+Cheers,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",34280,0.92,Match score: 1.00
+TC025,2026-04-05T16:45:52.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+Thank you for contacting our Support Team. I understand how frustrating it is when your device won't charge. Since you've already tried a different wall adapter, let's work through these additional troubleshooting steps:
+
+1. Inspect and clean the charging port - Use compressed air to gently remove any debris, dust, or lint that may be blocking the connection. Even small obstructions can prevent proper charging.
+
+2. Try a different charging cable - If possible, test with the original cable or a known working cable, as cable damage is a common cause of charging failures.
+
+3. Test a different power outlet - Connect directly to a wall outlet rather than a power strip to rule out power source issues.
+
+4. Restart your device while plugged in - Keep it connected to the charger during the restart, which can reset the charging detection system.
+
+5. Try wireless charging if your device supports it - This helps determine if the issue is specific to the charging port.
+
+If none of these steps resolve the issue, your device may require warranty service or battery replacement, particularly if it's over 2 years old or has any physical damage to the charging port. Please let me know the results of these steps, and I'll be happy to assist you further with warranty information if needed.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",30850,0.9,Match score: 1.00
+TC026,2026-04-05T16:48:53.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+I understand how frustrating it is when your device keeps disconnecting from WiFi every 10-15 minutes while your other devices stay connected fine. Since other devices are working properly, this appears to be device-specific, and I have several solutions that should help.
+
+Here are the most effective fixes to try:
+
+1. Disable power saving mode for WiFi - This is often the main culprit for periodic disconnections. Go to Settings > WiFi > Advanced Settings and turn off any ""WiFi sleep"" or ""power saving"" options.
+
+2. Reset network settings on your device - This clears any corrupted network configurations. Note that you'll need to re-enter your WiFi passwords afterward.
+
+3. Change the WiFi channel in your router settings - Interference from neighboring networks can cause drops. Try channels 1, 6, or 11 for 2.4GHz networks.
+
+4. Check for interference sources - Microwaves and cordless phones can disrupt WiFi signals. Try using your device in a different location to test.
+
+5. Update your router firmware - Outdated firmware can cause compatibility issues with certain devices.
+
+Start with the power saving mode setting as that resolves most periodic disconnection issues. If you've tried these steps and still experience disconnections, let me know your device model and whether you're using 2.4GHz or 5GHz WiFi, and I'll help you troubleshoot further!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",32230,0.92,Match score: 1.00
+TC027,2026-04-05T16:51:53.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+I can help you resolve this Bluetooth pairing issue. When headphones appear in the list but fail to connect, it's usually a pairing mode or connection conflict issue. Here's what to try:
+
+First, reset the pairing attempt:
+1. Remove/forget the headphones from your device's Bluetooth list
+2. Turn off Bluetooth on your device completely
+3. Restart both your headphones and your device
+
+Then re-pair properly:
+4. Make sure your headphones are in active pairing mode (look for a blinking light)
+5. Keep your device within 3 feet of the headphones with no obstructions between them
+6. Try pairing again
+
+If that doesn't work:
+• Clear the pairing history on your headphones (they may be trying to connect to a previously paired device - check your manual for specific steps)
+• Check if there's a firmware update available for your headphones
+• Verify your device's Bluetooth is updated
+
+These steps resolve most pairing failures. If you're still having trouble after trying these, let me know and I'll escalate this to our technical team to investigate further!
+
+Cheers,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",31550,0.9,Match score: 1.00
+TC028,2026-04-05T16:54:54.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+Thank you for reaching out about your fitness tracker syncing issue. I understand how frustrating it can be when your device data doesn't update in the app. Let me help you resolve this.
+
+Please try these troubleshooting steps in order:
+
+1. Restart your fitness tracker - Turn it off completely, wait 10-15 seconds, then turn it back on.
+
+2. Force close the companion app - Close the app completely (clear it from recent apps), then reopen it and attempt to sync.
+
+3. Reset your Bluetooth connection - Turn off Bluetooth on your phone, wait 10 seconds, turn it back on, and try syncing again.
+
+4. Unpair and re-pair the device - Remove the device from both the app and your phone's Bluetooth settings, restart both devices, then re-pair from scratch following the initial setup process.
+
+5. Verify app permissions - Ensure sync permissions are enabled in the app settings, background app refresh is enabled (iOS), or battery optimization is disabled for the app (Android). Also confirm you're logged into the correct account.
+
+Additional tips: Keep your phone within 3 feet of the tracker during syncing, ensure both devices are sufficiently charged, and check if a firmware update is available for your tracker.
+
+Most syncing issues are resolved with steps 1-3. If you've tried all these steps and the device still won't sync, please let me know and I'll escalate this to our technical support team for further assistance.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",33220,0.92,Match score: 1.00
+TC029,2026-04-05T16:57:54.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+I can help you get your smart home device responding to voice commands again. Since your device is powered on and connected to WiFi, let's try these troubleshooting steps:
+
+1. Check the microphone status - Look for a mute indicator light on your device. If it's lit, press the microphone button to unmute it. This is the most common cause of wake word issues.
+
+2. Test your voice placement - Stand 3-6 feet away from the device and speak the wake word at normal volume (not too soft or loud). Make sure you're using the exact wake word for your device.
+
+3. Reduce background noise - Temporarily turn down any TVs, music, or move away from noisy appliances that might interfere with voice detection.
+
+4. Restart the device - Unplug it for 30 seconds, then plug it back in and wait for it to fully start up. This often resolves temporary software glitches.
+
+5. Retrain voice recognition - If your device has a companion app, look for voice training or voice match settings and follow the prompts to retrain the wake word detection.
+
+Try these steps in order and let me know if the wake word starts working again. If the issue continues after trying all of these, I can help you with additional troubleshooting or connect you with our technical support team for further assistance.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",34650,0.92,Match score: 1.00
+TC030,2026-04-05T17:00:55.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+I can help you troubleshoot your sunset automation issue. Since your lights respond to manual control but the automation isn't triggering, here are the key steps to resolve this:
+
+1. Check your location settings - Sunset times are based on your location, so verify the app has the correct location configured. If this changed recently, it could explain why it stopped working.
+
+2. Review automation logs - Open your app and check the automation history or logs for any error messages that indicate why the automation failed to trigger.
+
+3. Recreate the automation - Sometimes automations can become corrupted. Delete the current sunset schedule and create it fresh from scratch. Test it with a manual trigger first to ensure it works.
+
+4. Check for conflicts - Make sure there aren't duplicate sunset schedules or other automations that might be interfering with this one.
+
+5. Verify connectivity - Confirm your smart lights' hub or bridge (like a Hue Bridge) is online and properly connected.
+
+Since your lights work fine manually, this is typically a scheduling or configuration issue rather than a device problem. Try the location settings and recreation steps first - those resolve most sunset automation issues. Let me know if you need help with any of these steps or if the issue persists!
+
+Cheers,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",34400,0.9,Match score: 1.00
+TC031,2026-04-05T17:03:55.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+I understand how frustrating it is when your device freezes, especially when you need it for work. Let's get this resolved for you right away.
+
+Since your device is unresponsive to touches and button presses, please try a hard reset first:
+
+Hard Reset (Force Restart):
+• Press and hold the power button for 15-20 seconds continuously
+• Don't release even if nothing seems to happen initially
+• The screen should eventually go black and the device will restart
+• Wait a moment for it to fully power back on
+
+This resolves most frozen device issues immediately. If the hard reset doesn't work, let the battery drain completely until the device powers off naturally (this may take several hours), then charge it for at least 30 minutes before turning it back on.
+
+After your device restarts:
+• Check for any available software updates in Settings > System Updates
+• If you notice which app was open when it froze, that may help identify the cause
+• Consider booting in safe mode if freezing continues
+
+If the device continues to freeze frequently after trying these steps, please let me know and I'll escalate this to our technical team who can assist with advanced troubleshooting or hardware diagnostics.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",33190,0.92,Match score: 1.00
+TC032,2026-04-05T17:06:56.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+I understand how frustrating it is when software updates keep failing. Let's get this resolved for you.
+
+Based on the symptoms you're describing, here are the most common causes and solutions:
+
+First, check these three critical requirements:
+
+• Storage space: Ensure you have at least 2GB free (Settings > Storage). Delete unused apps or move photos to free up space if needed.
+• Battery level: Your device must be at least 50% charged. Keep it plugged in during the entire update.
+• WiFi connection: Use a stable WiFi network (not mobile data) and stay close to your router.
+
+Then try these troubleshooting steps:
+
+1. Restart your device: Power it off completely, wait 30 seconds, then turn it back on and retry the update.
+
+2. Clear the system cache: Go to Settings > Apps > System Update, then clear the cache (not data) and attempt the update again.
+
+3. Try a different time: If our update servers are experiencing high traffic, updating during off-peak hours may help.
+
+4. Manual download option: If the automatic update continues to fail, you can download the update file manually from our website and install it following the manual installation instructions.
+
+If you've tried these steps and the update still fails, please reply with the exact error message or code you're seeing, your device model, and how much storage space is available. This will help me provide more specific assistance or escalate this to our technical team if needed.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",35710,0.92,Match score: 1.00
+TC033,2026-04-05T17:09:56.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+I understand how stressful it can be to accidentally delete important files. The good news is that you likely can recover them since it's only been about 2 days.
+
+Your best option is to check your Trash or Recently Deleted folder. Our system automatically keeps deleted files there for 30 days, so your files should still be recoverable. Here's how:
+
+1. Navigate to your account's Trash or Recently Deleted section
+2. Locate the files you need
+3. Select them and click ""Restore""
+
+If you have automatic cloud backup enabled, you can also check Account Settings > Backup & Recovery to browse available backup versions.
+
+For the future, I'd recommend enabling automatic cloud backup in your account settings to prevent data loss. Let me know if you need help locating the Trash folder or if you don't see your files there, and I'll assist you further!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",32160,0.92,Match score: 1.00
+TC034,2026-04-05T17:12:57.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+Thank you for contacting us about your external hard drive detection issue. I understand how frustrating this can be when you need to access your files. Let me guide you through the most effective troubleshooting steps:
+
+Immediate Quick Fixes:
+
+1. Try different USB ports - Connect directly to your computer (avoid USB hubs) and use USB 3.0 ports if available
+2. Check power requirements - If your drive has a separate power adapter, ensure it's plugged in
+3. Try a different USB cable - Damaged cables often prevent detection
+
+Check Disk Management (Most Common Solution):
+
+Your drive may be connected but missing a drive letter:
+
+1. Press Windows Key + X and select Disk Management
+2. Look for your external drive in the list
+3. If it appears but has no drive letter, right-click the partition
+4. Select ""Change Drive Letter and Paths"" → ""Add""
+5. Assign an available drive letter and click OK
+
+Your drive should now appear in File Explorer.
+
+If the drive doesn't appear in Disk Management:
+
+1. Open Device Manager (Windows Key + X → Device Manager)
+2. Check under ""Disk Drives"" for your external drive
+3. If you see a yellow exclamation mark, right-click and select ""Update driver""
+4. Restart your computer after updating
+
+Additional Steps:
+
+• Test the drive on another computer to verify it's functioning
+• Ensure you're using a high-quality USB cable
+• Connect the drive away from other electronic devices that might cause interference
+
+If none of these steps resolve the issue, the drive may have a hardware failure. Please let me know what you see in Disk Management or Device Manager, and I'll provide more targeted assistance. If you need immediate help with a critical data recovery situation, I can connect you with our specialist team right away.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",54880,0.92,Match score: 1.00
+TC035,2026-04-05T17:15:57.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+I understand how frustrating it is when your camera suddenly won't take photos. Since the card was working yesterday and you've already tried reinserting it, let's work through some solutions:
+
+First, try formatting the card in your camera (this is the most common fix):
+
+1. Go to your camera's menu settings
+2. Find the Format/Initialize option
+3. Format the card there (not on a computer)
+
+Before formatting, also check these quick items:
+
+• Ensure the write-protection switch on the side of your SD card is in the unlocked position
+• Gently clean the gold contacts on the card with a soft, dry cloth
+• Make sure the card clicks fully into place when inserted
+
+If formatting doesn't resolve it:
+
+• Try a different SD card if you have one available (this helps determine if it's the card or camera)
+• Verify your 64GB SD card meets your camera's speed requirements (some cameras need Class 10 or UHS ratings)
+• The card may be corrupted or damaged and need replacement
+
+Start with the formatting step, as this resolves most memory card errors. Let me know if you need any clarification on these steps or if the issue persists!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",32340,0.92,Match score: 1.00
+TC036,2026-04-05T17:18:58.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+I understand how frustrating it is when your Bluetooth speaker connects but produces no sound. Since you've already checked the volume levels, let's work through these additional troubleshooting steps:
+
+Verify Audio Output Selection:
+On your source device (phone/computer), go to audio settings and confirm the Bluetooth speaker is selected as the active output device. Sometimes devices automatically switch back to built-in speakers even when Bluetooth is paired.
+
+Re-pair the Connection:
+Unpair/forget the speaker from your device, turn the speaker off and back on, then re-pair from scratch. Initial pairings sometimes don't establish the audio channel properly.
+
+Test Different Audio Sources:
+Try playing audio from a different app or test with a completely different device. This helps determine whether the issue is with the speaker or the source device.
+
+Reset the Speaker:
+Perform a factory reset on your speaker (check your manual for the specific button combination). This clears any corrupted settings that might be blocking audio output.
+
+Check for Firmware Updates:
+If your speaker has a manufacturer app, check for available firmware updates that might resolve the issue.
+
+If you've tried these steps and still have no sound, please let me know the brand and model of your speaker so I can provide more specific guidance, or there may be a hardware issue that requires further assistance.
+
+Cheers,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",34930,0.92,Match score: 1.00
+TC037,2026-04-05T17:21:58.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+I understand how frustrating it is to see inaccurate readings on your fitness tracker. Let's work through some troubleshooting steps to resolve this:
+
+1. Verify Proper Placement
+Ensure the tracker is worn snugly (firm but comfortable) about one finger-width above your wrist bone. It shouldn't be too tight or too loose, and the heart rate sensor should maintain contact with your skin.
+
+2. Update Firmware
+Open your companion app and check for any available firmware updates. Installing these updates often improves sensor accuracy significantly.
+
+3. Clean the Sensors
+Use a soft, lint-free cloth slightly dampened with water to clean the sensors on the back of the device. Sweat, dirt, or lotion buildup can cause inaccurate readings. Let it dry completely before wearing.
+
+4. Calibrate Your Device
+Check your app settings for calibration options. Walk a known distance to calibrate step counting, and compare heart rate readings with a manual pulse check to adjust sensitivity.
+
+5. Additional Steps
+• Restart the wearable device
+• Sync with the app to ensure latest data transfer
+• Verify your personal profile (height, weight, age) is accurate in the app
+
+Try these steps and monitor your tracker's accuracy over the next day or two. If the issue persists after completing all these steps, please let me know and I'll escalate this to our technical team for a potential hardware assessment.
+
+Cheers,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",36910,0.92,Match score: 1.00
+TC038,2026-04-05T17:24:59.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+Welcome to TechFlow, and congratulations on your new product! I'm excited to help you get started.
+
+Here's your complete first-time setup process:
+
+1. Unbox & Verify - Check all components against the included checklist to ensure nothing is missing
+
+2. Charge First - Fully charge your device before first use (minimum 2 hours) using the original charger and cable provided
+
+3. Download the Companion App - If your product has an app, download it now and ensure your phone meets the minimum OS requirements
+
+4. Configure Your Device - Follow the Quick Start Guide in your box, keeping your phone within 3 feet of the device during pairing. Make sure Bluetooth and WiFi are enabled on your phone
+
+5. Register for Warranty - Register your product on our website to activate your warranty coverage
+
+We also have video tutorials on our YouTube channel and a detailed user manual available for download from your account on our website.
+
+Since you mentioned having a few questions, please let me know exactly where you're getting stuck or what specific aspects of the setup are confusing, and I'll walk you through those steps in detail. Happy to help you get everything up and running smoothly!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",28560,0.92,Match score: 1.00
+TC039,2026-04-05T17:27:59.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+Great question! You're smart to check compatibility before purchasing. We have several resources to help you verify compatibility:
+
+1. Compatibility Checker Tool - We offer an online compatibility checker tool specifically designed to answer these questions. You can access it on our website.
+
+2. Product Specifications Page - Each product page includes detailed compatibility information. Look for the specifications or compatibility section on the accessory's product page.
+
+3. User Manuals - Our downloadable user manuals include compatibility sections. You can find these in your account or on the product support page.
+
+4. Support Page Search - Visit our Support page and search for your specific device model along with the accessory name for detailed compatibility information.
+
+If you'd like, you can also let me know which device and accessory you're considering, and I can help point you to the right resources!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",32630,0.9,Match score: 1.00
+TC040,2026-04-05T17:31:00.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+I understand how frustrating it is when your USB drive isn't being recognized by your LG Smart TV. I can help you resolve this issue with several troubleshooting steps.
+
+The most common cause is the USB format. LG Smart TVs only support FAT32 and NTFS file systems. If your drive uses a different format, the TV won't detect it. You can check and reformat the drive on your laptop (note: reformatting erases all data, so back up your files first).
+
+Here's what I recommend trying:
+
+Immediate Solutions:
+• Try different USB ports on your TV - some ports may be designated for specific functions
+• Perform a power cycle: unplug your TV for 60 seconds, then plug it back in and try the USB drive again
+• Verify the USB drive capacity - some LG models have limitations, with under 2TB being the safest range
+
+Additional Steps:
+• Update your TV's software by going to Settings → All Settings → General → About This TV → Check for updates
+• Ensure your media files are in supported formats that LG Smart TVs can read
+• Check if USB input needs to be manually enabled in your TV's input source menu
+
+Since your USB drive works fine on your laptop, it's likely a compatibility or format issue rather than a hardware problem with the drive itself.
+
+Please try these steps and let me know if the issue persists. If none of these solutions work, the USB port itself may have a hardware issue that would require service evaluation.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",37850,0.92,Match score: 1.00
+TC041,2026-04-05T17:34:00.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+I understand how frustrating it can be when your laptop slows down progressively. Since you mentioned that opening a browser takes over a minute, I have several troubleshooting steps that should help improve your laptop's performance.
+
+Start with these immediate fixes:
+
+• Restart your laptop - This clears temporary files and refreshes system memory
+• Close background applications - Open Task Manager (Ctrl+Shift+Esc on Windows) or Activity Monitor (Mac) and close unnecessary programs using high CPU or memory
+• Check for software updates - Update your operating system, browser, and any pending driver updates
+
+For browser-specific slowness:
+
+• Clear your browser cache and cookies
+• Disable unnecessary browser extensions that may be slowing it down
+• Try a different browser temporarily to see if the issue is browser-specific
+
+Additional steps to improve overall performance:
+
+• Free up disk space - Delete temporary files, uninstall unused programs, and move large files to external storage
+• Run a full antivirus scan - Check for malware that could be consuming resources
+• Manage startup programs - Disable programs that automatically launch at startup
+
+If you've tried these steps and the issue persists, it could indicate that your laptop may need professional service or hardware upgrades like additional RAM or an SSD. Let me know how these steps work for you, and I'm happy to help further troubleshoot!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",32640,0.92,Match score: 1.00
+TC042,2026-04-05T17:37:01.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+I can help you resolve this touch screen issue. Based on your mention of recently applying a new screen protector, this is likely the cause of your touch sensitivity problems.
+
+Here's what to try:
+
+1. Remove the screen protector temporarily - This is the first step to check. Screen protectors can interfere with touch sensitivity, especially if they're incompatible or not applied correctly. Test whether your touch screen works properly without it.
+
+2. Clean the screen thoroughly - Use a microfiber cloth to remove any dirt, oils, or debris that might interfere with touch detection.
+
+3. Restart your device - A simple restart can resolve temporary software glitches affecting touch response.
+
+4. Check for software updates - Updates often include touch screen sensitivity improvements and bug fixes.
+
+5. Calibrate the touch screen - Look in your device settings for a touch screen calibration tool if available. This can help realign touch input accuracy.
+
+If the issue resolves without the screen protector, you may need to replace it with a higher-quality or officially recommended one. If problems persist even without the screen protector, please let me know and I'll help you further troubleshoot or arrange professional service.
+
+Cheers,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",30050,0.92,Match score: 0.94
+TC043,2026-04-05T17:40:01.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+Thank you for contacting us about the dead pixels on your device screen. I'm happy to help clarify our warranty coverage for this issue.
+
+Good news - dead pixels on your device screen are covered under our standard warranty as a display defect. Since your device is 4 months old, it should still be within the warranty period (our standard electronics warranty is 1 year, computers are 1 year, and TVs are 2 years).
+
+To proceed with a warranty claim, please:
+
+1. Document the issue - Take clear photos or a short video showing the cluster of dead pixels in the corner of your screen
+2. Gather your information - Have your proof of purchase and device serial number ready
+3. Submit your claim - Provide the documentation to our support team, and we'll determine replacement eligibility
+
+Please note that warranty coverage applies to manufacturing defects. If the dead pixels resulted from physical damage (such as drops or impact), they would not be covered.
+
+If you'd like to start your warranty claim now, please reply with the photos/video of the dead pixels along with your proof of purchase, and I'll help move this forward for you.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",29950,0.92,Match score: 1.00
+TC044,2026-04-05T17:43:02.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+I understand how frustrating it is to experience audio issues after a firmware update. Audio quality problems like static and cutting out can occur after firmware updates, but there are several solutions we can try.
+
+First, try resetting your headphones:
+
+1. Power them off
+2. Wait 30 seconds
+3. Power back on
+
+This often resolves post-update software glitches.
+
+If that doesn't help, re-pair the Bluetooth connection:
+
+1. Forget the headphones from your device's Bluetooth settings
+2. Turn Bluetooth off
+3. Power cycle the headphones
+4. Re-pair from scratch
+
+Additionally, here are some other things to check:
+
+• Check if your EQ settings were changed during the update through the Bose Music app—resetting EQ to default can help
+• Test with different devices to determine if the issue is device-specific
+• Ensure you're away from potential interference sources like WiFi routers or microwaves
+
+If these steps don't resolve the issue, a factory reset may be necessary (instructions vary by model), or the firmware update may have introduced a bug that Bose support can address with a patch or rollback.
+
+Let me know if any of these solutions work, or if you need help with the next steps!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",31340,0.9,Match score: 1.00
+TC045,2026-04-05T17:46:02.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+I can help you fix that Bluetooth stuttering issue. The increased problems in public places are likely due to wireless interference from the many active Bluetooth and WiFi devices competing for the same radio frequencies in crowded areas.
+
+Here are the solutions to try:
+
+Immediate fixes:
+• Keep your phone/device as close as possible to your headphones (within 10 feet rather than the full 30-foot range)
+• Move your phone to the same side as your headphones - avoid keeping it in your back pocket
+• Turn Bluetooth off and back on for both your headphones and phone, then restart both devices
+• Disable Bluetooth on any other devices you're carrying but not actively using
+
+For better performance:
+• Check for firmware updates on your headphones and Bluetooth driver updates on your phone/device
+• Remove previously paired devices from both your headphones and source device, then re-pair from scratch
+• If your device settings allow it, switch to a lower quality audio codec for more stable connectivity
+
+The interference in crowded areas is common and temporary - it should improve when you leave those environments. Try these steps and let me know if the stuttering continues!
+
+Cheers,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",47360,0.92,Match score: 1.00
+TC046,2026-04-05T17:49:03.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+Thank you for reaching out about your PlayStation controller connectivity issue. I understand how frustrating it is when your controller stops responding, especially after charging it overnight. Let me help you resolve this.
+
+Since charging hasn't resolved the issue, please try these troubleshooting steps:
+
+1. Reset the Controller
+   - Locate the small reset button on the back of your controller (near the L2 button)
+   - Use a paperclip or pin to press and hold it for 5 seconds
+   - This often resolves unresponsive controller issues
+
+2. Re-Pair Using Wired Connection
+   - Connect your controller directly to the console using a USB cable (ensure it's a data cable, not just a charging cable)
+   - Press the PS button
+   - Wait for the light bar to turn solid
+   - Once connected, you can disconnect the cable and use it wirelessly
+
+3. Additional Steps if Needed
+   - Restart your console completely (not rest mode)
+   - Try a different USB cable if available
+   - Connect directly to the console, avoiding USB hubs
+
+The PS button not responding often indicates the controller may have synced to another device or needs a reset. The steps above should restore functionality.
+
+Please try these solutions and let me know if the issue persists. If the controller still doesn't connect after following these steps, I'll escalate this to our technical team who can assist with potential hardware issues or warranty options.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",36340,0.92,Match score: 1.00
+TC047,2026-04-05T17:52:03.000Z,ESCALATED,YES,FALSE,"Request Forwarded to Support Team Hello, Your email has been forwarded to our customer support team for personalized assistance. A human agent will review your request and respond within 1 hour. What",65845000,None,Match score: 1.00
+TC048,2026-04-05T17:55:04.000Z,ESCALATED,YES,FALSE,"Request Forwarded to Support Team Hello, Your email has been forwarded to our customer support team for personalized assistance. A human agent will review your request and respond within 1 hour. What",65666000,None,Match score: 1.00
+TC049,2026-04-05T17:58:04.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+Thank you for reaching out! I understand you'd like to check on your support ticket from 2 days ago.
+
+You can easily track your ticket status online by following these steps:
+
+1. Log into your account
+2. Navigate to the 'Support Tickets' section
+3. View the current status of your ticket
+
+From there, you'll also be able to:
+
+• Add comments or updates to your ticket
+• Upload any additional information if needed
+• Access the portal 24/7 for your convenience
+
+If you have any difficulty accessing your tickets or need immediate assistance regarding your specific ticket, our support team is here to help:
+
+• Chat: Available 24/7
+• Phone: Monday-Friday 8AM-8PM, Saturday 9AM-5PM EST
+• Email: Responses within 24 hours
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",32370,0.93,Match score: 1.00
+TC050,2026-04-05T18:01:05.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+I completely understand your concern—it's stressful when you realize you could lose important data. Here are the best practices to keep your data safe:
+
+1. Enable Automatic Cloud Backup - Set up automatic cloud backup so your data is regularly saved without you having to remember to do it manually.
+
+2. Create Regular Local Backups - Don't rely solely on the cloud. Make regular backups to external storage devices like external hard drives, solid-state drives (SSD), or network-attached storage (NAS).
+
+3. Use a Surge Protector - If you're using desktop devices, protect them with a quality surge protector to prevent data corruption from power surges.
+
+4. Keep Software Updated - Regular software updates fix security vulnerabilities, improve system stability, and patch bugs that could cause data loss.
+
+Additional Tips: Regularly verify your backups are working properly, store important backups in multiple locations, and remember that accidentally deleted files can often be recovered from your Trash or Recently Deleted folder within 30 days.
+
+By following these steps, you'll have multiple layers of protection for your important data!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",30700,0.92,Match score: 1.00
+TC051,2026-04-09T13:46:00.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+Your monthly subscription will be charged on the same date each month, corresponding to the date you originally signed up for the service.
+
+For example, if you signed up on January 15th, you will be charged on the 15th of each month going forward at the start of the new billing cycle.
+
+This ensures consistency in your billing and makes it easy to track your subscription payments.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",14180,0.95,Match score: 1.00
+TC052,2026-04-09T13:49:01.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+If you upgrade your subscription plan to a higher tier partway through your current billing cycle, you will be charged a pro-rated amount for the difference in cost between the old and new plans. This pro-rated charge covers the remaining time left in your current cycle before the new, higher rate takes effect.
+
+Here's how it works:
+
+• You'll only pay for the price difference between your old and new plan
+• The charge is calculated based on the remaining days in your current billing cycle
+• Your next full billing cycle will reflect the new plan's regular price
+
+This ensures you're never paying twice for the same period!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",15420,0.92,Match score: 1.00
+TC053,2026-04-09T13:52:01.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+I understand you're experiencing payment failures due to what seems like a daily limit. Here are a few things you can try:
+
+1. Check with your bank or payment provider to see if there is a daily spending limit on your account. This is common for debit cards, credit cards, and other payment methods.
+
+2. If there is a daily limit, you may need to contact your bank to temporarily increase the limit or make multiple smaller payments over several days.
+
+3. You could also try using a different payment method, like a credit card or digital wallet, if those have higher daily limits.
+
+4. Make sure you don't have any pending or duplicate charges that could be counting towards your daily limit.
+
+5. If the issue persists, you may want to reach out to our customer support team. They can help investigate the specific problem and provide guidance on working around any daily payment limits.
+
+Cheers,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",16650,0.75,Match score: 1.00
+TC054,2026-04-09T13:55:02.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+To investigate this duplicate charge issue, I'll need the following information from you:
+
+1. The order number(s) associated with the duplicate charges
+2. The amount and date of each charge
+3. The last 4 digits of the credit/debit card that was charged
+4. Confirmation that you only placed a single order, not two identical ones
+
+With those details, I can pull up the transaction history and determine exactly what happened. Please provide that information, and I'll be happy to research this further and get back to you with a resolution.
+
+Let me know if you have any other questions!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",20270,0.8,Match score: 1.00
+TC055,2026-04-09T13:58:02.000Z,ESCALATED,YES,FALSE,Pending,,None,Match score: 1.00
+TC056,2026-04-09T14:01:03.000Z,ESCALATED,YES,FALSE,Pending,,None,Match score: 1.00
+TC057,2026-04-09T14:04:03.000Z,ESCALATED,YES,TRUE,Pending,,None,Match score: 1.00
+TC058,2026-04-09T14:07:04.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+For TV returns due to a change of mind (rather than a defective product), there is a 15% restocking fee.
+
+Here's what you need to know:
+
+• The TV must be in perfect working condition
+• All original packaging and accessories must be included
+• Returns must be made within 30 days of the purchase date
+
+As long as those conditions are met, we'll process your refund minus the 15% restocking charge.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",16990,0.95,Match score: 1.00
+TC059,2026-04-09T14:10:05.000Z,ESCALATED,YES,TRUE,Pending,,None,Match score: 1.00
+TC060,2026-04-09T14:13:05.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+If the returned item is missing an accessory, you may receive a partial refund rather than a full refund.
+
+According to our return policy, partial refunds may apply when accessories are missing, and the refund amount will be reduced to account for the missing item.
+
+A full refund would only apply if the product is returned in its original condition with all accessories included.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",15990,0.9,Match score: 1.00
+TC061,2026-04-09T14:16:06.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+Yes, you should be able to return the unopened and unused earbuds you purchased.
+
+According to our return policy, hygiene items like earbuds are eligible for a full refund within 30 days as long as they are in the original, sealed packaging. Since your earbuds are unopened, you can return them for a full refund.
+
+The refund will be processed within 5-7 business days after we receive the item.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",15110,0.92,Match score: 1.00
+TC062,2026-04-09T14:19:06.000Z,ESCALATED,YES,TRUE,Pending,,None,Match score: 0.96
+TC063,2026-04-09T14:22:07.000Z,ESCALATED,YES,FALSE,Pending,,None,Match score: 1.00
+TC064,2026-04-09T14:25:07.000Z,ESCALATED,YES,FALSE,Pending,,None,Match score: 0.86
+TC065,2026-04-09T14:28:08.000Z,ESCALATED,YES,FALSE,Pending,,None,Match score: 1.00
+TC066,2026-04-09T14:31:08.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+I'm happy to assist you with getting a price match on your Dell XPS laptop!
+
+To process your request, here's what you'll need to do:
+
+1. Contact our support team within 14 days of your original purchase
+2. Provide the link to the identical product (same model, color, condition) sold by an authorized retailer that has it in stock currently
+3. Our agent will verify the competitor's price and availability
+4. If approved, the difference will be refunded back to your original payment method
+
+Please let me know if you have any other questions!
+
+Cheers,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",15440,0.9,Match score: 1.00
+TC067,2026-04-09T14:34:09.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+I understand you're having trouble with your promo code at checkout. Let's troubleshoot this together!
+
+Here are some common reasons a promo code may not be applying successfully:
+
+• Expired promo code - Check the expiration date on the promo code to make sure it's still valid.
+• Minimum purchase requirement not met - Many promo codes require a minimum order amount. Verify you've met the minimum.
+• Product exclusions - Some promo codes may exclude certain products or product categories. Check the terms of the promo.
+• One-per-customer limit reached - If the promo code has a limit on how many times it can be used, it won't work if that limit has been reached.
+• Case sensitivity - Promo codes are sometimes case-sensitive, so make sure you're entering it exactly as provided.
+• Technical issue - There could be an issue with the promo code integration on the website. Try contacting customer support for assistance.
+
+If you've double checked all of those potential issues and the promo code still isn't working, I'd recommend reaching out to the customer support team. They'll be able to investigate further and let you know if there's any other reason the code isn't applying successfully.
+
+Let me know if you have any other questions!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",19650,0.8,Match score: 1.00
+TC068,2026-04-09T14:37:10.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+Here are the steps to add a new credit or debit card to your account:
+
+1. Log into your account on the website.
+2. Go to your Account Settings or Payment Methods section.
+3. Look for an option to 'Add Payment Method' or 'Add Card'.
+4. Enter the new card details - card number, expiration date, security code (CVV), and billing address.
+5. Make sure to save or submit the changes to add the new payment method.
+
+Once the new card is added, you can set it as the default payment option or use it for future purchases.
+
+If you have any trouble adding the card, make sure the information is entered correctly. You can also try using a different browser or device. And if you're still having issues, I'd recommend contacting customer support for assistance.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",16890,0.92,Match score: 1.00
+TC069,2026-04-09T14:40:10.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+To remove an old, expired credit card from your account, please follow these steps:
+
+1. Pay off any outstanding balance on the old card first. You can't remove a payment method if there is an unpaid balance associated with it.
+
+2. Cancel any active subscriptions or recurring payments that were set up using the old card. Make sure to update those with a new, active payment method.
+
+3. Add a new, valid credit or debit card to your account as an alternative payment option.
+
+4. Once those steps are completed, you should then be able to remove the old credit card from your account settings or profile.
+
+The key is to clear any balance, cancel subscriptions, and have a new card added before you can successfully remove the old one. Let me know if you have any other questions!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",18390,0.9,Match score: 1.00
+TC070,2026-04-09T14:43:11.000Z,ESCALATED,YES,TRUE,Pending,,None,Match score: 1.00
+TC071,2026-04-12T10:08:01.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+Let's go through the troubleshooting steps for when the device is not recognized during initial setup:
+
+1. Ensure Bluetooth/WiFi is enabled on your phone
+2. Keep the phone within 3 feet of the device during the pairing process
+3. Restart both the device and your phone
+4. Clear the app cache and try the setup process again
+5. Check if a firmware update is required for the device
+
+Can you confirm if you've tried these steps already? Is there any additional information you can provide about the specific issues you're facing during the setup process?
+
+If the troubleshooting steps don't resolve the problem, we may need to gather more details to determine the root cause and next steps. Please let me know if you have any other questions!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",16260,0.8,Match score: 1.00
+TC072,2026-04-12T10:11:01.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+I'm sorry to hear you're having trouble pairing your new smart home device with the companion app. Based on our troubleshooting guide, here are the steps I recommend to address the issue:
+
+1. Ensure Bluetooth is enabled on your phone.
+2. Keep your phone within 3 feet of the device during the pairing process.
+3. Try restarting both the device and your phone.
+4. Clear the cache of the companion app and try pairing again.
+5. Check if there is a firmware update available for the device and install it.
+6. Verify that your phone's operating system meets the minimum requirements for the companion app.
+7. Try uninstalling and reinstalling the companion app.
+
+If none of these steps resolve the issue, please contact our customer support team so they can further investigate. I'm happy to help troubleshoot further if you have any other questions.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",15190,0.75,Match score: 0.90
+TC073,2026-04-12T10:14:02.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+Thank you for reaching out about your device issue. Based on the symptoms you've described, it appears your device may be experiencing a more serious hardware problem that's preventing it from powering on.
+
+Here are the key troubleshooting steps I recommend:
+
+1. Charge the device for at least 30 minutes using the original charger and cable. Make sure the power outlet is working properly.
+
+2. After charging, try performing a hard reset by pressing and holding the power button for 15-20 seconds. This can sometimes revive an unresponsive device.
+
+3. Check the device physically for any signs of damage, such as a cracked screen or water exposure. This could be causing the issue.
+
+4. Since the device is 14 months old, it's possible the battery has degraded to the point it can no longer hold a charge. The battery may need to be replaced.
+
+If none of these steps resolve the issue, the device may require professional repair or replacement. Please let me know if you need further assistance or would like to discuss repair options.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",15090,0.7,Match score: 1.00
+TC074,2026-04-12T10:17:02.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+Based on the information provided, it sounds like you have already tried some troubleshooting steps for the charging issue with your device. Here are a few additional things you can try:
+
+1. Check for any physical damage or corrosion in the charging port. Use a toothpick or compressed air to gently clean out any debris that may be preventing a proper connection.
+
+2. Try a wireless charging pad if your device supports wireless charging. This can help determine if the issue is with the wired charging circuit or the battery itself.
+
+3. Perform a hard reset on the device. This involves pressing and holding the power button for 15-20 seconds until the device restarts. This can sometimes reset the charging system.
+
+4. If the device has a removable battery, try removing and reinserting the battery to reset the charging connection.
+
+5. Check if there are any software updates available for your device that may address charging problems.
+
+If none of these steps resolve the issue, it's likely a hardware problem that will require repair or replacement of the device. At this point, I would recommend contacting the manufacturer's customer support to explore your warranty or repair options.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",14250,0.75,Match score: 1.00
+TC075,2026-04-12T10:20:03.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+I'm sorry to hear your laptop battery is draining so quickly. Based on the information provided, here are some troubleshooting steps you can try to help improve the battery performance:
+
+1. Check which apps/processes are using the most battery and close any power-hungry apps.
+2. Adjust your laptop's power settings to 'balanced' or 'power saver' mode.
+3. Identify and close any resource-intensive background processes.
+4. Ensure your laptop's operating system, drivers, and critical software are all up to date.
+5. If the issue persists, there may be a hardware-related problem, and you should contact the laptop manufacturer's support for further assistance.
+
+Let me know if the troubleshooting steps help or if you have any other questions!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",14310,0.75,Match score: 1.00
+TC076,2026-04-12T10:23:03.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+There are a few common reasons why a device's battery percentage might get stuck and not move:
+
+• The battery indicator needs to be recalibrated - This can sometimes happen if the device is left on until it completely drains the battery. To recalibrate, try fully discharging the battery, then charging it back up to 100% without interruption.
+
+• There's an issue with the battery sensor - This internal component measures the battery level and reports it to the operating system. If it's malfunctioning, the battery percentage display can get stuck.
+
+• Software bug or glitch - Occasionally, software issues in the operating system or a specific app can cause the battery percentage to get stuck and not update properly.
+
+If none of those fixes work, it's possible there could be a more serious hardware issue with the battery or charging components in the device. In that case, I'd recommend contacting the manufacturer's support team to further diagnose and resolve the problem.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",14410,0.9,Match score: 1.00
+TC077,2026-04-12T10:26:04.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+I'm sorry to hear you're having an issue with your screen flickering on your device. Based on the information provided, here are some troubleshooting steps you can try:
+
+1. Check for software updates: Make sure your device has the latest software version installed, as updates can sometimes address display-related bugs.
+
+2. Adjust screen brightness: Try adjusting the screen brightness, either manually or by enabling automatic brightness adjustment. Fluctuations in brightness can sometimes cause flickering.
+
+3. Disable adaptive brightness/contrast: If your device has an adaptive brightness or adaptive contrast feature, try turning it off to see if that resolves the flickering issue.
+
+4. Factory reset the device: As a last resort, you can try performing a factory reset, which will restore the device to its default settings. This can help resolve software-related problems.
+
+If the flickering issue persists after trying these steps, it's possible there could be a hardware problem with the display. In that case, I would recommend contacting the manufacturer's support team for further assistance. They'll be able to better diagnose the issue and provide guidance on any warranty or repair options.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",18160,0.7,Match score: 1.00
+TC078,2026-04-12T10:29:05.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+I can help you with the dead pixels issue on your camera screen. Here are some troubleshooting steps you can try:
+
+1. Document the issue with photos or video. Capturing evidence of the dead pixels will be helpful if you need to pursue a warranty claim.
+
+2. Check the camera's warranty status. Many digital cameras come with a warranty that may cover screen issues like dead pixels, depending on the terms.
+
+3. Gently clean the screen with a microfiber cloth. Sometimes dust or debris can cause the appearance of dead pixels.
+
+4. Try a factory reset of the camera. This will reset all settings back to default and may resolve the screen issue.
+
+5. If the dead pixels persist after a reset, the camera likely requires repair or replacement. Contact the camera manufacturer's support team to inquire about the warranty and repair options.
+
+These steps should help you identify and potentially resolve the issue. If the problem continues, warranty support may be your best option.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",16810,0.9,Match score: 1.00
+TC079,2026-04-12T10:32:05.000Z,ESCALATED,YES,FALSE,Pending,,None,Match score: 1.00
+TC080,2026-04-12T10:35:06.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+Thank you for reaching out about your smart TV WiFi connection issue. I understand how frustrating it can be to have your connection drop every 10-20 minutes.
+
+Here are some troubleshooting steps I recommend trying:
+
+1. Check for WiFi interference: Nearby devices like microwaves, cordless phones, or even other WiFi networks can cause interference and connection drops. Try moving the TV or router to a different location to see if that helps.
+
+2. Update router firmware: Outdated router firmware can sometimes cause connectivity problems. Check your router manufacturer's website and install any available firmware updates.
+
+3. Change WiFi channel: Your router may be set to a channel that's crowded. Try changing the WiFi channel in your router settings to see if that stabilizes the connection.
+
+4. Disable power saving mode: Some smart TVs have power saving features that can cause the WiFi to disconnect. Check your TV's settings and try disabling any power saving or sleep mode options.
+
+5. Reset network settings: On your smart TV, try resetting the network settings. This will clear any cached network data that could be causing the connection drops.
+
+6. Check for device overload: If you have a lot of devices connected to your home network, it's possible your router is getting overloaded. Try disconnecting some unused devices to see if that improves the stability.
+
+If the issue persists after trying these troubleshooting steps, I would recommend contacting your TV manufacturer's support team. They may be able to provide additional guidance specific to your model.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",20410,0.9,Match score: 1.00
+TC081,2026-04-12T10:38:06.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+Thank you for reaching out about the slow WiFi speed on your device. I understand this can be frustrating when other devices are working fine. Let me help you troubleshoot this issue.
+
+Here are some steps to resolve the slow internet speeds:
+
+1. Run a speed test on your device to confirm the slow speeds. Compare the results to the speeds on your other devices.
+
+2. Restart your device and your WiFi router. This can sometimes resolve temporary connectivity issues.
+
+3. Check if there are any bandwidth-heavy applications running in the background on your device that could be consuming a lot of the network bandwidth.
+
+4. Try connecting your device directly to the router using an Ethernet cable, if possible. This will help isolate whether the issue is with the wireless connection or something specific to your device.
+
+5. Check for any WiFi channel interference by logging into your router settings and trying a different WiFi channel.
+
+6. Consider updating the firmware on your router if there is a newer version available from the manufacturer.
+
+7. As a last resort, you could try resetting the network settings on your device, but make sure to note down any saved WiFi passwords first.
+
+If none of these steps resolve the slow internet speeds, it may point to an issue with your device's wireless adapter or some other hardware-related problem. In that case, I'd recommend contacting the device manufacturer for further assistance.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",16980,0.8,Match score: 1.00
+TC082,2026-04-12T10:41:07.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+Okay, that explains the issue. Since your device only supports 2.4GHz WiFi, and your router is 5GHz only, they will not be able to connect. Here are a few things you can try:
+
+1. Check if your router has a dual-band option that supports both 2.4GHz and 5GHz. If so, connect to the 2.4GHz network.
+
+2. Consider getting a router that supports both 2.4GHz and 5GHz. This will allow your device to connect using the 2.4GHz band.
+
+3. You can try connecting your device to the 5GHz network by moving it very close to the router. The shorter range of 5GHz may allow it to connect in this case.
+
+4. As a last resort, you could connect the device to the network using an Ethernet cable if your router has an available Ethernet port.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",13330,0.92,Match score: 1.00
+TC083,2026-04-12T10:44:07.000Z,ESCALATED,YES,FALSE,Pending,,None,Match score: 1.00
+TC084,2026-04-12T10:47:08.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+Based on the information provided, it sounds like you are experiencing an issue with your Xbox controller frequently disconnecting from the console. Here are some troubleshooting steps you can try:
+
+1. Check for controller updates
+2. Reset the controller
+3. Check for wireless interference
+4. Try a different USB cable
+5. Contact Xbox support for repair or replacement
+
+If the issue persists after trying these steps, there may be a more serious problem with the controller or the Xbox console itself. You may need to contact Xbox support for further assistance.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",13830,0.75,Match score: 1.00
+TC085,2026-04-12T10:50:09.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+I understand you're experiencing an issue with your app crashing immediately after the loading screen. While I don't have enough specific information to pinpoint the exact cause, here are some troubleshooting steps you can try:
+
+1. Check for app updates in your app store
+2. Clear the app's cache and data from your phone settings
+3. Restart your phone
+4. Check if there are any available software updates for your phone
+5. Uninstall and reinstall the app
+6. Try using the app on another Android device if available
+7. Report the issue directly to the app developer's customer support team
+
+Without more specifics about your device model and any error messages you're seeing, I can't provide a definitive solution. Please try these troubleshooting steps and let me know if the app crashing persists. If you can share more details about your device and what happens when the crash occurs, I'll be better able to assist you.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",14360,0.7,Match score: 1.00
+TC086,2026-04-12T10:53:09.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+Based on your laptop freezing issue, here are several troubleshooting steps that should help resolve the problem:
+
+1. Check for software updates:
+   • Make sure your laptop's operating system, drivers, and any installed applications are up-to-date. Outdated software can sometimes cause freezing issues.
+   • Go to your laptop manufacturer's website and check for any available BIOS or firmware updates.
+
+2. Scan for malware:
+   • Run a full system scan with your antivirus/anti-malware software to check for any potentially malicious programs that could be causing the freezes.
+
+3. Check for overheating:
+   • Ensure your laptop's vents are not blocked and that the cooling system is functioning properly. You can try using a laptop cooling pad to help dissipate heat.
+
+4. Perform a clean boot:
+   • Boot your laptop in Safe Mode to see if the freezing issue still occurs. This will help identify if a conflicting third-party app or driver is the cause.
+
+5. Run a memory test:
+   • Use your laptop manufacturer's diagnostic tools or a program like MemTest86 to check for any issues with your system's RAM.
+
+6. Check for hardware issues:
+   • If the freezing persists after trying the above steps, there may be a more serious hardware problem, such as a failing hard drive or other internal component. You may need to contact the manufacturer for warranty service.
+
+Let me know if any of these troubleshooting steps help resolve the freezing issue with your laptop. If the problem continues, please provide more details so I can better assist you.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",19210,0.75,Match score: 1.00
+TC087,2026-04-12T10:56:10.000Z,ESCALATED,YES,FALSE,Pending,,None,Match score: 1.00
+TC088,2026-04-12T10:59:11.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+I understand you're seeing a discrepancy where your device isn't showing an available update that others are reporting. There could be a few reasons for this:
+
+• Your device model may not be eligible for the latest update yet - updates are often rolled out in phases
+• There may be a delay in the update reaching your specific region or carrier
+• There could be an issue with how your device is checking for updates
+
+Without knowing more details about your specific device model, software version, and update notification settings, I can't provide a definitive answer. Here's what I recommend:
+
+1. Check the manufacturer's website or support channels to see if there are any known update availability issues or delays for your model
+2. Make sure your device is connected to a stable internet connection and try manually checking for updates in your device's system settings
+3. If the update still doesn't appear, you may need to contact the manufacturer's support team directly - they'll be able to investigate further and provide guidance specific to your situation
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",14380,0.7,Match score: 1.00
+TC089,2026-04-12T11:02:11.000Z,ESCALATED,YES,FALSE,Pending,,None,Match score: 1.00
+TC090,2026-04-12T11:05:12.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+Here are some tips to help prevent data loss on your device:
+
+1. Enable automatic cloud backup:
+   • Set up a cloud storage service like Google Drive, iCloud, or Dropbox to automatically backup your important files and data.
+
+2. Create regular local backups:
+   • Regularly connect your device to a computer and create a full backup using the manufacturer's software or a third-party backup tool.
+   • Alternatively, use an external hard drive or USB drive to manually copy over critical files and folders.
+
+3. Use a surge protector for desktop devices:
+   • Plug desktop computers, monitors, and other peripherals into a surge protector to protect against power spikes and surges that can damage hardware and cause data loss.
+
+4. Keep software updated:
+   • Ensure your device's operating system, apps, and drivers are always up-to-date to prevent potential data corruption issues from software bugs.
+
+5. Be cautious of data deletion:
+   • If you accidentally delete important files, check the Trash or Recently Deleted folder right away, as deleted items are usually recoverable for a period of time.
+   • As a last resort, you can try using data recovery software, but professional data recovery services may be required for critical data.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",16600,0.92,Match score: 1.00
+TC091,2026-04-12T11:08:12.000Z,ESCALATED,YES,FALSE,Pending,,None,Match score: 1.00
+TC092,2026-04-12T11:11:13.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+Let's troubleshoot the issue with your USB keyboard not working when plugged into a USB hub:
+
+1. Try connecting the keyboard directly to the computer instead of the USB hub. This will help determine if the issue is with the keyboard itself or the hub.
+
+2. If the keyboard works when connected directly, the issue may be with the USB hub. Try the following:
+   • Use a different USB hub to see if the problem persists
+   • Ensure the USB hub is powered (if it requires external power)
+   • Make sure the hub is compatible with your computer's USB specification (USB 2.0 or 3.0)
+
+3. Check if there are any USB power management settings in your computer's BIOS or operating system that may be limiting power to the USB ports. Try disabling any power saving features.
+
+4. Update the drivers for the USB hub, if available, or try using a different USB port on your computer.
+
+5. As a last resort, the USB hub itself may be faulty and need replacement.
+
+If the keyboard still doesn't work when connected directly to the computer, the issue could be with the keyboard itself. In that case, you may need to contact the keyboard manufacturer for further troubleshooting or warranty support.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",14620,0.9,Match score: 1.00
+TC093,2026-04-12T11:14:14.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+Thank you for reaching out about the memory card error on your Canon EOS camera. I understand how frustrating this must be, especially since the card was working fine yesterday.
+
+Here are some troubleshooting steps you can try:
+
+1. Format the memory card in the camera, not on a computer. This will ensure the card is properly formatted for the camera.
+
+2. Try a different memory card to see if the issue is with the specific card you are using. Memory cards can sometimes fail unexpectedly.
+
+3. Check the memory card contacts - use a clean, soft cloth to gently wipe the metal contacts on the card to remove any dirt or debris.
+
+4. Ensure the memory card speed rating meets the camera's requirements. Older or slower cards may not be compatible.
+
+5. Update the camera's firmware if there is a newer version available. Firmware updates can sometimes resolve memory card compatibility issues.
+
+6. As a last resort, you may need to reset the camera to its factory settings. This will clear any settings that could be interfering with the memory card.
+
+If none of these steps resolve the memory card error, there may be an issue with the camera itself that requires service. I would recommend contacting Canon support for further assistance. Let me know if you have any other questions!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",16120,0.92,Match score: 1.00
+TC094,2026-04-12T11:17:14.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+I understand you're experiencing issues with your GoPro Hero camera's video quality and stabilization. Let me help you troubleshoot this.
+
+Here are some things to try for the blurry and shaky video:
+
+1. Check the camera lens - Make sure there are no smudges, scratches, or other debris on the lens that could be causing the blurry footage. Clean the lens gently with a microfiber cloth.
+
+2. Verify HyperSmooth settings - Go into the camera settings and ensure the HyperSmooth stabilization feature is enabled and set to the appropriate mode (standard, high, or boost). Make sure it is not turned off.
+
+3. Update the camera firmware - There may be a firmware update available that could improve the stabilization performance. Check the GoPro website for the latest firmware version and follow the update instructions.
+
+4. Try different video settings - Experiment with different video resolution, frame rate, and field of view settings to see if that improves the video quality and smoothness.
+
+5. Check for overheating - Extended recording in hot conditions can cause the GoPro to overheat and degrade video performance. Allow the camera to cool down if this seems to be an issue.
+
+If you've tried these troubleshooting steps and the video quality is still unacceptable, I would recommend contacting GoPro support. They may be able to provide additional guidance or determine if the camera needs service. Let me know if you have any other questions!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",18940,0.9,Match score: 1.00
+TC095,2026-04-12T11:20:15.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+Let's troubleshoot the issue with your Amazon Echo not responding to the Alexa wake word:
+
+1. Check the microphone status:
+   • Look for the microphone/mute button on your Echo device. Make sure it is not muted.
+   • In the Alexa app, go to Settings > Device Settings and ensure the microphone is enabled.
+
+2. Check the volume level:
+   • Use the volume buttons on your Echo to ensure the volume is turned up high enough.
+   • In the Alexa app, check that the volume slider is not all the way down.
+
+3. Perform a soft reset:
+   • Unplug your Echo from power for 30 seconds, then plug it back in.
+   • This will restart the device and potentially clear any temporary glitches.
+
+4. Check for updates:
+   • In the Alexa app, go to Settings > Device Settings and check if there are any software updates available for your Echo.
+   • Installing the latest update can sometimes resolve responsiveness issues.
+
+5. Try different wake words:
+   • In the Alexa app, go to Settings > Wake Word and try using a different wake word like ""Amazon"" or ""Echo"".
+
+If the Alexa wake word still doesn't work after trying these steps, there may be a more complex issue going on. At that point, I'd recommend contacting Amazon support for further assistance.
+
+Cheers,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",20770,0.95,Match score: 0.95
+TC096,2026-04-12T11:23:15.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+I'm sorry to hear your Nest Thermostat automation is not working as expected. Based on the information provided, here are some troubleshooting steps you can try:
+
+• Verify the automation rules are enabled in the Nest app or online account. Check that the automation is properly configured and triggered by the correct conditions.
+
+• Ensure the Nest Thermostat is connected to your home Wi-Fi network and communicating with the Nest servers. Try rebooting the device.
+
+• Review the automation logs in the Nest app or online portal for any error messages or indications of why it's not triggering.
+
+• Recreate the automation from scratch to see if that resolves the issue.
+
+• Check for any potential scheduling conflicts with other Nest routines.
+
+If the problem persists after trying these steps, please let me know and I'll escalate your case to the Nest support team for further assistance.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",13850,0.75,Match score: 1.00
+TC097,2026-04-12T11:26:16.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+I'm happy to help you get your Fitbit Charge syncing with the app again. Here are some troubleshooting steps you can try:
+
+1. Restart your Fitbit Charge by holding down the button for 8-10 seconds until the device shuts off, then press the button again to turn it back on.
+
+2. Force sync the Fitbit Charge by opening the Fitbit app, tapping your device, and selecting 'Sync Now'.
+
+3. Check your Bluetooth connection - make sure it's enabled on both your Fitbit Charge and your smartphone, then try unpairing and re-pairing the device.
+
+4. Update the Fitbit app and firmware on your device to the latest versions.
+
+5. Ensure you have a stable internet connection, as the Fitbit app requires internet access to sync data.
+
+6. As a last resort, you can try resetting your Fitbit Charge by pressing and holding the button for 8-10 seconds.
+
+Let me know if any of those steps help resolve the sync issue. If the problem persists, please don't hesitate to reach out to Fitbit support for further assistance.
+
+Cheers,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",16610,0.92,Match score: 1.00
+TC098,2026-04-12T11:29:16.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+Thank you for reaching out about the GPS accuracy issues with your Garmin Forerunner.
+
+I understand you're experiencing inaccurate GPS tracking that shows you running through buildings and adds approximately 20% extra distance to your runs. Here are some troubleshooting steps you can try:
+
+1. Check for GPS signal obstructions: Ensure there are no tall buildings, trees, or other obstacles blocking the GPS signal during your runs. The GPS may have trouble getting a clear line of sight to the satellites.
+
+2. Update the GPS software: Check if there is a firmware update available for your Garmin Forerunner. Updating the GPS software can sometimes improve accuracy.
+
+3. Recalibrate the GPS: Try calibrating the GPS on your watch by taking it outside to an open area and letting it acquire a GPS signal for 5-10 minutes before starting your run.
+
+4. Reset the GPS: As a last resort, you can try resetting the GPS on your Garmin Forerunner. Refer to the user manual for the specific steps to do this.
+
+If the GPS accuracy issues persist even after trying these troubleshooting steps, it's possible there could be a hardware issue with the GPS sensor on your watch. In that case, you may need to contact Garmin support for further assistance.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",16700,0.8,Match score: 1.00
+TC099,2026-04-12T11:32:17.000Z,ESCALATED,YES,FALSE,Pending,,None,Match score: 1.00
+TC100,2026-04-12T11:35:18.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+It sounds like you're experiencing an issue with the activation and sign-in process for your Microsoft Office applications. This is a common problem that can have a few different causes.
+
+Unfortunately, I don't have enough information to definitively diagnose the specific issue you're facing. However, here are some troubleshooting steps you can try:
+
+1. Make sure you're signed in with the correct Microsoft account that is associated with your Office 365 or Microsoft 365 subscription.
+2. Check your Office license status by opening any Office app, going to File > Account, and looking at the Product Information section. Verify that your license is active and not expired.
+3. Try signing out of your Office apps, then signing back in using the correct Microsoft account credentials.
+4. If you're using a volume license or corporate account, check with your IT administrator to ensure your license is properly assigned and configured.
+5. As a last resort, you may need to uninstall and then reinstall Office to resolve any activation issues.
+
+If the problem persists after trying these steps, I'd recommend reaching out to Microsoft support for further assistance. They'll be able to look into the specifics of your account and licensing to help resolve the repeated activation prompts you're experiencing.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",15590,0.7,Match score: 1.00
+TC101,2026-04-13T08:29:01.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC102,2026-04-13T08:32:02.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC103,2026-04-13T08:35:02.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC104,2026-04-13T08:38:03.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC105,2026-04-13T08:41:03.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC106,2026-04-13T08:44:04.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC107,2026-04-13T08:47:05.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC108,2026-04-13T08:50:05.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC109,2026-04-13T08:53:06.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC110,2026-04-13T08:56:06.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC111,2026-04-13T08:59:07.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC112,2026-04-13T09:02:08.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC113,2026-04-13T09:05:08.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC114,2026-04-13T09:08:09.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 0.96
+TC115,2026-04-13T09:11:10.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC116,2026-04-13T09:14:10.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC117,2026-04-13T09:17:11.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC118,2026-04-13T09:20:11.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC119,2026-04-13T09:23:12.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC120,2026-04-13T09:26:13.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC121,2026-04-13T09:29:13.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC122,2026-04-13T09:32:14.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC123,2026-04-13T09:35:15.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC124,2026-04-13T09:38:15.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC125,2026-04-13T09:41:16.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC126,2026-04-13T09:44:16.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC127,2026-04-13T09:47:17.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC128,2026-04-13T09:50:18.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC129,2026-04-13T09:53:18.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00
+TC130,2026-04-13T09:56:19.000Z,ESCALATE,YES,TRUE,Pending,,None,Match score: 1.00

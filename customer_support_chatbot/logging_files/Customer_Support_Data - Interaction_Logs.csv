@@ -1,0 +1,20 @@
+timestampReceived,timestampStart,timestampEnd,responseTime,threadId,messageId,channel,query,response,references,confidence,confidenceScore,isEscalated,humanAgentReply,wordCount,toneUsed,contextHistory,messageCount,kbLastUpdated
+2026-05-09T13:26:38.000Z,2026-05-09T13:27:31.582Z,2026-05-09T13:33:27.000Z,355,19e0ceb2e9e1b8ca,19e0ceb2e9e1b8ca,email,"Dear TechFlow Support, I am writing to report two unauthorized charges of €149.99 each that appeared on my credit card on May 5th and May 6th. I did not make these purchases and I have not shared my","Dear customer, thank you for letting us know about this issue. We will freeze your TechFlow account, and investigate this into further detail. As sson as we get more information about this, we will",None,None,None,True,TRUE,34,None,,2,None
+2026-05-26T09:14:04.000Z,2026-05-26T09:15:07.575Z,2026-05-26T09:15:20.558Z,12.98,19e639039147edde,19e639039147edde,email,"Hi, I forgot my password and can&#39;t log in. How do I reset it?","Hi,
+
+To reset your password, please follow these steps:
+
+1. Visit our website and click on 'Login' in the top right corner.
+2. Click 'Forgot Password'.
+3. Follow the instructions provided to receive a password reset link via email.
+
+If you encounter any issues after trying this, consider clearing your browser's cache and cookies, or try using a different browser or device.
+
+If the problem still persists, please let us know so we can assist you further.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,HIGH,"0,98",FALSE,None,76,neutral,,1,None

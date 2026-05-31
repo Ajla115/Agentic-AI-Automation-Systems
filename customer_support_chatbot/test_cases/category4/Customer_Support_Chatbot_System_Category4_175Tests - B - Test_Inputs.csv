@@ -1,0 +1,43 @@
+TEST_ID,SUBCATEGORY,CUSTOMER QUESTION,EXPECTED SOURCE DOC,RETRIEVAL METHOD,EXPECTED OUTCOME,NOTES
+CAT5-A-015,A - PageIndex,I was charged a restocking fee. When does this apply?,03_Billing_Refunds_Policy,Pinecone,RETRIEVED from Billing & Refunds Policy,
+CAT5-A-021,A - PageIndex,"Hello, I apologize, but I couldn't find specific information regarding the exact confidence score threshold at which the system escalates an inquiry to a human agent in the available documentation.",05_Escalation_Guidelines,Pinecone,43000,
+CAT5-A-023,A - PageIndex,How should the chatbot handle a customer threatening legal action?,05_Escalation_Guidelines,Pinecone,RETRIEVED from Escalation Guidelines,
+CAT5-A-024,A - PageIndex,What is the priority level for a security breach report?,05_Escalation_Guidelines,Pinecone,RETRIEVED from Escalation Guidelines,
+CAT5-A-031,A - PageIndex,What is the target first response time for a High priority ticket?,07_SLA_Performance_Metrics,Pinecone,RETRIEVED from SLA Performance Metrics,
+CAT5-A-036,A - PageIndex,What is TechFlow's data privacy policy for customer information?,08_Company_Policies,Pinecone,RETRIEVED from Company Policies,
+CAT5-A-037,A - PageIndex,How does TechFlow handle customer complaints that are unresolved after 3 contacts?,08_Company_Policies,Pinecone,RETRIEVED from Company Policies,
+CAT5-A-039,A - PageIndex,"Hello, Regarding your inquiry about TechFlow's fraud prevention policy: Specific details of a dedicated fraud prevention policy for TechFlow were not found in our readily available documentation.",08_Company_Policies,Pinecone,35000,
+CAT5-A-040,A - PageIndex,"Hello, Thank you for reaching out. I apologize, but I was unable to find specific documentation regarding TechFlow's communication standards for customer interactions within our knowledge base. We",08_Company_Policies,Pinecone,34000,
+CAT5-A-041,A - PageIndex,"Hello, I apologize, but I could not find specific documentation detailing the founding date of TechFlow Solutions Inc. in my knowledge base. For more historical information about the company, you may",09_Company_Overview,Pinecone,32000,
+CAT5-A-042,A - PageIndex,"Hello, I apologize, but I was unable to find specific information regarding the exact number of employees TechFlow has or their organizational structure within our immediate documentation. Best regards",09_Company_Overview,Pinecone,30000,
+CAT5-A-044,A - PageIndex,What is TechFlow's work-from-home policy?,09_Company_Overview,Pinecone,RETRIEVED from Company Overview,
+CAT5-B-001,B - Pinecone RAG,I need to return a product AND cancel my subscription at the same time. What steps should I follow?,03_Billing_Refunds_Policy,Pinecone,FALLBACK TO PINECONE,Cross-section query
+CAT5-B-002,B - Pinecone RAG,My device is broken and I also want a refund. What documents do I need?,02_Technical_Issues_Guide + 03_Billing_Refunds_Policy,Pinecone,FALLBACK TO PINECONE,Multi-document query
+CAT5-B-003,B - Pinecone RAG,Can you compare the return policy for electronics versus software products?,03_Billing_Refunds_Policy,Pinecone,FALLBACK TO PINECONE,Comparison query
+CAT5-B-004,B - Pinecone RAG,Which specific section of your billing policy covers international transactions?,03_Billing_Refunds_Policy,Pinecone,FALLBACK TO PINECONE,Specific subsection
+CAT5-B-005,B - Pinecone RAG,What are all the ways a customer can escalate a billing issue beyond the chatbot?,05_Escalation_Guidelines,Pinecone,FALLBACK TO PINECONE,Complex navigation
+CAT5-B-006,B - Pinecone RAG,How does the SLA response time differ between email and chat channels?,07_SLA_Performance_Metrics,Pinecone,FALLBACK TO PINECONE,Channel-specific detail
+CAT5-B-007,B - Pinecone RAG,"I bought a laptop, a mouse, and headphones. What are the return windows for each?",04_Product_Catalog + 03_Billing_Refunds_Policy,Pinecone,FALLBACK TO PINECONE,Multi-product query
+CAT5-B-008,B - Pinecone RAG,What troubleshooting steps apply specifically to Samsung monitors versus Dell monitors?,02_Technical_Issues_Guide,Pinecone,FALLBACK TO PINECONE,Product-specific subsection
+CAT5-B-009,B - Pinecone RAG,List all products in your catalog that have known battery issues.,04_Product_Catalog,Pinecone,FALLBACK TO PINECONE,Aggregation query
+CAT5-B-010,B - Pinecone RAG,What happens step by step when a ticket breaches the SLA threshold?,07_SLA_Performance_Metrics + 05_Escalation_Guidelines,Pinecone,FALLBACK TO PINECONE,Process flow query
+CAT5-B-011,B - Pinecone RAG,Does your data privacy policy change for customers outside Bosnia and Herzegovina?,08_Company_Policies,Pinecone,FALLBACK TO PINECONE,Conditional query
+CAT5-B-012,B - Pinecone RAG,What is the exact wording of your warranty exclusion clause?,08_Company_Policies,Pinecone,FALLBACK TO PINECONE,Exact clause query
+CAT5-B-013,B - Pinecone RAG,How many rounds of troubleshooting should the agent attempt before escalating?,05_Escalation_Guidelines,Pinecone,FALLBACK TO PINECONE,Procedural detail
+CAT5-B-014,B - Pinecone RAG,What response template should I use for a customer who received the wrong item?,06_Response_Templates,Pinecone,FALLBACK TO PINECONE,Specific template lookup
+CAT5-B-015,B - Pinecone RAG,Can I return an opened product if it's defective? What are the exact conditions?,03_Billing_Refunds_Policy,Pinecone,FALLBACK TO PINECONE,Conditional refund query
+CAT5-B-016,B - Pinecone RAG,What is the difference between First Response Time and Time to Resolution in SLA terms?,07_SLA_Performance_Metrics,Pinecone,FALLBACK TO PINECONE,Definition comparison
+CAT5-B-017,B - Pinecone RAG,Which employee directory contacts handle refund disputes at TechFlow?,09_Company_Overview,Pinecone,FALLBACK TO PINECONE,Specific employee query
+CAT5-B-018,B - Pinecone RAG,What are the de-escalation techniques listed for angry customers?,05_Escalation_Guidelines,Pinecone,FALLBACK TO PINECONE,Specific technique query
+CAT5-B-019,B - Pinecone RAG,I have a GoPro Hero 12 and a Logitech MX Master 3. Are both covered under the same warranty?,04_Product_Catalog + 08_Company_Policies,Pinecone,FALLBACK TO PINECONE,Multi-product warranty
+CAT5-B-020,B - Pinecone RAG,What does 'moderate' tone mean in TechFlow's communication standards?,08_Company_Policies,Pinecone,FALLBACK TO PINECONE,Qualitative definition
+CAT5-B-021,B - Pinecone RAG,What channel-specific escalation procedures exist for social media complaints?,05_Escalation_Guidelines,Pinecone,FALLBACK TO PINECONE,Channel-specific escalation
+CAT5-B-022,B - Pinecone RAG,Summarise all payment methods that are NOT accepted by TechFlow.,03_Billing_Refunds_Policy,Pinecone,FALLBACK TO PINECONE,Negative query
+CAT5-B-023,B - Pinecone RAG,What peripheral devices are explicitly listed as compatible with the Dell XPS 15?,04_Product_Catalog,Pinecone,FALLBACK TO PINECONE,Specific compatibility list
+CAT5-B-024,B - Pinecone RAG,Does TechFlow have a separate emergency protocol for data breaches?,08_Company_Policies,Pinecone,FALLBACK TO PINECONE,Emergency protocol lookup
+CAT5-B-025,B - Pinecone RAG,What is TechFlow's budget allocation for customer support in 2026?,09_Company_Overview,Pinecone,FALLBACK TO PINECONE,Budget detail
+CAT5-B-026,B - Pinecone RAG,At what point in the billing cycle can I cancel to avoid the next charge?,03_Billing_Refunds_Policy,Pinecone,FALLBACK TO PINECONE,Timing-specific query
+CAT5-B-027,B - Pinecone RAG,What software errors are specifically documented for Windows 11 in your technical guide?,02_Technical_Issues_Guide,Pinecone,FALLBACK TO PINECONE,OS-specific detail
+CAT5-B-028,B - Pinecone RAG,How does the AI agent performance tracking metric differ from human agent tracking?,07_SLA_Performance_Metrics,Pinecone,FALLBACK TO PINECONE,Comparative metric query
+CAT5-B-029,B - Pinecone RAG,What are the exact conditions for a partial refund versus a full refund?,03_Billing_Refunds_Policy,Pinecone,FALLBACK TO PINECONE,Partial vs full refund
+CAT5-B-030,B - Pinecone RAG,Which response template covers subscription cancellation acknowledgement?,06_Response_Templates,Pinecone,FALLBACK TO PINECONE,Specific template query

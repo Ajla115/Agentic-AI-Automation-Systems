@@ -1,0 +1,327 @@
+TEST ID,CATEGORY,SUBCATEGORY,SUBJECT,EMAIL BODY,KB DOCUMENT SOURCE,EXPECTED CLASSIFICATION,EXPECTED ESCALATION,EDGE CASE TYPE,EXPECTED BEHAVIOR
+TC541,PASSED,Empty Body,Need help with my account,,,AI_HANDLES,NO,EMPTY_BODY,Empty body; system should use subject to infer intent and ask for clarification
+TC542,Edge Cases,Empty Body,Refund request,,03_Billing_Refunds_Policy,AI_HANDLES,NO,EMPTY_BODY,Subject contains refund keyword but body empty; ask for order number and details
+TC543,Edge Cases,Empty Body,URGENT - please help,,05_Escalation_Guidelines,AI_HANDLES,NO,EMPTY_BODY,URGENT in subject but no body; request details before escalating
+TC544,Edge Cases,Empty Body,Technical issue with my device,,02_Technical_Issues_Guide,AI_HANDLES,NO,EMPTY_BODY,Subject indicates technical issue; ask customer to describe the problem
+TC545,Edge Cases,Empty Body,Billing question,,03_Billing_Refunds_Policy,AI_HANDLES,NO,EMPTY_BODY,Generic billing subject; no body; ask for specifics
+TC546,Edge Cases,Empty Body,Cancel my subscription,,03_Billing_Refunds_Policy,ESCALATE,YES,EMPTY_BODY,Cancel keyword in subject triggers escalation even with empty body
+TC547,Edge Cases,Empty Body,Complaint,,05_Escalation_Guidelines,AI_HANDLES,NO,EMPTY_BODY,Complaint subject but no details; request description of complaint
+TC548,Edge Cases,Empty Body,Order not arrived,,01_FAQ_General,AI_HANDLES,NO,EMPTY_BODY,Delivery issue implied by subject; ask for order number
+TC549,Edge Cases,Empty Body,Hello,,01_FAQ_General,AI_HANDLES,NO,EMPTY_BODY,Generic greeting subject and empty body; ask how to help
+TC550,Edge Cases,Empty Body,Re: Your recent support ticket,,05_Escalation_Guidelines,AI_HANDLES,NO,EMPTY_BODY,Reply email with empty body; check if follow-up on existing ticket
+TC551,Edge Cases,Single Word,Help,Hi,01_FAQ_General,AI_HANDLES,NO,MINIMAL_INPUT,One-word body; ask open question to understand the need
+TC552,Edge Cases,Single Word,?,?,01_FAQ_General,AI_HANDLES,NO,MINIMAL_INPUT,Single punctuation mark; gracefully ask how to help
+TC553,Edge Cases,Single Word,Refund,Refund,03_Billing_Refunds_Policy,AI_HANDLES,NO,MINIMAL_INPUT,Single keyword; ask for order number and reason
+TC554,Edge Cases,Single Word,Hello,Hello,01_FAQ_General,AI_HANDLES,NO,MINIMAL_INPUT,Single greeting; respond warmly and ask how to help
+TC555,Edge Cases,Single Word,Broken,Broken.,02_Technical_Issues_Guide,AI_HANDLES,NO,MINIMAL_INPUT,Single descriptive word; ask which product and what is happening
+TC556,Edge Cases,Single Word,HELP!!!,HELP!!!!!,01_FAQ_General,AI_HANDLES,NO,MINIMAL_INPUT,Single word with emphasis; treat as urgent but ask for details
+TC557,Edge Cases,Single Word,Can you help?,Yes.,01_FAQ_General,AI_HANDLES,NO,MINIMAL_INPUT,Extremely vague; ask open-ended question to gather context
+TC558,Edge Cases,Single Word,Urgent,Urgent,01_FAQ_General,AI_HANDLES,NO,MINIMAL_INPUT,"Single urgency word; acknowledge urgency, ask for description"
+TC559,Edge Cases,Single Word,Invoice,Invoice,03_Billing_Refunds_Policy,AI_HANDLES,NO,MINIMAL_INPUT,Single word indicating billing need; ask for order number
+TC560,Edge Cases,Single Word,Password,Password,01_FAQ_General,AI_HANDLES,NO,MINIMAL_INPUT,Single word indicating account issue; ask what help is needed
+TC561,Edge Cases,Very Long Email,Multiple issues - please read carefully,"Dear TechFlow Customer Support Team,
+
+I hope this message finds you well. I am writing to you today regarding a rather complex and multifaceted situation that has developed over the course of the past several weeks. I want to be as thorough and detailed as possible so that your team has the full picture of what I have been experiencing, and I apologize in advance for the length of this communication. I believe the details are all relevant and I would appreciate you reading everything carefully before responding.
+
+Let me start from the very beginning. I first discovered TechFlow Solutions approximately eight months ago when I was researching software development and IT consulting firms in the Sarajevo area. A colleague of mine had recommended your services based on their own positive experience, and I was impressed by what I read about your company on your website. At that time, I decided to make my first purchase — a Dell XPS laptop which I needed for my home office setup.
+
+The initial purchase experience was smooth and professional. The laptop arrived within the expected timeframe, was well packaged, and the product itself appeared to be in excellent condition. I was pleased with the service and left positive feedback. Following this initial positive experience, I went on to make several additional purchases over the following months, including a Bose QuietComfort headset, a Samsung Galaxy smartphone for my partner, and most recently an annual subscription to one of your software offerings.
+
+However, I am now writing because I have encountered a series of problems that have, cumulatively, significantly affected my confidence in TechFlow as a company. I want to document each of these issues separately and clearly so that they can each be addressed appropriately.
+
+The first issue concerns the Dell XPS laptop I purchased eight months ago. Approximately six months after purchase, I began to notice that the battery life was declining at a rate that seemed faster than expected. By seven months in, the laptop was lasting only three to four hours on a full charge, compared to the eight to ten hours I was experiencing initially. I contacted your support team about this and was provided with some standard troubleshooting advice which I followed diligently. However, the battery life continued to deteriorate and I am now at a point where I genuinely believe the battery may be defective. I would like to discuss warranty options for this issue.
+
+The second issue relates to the Bose QuietComfort headset. The noise cancellation feature, which was a primary reason for my purchase, has started to perform inconsistently. Sometimes it works beautifully and sometimes there is a noticeable hissing sound that makes listening uncomfortable. I have updated the firmware and reset the device multiple times, but the problem persists. I paid a premium price for these headphones and I expect premium performance.
+
+The third and most urgent issue concerns my recent software subscription. I signed up for an annual subscription approximately two months ago. Last month, I noticed that I had been charged twice for the same billing cycle. The charges appeared on my credit card statement on the same date, for the same amount. I have checked my account and it only shows one active subscription, which makes this doubly confusing. I contacted your billing team but have not received a satisfactory resolution.
+
+Additionally, I recently received an email from what appeared to be TechFlow asking me to verify my payment details. I was suspicious of this email as I had not requested anything of the sort, and the email contained some formatting that seemed slightly off from your usual communications. I want to bring this to your attention as it may indicate a phishing attempt or some kind of security issue.
+
+Finally, I want to raise a more general concern about response times. Over my various interactions with your support team, I have found the response times to be inconsistent. Some tickets were resolved quickly and professionally, while others seemed to fall into a black hole and required me to follow up multiple times. I understand that your team is busy but I would appreciate more consistent communication.
+
+I genuinely do not want to escalate this any further than necessary. I have been a loyal customer and I want to remain one. However, I need to see some concrete action on each of the issues I have described above. Specifically, I would like: 1) A warranty assessment for the Dell XPS battery, 2) Resolution of the headphone noise cancellation issue, 3) A full refund for the duplicate software subscription charge, 4) Investigation of the suspicious email I received, and 5) A commitment to improved response time consistency.
+
+I look forward to hearing from you and I hope we can resolve all of these matters amicably and professionally. Please do not hesitate to contact me if you need any additional information.
+
+With kind regards,
+Dr. William Chambers",05_Escalation_Guidelines + 03_Billing_Refunds_Policy,ESCALATE,YES,LONG_EMAIL,"3000+ word email with multiple issues including duplicate charge, security concern, warranty; escalate due to complexity and fraud suspicion"
+TC562,Edge Cases,Very Long Email,Detailed complaint about service over 6 months,"Dear TechFlow Customer Support Team,
+
+I hope this message finds you well. I am writing to you today regarding a rather complex and multifaceted situation that has developed over the course of the past several weeks. I want to be as thorough and detailed as possible so that your team has the full picture of what I have been experiencing, and I apologize in advance for the length of this communication. I believe the details are all relevant and I would appreciate you reading everything carefully before responding.
+
+Let me start from the very beginning. I first discovered TechFlow Solutions approximately eight months ago when I was researching software development and IT consulting firms in the Sarajevo area. A colleague of mine had recommended your services based on their own positive experience, and I was impressed by what I read about your company on your website. At that time, I decided to make my first purchase — a Dell XPS laptop which I needed for my home office setup.
+
+The initial purchase experience was smooth and professional. The laptop arrived within the expected timeframe, was well packaged, and the product itself appeared to be in excellent condition. I was pleased with the service and left positive feedback. Following this initial positive experience, I went on to make several additional purchases over the following months, including a Bose QuietComfort headset, a Samsung Galaxy smartphone for my partner, and most recently an annual subscription to one of your software offerings.
+
+However, I am now writing because I have encountered a series of problems that have, cumulatively, significantly affected my confidence in TechFlow as a company. I want to document each of these issues separately and clearly so that they can each be addressed appropriately.
+
+The first issue concerns the Dell XPS laptop I purchased eight months ago. Approximately six months after purchase, I began to notice that the battery life was declining at a rate that seemed faster than ex
+
+In conclusion, I am deeply disappointed and I demand immediate resolution. I am considering legal action if this is not resolved. Regards, Margaret Court",05_Escalation_Guidelines,ESCALATE,YES,LONG_EMAIL,Long complaint email with legal action keyword at the end; must detect escalation triggers even in long content
+TC571,Edge Cases,Ambiguous,It doesn't work,"Hi,
+
+It doesn't work. Please fix it.
+
+Thanks",02_Technical_Issues_Guide,AI_HANDLES,NO,AMBIGUOUS,No product or problem specified; ask which product and what is happening
+TC572,Edge Cases,Ambiguous,Problem with the thing I bought,"Hello,
+
+I have a problem with the thing I bought. It is not doing what it should.
+
+Can you help?
+
+Regards,
+Jane",02_Technical_Issues_Guide,AI_HANDLES,NO,AMBIGUOUS,Vague reference to 'thing' and 'what it should'; ask for product name and description of issue
+TC573,Edge Cases,Ambiguous,I need help,"Hello TechFlow,
+
+I need help. Something has gone wrong and I don't know what to do.
+
+Please contact me.
+
+Paul",01_FAQ_General,AI_HANDLES,NO,AMBIGUOUS,No context at all; open-ended request; ask what the issue is and which product
+TC574,Edge Cases,Ambiguous,The thing you sent me is wrong,"Hi,
+
+The thing you sent me is wrong. I wanted the other one.
+
+Can you sort it out?",01_FAQ_General,AI_HANDLES,NO,AMBIGUOUS,Wrong item implied but no order number or product names; ask for order number and correct item
+TC575,Edge Cases,Ambiguous,I'm not happy,"Hello,
+
+I'm not happy. I expected better.
+
+[Name not given]",01_FAQ_General,AI_HANDLES,NO,AMBIGUOUS,"Expression of dissatisfaction without specific issue; mild sentiment, ask what happened"
+TC576,Edge Cases,Ambiguous,It stopped working suddenly,"Hi there,
+
+It stopped working suddenly this morning. Everything was fine yesterday.
+
+What happened?
+
+Mike",02_Technical_Issues_Guide,AI_HANDLES,NO,AMBIGUOUS,Device failure implied but no product specified; ask which device and what specifically stopped working
+TC577,Edge Cases,Ambiguous,I never received anything,"Hello,
+
+I never received anything. Where is it?
+
+Thanks",01_FAQ_General,AI_HANDLES,NO,AMBIGUOUS,Delivery issue implied but no order number or product; ask for order number
+TC578,Edge Cases,Ambiguous,Can you check my account?,"Hi,
+
+Could you check my account please? Something seems off.
+
+Best,
+Sarah",01_FAQ_General,AI_HANDLES,NO,AMBIGUOUS,Vague account issue; ask what specifically seems off and what they expected to see
+TC579,Edge Cases,Ambiguous,The app is weird,"Hello Support,
+
+The app is acting weird. Things are not where they should be.
+
+Is there an update?
+
+Dan",02_Technical_Issues_Guide,AI_HANDLES,NO,AMBIGUOUS,"Very vague app issue; ask which app, what behaviour they are seeing vs expecting"
+TC580,Edge Cases,Ambiguous,I have a question about my recent purchase,"Dear Support,
+
+I have a question about my recent purchase. Could you help me?
+
+Thank you",01_FAQ_General,AI_HANDLES,NO,AMBIGUOUS,Announcement of question without asking it; ask what the question is
+TC581,Edge Cases,Ambiguous,Not as described,"Hi,
+
+The product is not as described. I am disappointed.
+
+Please advise.
+
+Regards",03_Billing_Refunds_Policy,AI_HANDLES,NO,AMBIGUOUS,Not as described complaint but no specifics; ask which product and what specifically differs
+TC582,Edge Cases,Ambiguous,This is taking too long,"Hello,
+
+This is taking too long. Please hurry up.
+
+Thanks",01_FAQ_General,AI_HANDLES,NO,AMBIGUOUS,"Unclear what is taking too long; check for existing open tickets, ask what they are referring to"
+TC583,Edge Cases,Ambiguous,I think I made a mistake,"Hi TechFlow,
+
+I think I made a mistake with my order. I'm not sure what to do.
+
+Please help.
+
+Tom",01_FAQ_General,AI_HANDLES,NO,AMBIGUOUS,Vague mistake reference; ask order number and what they think went wrong
+TC584,Edge Cases,Ambiguous,Something charged me,"Hello,
+
+Something charged me and I don't know what it was. Please check.
+
+Best",03_Billing_Refunds_Policy,AI_HANDLES,NO,AMBIGUOUS,Unrecognised charge but no amount or date; ask for order number or charge details
+TC586,Edge Cases,Non-English,Trebam pomoć sa narudžbom,"Poštovani,
+
+Imam problem sa mojom narudžbom. Paket nije stigao i prošlo je već 7 dana.
+
+Broj narudžbe: ORD-2024-88234
+
+Molim vas da provjerite gdje je moja pošiljka.
+
+Hvala,
+Ajla Hodžić",01_FAQ_General,AI_HANDLES,NO,NON_ENGLISH_BOSNIAN,Bosnian language email about missing delivery; respond in English and/or Bosnian; handle as standard delivery query
+TC587,PASSED,Non-English (Bosnian),Problem sa naplatom,"Poštovani, Primjetio sam da sam naplaćen dva puta za isti nalog ovog mjeseca. Molim vas da provjerite i povratite sredstva. Hvala, Amir",,AI_HANDLES,NO,NON_ENGLISH_BOSNIAN,"Bosnian duplicate charge complaint; handle as standard billing issue, not escalate"
+TC591,NEW,Non-English (Turkish),İptal talebi — aboneliğimi iptal etmek istiyorum,"Merhaba, Aboneliğimi iptal etmek istiyorum. Lütfen hesabımı kapatın ve bir sonraki faturamın kesilmemesini sağlayın. İptal onayı için e-posta gönderir misiniz? Teşekkürler",,ESCALATE,YES,NON_ENGLISH_TURKISH,Turkish cancellation request; should detect cancellation intent and escalate
+TC601,SYSTEM_ERROR,Spam / Irrelevant,🎉 You have been selected — Claim your €500 gift card NOW,Congratulations! You have been randomly selected to receive a €500 TechFlow gift card. Claim your prize before it expires: http://totally-legit-techflow-prize.com/claim. This offer expires in 24 hours. The TechFlow Prize Team.,,AI_HANDLES,NO,SPAM,Obvious phishing/spam; system should not process as support request and should not escalate
+TC602,Edge Cases,Spam / Irrelevant,Newsletter unsubscribe,"This message was sent to you because you subscribed to the TechFlow monthly newsletter. Click here to unsubscribe from future emails. If you did not subscribe, please ignore this message.",N/A,AI_HANDLES,NO,IRRELEVANT_NEWSLETTER,Newsletter delivery notice; not a support request; handle gracefully or ignore
+TC603,Edge Cases,Spam / Irrelevant,Invitation to join LinkedIn network,John Smith has invited you to connect on LinkedIn. Join John's professional network today! Click here to accept or ignore.,N/A,AI_HANDLES,NO,SPAM_UNRELATED,Completely unrelated platform notification; not a customer support query
+TC604,Edge Cases,Spam / Irrelevant,Marketing: 50% off all products today only!,FLASH SALE: 50% off everything at SuperShop! Today only. Use code SAVE50 at checkout. Shop now at supershoponline.com,N/A,AI_HANDLES,NO,SPAM_MARKETING,Third-party marketing email sent to support inbox; should not be processed
+TC605,Edge Cases,Spam / Irrelevant,Your food delivery is on its way,Your order from Pizza Palace has been picked up by your driver. Expected arrival: 20 minutes. Track your order here.,N/A,AI_HANDLES,NO,IRRELEVANT_OTHER_SERVICE,Delivery notification from unrelated service; completely irrelevant to TechFlow support
+TC606,Edge Cases,Spam / Irrelevant,Survey invitation,We would love your feedback! Please take 5 minutes to complete our customer satisfaction survey. Your opinion matters to us.,N/A,AI_HANDLES,NO,IRRELEVANT_SURVEY,Generic survey invitation sent to wrong inbox; not a support request
+TC607,Edge Cases,Spam / Irrelevant,Out of office reply,Thank you for your email. I am currently out of the office until 28 April 2026. For urgent matters please contact my colleague at colleague@company.com.,N/A,AI_HANDLES,NO,AUTO_REPLY_OOO,Automated out-of-office reply; should not trigger a support response
+TC608,Edge Cases,Spam / Irrelevant,Delivery notification - no action required,Your parcel has been delivered. Thank you for shopping with FastShip. No reply needed.,N/A,AI_HANDLES,NO,IRRELEVANT_NOTIFICATION,Automated delivery confirmation from third party; completely irrelevant
+TC609,Edge Cases,Spam / Irrelevant,MAKE MONEY FAST - Work from home opportunity,"Are you looking to make £5,000 per week from home? Our exclusive work-from-home opportunity can make it happen. Sign up now at moneyfast.com. Limited spots available!",N/A,AI_HANDLES,NO,SPAM,"Classic spam/scam email; should be filtered, not processed as support"
+TC610,Edge Cases,Spam / Irrelevant,Test email,This is a test email. Please ignore.,N/A,AI_HANDLES,NO,TEST_EMAIL,Test email sent to support inbox; should be acknowledged or ignored gracefully
+TC611,Edge Cases,Repeated Question,Where is my order? (3rd time asking),"Hi TechFlow,
+
+This is the third time I am sending this exact message. Where is my order? I placed it 5 days ago and have heard nothing.
+
+Order number: ORD-2024-55821
+
+Please respond.
+
+Sarah Blake",05_Escalation_Guidelines,ESCALATE,YES,REPEATED_3X,Customer explicitly states 3rd contact about same issue; escalate per 3+ contact rule
+TC612,Edge Cases,Repeated Question,I have asked about this refund 3 times now,"Dear TechFlow,
+
+I have now contacted you THREE TIMES about the same refund and have received no resolution. This is completely unacceptable.
+
+Order: ORD-2024-67890
+
+Please resolve this today.
+
+James Carter",05_Escalation_Guidelines,ESCALATE,YES,REPEATED_3X,Three contacts about same refund issue; escalate immediately
+TC613,Edge Cases,Repeated Question,Still no answer - my fourth email about delivery,"Hello,
+
+This is my fourth email about my missing delivery. Nobody has helped me.
+
+ORD-2024-78901
+
+What is going on?
+
+Emma",05_Escalation_Guidelines,ESCALATE,YES,REPEATED_4X,Fourth contact about same issue; escalate with urgency
+TC614,Edge Cases,Repeated Question,Same question as before - WiFi won't connect,"Hi,
+
+Asking again as I got no useful help last time. My smart TV still won't connect to WiFi. Same issue, still broken.
+
+Tom",05_Escalation_Guidelines,ESCALATE,YES,REPEATED_CONTACT,Explicit prior contact with no resolution; escalate to senior technical support
+TC615,Edge Cases,Repeated Question,Following up - same billing issue unresolved,"Dear Support,
+
+Following up on my previous emails. The duplicate charge issue I reported has still not been resolved.
+
+This is now my third follow-up.
+
+Diana Fox",05_Escalation_Guidelines,ESCALATE,YES,REPEATED_3X,Third follow-up on billing issue; escalate per repeat contact policy
+TC617,Edge Cases,Repeated Question,Second attempt - order cancellation not processed,"Hi,
+
+I requested a cancellation last week and it was apparently confirmed but the order was still delivered. I want this sorted now.
+
+Angela Price",05_Escalation_Guidelines,ESCALATE,YES,REPEATED_CONTACT,Prior cancellation failed to execute; escalate for manual investigation
+TC618,Edge Cases,Repeated Question,Nobody responds to my refund request,"Dear TechFlow Support,
+
+I have submitted a refund request three times over the past two weeks. I have not received any response at all. Not even an acknowledgement.
+
+I am very frustrated.
+
+Nathan Brooks",05_Escalation_Guidelines,ESCALATE,YES,REPEATED_3X,No response after 3 attempts; escalate and apologise for lack of response
+TC619,Edge Cases,Repeated Question,I've been told to wait but nothing has changed,"Hello,
+
+Each time I contact you, I am told to wait. It has now been 3 weeks and nothing has changed. I am not willing to wait any longer.
+
+Olivia Clark",05_Escalation_Guidelines,ESCALATE,YES,REPEATED_CONTACT,Pattern of 'wait and see' with no resolution; escalate to senior agent
+TC620,Edge Cases,Repeated Question,This is the same password issue I reported yesterday,"Hi,
+
+Yesterday I reported I can't log into my account. Got a reset email that didn't work. Sent another email. Still can't get in.
+
+Help.
+
+Philip Grant",05_Escalation_Guidelines,ESCALATE,YES,REPEATED_CONTACT,Account access failure persisting after initial support attempt; escalate to account specialist
+TC621,Edge Cases,Malformed Data,,"Hello TechFlow,
+
+I have a question about my recent purchase. Could you please help?
+
+Thanks",01_FAQ_General,AI_HANDLES,NO,MALFORMED_SUBJECT,Subject contains Base64 encoded text (common email client issue); handle body normally
+TC622,Edge Cases,Malformed Data,[EXTERNAL] Password reset request,"<html><body>
+<p>Hi TechFlow,</p>
+<p>I cannot log into my account. Please help.</p>
+<p>Thanks,<br/>Sarah</p>
+</body></html>",01_FAQ_General,AI_HANDLES,NO,HTML_IN_BODY,Email body contains raw HTML tags; parse content correctly and respond normally
+TC623,Edge Cases,Malformed Data,RE: RE: RE: RE: RE: Your ticket #45221,"Hi,
+
+Yes please.
+
+On Mon, 14 Apr 2026 at 10:23, TechFlow Support <support@techflowsolutions.com> wrote:
+> Would you like us to proceed with the refund?
+>
+> On Sun, 13 Apr 2026 at 09:15, Customer wrote:
+>> I want a refund please.
+>>
+>>> On Sat, 12 Apr 2026 wrote:
+>>>> Please confirm your order number.",03_Billing_Refunds_Policy,AI_HANDLES,NO,DEEP_REPLY_CHAIN,Long nested reply chain; extract current intent (yes to refund) and process accordingly
+TC625,Edge Cases,Malformed Data,Question???   ,"               
+
+   Hi there,   
+   
+   I have a question.   Are you able   to help me   with my order?
+   
+   
+   
+   
+   Best,   Tom   ",01_FAQ_General,AI_HANDLES,NO,EXCESSIVE_WHITESPACE,Email body with excessive whitespace and inconsistent spacing; parse and handle normally
+TC626,Edge Cases,Malformed Data,Customer feedback [noreply@automailer.com],"This is an automated message. Do not reply to this email. 
+
+Your support ticket has been created. Reference: TF-20240419-001.
+
+This message was generated automatically.",N/A,AI_HANDLES,NO,AUTOMATED_MESSAGE,"Automated system email sent to support inbox; identify as automated, do not process as customer query"
+TC627,Edge Cases,Malformed Data,Password: hunter2,"Hello support team,
+
+My username is john.smith@email.com and my password is hunter2. I cannot log in.
+
+Can you help?
+
+John",01_FAQ_General,AI_HANDLES,NO,SENSITIVE_DATA_IN_EMAIL,"Customer sent password in email; never use/store the password; warn customer, help with reset, ask them to change password immediately"
+TC628,Edge Cases,Malformed Data,Order: 1234567890123456 Exp: 12/27 CVV: 123,"Hi TechFlow,
+
+I want to pay for my order. My card number is 4532015112830366 and it expires 12/27. CVV is 456.
+
+Please process the payment.
+
+Anna White",01_FAQ_General,AI_HANDLES,NO,SENSITIVE_PAYMENT_DATA,Customer sent full card details; never process or store card data; advise to use secure checkout; delete details immediately
+TC631,Edge Cases,Sender Filtering,Testing the support system,"Hi,
+
+This is a test from our internal team. Please ignore this message.
+
+From: test@techflowsolutions.com",N/A,AI_HANDLES,NO,INTERNAL_SENDER,Email from internal TechFlow domain; should not trigger customer support workflow
+TC630,NEW,Malformed Data,Question from [YOUR NAME HERE],[YOUR NAME HERE] is writing to ask about [PRODUCT]. I bought [PRODUCT] on [DATE] and it has [ISSUE]. Please help me with [DESIRED OUTCOME]. My contact is [EMAIL ADDRESS].,,AI_HANDLES,NO,UNFILLED_TEMPLATE,Completely unfilled template email; ask customer to resubmit with their actual details
+TC633,Edge Cases,Sender Filtering,Potential phishing attempt,"Dear TechFlow Customer,
+
+Your account requires immediate verification. Please click the link below and enter your credentials to avoid account suspension.
+
+Verify now: http://techf1ow-secure.suspicious-domain.com/verify
+
+The TechFlow Team",N/A,AI_HANDLES,NO,POTENTIAL_PHISHING,"Suspicious email with fake TechFlow branding and phishing link; do not process, flag as potential phishing attempt"
+TC634,Edge Cases,Sender Filtering,Competitor inquiry,"Hello TechFlow,
+
+We are reaching out from CompetitorCorp. We are interested in learning more about your customer support processes for competitive analysis purposes.
+
+Would you be willing to share information?
+
+Best regards,
+Business Development Team, CompetitorCorp",N/A,AI_HANDLES,NO,COMPETITOR_INQUIRY,Competitor seeking business intelligence; should not be processed as customer support; redirect to sales/business team
+TC635,Edge Cases,Sender Filtering,noreply@bounce.mailer.com - Delivery failure,"Delivery to support@techflowsolutions.com has failed.
+The address does not exist or is no longer active.
+Message ID: abc123
+Original message returned.",N/A,AI_HANDLES,NO,BOUNCE_NOTIFICATION,"Email bounce notification; not a customer query; should be handled as delivery failure, not processed"
+TC637,Edge Cases,Sender Filtering,Invoice from supplier,"Dear Accounts Payable,
+
+Please find attached invoice #INV-2024-0892 for services rendered in March 2026. Total amount due: €2,450.00. Payment terms: 30 days.
+
+Regards,
+ABC Supplies Ltd",N/A,AI_HANDLES,NO,WRONG_DEPARTMENT,"Supplier invoice sent to support email; redirect to accounts payable, not processed as support"
+TC639,Edge Cases,Sender Filtering,Security researcher - bug bounty submission,"Dear TechFlow Security Team,
+
+I am submitting a bug bounty report. I have identified a SQL injection vulnerability in your customer portal. Details in the attached report.
+
+Please treat this as confidential.
+
+Regards,
+Security Researcher",05_Escalation_Guidelines,ESCALATE,YES,SECURITY_REPORT,Security vulnerability submission; escalate to security team immediately regardless of sender
+TC640,Edge Cases,Sender Filtering,Spoofed email from TechFlow domain,"Dear Customer,
+
+Your TechFlow account has been flagged for suspicious activity. Please verify your identity by clicking below and entering your username and password.
+
+[URGENT ACTION REQUIRED]
+
+TechFlow Security Team
+security@techflow-solutions.net",N/A,AI_HANDLES,NO,SPOOFED_DOMAIN,"Spoofed email with similar but fake domain (techflow-solutions.net vs techflowsolutions.com); identify as potential phishing, do not process"

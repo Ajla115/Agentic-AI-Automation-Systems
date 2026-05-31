@@ -1,0 +1,483 @@
+TEST ID,TIMESTAMP,ACTUAL CLASSIFICATION,ACTUAL ESCALATION,CLASSIFICATION CORRECT,AI RESPONSE,RESPONSE TIME (ms),ERROR OCCURRED,ERROR MESSAGE,GRACEFUL DEGRADATION,NOTES
+,,,,,,,,,,
+TC631,2026-04-29T11:47:28.501Z,,,,,,YES,No matching log found (score: 0.36),,
+,,,,,,,,,,
+TC542,2026-04-29T11:47:28.501Z,AI_HANDLES,,,"Hello,
+
+Thank you for contacting us regarding ""TC542- Refund request"". We received your email, but we couldn't find any details in the message body.
+
+To help you effectively, could you please share:
+
+What product or service you're contacting us about
+The specific question or issue you need help with
+Any relevant order or account number, if applicable
+We'll be happy to assist as soon as we have more details.
+
+Best regards,
+Customer Support Team",,NO,,,
+TC543,2026-04-29T11:47:28.502Z,,,,,,YES,No matching log found (score: 0.12),,
+TC544,2026-04-29T11:47:28.502Z,,,,,,YES,No matching log found (score: 0.15),,
+TC545,2026-04-29T11:47:28.502Z,,,,,,YES,No matching log found (score: 0.06),,
+TC546,2026-04-29T11:47:28.503Z,,,,,,YES,No matching log found (score: 0.11),,
+TC547,2026-04-29T11:47:28.503Z,,,,,,YES,No matching log found (score: 0.05),,
+TC548,2026-04-29T11:47:28.503Z,,,,,,YES,No matching log found (score: 0.15),,
+TC549,2026-04-29T11:47:28.504Z,,,,,,YES,No matching log found (score: 0.07),,
+TC550,2026-04-29T11:47:28.504Z,,,,,,YES,No matching log found (score: 0.13),,
+TC551,,,,,,,,,,
+TC552,2026-04-29T11:47:28.504Z,,,,,,YES,No matching log found (score: 0.00),,
+TC553,2026-04-29T11:47:28.504Z,,,,,,YES,No matching log found (score: 0.06),,
+TC554,2026-04-29T11:47:28.505Z,,,,,,YES,No matching log found (score: 0.07),,
+TC555,2026-04-29T11:47:28.505Z,,,,,,YES,No matching log found (score: 0.00),,
+TC556,2026-04-29T11:47:28.505Z,,,,,,YES,No matching log found (score: 0.06),,
+TC557,2026-04-29T11:47:28.506Z,,,,,,YES,No matching log found (score: 0.06),,
+TC558,2026-04-29T11:47:28.506Z,,,,,,YES,No matching log found (score: 0.05),,
+TC559,2026-04-29T11:47:28.506Z,,,,,,YES,No matching log found (score: 0.12),,
+TC560,2026-04-29T11:47:28.506Z,,,,,,YES,No matching log found (score: 0.10),,
+TC561,,,,,,,,,,
+TC562,,,,,,,,,,
+TC563,2026-04-29T09:26:59.000Z,AI_HANDLES,NO,FALSE,"Hello,
+
+Thank you for reaching out regarding the critical device failure you are experiencing. I understand this is a frustrating situation, and I appreciate you providing the detailed diagnostic log and system information.
+
+While our current documentation does not provide specific guidance on interpreting the content of diagnostic logs, especially for 'CRITICAL' errors within them, we do have general troubleshooting steps for critical device failures that might help:
+
+1. Verify Charge: Ensure your Dell XPS 15 9500 has been charged for at least 30 minutes.
+2. Check Charger/Cable: Try using a different charger and/or cable to rule out a power accessory issue.
+3. Perform Hard Reset: Hold the power button for 15-20 seconds to perform a hard reset.
+4. Inspect for Damage: Please check for any visible physical damage or signs of water exposure.
+5. Try Different Outlet: Use a different power outlet to ensure consistent power supply.
+
+If these steps do not resolve the issue, or if the device remains unresponsive, it indicates a more in-depth problem that may require further investigation or warranty service. In such cases, we recommend escalating to our Tier 2 Support team. They will have the tools and expertise to properly diagnose and address the critical error indicated in your diagnostic log and system details. We will connect you with a specialist who can provide further assistance.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",21890,NO,,,Match: 1.00
+TC564,2026-04-29T09:29:00.000Z,AI_HANDLES,NO,FALSE,"Hello,
+
+We understand you've experienced a series of frustrations over the past six months as a TechFlow customer. We want to assure you that your feedback is important to us.
+
+As your concerns involve a detailed review of your service history, we are escalating this to our dedicated support team. A specialist will reach out to you directly to thoroughly understand and address your frustrations.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",7750,NO,,,Match: 1.00
+TC565,2026-04-29T09:31:00.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+Thank you for providing your order history. I have noted your purchases from January and February 2024.
+
+Please let me know your specific question so I can assist you further.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",31380,NO,,,Match: 1.00
+TC566,2026-04-29T09:33:01.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+Thank you for reaching out. To clarify our refund policy, here's a summary of the key points:
+
+General Refund Process & Timeline:
+
+* After we receive your returned item, it undergoes an inspection within 2-3 business days.
+* If the item meets our return conditions, your refund will be processed.
+* You'll receive a confirmation email with the refund details.
+* Refunds are typically issued to the original credit card within 5-7 business days after the return is received.
+
+Return Window:
+
+* Most items, including Electronics, Smart Home Devices, and Wearables, have a 30-day return window from the delivery date.
+* Software has a 14-day refund window, provided the activation key has not been used.
+* Items purchased over 30 days ago are generally non-refundable, with exceptions for defects covered under warranty.
+
+Return Conditions:
+
+* Items must generally be in their original condition with all accessories included.
+* Original packaging is preferred or required for some items.
+* For electronics, all accessories must be included, and original packaging is preferred.
+* Software refunds are not applicable if the activation key has been used or if significant usage is detected for subscriptions.
+* Smart Home Devices must be factory reset and unlinked from your smart home account.
+* Hygiene items like earbuds and fitness bands are only refundable if defective and must be in original packaging if opened.
+
+Partial Refunds May Apply When:
+
+* Accessories are missing (deducted from the refund).
+* Packaging is damaged (up to a 15% deduction).
+* There are signs of use (evaluated case-by-case).
+* The item is returned outside the return window but within 45 days (50% refund).
+
+Restocking Fees:
+
+* There are no restocking fees for defective electronics. A 15% fee applies for change-of-mind returns.
+
+Non-Refundable Items Include:
+
+* Downloadable software after activation.
+* Gift cards.
+* Personalized or customized items.
+* Items marked as ""Final Sale.""
+* Opened hygiene products (unless defective).
+* Items purchased over 30 days ago (exceptions for defects under warranty).
+
+Cancellation Policies:
+
+* You can receive a full refund with no fees if you cancel before shipment.
+* After shipment, cancellation is not possible; you must wait for delivery and initiate a return or refuse delivery.
+
+Price Match Policy:
+
+* We match prices from authorized retailers within 14 days of purchase if the item is identical and in stock with the competitor. The price difference will be refunded to your original payment method.
+
+Promotional Pricing Issues:
+
+* If a promotion was valid but not applied, please contact support within 48 hours with your order number and promo code for a refund of the difference.
+
+We hope this clarifies our refund policy. If you have any further questions, please do not hesitate to ask.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",22500,NO,,,Match: 1.00
+TC567,2026-04-29T09:35:01.000Z,AI_HANDLES,NO,FALSE,"Hello,
+
+Generative AI refers to artificial intelligence systems that can create new content, such as text, images, music, or code, rather than just analyzing or acting on existing data.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",25000,NO,,,Match: 1.00
+TC568,2026-04-29T09:37:02.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+Thanks for sharing this review of the GoPro Hero 12. We appreciate you taking the time to let us know what other customers are thinking.
+
+I see you mentioned having a question as well. Please feel free to share it with me, and I'll be happy to help!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",323540,NO,,,Match: 1.00
+TC569,2026-04-29T09:39:02.000Z,AI_HANDLES,NO,FALSE,"Hello,
+
+I understand you're experiencing rapid battery drain on your Dell XPS laptop, with it going from 100% to 20% in under two hours.
+
+While we don't have specific documentation for this exact issue on the Dell XPS, here are some general troubleshooting steps that often help address quickly draining batteries:
+
+*   **Check Power-Consuming Applications**: You can usually find which applications are using the most power in your system's settings, typically under a ""Battery"" or ""Power Usage"" section.
+*   **Reduce Screen Brightness**: A bright screen can be a significant drain on your battery.
+*   **Disable Unused Features**: Turn off features like Wi-Fi, Bluetooth, or GPS when you are not actively using them.
+*   **Close Background Applications**: Ensure that any applications running in the background that you don't need are closed.
+*   **Scan for Malware**: Run a scan to check for any battery-intensive malware that might be affecting performance.
+*   **Consider Battery Age**: If your laptop is over two years old, the battery may be nearing the end of its expected life cycle and might require replacement.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",12340,NO,,,Match: 1.00
+TC570,2026-04-29T09:41:03.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+Thank you for reaching out. I understand you've been reviewing the technical manual for your Logitech MX Master 3 mouse and are preparing to ask a question.
+
+Please feel free to share your complete question, and I'll be happy to assist you with it.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",341320,NO,,,Match: 1.00
+TC571,,,,,,,,,,
+TC572,,,,,,,,,,
+TC573,,,,,,,,,,
+TC574,,,,,,,,,,
+TC575,2026-04-29T11:47:28.512Z,,,,,,YES,No matching log found (score: 0.21),,
+TC576,,,,,,,,,,
+TC577,,,,,,,,,,
+TC578,,,,,,,,,,
+TC579,,,,,,,,,,
+TC580,,,,,,,,,,
+TC581,,,,,,,,,,
+TC582,,,,,,,,,,
+TC583,,,,,,,,,,
+TC584,,,,,,,,,,
+TC585,2026-04-29T09:45:04.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+We understand you prefer to speak with someone. Our phone support is available during the following hours:
+
+• Monday - Friday: 8 AM to 8 PM EST
+• Saturday: 9 AM to 5 PM EST
+
+For urgent issues, we recommend using phone support during these hours.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",11440,NO,,,Match: 1.00
+TC586,,,,,,,,,,
+TC587,,,,,,,,,,
+TC588,2026-04-29T09:47:04.000Z,AI_HANDLES,NO,TRUE,"Merhaba Mehmet,
+
+Hesabınıza giriş yapamadığınızı ve şifrenizi sıfırlamak istediğinizi anlıyorum. Şifrenizi sıfırlamak için aşağıdaki adımları izleyebilirsiniz:
+
+1. Web sitemize gidin ve ""Giriş Yap"" seçeneğine tıklayın.
+2. Ardından ""Şifremi Unuttum"" bağlantısını seçin.
+3. Kayıtlı e-posta adresinize gönderilecek sıfırlama bağlantısını kullanarak yeni şifrenizi oluşturabilirsiniz.
+
+Teşekkürler,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",51980,NO,,,Match: 1.00
+TC589,2026-04-29T09:49:05.000Z,AI_HANDLES,NO,TRUE,"Hallo!
+
+Es tut mir leid zu hören, dass Ihr Dell XPS Laptop nicht mehr startet. Basierend auf den von Ihnen bereits durchgeführten Schritten (Überprüfung des Netzteils und Entnahme des Akkus) empfehle ich Ihnen die folgenden weiteren Schritte zur Fehlerbehebung:
+
+1. **Ladezustand und Ladegerät:** Bitte schließen Sie das Gerät an das Original-Ladegerät an und lassen Sie es für mindestens 30 Minuten aufladen. Falls Sie ein anderes funktionierendes Ladegerät und Kabel zur Verfügung haben, versuchen Sie bitte auch dieses.
+
+2. **Steckdose überprüfen:** Testen Sie den Laptop an einer anderen Steckdose. Wenn Sie derzeit eine Steckerleiste verwenden, schließen Sie den Laptop bitte direkt an eine Wandsteckdose an.
+
+3. **Hard Reset durchführen:** Halten Sie den Netzschalter Ihres Laptops für 15-20 Sekunden gedrückt. Dies kann helfen, wenn ein vorübergehender Fehler vorliegt.
+
+4. **Physische Schäden:** Überprüfen Sie Ihr Gerät auf sichtbare Schäden oder Anzeichen von Flüssigkeitskontakt.
+
+Sollte Ihr Laptop nach Durchführung dieser Schritte immer noch nicht starten, ist es wahrscheinlich, dass ein Garantieservice erforderlich ist. Für weitere Unterstützung halten Sie bitte das Kaufdatum, die Seriennummer Ihres Laptops und eine detaillierte Beschreibung des Problems bereit.
+
+Mit freundlichen Grüßen,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",521900,NO,,,Match: 1.00
+TC590,2026-04-29T09:51:05.000Z,AI_HANDLES,NO,TRUE,"Zdravo!
+
+Razumijem da ste zabrinuti zbog statusa vaše narudžbe.
+
+Kako biste provjerili gdje se nalazi vaša dostava, možete:
+
+• Prijaviti se na svoj račun i provjeriti ""Povijest narudžbi"".
+• Koristiti broj za praćenje koji vam je poslan e-poštom.
+
+Budući da nemam pristup vašim narudžbama, prebacit ću vaš upit našem timu za podršku. Oni će provjeriti status vaše narudžbe TF-2026-4892 i kontaktirati vas s ažuriranim informacijama.
+
+Lijep pozdrav,
+Customer Support Team
+
+
+--
+Ovo je automatski odgovor generiran umjetnom inteligencijom. Ako želite razgovarati s ljudskim predstavnikom, molimo vas da to spomenete u vašem sljedećem e-mailu i mi ćemo vas odmah povezati s našim timom za podršku.",10980,NO,,,Match: 1.00
+TC591,2026-04-29T11:47:28.516Z,,,,,,YES,No matching log found (score: 0.33),,
+TC592,2026-04-29T09:55:06.000Z,AI_HANDLES,NO,TRUE,"Sehr geehrtes Support-Team,
+
+vielen Dank für Ihre Anfrage.
+
+Wir können bestätigen, dass Sie für eine Rückerstattung Ihrer Bose Kopfhörer qualifiziert sind, da das Gerät defekt ist und die Rückgabe innerhalb unseres 30-tägigen Rückgabezeitfensters ab Lieferdatum liegt.
+
+Um die Rücksendung einzuleiten, befolgen Sie bitte diese Schritte:
+
+1. Melden Sie sich in Ihrem Konto an.
+2. Gehen Sie zu Ihrem „Bestellverlauf“.
+3. Wählen Sie die entsprechende Bestellung aus und klicken Sie auf „Artikel zurücksenden“.
+4. Wählen Sie den Rücksendegrund (z.B. „Defekt/Beschädigt“) und die bevorzugte Rückerstattungsmethode.
+5. Drucken Sie das vorausbezahlte Versandetikett aus.
+6. Senden Sie den Artikel innerhalb von 14 Tagen nach Erhalt der Rücksendegenehmigung (RMA-Nummer) zurück.
+
+Für defekte Artikel fällt selbstverständlich keine Wiedereinlagerungsgebühr an.
+
+Sobald wir die Rücksendung erhalten haben, wird Ihre Rückerstattung innerhalb von 2-3 Werktagen bearbeitet. Die Gutschrift auf Ihre Zahlungsmethode kann je nach Bank weitere 3-10 Werktage in Anspruch nehmen. Bitte bewahren Sie Ihre Sendungsverfolgungsnummer auf.
+
+Mit freundlichen Grüßen,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",356340,NO,,,Match: 1.00
+TC593,2026-04-29T09:57:07.000Z,ESCALATED,YES,TRUE,Pending,,NO,,,Match: 1.00
+TC594,2026-04-29T09:59:07.000Z,AI_HANDLES,NO,TRUE,"Merhaba,
+
+GoPro Hero 12 kamerasının su geçirmez bir tasarıma sahip olduğu belirtilmektedir.
+
+Ancak, dokümanlarımızda belirli bir su geçirmezlik derinliği bilgisi veya 10 metre dalışa uygun olup olmadığına dair net bir bilgi bulunmamaktadır.
+
+Genellikle bu tür kameralar için daha derin sulara dalış yaparken ek bir su geçirmezlik muhafazası kullanılması tavsiye edilir. Dalış planlarınız için ürünün kutu içeriğindeki veya resmi aksesuarlarındaki su geçirmezlik detaylarını kontrol etmenizi öneririz.
+
+Teşekkürler
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",418330,NO,,,Match: 1.00
+TC595,2026-04-29T10:01:08.000Z,AI_HANDLES,NO,TRUE,"Guten Tag,
+
+vielen Dank für Ihre Nachricht.
+
+Wir verstehen, dass Sie dringend auf Ihren Laptop warten und die verzögerte Lieferung frustrierend ist. Da wir keinen Zugriff auf spezifische Bestelldetails haben, haben wir Ihre Anfrage umgehend an einen menschlichen Mitarbeiter weitergeleitet.
+
+Dieser wird sich direkt um Ihr Anliegen kümmern und den Status Ihrer Bestellung überprüfen. Sie werden in Kürze kontaktiert, um Ihnen weiterzuhelfen.
+
+Mit freundlichen Grüßen,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",5770,NO,,,Match: 1.00
+TC596,2026-04-29T10:03:08.000Z,AI_HANDLES,NO,TRUE,"Zdravo!
+
+U vezi Vašeg upita o kompatibilnosti Logitech MX Master 3 miša sa MacBook Pro M3:
+
+Iako naša interna dokumentacija ne sadrži direktne potvrde kompatibilnosti sa MacBook Pro M3 modelima, Logitech MX Master serija poznata je po dobroj saradnji sa macOS operativnim sistemom.
+
+Vjerovatno će miš raditi besprekorno sa Vašim MacBook Pro M3 putem Bluetooth veze.
+
+Za 100% potvrdu, preporučujemo da provjerite zvaničnu Logitech web stranicu za najnovije sistemske zahtjeve ili kontaktirate Logitech podršku.
+
+Srdačan pozdrav,
+Customer Support Team
+
+
+--
+Ovo je automatski generisan odgovor. Ukoliko želite da razgovarate sa agentom podrške, molimo Vas da to navedete u Vašem narednom emailu.",12780,NO,,,Match: 1.00
+TC597,2026-04-29T10:05:09.000Z,AI_HANDLES,NO,TRUE,"Merhaba,
+
+Hesabınızda çift faturalandırma yaşandığını ve 49,99 Euro tutarındaki ek ücretin iadesini talep ettiğinizi anlıyorum.
+
+Bu tür hesap ve faturalandırma sorunları hassas kişisel bilgilere erişim gerektirdiğinden, maalesef doğrudan yardımcı olamıyorum.
+
+Endişelenmeyin, bu konuyu çözmek için buradayız. Talebinizi derhal faturalandırma ekibimize iletiyorum. Bir uzman, hesabınızı incelemek, çift ücretlendirmeyi doğrulamak ve size sipariş numaralarını sağlamak için sizinle en kısa sürede iletişime geçecektir. Sabrınız ve anlayışınız için teşekkür ederiz.
+
+Saygılarımızla,
+Customer Support Team
+
+
+--
+Bu, yapay zeka tarafından desteklenen otomatik bir yanıttır. Bir insan temsilciyle görüşmek isterseniz, lütfen bir sonraki e-postanızda bunu belirtin, sizi derhal destek ekibimizle görüştürelim.",480430,NO,,,Match: 1.00
+TC598,2026-04-29T10:07:09.000Z,AI_HANDLES,NO,TRUE,"Hallo!
+
+Basierend auf unseren allgemeinen Garantieinformationen haben Audioprodukte üblicherweise eine Garantiezeit von 1-2 Jahren. Da Ihre Samsung Galaxy Buds erst 8 Monate alt sind, ist es sehr wahrscheinlich, dass sie noch unter Garantie fallen.
+
+Für die Einreichung einer Garantiereparatur empfehlen wir Ihnen, sich direkt an den Samsung-Support oder an den Händler TechFlow zu wenden, bei dem Sie die Buds gekauft haben.
+
+Bitte halten Sie Ihren Kaufbeleg bereit, da dieser für die Garantieabwicklung benötigt wird.
+
+Mit freundlichen Grüßen,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",601250,NO,,,Match: 1.00
+TC599,2026-04-29T10:09:10.000Z,ESCALATED,YES,TRUE,Pending,,NO,,,Match: 1.00
+TC600,2026-04-29T10:11:10.000Z,AI_HANDLES,NO,TRUE,"Merhaba,
+
+Web kameranızın hasarlı ulaşmasına üzüldük. Ürününüz elektronik kategorisine girdiği için iade sürecimiz şu şekildedir:
+
+Elektronik ürünler için teslimat tarihinden itibaren 30 günlük iade süresi bulunmaktadır ve ürününüz hasarlı geldiği için bu kapsama girmektedir. İade için ürünü tüm orijinal aksesuarlarıyla birlikte, mümkünse orijinal ambalajında paketlemeniz gerekmektedir. Cihazı fabrika ayarlarına sıfırlamanıza veya akıllı ev hesabınızdan kaldırmanıza gerek yoktur.
+
+Paketlediğiniz ürünü belirlenen kargo firmasına teslim ettikten sonra kargo takip numarasını saklamanızı rica ederiz. Ürün bize ulaştıktan sonra 2-3 iş günü içinde incelenecek ve hasarlı olduğu doğrulandıktan sonra tarafınıza tam para iadesi yapılacaktır. İade onay e-postası alacak ve iade tutarı 5-7 iş günü içinde orijinal kredi kartınıza yansıtılacaktır.
+
+Bu süreçte herhangi bir sorun yaşamanız durumunda lütfen bizimle tekrar iletişime geçmekten çekinmeyin.
+
+Teşekkürler,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",730560,NO,,,Match: 1.00
+TC602,2026-04-29T11:47:28.520Z,,,,,,YES,No matching log found (score: 0.32),,
+TC603,2026-04-29T11:47:28.520Z,,,,,,YES,No matching log found (score: 0.32),,
+TC604,2026-04-29T11:47:28.520Z,,,,,,YES,No matching log found (score: 0.20),,
+TC605,2026-04-29T11:47:28.521Z,,,,,,YES,No matching log found (score: 0.29),,
+TC606,2026-04-29T11:47:28.521Z,,,,,,YES,No matching log found (score: 0.24),,
+TC607,2026-04-29T11:47:28.521Z,,,,,,YES,No matching log found (score: 0.26),,
+TC608,2026-04-29T11:47:28.522Z,,,,,,YES,No matching log found (score: 0.37),,
+TC609,2026-04-29T11:47:28.522Z,,,,,,YES,No matching log found (score: 0.37),,
+TC610,2026-04-29T11:47:28.522Z,,,,,,YES,No matching log found (score: 0.28),,
+TC611,,,,,,,,,,
+TC612,,,,,,,,,,
+TC613,,,,,,,,,,
+TC614,,,,,,,,,,
+TC615,,,,,,,,,,
+TC616,2026-04-29T10:31:15.000Z,ESCALATED,YES,TRUE,Pending,,NO,,,Match: 1.00
+TC617,,,,,,,,,,
+TC618,,,,,,,,,,
+TC619,,,,,,,,,,
+TC620,,,,,,,,,,
+TC621,,,,,,,,,,
+TC622,,,,,,,,,,
+TC623,,,,,,,,,,
+TC624,2026-04-29T10:33:16.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+Thank you for reaching out.
+
+I'm sorry, but I couldn't find any specific information about ""#ERROR! (Formula parse error.)"" in our official documentation. This type of error often indicates an issue with the syntax or structure of a formula you are trying to use.
+
+To help you further, could you please provide more details about where you are encountering this error? For example:
+
+• Which application or software are you using?
+• What is the formula you are trying to use?
+• What steps did you take before this error appeared?
+
+Once I have more information, I can try to provide a more targeted solution.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",12720,NO,,,Match: 1.00
+TC625,,,,,,,,,,
+TC626,,,,,,,,,,
+TC627,,,,,,,,,,
+TC628,,,,,,,,,,
+],2026-04-29T10:35:16.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+I understand you're experiencing an issue with your order and are looking for help.
+
+Since I don't have access to specific order details, I'm escalating this to our support team.
+
+They will be able to look up your order with the reference number TF- and assist you directly. A specialist will reach out to you shortly to resolve this.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",6730,NO,,,Match: 0.95
+TC630,,,,,,,,,,
+TC632,2026-04-29T10:37:17.000Z,AI_HANDLES,NO,TRUE,"Hi Sarah,
+
+I understand you're locked out of your account and need help resetting your password. You can easily reset your password by following these steps:
+
+1. Visit our website and click ""Login"" in the top right corner.
+2. Click ""Forgot Password"" to receive a reset link via email to sarah.johnson@techflowcustomer.com.
+
+Please check your spam or junk folder if you don't see the email in your inbox within a few minutes. If you continue to experience issues after following these steps, please let us know, and we'll be happy to assist further.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",14310,NO,,,Match: 1.00
+TC633,2026-04-29T11:47:28.524Z,,,,,,YES,No matching log found (score: 0.12),,
+TC634,2026-04-29T11:47:28.524Z,,,,,,YES,No matching log found (score: 0.27),,
+TC635,2026-04-29T11:47:28.525Z,,,,,,YES,No matching log found (score: 0.24),,
+TC636,2026-04-29T10:45:19.000Z,ESCALATED,YES,TRUE,Pending,,NO,,,Match: 1.00
+TC637,2026-04-29T11:47:28.525Z,,,,,,YES,No matching log found (score: 0.19),,
+TC638,2026-04-28T20:54:50.000Z,ESCALATED,YES,FALSE,Pending,,NO,,,Match: 0.45
+TC639,2026-04-29T11:47:28.526Z,,,,,,YES,No matching log found (score: 0.24),,
+TC640,2026-04-29T11:47:28.526Z,,,,,,YES,No matching log found (score: 0.36),,

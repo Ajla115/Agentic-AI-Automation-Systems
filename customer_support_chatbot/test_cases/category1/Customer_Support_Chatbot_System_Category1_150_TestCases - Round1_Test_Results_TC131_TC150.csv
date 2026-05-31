@@ -1,0 +1,21 @@
+TEST_ID,TIMESTAMP,ACTUAL_CLASSIFICATION,ACTUAL_ESCALATION,CLASSIFICATION_CORRECT,AI_RESPONSE,RESPONSE_TIME_MS,CONFIDENCE_SCORE,SENTIMENT_DETECTED,KEYWORDS_DETECTED,NOTES
+TC131,2026-04-13T10:39:56.000Z,ESCALATED,YES,TRUE,Pending,,,"angry, urgent","extreme_anger: ""furious"" | frustration: ""unacceptable"" | demands: ""right now""",Match score: 1.00
+TC132,2026-04-13T10:43:15.000Z,ESCALATED,YES,TRUE,Pending,,,neutral,"dissatisfaction: ""worst""",Match score: 1.00
+TC133,2026-04-13T10:46:16.000Z,ESCALATED,YES,TRUE,Pending,,,angry,"extreme_anger: ""furious"" | frustration: ""useless""",Match score: 1.00
+TC134,2026-04-13T10:49:16.000Z,ESCALATED,YES,TRUE,Pending,,,angry,"extreme_anger: ""outraged""",Match score: 1.00
+TC135,2026-04-13T10:52:17.000Z,ESCALATED,YES,TRUE,Pending,,,neutral,"frustration: ""useless""",Match score: 1.00
+TC136,2026-04-13T10:55:18.000Z,ESCALATED,YES,TRUE,Pending,,,"frustrated, threatening","frustration: ""incompetent"", ""done with"" | threats: ""sue""",Match score: 1.00
+TC137,2026-04-13T10:58:18.000Z,ESCALATED,YES,TRUE,Pending,,,neutral,"refund_cancel: ""refund"" | dissatisfaction: ""disgusted""",Match score: 1.00
+TC138,2026-04-13T11:01:19.000Z,ESCALATED,YES,TRUE,Pending,,,"angry, threatening","extreme_anger: ""livid"" | threats: ""sue""",Match score: 1.00
+TC139,2026-04-13T11:04:20.000Z,ESCALATED,YES,TRUE,Pending,,,neutral,"dissatisfaction: ""worst""",Match score: 1.00
+TC140,2026-04-13T11:07:20.000Z,ESCALATED,YES,TRUE,Pending,,,neutral,undetected (manual review needed),Match score: 1.00
+TC141,2026-04-13T11:10:21.000Z,ESCALATED,YES,TRUE,Pending,,,neutral,undetected (manual review needed),Match score: 1.00
+TC142,2026-04-13T11:13:21.000Z,ESCALATED,YES,TRUE,Pending,,,frustrated,"frustration: ""frustrated""",Match score: 1.00
+TC143,2026-04-13T11:16:22.000Z,ESCALATED,YES,TRUE,Pending,,,"angry, urgent","extreme_anger: ""seething"" | demands: ""right now""",Match score: 1.00
+TC144,2026-04-13T11:19:23.000Z,ESCALATED,YES,TRUE,Pending,,,angry,"extreme_anger: ""enraged"" | refund_cancel: ""cancel""",Match score: 1.00
+TC145,2026-04-13T11:22:23.000Z,ESCALATED,YES,TRUE,Pending,,,"angry, threatening","extreme_anger: ""incensed"" | threats: ""sue""",Match score: 1.00
+TC146,2026-04-13T11:25:24.000Z,ESCALATED,YES,TRUE,Pending,,,neutral,undetected (manual review needed),Match score: 1.00
+TC147,2026-04-13T11:28:24.000Z,ESCALATED,YES,TRUE,Pending,,,neutral,undetected (manual review needed),Match score: 1.00
+TC148,2026-04-13T11:31:25.000Z,ESCALATED,YES,TRUE,Pending,,,neutral,"refund_cancel: ""refund""",Match score: 1.00
+TC149,2026-04-13T11:34:26.000Z,ESCALATED,YES,TRUE,Pending,,,angry,"extreme_anger: ""furious"" | security: ""hacked""",Match score: 1.00
+TC150,2026-04-13T11:37:26.000Z,ESCALATED,YES,TRUE,Pending,,,angry,"extreme_anger: ""furious""",Match score: 1.00

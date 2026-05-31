@@ -1,0 +1,171 @@
+TEST_ID,PRIORITY,SUBJECT,EMAIL_BODY,HUMAN_AGENT_REPLY,HOURS_OVERDUE,RESPONSE_TIME_MS,RESPONSE_STATUS,ALERT_COUNT,EXPECTED_OUTCOME,ACTUAL_OUTCOME,PASS/FAIL,NOTES
+CAT8-A-001,Critical,Fraud on my account — urgent action required,"Dear TechFlow Support,
+
+I am writing to report two unauthorized charges of €149.99 each that appeared on my credit card on May 5th and May 6th. I did not make these purchases and I have not shared my account credentials with anyone. I have already contacted my bank and they have advised me to report this to you immediately.
+
+I have checked my TechFlow account and there are no orders corresponding to these charges. I am extremely concerned that my account may have been compromised.
+
+I need this investigated as a matter of urgency. Please freeze my account immediately and escalate this to a human agent who can look into the unauthorized transactions directly. I need to speak with a human support representative as soon as possible.","Dear customer,
+
+thank you for letting us know about this issue. We will freeze your TechFlow account, and investigate this into further detail. As sson as we get more information about this, we will immediately inform you. 
+
+Kind regards.",0,355,Resolved,0,Immediately Resolved,TRUE,✅ PASS,
+CAT8-A-002,Critical,Legal action — billing dispute unresolved after 3 contacts,"Dear TechFlow Support Team,
+
+I am contacting you for the third time regarding a billing error that has still not been resolved. I was charged €89.99 twice in March and despite two previous support tickets, the refund has not been processed.
+
+I have been patient but I am now at the point where I will have no choice but to pursue this through my consumer rights organisation and, if necessary, through legal channels.
+
+I am formally requesting that a human agent contact me within 24 hours to resolve this matter. I do not want another automated response. Please escalate this immediately to a human support representative who has the authority to process my refund.","Dear customer,
+
+thank you for your emai, we are immediately conating our finance office regarding this.
+
+Kind regards,",0,88,Resolved,0,Immediately Resolved,TRUE,✅ PASS,
+CAT8-A-003,Critical,Account hacked — immediate help needed,"Hello TechFlow Support,
+
+I believe my TechFlow account has been hacked. I received a password change confirmation email that I did not request, and I can no longer log in to my account. When I try to reset my password, the reset email is going to an address I do not recognise, which tells me my email has also been changed.
+
+I am very worried about my personal data and any payment methods saved on my account.
+
+This is a security emergency and I urgently need a human agent to help me recover my account and secure my personal information. Please do not send me automated troubleshooting steps — I need a real person to handle this immediately.","Dear customer,
+
+we are connecting you immediately with our CTO employee. They will do their best to help you.
+
+Kind regards,",0,89,Resolved,0,Immediately Resolved,TRUE,✅ PASS,
+CAT8-A-004,Critical,Refund not received after 2 weeks — escalation required,"Dear Support,
+
+I returned a defective Dell XPS laptop two weeks ago and I was told the refund would be processed within 5 to 7 business days. It has now been 14 days and I have not received anything. The return tracking shows the item was delivered back to your warehouse on April 25th.
+
+I have contacted support twice and been told to wait each time. I cannot wait any longer as this was a significant purchase.
+
+I am asking that a human agent review my case directly and confirm when my refund will be issued. I do not want another automated reply. Please escalate this to a human support representative now.","Dear Customer,
+
+I am checking your shipment ID, and then I will try to help you.
+
+Kind regards, 
+
+",0,,Resolved,0,Immediately Resolved,TRUE,✅ PASS,
+CAT8-A-005,Critical,Data privacy concern — GDPR deletion request,"Dear TechFlow Data Protection Team,
+
+I am formally submitting a request for erasure of all my personal data under Article 17 of the GDPR. I am a resident of Bosnia and Herzegovina and I understand that TechFlow is subject to GDPR regulations.
+
+I would like all data associated with my account, including my name, email address, payment history, support ticket history, and any other personal information, to be permanently deleted within the 30-day deadline required by law.
+
+This is a formal legal request and I need confirmation from a human agent that this request has been received and will be actioned. Please do not send me an automated response. I require written confirmation from a human representative.","Dear Valued Customer,
+
+Thank you for contacting the TechFlow Data Protection Team.
+
+We acknowledge your request for the erasure of your personal data under Article 17 of the GDPR.
+
+As a resident of Bosnia and Herzegovina, we want to assure you that TechFlow Solutions Inc., being located in Sarajevo, fully complies with these regulations.
+
+To proceed with your request, we first require identity verification to protect your privacy. Once your identity has been successfully verified, your request will be processed within 30 days.
+
+You will receive an email notification upon the completion of the data erasure. We will be in touch shortly with instructions on how to complete the identity verification process.
+
+Sincerely",0,12390,Resolved,0,Immediately Resolved,TRUE,✅ PASS,
+CAT8-A-006,High,Laptop completely broken — warranty replacement needed,"Hello TechFlow,
+
+I am writing about my Dell XPS laptop which completely stopped working three weeks ago. I have contacted your support team twice already and both times I was given the same standard troubleshooting steps which have not resolved the problem.
+
+The laptop is only 8 months old and should be fully covered under warranty. I have tried every step your team suggested and the device still will not power on.
+
+I need a human agent to handle my warranty claim directly and arrange either a repair or a replacement unit. I have been without my primary work machine for three weeks and this situation is no longer acceptable. Please escalate to a human support representative immediately.","Dear customer, 
+
+your device is under warranty so it will be fully replaced. We have your shipping information so we will immediately ship the new device to you.
+
+Kind regards.",1,"3,602,000ms (1 h and 2 s)",Resolved,1,1 ALERT SENT via Telegram,TRUE,✅ PASS,
+CAT8-A-007,High,Wrong product delivered — need urgent return,"Dear TechFlow Support,
+
+I ordered a Logitech MX Master 3 mouse last week but received a completely different product — a basic Logitech M185 mouse. I contacted support five days ago and was told a return label would be emailed to me within 48 hours. I have still not received anything.
+
+I need the correct product urgently as it is for my home office setup. Every day of delay is affecting my work.
+
+Please escalate this to a human agent who can arrange the correct return label immediately and confirm when the correct product will be dispatched. I cannot wait any longer for an automated process that is clearly not working.","Hello,
+
+I understand your frustration with receiving the incorrect product and the urgency of getting this resolved. To return the Logitech M185 mouse and receive your correct Logitech MX Master 3 mouse, please follow these steps:
+
+1. Initiate Return: Log into your account, go to ""Order History,"" select the relevant order, and click ""Return Item."" Alternatively, you can contact our support team directly with your order number.
+2. Provide Information: When initiating the return, please provide your order number and select ""Not as described"" as the reason for return.
+3. Return Authorization: You will receive a Return Merchandise Authorization (RMA) number and a prepaid shipping label. Please ship the item within 14 days of receiving the RMA.
+4. Return Shipment: Securely package the mouse, include the RMA number both inside and outside the box, and drop it off with the designated carrier. Remember to keep your tracking number.
+5. Inspection & Refund/Replacement: Once the item is received and inspected (typically 2-3 business days), your correct order will be processed for shipment or a refund will be issued if preferred. A confirmation email with details will be sent to you.
+
+Best regards,,
+Customer Support Team",1,"3,614,230ms (1 h and 14.23 s)",Resolved,1,1 ALERT SENT via Telegram,TRUE,✅ PASS,
+CAT8-A-008,High,Subscription charged after confirmed cancellation,"Hello,
+
+I cancelled my TechFlow Pro subscription on March 28th and received a confirmation email of the cancellation. Despite this, I was charged €49.99 on April 1st — four days after cancellation.
+
+I have the cancellation confirmation email and my bank statement showing the charge. This is clearly an error on your side.
+
+I am requesting an immediate refund of €49.99 and I need a human agent to personally confirm that no further charges will be made to my account. I do not trust the automated system at this point given that it charged me after a confirmed cancellation. Please escalate to a human representative now.","Hello, We understand that you were charged for your TechFlow Pro subscription after receiving a cancellation confirmation. This situation requires a review of your specific account details, including",1,3621000 ( 1 h and 21 seconds),Resolved,1,1 ALERT SENT via Telegram,TRUE,✅ PASS,
+CAT8-A-009,High,Double charge on credit card — same order,"Dear TechFlow Billing Team,
+
+I placed one order for a Samsung 27-inch monitor last Tuesday, but my credit card was charged twice for the exact same amount of €349.00 on the same day. I only placed one order and I only received one item.
+
+My bank has confirmed both charges are from TechFlow. I have attached screenshots of my bank statement and my TechFlow order confirmation showing only one order.
+
+I need a human agent to investigate this double charge immediately and process a refund for the duplicate payment. This is a significant amount of money and I cannot wait for a slow automated process. Please connect me with a human support representative as soon as possible.","Dear TechFlow Billing Team, We understand your concern about the double charge for your Samsung 27-inch monitor. To help us investigate this for you, please first check if the second charge is an",1,3613000 ( 1 h and 13 seconds),Resolved,1,1 ALERT SENT via Telegram,TRUE,✅ PASS,
+CAT8-A-010,High,"Order still missing — third contact, no resolution","Dear Support Team,
+
+This is the third time I am contacting you about the same missing order. Order #TF-2026-8821 was placed on April 15th with a promised delivery of April 20th. It is now May 8th and the tracking still shows 'Processing'.
+
+My first contact on April 22nd: told to wait. My second contact on April 28th: told to wait. Today: still nothing.
+
+I am asking for the final time that a human agent investigate what has happened to my order and either arrange immediate delivery or issue a full refund. I will not accept another automated response telling me to wait. Escalate this to a human support representative immediately.","Dear customer, we experienced some issues with the shipping company in the past couple of days. At the moment, we are transfering to a new shipmnet company. A soon as this is established, we will send",1,3621620 ( 1 h and 21.62 seconds),Resolved,1,1 ALERT SENT via Telegram,TRUE,✅ PASS,
+CAT8-A-011,Medium,Password reset completely broken — cannot access account,"Hello TechFlow Support,
+
+I have been trying to reset my password for the past two days and the process is completely broken. I click 'Forgot Password', receive the reset email, click the link, set a new password, and then the system tells me my credentials are invalid when I try to log in.
+
+I have tried this six times across three different browsers and two different devices. The problem is consistent. I have important subscription information and purchase history in my account that I need to access.
+
+I need a human agent to manually reset my account credentials because the automated password reset system is clearly not working. Please escalate this to a human support representative who can fix this directly.","Hello!
+
+I understand how frustrating it can be to not be able to access your account, especially when you've been trying to reset your password for a while. It sounds like the reset link itself isn't working as expected after you click it.
+
+To troubleshoot this, please try the following steps:
+
+1. Clear your browser's cache and cookies. Sometimes old data can interfere with new processes.
+2. Try using a different web browser or even another device (like a mobile phone or another computer) to click the reset link.
+
+If you've tried these steps and are still unable to reset your password and access your account, please let us know. For security purposes, manual account recovery requires verification of your registered email address and either your billing zip code or the last 4 digits of the card you have on file. We can then assist you further with regaining access to your account.
+
+Best regards,,
+Customer Support Team",2,"7,215,000 (2 h i 15 seconds)",Resolved,2,2 ALERTS SENT via Telegram,TRUE,✅ PASS,
+CAT8-A-012,Medium,Product not as described — requesting refund,"Dear TechFlow Support,
+
+I purchased the GoPro Hero 12 based on your product listing which stated it was waterproof to 10 metres. After using it during a shallow dive at approximately 5 metres, the camera filled with water and is now completely non-functional.
+
+I have reviewed your product listing again and I believe the waterproofing specifications were inaccurate or misleading. The camera was destroyed by water at a depth well below what was advertised.
+
+I am requesting a full refund as the product did not perform as described. Given the amount involved and the nature of the complaint, I need a human agent to review my case and approve the refund. Please escalate this to a human support representative immediately.","Hello, We are very sorry to hear about the issue you've experienced with your GoPro Hero 12. We understand it did not perform as expected regarding its waterproof capabilities, failing at 5 meters",2,"7,212,000 (2 h i 12 seconds)",Resolved,2,2 ALERTS SENT via Telegram,TRUE,✅ PASS,
+CAT8-A-013,Medium,Delivery 2 weeks overdue — urgent investigation needed,"Hello,
+
+I ordered a mechanical keyboard on April 20th with a quoted delivery time of 3 to 5 business days. It is now May 8th — 18 days later — and I have still not received my order.
+
+The tracking number you provided returns no results on the courier's website. When I called the courier directly they said they have no record of this shipment.
+
+I need a human agent to investigate what has happened to my order. Either the item was never shipped or the tracking information is incorrect. Either way, this needs human intervention to resolve. Please escalate my case to a human support representative who can contact the courier directly.","Dear customer, we experienced some issues with the shipping company in the past couple of days. At the moment, we are transfering to a new shipmnet company. A soon as this is established, we will send",2,7217300 ( 2 h and 17.30 seconds),Resolved,2,2 ALERTS SENT via Telegram,TRUE,✅ PASS,
+CAT8-A-014,Medium,Software licence not activating — work blocked,"Dear TechFlow Technical Support,
+
+I purchased a software licence for AutoCAD through your platform on May 1st. The licence key you provided is not being accepted by the software. I receive the error message 'Invalid or already used licence key' every time I enter it.
+
+I contacted support four days ago and was told the issue would be escalated to your licensing team. I have heard nothing since. I use this software for my professional work and I have been unable to work properly for a week.
+
+I need a human agent to either provide a valid replacement licence key or confirm the issue with the licensing team directly. The automated support process has clearly failed here. Please escalate this to a human support representative immediately.","Hello, We understand you're experiencing an issue with your AutoCAD license key not being accepted, which is currently blocking your work. While license activation problems with Autodesk AutoCAD",2,"7,215,000 (2 h i 15 seconds)",Resolved,2,2 ALERTS SENT via Telegram,TRUE,✅ PASS,
+CAT8-A-015,Medium,Premium features locked despite active subscription,"Hello TechFlow Support,
+
+I have an active TechFlow Pro subscription that I renewed last week, but I am unable to access any of the premium features. The platform shows my account as 'Free Plan' despite the payment going through successfully.
+
+My bank confirms the charge of €99.00 was processed on May 2nd. I have logged out and back in multiple times, cleared my cache, and tried on different devices — the problem persists.
+
+I need a human agent to manually update my account status to reflect my active Pro subscription. The automated system has clearly not updated my account correctly after payment. Please escalate this to a human support representative who can fix my account directly.","Hello!
+
+I understand you're experiencing an issue where your premium features are locked despite having an active TechFlow Pro subscription.
+This often requires checking your account details directly, which I don't have access to for security reasons.
+
+To get this resolved for you quickly, I'm escalating your case to our support team. A specialist will be in touch shortly to investigate why your account is showing as a 'Free Plan' and ensure your premium features are activated.
+
+Best regards,",2,"7,205,000 (2 h i 5 seconds)",Resolved,2,2 ALERTS SENT via Telegram,TRUE,✅ PASS,
+SUMMARY,,,,,,,,,Total: 15,15,0,100% accuracy

@@ -1,0 +1,339 @@
+timestamp:,query:,status,response,responseTime
+2026-05-09T18:43:52.433Z,How do I reset my account password? --- This email was sent automatically with n8n,success,"Here's how to reset your account password:
+
+1. **Go to the login page** — Visit the website and click **""Login""** in the top right corner.
+2. **Click ""Forgot Password""** — You'll find this option on the login screen.
+3. **Check your email** — A **password reset link** will be sent to your registered email address.
+4. **Follow the link** — Click it to set a new password.
+
+> 💡 **Tip:** If you're getting an *""Invalid Credentials""* error, note that passwords are **case-sensitive**. Also, after multiple failed login attempts, your account may be **locked** — in that case, resetting your password is the recommended first step.
+
+If the issue persists after resetting, contact support with your registered email address.",9512ms
+2026-05-09T18:45:53.907Z,Can I have multiple email addresses linked to one account? --- This email was sent automatically with n8n,success,"Based on the available documentation, there is **no mention of support for multiple email addresses on a single account**. The FAQ consistently refers to a single **""registered email address""** per account, used for:
+
+- Logging in
+- Password resets
+- Order confirmations and tracking notifications
+
+This implies that **each account is tied to one email address**.
+
+If a customer needs to update or change their email, they can do so via **Account Settings > Profile**. For special cases or further clarification, they should be directed to contact support directly — via **Chat (24/7)** or **Phone (Mon–Fri 8AM–8PM EST)**.",11375ms
+2026-05-09T18:47:53.317Z,What payment methods do you accept? --- This email was sent automatically with n8n,success,"We accept the following payment methods:
+
+| Method | Processing Time | Fees | Minimum Order |
+|---|---|---|---|
+| **Credit Card** (Visa, Mastercard, Amex, Discover) | Instant | None | $0 |
+| **Debit Card** | Instant | None | $0 |
+| **PayPal** | Instant | None | $0 |
+| **Apple Pay / Google Pay** | Instant | None | $0 |
+| **Bank Transfer** | 2–3 business days | None | $500 minimum |
+| **Store Credit** | Instant | None | $0 |
+
+All methods are fee-free. Note that **Bank Transfer** requires a minimum order of **$500** and takes a couple of business days to process. All other methods are instant with no minimum order requirement.
+
+Is there anything else I can help you with?",9607ms
+2026-05-09T18:49:54.181Z,How do I track my order status? --- This email was sent automatically with n8n,success,"Here's how you can **track your order status**:
+
+1. **Log into your account** and navigate to **""Order History""** — your order and its current status will be listed there.
+2. **Use the tracking number** sent to your email after your order was placed.
+3. **Contact support** directly with your order number if you need further assistance.
+
+> 💡 If your estimated delivery date has passed by more than **3 business days**, reach out to support for help.
+>
+> **Support Hours:**
+> - 📞 Phone: Mon–Fri 8AM–8PM, Sat 9AM–5PM (EST)
+> - 💬 Chat: 24/7
+> - 📧 Email: Responses within 24 hours",11106ms
+2026-05-09T18:51:54.026Z,What is your return window for electronics? --- This email was sent automatically with n8n,success,"The **return window for electronics** is **30 days from the delivery date**. Here are the key details:
+
+- **Eligible products:** TVs, Cameras, Computers, Audio equipment, Gaming devices
+- **Condition required:** Original condition with all accessories included; original packaging preferred
+- **Restocking fee:**
+  - ✅ **None** for defective items
+  - 💰 **15%** for change of mind returns
+
+**Additional notes:**
+- Items returned **outside the 30-day window but within 45 days** may qualify for a **50% partial refund**
+- Items purchased **over 30 days ago** are generally non-refundable, with exceptions for defects covered under warranty
+
+To initiate a return, you can log into your account → Order History → Select Order → ""Return Item"", or contact support with your order number.",10874ms
+2026-05-09T18:54:01.172Z,My laptop won&#39;t turn on after charging. What should I do? --- This email was sent automatically with n8n,success,"Here's what to do if your laptop won't turn on after charging:
+
+---
+
+## 🔋 Laptop Won't Turn On — Troubleshooting Steps
+
+**1. Verify the charge**
+- Make sure the laptop was actually charging — check the charging indicator light.
+- Leave it connected for **at least 30 minutes** before trying again.
+
+**2. Try a different charger/cable**
+- A faulty cable or adapter is a common culprit. Use an original or known-working charger.
+
+**3. Try a different power outlet**
+- The outlet itself may be the issue — plug into a different socket.
+
+**4. Check the charging port**
+- Clean the charging port with compressed air to remove any debris.
+
+**5. Perform a hard reset**
+- Hold the **power button for 15–20 seconds**, then release and try powering on again.
+
+**6. Check for physical damage**
+- Inspect for any signs of water exposure or physical damage that may be preventing startup.
+
+---
+
+### 🚨 If None of These Work:
+The device may require **warranty service**. Before contacting support, please have the following ready:
+- 📅 Purchase date
+- 🔢 Serial number
+- 📝 Description of the issue (e.g., ""laptop won't turn on after charging"")
+
+**Contact Support:**
+- 📞 **Phone:** Monday–Friday 8AM–8PM, Saturday 9AM–5PM (EST)
+- 💬 **Chat:** 24/7 (fastest option)
+- 📧 **Email:** Response within 24 hours",17085ms
+2026-05-09T18:55:55.033Z,How do I fix a Bluetooth connectivity issue on my device? --- This email was sent automatically with n8n,success,"Here's how to fix **Bluetooth connectivity issues** on your device:
+
+---
+
+## 🔵 Bluetooth Troubleshooting Guide
+
+### Device Not Pairing
+1. **Put device in pairing mode** – usually indicated by a blinking light.
+2. **Clear previously paired devices** from your Bluetooth settings.
+3. **Restart Bluetooth** on both devices (turn off, wait 5 seconds, turn back on).
+4. **Check device compatibility** – ensure both devices support the same Bluetooth standards.
+5. **Update firmware** on both devices.
+6. **Stay within 30 feet** with no physical obstructions between devices.
+
+---
+
+### Audio Stuttering Over Bluetooth
+- **Move closer** to the paired device.
+- **Remove other nearby Bluetooth devices** to reduce interference.
+- **Check for wireless interference** from other electronics.
+- **Update Bluetooth drivers/firmware**.
+- **Switch to a lower quality audio codec** if the option is available in settings.
+
+---
+
+### For Wearables (Fitbit, Garmin, AirPods, etc.)
+If you're having sync issues related to Bluetooth:
+- Restart the wearable.
+- Force close the companion app.
+- **Toggle Bluetooth off and back on**.
+- **Unpair and re-pair** the device.
+- Check your account sync settings.
+
+---
+
+### 🚨 When to Escalate
+If none of the above steps resolve the issue, it may need to be escalated to **Tier 2 Support**, especially if:
+- The problem persists after all troubleshooting.
+- A hardware defect is suspected.
+
+Would you like help with anything else?",11703ms
+2026-05-09T18:57:55.818Z,My WiFi keeps disconnecting every few minutes. How do I fix it? --- This email was sent automatically with n8n,success,"Here's how to fix your WiFi disconnecting issue, based on our troubleshooting guide:
+
+---
+
+## 📶 WiFi Keeps Disconnecting — Troubleshooting Steps
+
+Try these fixes in order:
+
+1. **Check for interference** — Keep the device away from microwaves, cordless phones, and other electronics that can disrupt the WiFi signal.
+
+2. **Update your router firmware** — Log into your router's admin panel and check for available firmware updates.
+
+3. **Change the WiFi channel** — In your router settings, switch to a less congested channel (e.g., channel 1, 6, or 11 for 2.4GHz).
+
+4. **Disable WiFi power saving mode** — On your device, go to network/WiFi settings and turn off any power-saving or sleep mode for WiFi.
+
+5. **Reset network settings on your device** — This clears saved network configurations that may be causing instability.
+
+6. **Check WiFi frequency** — If your router supports both 2.4GHz and 5GHz:
+   - **2.4GHz** = better range but slower
+   - **5GHz** = faster but shorter range
+   Try switching between them to see which is more stable.
+
+---
+
+If none of the above steps resolve the issue, the problem may require further investigation. Feel free to reply and a support agent will be happy to assist! 😊",12220ms
+2026-05-09T19:00:02.518Z,The screen on my monitor shows horizontal lines. Is this a hardware issue? --- This email was sent automatically with n8n,success,"**Horizontal lines on your monitor screen are likely a hardware issue.** Here's what our technical guide indicates:
+
+---
+
+### 📺 Display Issue: Lines on Screen
+
+According to our troubleshooting documentation, **lines on a screen (dead pixels or lines)** fall under hardware-related display problems. Here's what you should do:
+
+1. 📸 **Document the issue** — Take photos or a video of the horizontal lines on your screen.
+2. 🔍 **Check your warranty status** — This type of defect is typically covered under warranty.
+3. 📞 **Contact support for replacement eligibility** — A support agent will assess whether a replacement or repair is applicable.
+
+---
+
+### 🔧 Before escalating, you may also try:
+- **Adjust brightness settings** and check if the lines persist.
+- **Check for software/firmware updates** for your monitor or graphics driver.
+- **Test with a different cable or port** (e.g., HDMI, DisplayPort) to rule out a loose connection causing the lines.
+- **Connect the monitor to a different device** — if the lines appear on another device too, it confirms a hardware fault with the monitor itself.
+
+If the lines remain regardless of these steps, this is almost certainly a **hardware defect**, and you should proceed with a warranty claim. Please have your **purchase date and serial number** ready when you contact support. 🛠️",19802ms
+2026-05-09T19:01:56.896Z,How do I update the firmware on my device? --- This email was sent automatically with n8n,success,"Here's how to update your device's firmware/software:
+
+---
+
+## 🔄 Firmware / Software Update Guide
+
+### Option 1 — Automatic Updates (Recommended)
+- Enable **auto-updates** in your device's settings so updates install in the background.
+
+### Option 2 — Manual Update via Device Settings
+1. Go to your device **Settings**
+2. Look for **Software Update** or **Firmware Update**
+3. Ensure you have:
+   - ✅ At least **2GB of free storage space**
+   - ✅ Connected to **stable WiFi**
+   - ✅ Battery charged to at least **50%**
+4. Tap **Check for Updates** and follow the prompts
+5. If it fails, **restart and retry**
+
+### Option 3 — Via Companion App
+- Most smart devices (wearables, smart home, etc.) update through their **companion app** on your phone.
+
+### Option 4 — Manual Download
+- If the above options fail, you can **download the update manually** from our website and apply it.
+
+---
+
+### ⚠️ Still Not Updating?
+If the system still won't update after trying all steps, please contact support — we can escalate to our engineering team if needed.",13437ms
+2026-05-09T19:03:54.083Z,How long does a refund take after the item is returned? --- This email was sent automatically with n8n,success,"Here's the refund timeline **after your item is returned and received**:
+
+| Refund Method | Processing Time |
+|---|---|
+| **Store Credit** | Immediate |
+| **PayPal** | 3–5 business days |
+| **Credit Card** | 5–7 business days |
+| **Debit Card** | 7–10 business days |
+| **Bank Transfer** | 7–10 business days |
+
+A few key things to keep in mind:
+
+- 🔍 **Inspection first:** Once the return is received, the item goes through a **2–3 business day inspection** before the refund is processed.
+- 📧 You'll receive a **confirmation email** with refund details after processing.
+- ⏱️ **Refund decisions** are made within **48 hours** of the return request.
+
+So in total, you can expect the full process (inspection + refund) to take anywhere from **a few days up to about 2 weeks**, depending on your payment method.",10098ms
+2026-05-09T19:05:55.736Z,Can I get a refund on a software licence I already activated? --- This email was sent automatically with n8n,success,"**Unfortunately, no — a refund is not available for an already-activated software license.**
+
+Here's what the policy states for software (Microsoft Office, Adobe Photoshop, Autodesk AutoCAD, etc.):
+
+- ✅ **Eligible for refund:** Within 14 days of purchase, **only if the activation key has NOT been used**
+- ❌ **Not eligible for refund:** Once the activation key has been used
+- ❌ **Explicitly listed as non-refundable:** *""Downloadable software after activation""*
+
+### What you can still do:
+- If you believe the charge was **unauthorized or fraudulent**, contact support — fraudulent charges are refunded within 24 hours.
+- If you were **charged after a cancellation**, a full refund can be processed within 5–7 days.
+- For **billing disputes**, contact support first — most are resolved within 24 hours. If unresolved, you can request a supervisor review or escalation to the billing manager.
+
+Would you like help drafting a message to the support team or need info on any other options?",12179ms
+2026-05-09T19:07:56.368Z,What is your cancellation policy for subscriptions? --- This email was sent automatically with n8n,success,"Here's a summary of our **Subscription Cancellation Policy**:
+
+---
+
+### 🔴 How to Cancel
+1. Log into your account
+2. Go to **Subscriptions**
+3. Select the subscription you wish to cancel
+4. Click **""Cancel Subscription""**
+5. Confirm cancellation
+6. You'll receive a **confirmation email**
+
+---
+
+### 📅 Cancellation Terms by Subscription Type
+
+| Subscription Type | Effective Date | Refund |
+|---|---|---|
+| **Monthly** | End of current billing cycle | None |
+| **Annual** | End of current billing cycle | Pro-rated (minus any discounts received) |
+| **Trial** | Immediate | N/A |
+
+---
+
+### ⚠️ Important Notes
+- **Cancel at least 24 hours before your renewal date** to avoid being charged for the next cycle.
+- You retain **access until the end of your paid period**.
+- You can **resubscribe at any time**, but promotional pricing may not be available upon return.
+
+---
+
+### 🛠️ Charged After Cancellation?
+If you were charged after cancelling, please verify you received a cancellation confirmation email. If the charge is confirmed to be an error, a **full refund will be processed within 5–7 days**.
+
+If you need further assistance with your cancellation, feel free to reach out to our support team — billing inquiries are responded to within **24 hours**. 😊",12728ms
+2026-05-09T19:09:54.006Z,Do you offer price matching with other retailers? --- This email was sent automatically with n8n,success,"Yes, we do offer **price matching**! Here are the details:
+
+---
+
+### ✅ Price Match Policy
+
+We match prices from **authorized retailers**, provided the following conditions are met:
+
+- **Request window:** Within **14 days** of your purchase
+- **Item must be identical** — same model, color, and condition
+- **Competitor must have the item in stock** at the time of the request
+
+**Exclusions:** Marketplace sellers (e.g., third-party Amazon sellers), auction sites, and clearance items are **not** eligible.
+
+---
+
+### 📋 How to Request a Price Match
+
+1. **Contact our support team** with a link to the competitor's listing
+2. An agent will **verify the price and availability**
+3. The **price difference will be refunded** to your original payment method
+
+---
+
+For assistance, feel free to reach out to our support team via **chat (24/7)**, **phone (Mon–Fri 8AM–8PM, Sat 9AM–5PM EST)**, or **email**. 😊",10933ms
+2026-05-09T19:13:57.848Z,What is the battery life of the Dell XPS 15 laptop? --- This email was sent automatically with n8n,success,"The **Dell XPS** entry in the Product Catalog does **not specify a battery life figure**. Here's what is listed for it:
+
+**Dell XPS**
+- **Category:** Laptop
+- **Key Features:** Windows 11, InfinityEdge display, Intel/AMD processor options, Compact form factor, Thunderbolt 4 support
+- **Common Issues:** Coil whine, WiFi driver issues, Trackpad sensitivity, BIOS update requirements
+- **Warranty:** 1 year standard, Premium Support available
+
+Battery life is not documented in the available knowledge base for the Dell XPS. For accurate battery life specifications, I'd recommend:
+1. Checking [Dell's official product page](https://www.dell.com/en-us/shop/dell-laptops/xps-15-laptop/spd/xps-15-9530-laptop) for the XPS 15.
+2. Contacting Dell support directly for model-specific details.",14630ms
+2026-05-09T19:15:54.320Z,Does the GoPro Hero 12 have waterproofing? --- This email was sent automatically with n8n,success,"Yes! According to the product catalog, the **GoPro Hero (Action Camera)** features a **waterproof design** as one of its key built-in features. No additional housing is required for waterproofing.
+
+However, one noted common issue to be aware of is **fogging with the housing**, which can occur when using an external housing in certain conditions.
+
+> ⚠️ Note: The catalog lists the GoPro Hero line generally (not a specific ""Hero 12"" model). For model-specific waterproof depth ratings or specs, checking GoPro's official documentation would be recommended.",11693ms
+2026-05-09T19:18:08.759Z,What are the connectivity options on the Logitech MX Master 3 mouse? --- This email was sent automatically with n8n,success,"The product catalog doesn't appear to include a Logitech MX Master 3 mouse in its listed categories. Let me do a quick check of the relevant pages to confirm.The **Logitech MX Master 3** mouse is **not listed** in the company's product catalog or any of the available support documents. The catalog covers 42 products across 10 categories (Smartphones & Tablets, Computers & Laptops, TVs & Displays, Cameras & Imaging, Audio Equipment, Smart Home Devices, Wearables & Fitness, Gaming, Software, and Home Appliances), but **computer peripherals such as mice are not included**.
+
+As a result, I'm unable to provide connectivity details for that product based on the available knowledge base. Here are some options:
+
+- **Refer the customer to Logitech's official support** at [logitech.com/support](https://www.logitech.com/support) for accurate product specifications.
+- **Check if the product should be added** to the internal catalog with the relevant team.
+- If you believe this product *should* be in the catalog, it may be worth flagging for a catalog update.",24878ms
+2026-05-09T19:20:01.908Z,Which products fall under the Smart Home Devices category? --- This email was sent automatically with n8n,success,"The **Smart Home Devices** category (Category 6) includes **6 products**:
+
+| # | Product | Brand | Sub-Category |
+|---|---------|-------|--------------|
+| 1 | **Amazon Echo** | Amazon | Smart Speaker |
+| 2 | **Google Nest / Google Nest Hub** | Google | Smart Display/Speaker |
+| 3 | **Nest Thermostat** | Google | Smart Thermostat |
+| 4 | **Philips Hue Lights** | Philips | Smart Lighting |
+| 5 | **Roomba Robot Vacuum** | iRobot | Robot Vacuum |
+| 6 | **Dyson Vacuum Cleaner** | Dyson | Vacuum |
+
+Let me know if you'd like more details on any of these products, such as features, common issues, or warranty info!",18731ms

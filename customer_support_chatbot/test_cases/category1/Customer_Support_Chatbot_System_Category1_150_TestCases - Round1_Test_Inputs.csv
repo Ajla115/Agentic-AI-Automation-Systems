@@ -1,0 +1,1321 @@
+TEST ID,CATEGORY,SUBCATEGORY,SUBJECT,EMAIL BODY,KB DOCUMENT SOURCE,EXPECTED CLASSIFICATION,EXPECTED ESCALATION,EXPECTED ANSWER SUMMARY
+TC001,Routine,Account Access,Cannot log into my account - Invalid Credentials error,"Hi TechFlow Support Team,
+
+I hope you are doing well. I am writing because I am having trouble logging into my account on your platform. Every time I enter my email and password I receive an ""Invalid Credentials"" error message, even though I am certain I am using the correct details.
+
+I have already tried clearing my browser cache and using a different browser but the problem persists.
+
+Could you please advise on how to resolve this?
+
+Thank you very much,
+Sarah Johnson",01_FAQ_General,AI_HANDLES,NO,"Case-sensitive password, try reset; lockout after multiple fails"
+TC002,Routine,Password Reset,I forgot my password - please help,"Hello Support,
+
+I seem to have forgotten the password to my TechFlow account. I tried clicking the Forgot Password link and entering my email address but I have not received a reset email after 20 minutes.
+
+I have checked both my inbox and spam folder.
+
+Is there anything else I can do to recover access?
+
+Kind regards,
+James Miller",01_FAQ_General,AI_HANDLES,NO,"Click Forgot Password, check spam; contact support with registered email"
+TC003,Routine,Account Access,How do I update my account information?,"Dear Customer Support,
+
+I recently moved house and need to update my billing address and phone number on file. I logged into my account but I am not sure where to find the option to change this information.
+
+Could you please guide me through the steps?
+
+Thank you,
+Emma Thompson",01_FAQ_General,AI_HANDLES,NO,Login > Account Settings / Profile > update; billing changes may need verification
+TC004,Routine,Order Tracking,Where is my order? I have not received it yet,"Hi there,
+
+I placed an order 5 days ago and have not received it yet. The estimated delivery date shown at checkout was 3 days after my order date.
+
+My order number is ORD-2024-78542. I checked my email for a tracking number but I cannot find one.
+
+Could you please tell me where my order is?
+
+Best regards,
+David Chen",01_FAQ_General,ESCALATE,YES,"Check Order History in account, use tracking number from email; if 3+ days past EDD contact support"
+TC005,Routine,Order Tracking,My delivery is delayed - what should I do?,"Hello TechFlow Support,
+
+My order was supposed to arrive 4 business days ago but it has still not shown up. The tracking information has not updated for 2 days and just says 'in transit'.
+
+This is a gift for someone and I am getting worried.
+
+What can you do to help?
+
+Regards,
+Laura Perez",01_FAQ_General,AI_HANDLES,NO,Delays from demand/weather/carrier; if 3+ biz days past EDD support assists
+TC006,Routine,Order Tracking,Can I change my delivery address?,"Dear Support Team,
+
+I just placed an order but immediately realised I entered my old address instead of my new one. My order number is ORD-2024-91023.
+
+Can the delivery address still be changed? The order was placed about 10 minutes ago.
+
+Please respond as soon as possible.
+
+Thank you,
+Michael Brown",01_FAQ_General,AI_HANDLES,NO,Possible only if not shipped; contact immediately with order number and new address
+TC007,Routine,Payment,What payment methods do you accept?,"Hello,
+
+I am about to place a large order and I wanted to confirm which payment methods you accept before proceeding. I would prefer to pay by bank transfer if possible.
+
+Could you list the available options?
+
+Thank you,
+Anna Wilson",01_FAQ_General,AI_HANDLES,NO,"Visa/MC/Amex/Discover, debit, PayPal, Apple/Google Pay, bank transfer for orders over $500"
+TC008,Routine,Payment,My payment was declined - what should I do?,"Hi Support,
+
+I tried to complete my purchase just now but my card was declined. I know there are sufficient funds in my account.
+
+I tried twice but the same error appeared both times. The card I used is a Visa debit card.
+
+Can you help me figure out what went wrong?
+
+Best,
+Robert Taylor",01_FAQ_General,AI_HANDLES,NO,"Insufficient funds, wrong details, expired card, bank security block, billing address mismatch; verify with bank or use alternative method"
+TC009,Routine,Payment,How do I update my payment information?,"Dear Support,
+
+My credit card expired last month and I need to update it to a new one before my subscription renews. I want to make sure there is no interruption to my service.
+
+Where can I update my payment details?
+
+Kind regards,
+Sophie Martin",01_FAQ_General,AI_HANDLES,NO,Account Settings > Payment Methods; update before next billing cycle
+TC010,Routine,Payment,I was charged twice for my order,"Hello,
+
+I was looking at my bank statement today and noticed two identical charges from TechFlow Solutions for the same amount on the same date. I only placed one order.
+
+My order number is ORD-2024-66234. Can you please investigate and refund the duplicate charge?
+
+Thank you,
+Chris Anderson",01_FAQ_General,ESCALATE,YES,Usually temp authorization released in 3-5 biz days; if persists after 5 days contact support with order number and bank screenshot
+TC011,Routine,Returns,What is your return policy?,"Hi,
+
+I received a product that does not meet my expectations and I would like to return it. I purchased it 2 weeks ago.
+
+Could you please explain your return policy and how I can start the process?
+
+Thank you,
+Jennifer Davis",01_FAQ_General,AI_HANDLES,NO,"30-day return; original condition, all accessories, proof of purchase; refund in 5-7 biz days after receiving return"
+TC012,Routine,Returns,How do I start a return?,"Dear Support Team,
+
+I would like to return a product I purchased last week. It is still in perfect condition with all original packaging and accessories.
+
+Can you walk me through the return process step by step?
+
+Best regards,
+Thomas Harris",01_FAQ_General,AI_HANDLES,NO,Login > Order History > select order > Return Item > choose reason > print label > ship within 14 days
+TC013,Routine,Returns,When will I receive my refund?,"Hello,
+
+I shipped my return 3 days ago and the tracking shows it was delivered to your warehouse yesterday. 
+
+I paid with my Visa credit card. When can I expect to see the refund in my account?
+
+Regards,
+Jessica Martinez",01_FAQ_General,AI_HANDLES,NO,Credit card: 5-7 biz days; debit: 7-10; PayPal: 3-5; store credit: immediate
+TC014,Routine,Returns,Can I exchange my product instead of getting a refund?,"Hi TechFlow,
+
+I bought a product last week but I ordered the wrong size/variant by mistake. I do not want a refund, I would prefer to exchange it for the correct one.
+
+Is this possible and how do I do it?
+
+Thank you,
+Daniel Robinson",01_FAQ_General,AI_HANDLES,NO,Select Exchange instead of Refund when initiating return; price difference charged or refunded
+TC015,Routine,Subscription,How do I cancel my subscription?,"Dear Support,
+
+I would like to cancel my subscription as I no longer need the service. I want to make sure I am not charged again next month.
+
+Could you walk me through the cancellation process?
+
+Kind regards,
+Emily Clark",01_FAQ_General,AI_HANDLES,NO,Account > Subscriptions/Billing > select subscription > Cancel Subscription; takes effect end of billing period
+TC016,Routine,Subscription,Will I get a refund if I cancel mid-cycle?,"Hello Support,
+
+I signed up for a monthly subscription 10 days ago but I realised it is not what I need. If I cancel now will I receive a partial refund for the remaining days?
+
+Please advise.
+
+Best,
+William Lewis",01_FAQ_General,AI_HANDLES,NO,Monthly: no pro-rated refund; annual: pro-rated for unused months minus discounts; contact support for special cases
+TC017,Routine,Subscription,Can I pause my subscription instead of cancelling?,"Hi,
+
+I am going on an extended holiday for 2 months and would prefer to pause my subscription rather than cancel it completely. Is this an option?
+
+How long can I pause for?
+
+Thank you,
+Olivia Walker",01_FAQ_General,AI_HANDLES,NO,Yes: Subscription Settings > Pause; 1-3 months; billing resumes automatically
+TC018,Routine,Technical,How do I update my device firmware?,"Hello Support Team,
+
+I received a notification that there is a firmware update available for my device but I am not sure how to install it. I do not want to cause any issues by doing it wrong.
+
+Can you guide me through the update process?
+
+Regards,
+Noah Hall",01_FAQ_General,AI_HANDLES,NO,"Auto via settings, manual via device settings or website, or companion app for smart devices"
+TC019,Routine,Technical,My device won't connect to WiFi,"Dear Support,
+
+My smart device refuses to connect to my home WiFi network. I have tried entering the password multiple times but it just keeps failing or timing out.
+
+The device is new and I am setting it up for the first time.
+
+What should I check?
+
+Best regards,
+Ava Allen",02_Technical_Issues,AI_HANDLES,NO,Restart device and router; forget and reconnect; check password; check 2.4GHz vs 5GHz; move closer to router
+TC020,Routine,Technical,Where can I find my product warranty information?,"Hi,
+
+I am having an issue with a product I bought 8 months ago and I want to check if it is still under warranty before I decide what to do next.
+
+Where can I find my warranty details?
+
+Thank you,
+Liam Young",01_FAQ_General,AI_HANDLES,NO,"Product page on website, packaging/documentation, account under My Products, or contact support with serial number"
+TC021,Routine,Technical,My device won't turn on,"Hello,
+
+I am trying to use my device but it is completely unresponsive. It will not turn on at all. I left it charging overnight but there is no change.
+
+I have had it for about 6 months and this has never happened before.
+
+What steps should I try?
+
+Kind regards,
+Isabella King",02_Technical_Issues,AI_HANDLES,NO,"Verify charged, try different charger, try hard reset (hold power 15-20s), different power outlet; if none work may need warranty service"
+TC022,Routine,Technical,My app keeps crashing - how do I fix it?,"Dear TechFlow Support,
+
+The companion app for my device keeps crashing as soon as I open it. It crashes immediately without loading at all.
+
+I am using an Android phone running Android 13. The app was working fine until 2 days ago.
+
+What can I do to fix this?
+
+Thank you,
+Mason Wright",02_Technical_Issues,AI_HANDLES,NO,Force close and restart; clear cache/data; check for updates; reinstall; restart device; report bug via feedback
+TC023,Routine,Technical,My device screen is flickering,"Hello Support,
+
+The screen on my device has started flickering randomly. It happens about every few minutes and lasts for 1-2 seconds. It started after I updated the software yesterday.
+
+Is this a known issue after the update?
+
+Regards,
+Sophia Scott",02_Technical_Issues,AI_HANDLES,NO,Adjust brightness; check for software updates; disable adaptive brightness; factory reset if persists
+TC024,Routine,Technical,My device battery is draining very quickly,"Hi,
+
+My device battery is now only lasting 3-4 hours instead of the 12 hours it used to last. This started happening about a week ago.
+
+The device is about 2 years old. Is there anything I can do before considering a replacement?
+
+Best regards,
+Ethan Green",02_Technical_Issues,AI_HANDLES,NO,Check battery usage by app; reduce brightness; disable unused features; close background apps; battery may need replacement if 2+ years
+TC025,Routine,Technical,My device is not charging,"Dear Support Team,
+
+My device is not charging even though I have it plugged in. The charging indicator does not appear. I have tried multiple times.
+
+I have also tried a different wall adapter.
+
+What else should I try?
+
+Thank you,
+Mia Adams",02_Technical_Issues,AI_HANDLES,NO,Try different cable and adapter; clean charging port; restart while connected; check if wireless charging works; try different outlet
+TC026,Routine,Technical,My WiFi keeps disconnecting,"Hello,
+
+My device connects to WiFi fine but keeps dropping the connection every 10-15 minutes. I then have to reconnect manually.
+
+My other devices stay connected without any issue so the router seems fine.
+
+What could be causing this on my device only?
+
+Kind regards,
+Lucas Baker",02_Technical_Issues,AI_HANDLES,NO,Check for interference; update router firmware; change WiFi channel; disable power saving mode for WiFi; reset network settings
+TC027,Routine,Technical,My Bluetooth device won't pair,"Hi Support,
+
+I am trying to pair my new Bluetooth headphones with my device but the pairing process keeps failing. The headphones appear in the list but when I tap to connect it just says pairing failed.
+
+I have tried restarting both devices multiple times.
+
+Please help.
+
+Best,
+Amelia Nelson",02_Technical_Issues,AI_HANDLES,NO,Ensure pairing mode; clear paired devices list; restart Bluetooth on both; check compatibility; update firmware; stay within 30 feet
+TC028,Routine,Technical,My wearable device won't sync,"Dear Support,
+
+My fitness tracker is not syncing with the companion app anymore. The last sync was 3 days ago. I can see data on the device itself but it does not update in the app.
+
+I have tried opening the app multiple times.
+
+What should I do?
+
+Regards,
+Harper Carter",02_Technical_Issues,AI_HANDLES,NO,Restart wearable; force close companion app; toggle Bluetooth off/on; unpair and re-pair; check account sync settings
+TC029,Routine,Technical,My smart home voice commands are not working,"Hello,
+
+My smart home device has stopped responding to voice commands. When I say the wake word nothing happens at all. The device is powered on and connected to WiFi.
+
+This started happening this morning without any obvious reason.
+
+Is there a fix?
+
+Thank you,
+Elijah Mitchell",02_Technical_Issues,AI_HANDLES,NO,Check microphone not muted; speak clearly at normal volume; reduce background noise; retrain voice recognition; check internet connection
+TC030,Routine,Technical,My smart home automation is not triggering,"Hi,
+
+I set up an automation to turn on my smart lights at sunset every day but it has stopped working for the past 3 days. The automation shows as enabled in the app.
+
+My lights respond fine when I control them manually.
+
+What should I check?
+
+Best regards,
+Abigail Perez",02_Technical_Issues,AI_HANDLES,NO,Verify automation rules enabled; check device connectivity; review automation logs; recreate automation; check for scheduling conflicts
+TC031,Routine,Technical,My device is completely frozen and unresponsive,"Dear Support Team,
+
+My device froze about an hour ago and has not responded since. The screen is on but nothing happens when I touch it or press any buttons.
+
+I need to use it for work and I am quite worried about losing my data.
+
+What can I do?
+
+Kind regards,
+Benjamin Roberts",02_Technical_Issues,AI_HANDLES,NO,Wait 30 seconds; try soft reset; hard reset if unresponsive; boot in safe mode; factory reset as last resort (backup data first)
+TC032,Routine,Technical,My device software won't update,"Hello Support,
+
+I am trying to install the latest software update on my device but it keeps failing halfway through. I get an error message saying the update could not be completed.
+
+I have tried 3 times already.
+
+What could be causing this?
+
+Regards,
+Charlotte Turner",02_Technical_Issues,AI_HANDLES,NO,Need 2GB+ free storage; stable WiFi; 50%+ battery; restart and retry; download update manually from website
+TC033,Routine,Technical,I accidentally deleted important data - can I recover it?,"Hi,
+
+I accidentally deleted some important files from my account. I did not realise I was deleting them permanently.
+
+Is there any way to recover deleted data? How long ago they were deleted: about 2 days ago.
+
+Please help urgently.
+
+Thank you,
+Henry Phillips",02_Technical_Issues,AI_HANDLES,NO,Check Trash/Recently Deleted (30-day recovery); check cloud backup if enabled; data recovery software has limited success
+TC034,Routine,Technical,My external peripheral is not being detected,"Dear Support,
+
+I connected an external hard drive to my laptop via USB but the device is not showing up in the file explorer. I have tried unplugging and replugging it several times.
+
+The hard drive works on other computers.
+
+What should I try?
+
+Best regards,
+Evelyn Campbell",02_Technical_Issues,AI_HANDLES,NO,Try different USB port; update drivers; check power requirements; verify it works on another device; check OS compatibility
+TC035,Routine,Technical,My camera memory card is giving an error,"Hello,
+
+My camera is showing a memory card error and refuses to take photos. The card was working fine yesterday.
+
+I have tried removing and reinserting the card multiple times. The card is a 64GB SD card.
+
+What should I do?
+
+Thank you,
+Alexander Parker",02_Technical_Issues,AI_HANDLES,NO,Format card IN camera (not on computer); try different memory card; clean contacts; check card speed rating
+TC036,Routine,Technical,There is no sound coming from my audio device,"Hi Support,
+
+My Bluetooth speaker suddenly has no sound output. It pairs successfully and the device thinks audio is playing but no sound comes out.
+
+I have checked the volume on both the speaker and my phone and both are turned up.
+
+What else can I check?
+
+Kind regards,
+Grace Evans",02_Technical_Issues,AI_HANDLES,NO,Check volume on device and source; verify correct audio output selected; re-pair Bluetooth; check audio cable; reset audio device
+TC037,Routine,Technical,My wearable is tracking inaccurately,"Dear Support,
+
+My fitness tracker is showing wildly inaccurate step counts and heart rate readings. Yesterday it showed 25,000 steps when I barely left the house.
+
+I have worn it correctly on my wrist as instructed.
+
+Is there a calibration option?
+
+Regards,
+Jackson Edwards",02_Technical_Issues,AI_HANDLES,NO,Ensure proper fit and placement; update firmware; clean sensor; calibrate device if option available
+TC038,Routine,Product Setup,How do I set up my new product for the first time?,"Hello TechFlow,
+
+I just received my new product and I am excited to get started but I am a bit confused about the initial setup. I looked at the Quick Start Guide but I still have a few questions.
+
+Is there a more detailed guide or video tutorial I can follow?
+
+Thank you,
+Scarlett Collins",01_FAQ_General,AI_HANDLES,NO,Quick Start Guide included; Support page with product search; user manual downloadable; YouTube tutorials; contact for guided assistance
+TC039,Routine,Product Setup,Is my product compatible with my other device?,"Hi,
+
+Before I purchase an accessory I want to make sure it will be compatible with my existing device. I could not find a clear answer on the product page.
+
+Where can I check compatibility information?
+
+Best regards,
+Sebastian Stewart",01_FAQ_General,AI_HANDLES,NO,Product specifications page; compatibility section in user manual; Compatibility Checker tool online; contact support
+TC040,Routine,Technical,My smart TV is not recognizing my USB drive,"Dear Support,
+
+I am trying to play media from a USB drive on my LG Smart TV but the TV does not recognize the drive at all. Nothing appears when I plug it in.
+
+The USB drive works on my laptop without any issue.
+
+What formats does the TV support?
+
+Thank you,
+Victoria Sanchez",02_Technical_Issues,AI_HANDLES,NO,Smart TVs support USB storage in FAT32 and NTFS formats; try different USB port; try another USB drive
+TC041,Routine,Technical,My laptop is running very slow - how do I fix it?,"Hello,
+
+My laptop has been extremely slow lately. Simple tasks like opening a browser take over a minute. 
+
+It has been getting progressively worse over the past month. I have not installed anything new recently.
+
+What can I try to speed it up?
+
+Regards,
+Owen Morris",02_Technical_Issues,AI_HANDLES,NO,Check apps using most battery/CPU; close background apps; check storage space; software updates; could indicate malware
+TC042,Routine,Technical,My device touch screen is not responding properly,"Hi Support Team,
+
+My device's touch screen is not registering my touches properly. Sometimes I tap something and nothing happens, other times it registers in the wrong place.
+
+I recently put on a new screen protector.
+
+Could this be the cause?
+
+Thank you,
+Lily Rogers",02_Technical_Issues,AI_HANDLES,NO,Remove screen protector temporarily; clean screen with microfiber cloth; restart; check for updates; calibrate touch screen
+TC043,Routine,Technical,My device screen has dead pixels,"Dear Support,
+
+I noticed there are several dead pixels on my device screen. There is a small cluster of permanently black pixels in the corner of the screen.
+
+The device is 4 months old. Does this fall under warranty?
+
+Kind regards,
+Caleb Reed",02_Technical_Issues,AI_HANDLES,NO,Document with photos/video; check warranty status; contact support for replacement eligibility
+TC044,Routine,Technical,My audio quality is poor - there is a lot of static,"Hello,
+
+I am experiencing very poor audio quality with my Bose headphones. There is constant static and occasional cutting out. 
+
+This started after I updated the firmware last week.
+
+Is this a known issue?
+
+Best,
+Hannah Cook",02_Technical_Issues,AI_HANDLES,NO,Check audio source quality; adjust EQ settings; ensure proper fit; update firmware; check for wireless interference
+TC045,Routine,Technical,My device Bluetooth audio keeps stuttering,"Hi,
+
+The audio from my Bluetooth headphones keeps stuttering and cutting out intermittently. This happens even when I am close to the device they are paired with.
+
+It happens more when I am in public places with many people around.
+
+What could cause this?
+
+Thank you,
+Nathan Morgan",02_Technical_Issues,AI_HANDLES,NO,Reduce distance; remove other Bluetooth devices; check wireless interference; update Bluetooth firmware; try lower quality audio codec
+TC046,Routine,Technical,My gaming console controller is not connecting,"Dear Support,
+
+My PlayStation controller has stopped connecting to the console. When I press the PS button nothing happens. I tried charging it overnight but still the same issue.
+
+I have had the console for about a year.
+
+How do I reconnect it?
+
+Regards,
+Zoey Bell",02_Technical_Issues,AI_HANDLES,NO,Verify device in pairing mode; clear paired devices; restart Bluetooth on both; check compatibility; update firmware
+TC047,Routine,Product Info,What are your customer support hours?,"Hello,
+
+I have a question that I would prefer to discuss over the phone. Before I call I wanted to confirm your support hours so I know when to call.
+
+Do you also offer weekend support?
+
+Thank you,
+Ryan Murphy",01_FAQ_General,AI_HANDLES,NO,"Phone: Mon-Fri 8AM-8PM, Sat 9AM-5PM EST; Chat: 24/7; Email: within 24h; Social: 8AM-10PM daily"
+TC048,Routine,Product Info,What is the fastest way to get help?,"Hi,
+
+I am experiencing an urgent issue and need help as quickly as possible. I am not sure whether to call, chat, or email.
+
+What is the fastest way to reach your support team?
+
+Best regards,
+Penelope Bailey",01_FAQ_General,AI_HANDLES,NO,For urgent issues: Chat or Phone support; email for non-urgent with detailed info and attachments
+TC049,Routine,Product Info,How do I check my support ticket status?,"Dear Support,
+
+I submitted a support ticket 2 days ago but have not heard back yet. I want to check whether it has been received and what the current status is.
+
+Is there a way to track this online?
+
+Kind regards,
+Aaron Rivera",01_FAQ_General,AI_HANDLES,NO,"Login > Support Tickets section; view status, add comments, or upload additional information"
+TC050,Routine,Technical,How do I prevent data loss on my device?,"Hello,
+
+I am worried about losing important data on my device. I have had a close call before when my phone nearly died and I had not backed anything up.
+
+What are the best practices to prevent data loss?
+
+Thank you very much,
+Leah Cooper",01_FAQ_General,AI_HANDLES,NO,Enable automatic cloud backup; create regular local backups; use surge protector; keep software updated
+TC051,Billing,Billing Cycle,When exactly will I be charged for my monthly subscription?,"Hi TechFlow Support,
+
+I recently signed up for a monthly software subscription and I want to understand exactly when I will be billed each month.
+
+Will I always be charged on the same date, and what happens if that date falls on a weekend or holiday?
+
+Thank you,
+Mark Stevens",03_Billing_Refunds_Policy,AI_HANDLES,NO,Monthly: charged on same date each month; annual: once per year on subscription start date
+TC052,Billing,Billing Cycle,How do pro-rated charges work when I upgrade mid-cycle?,"Dear Support Team,
+
+I am currently on a basic monthly subscription and I am thinking about upgrading to the premium plan halfway through my billing cycle.
+
+Will I be charged the full amount for the new plan or will it be pro-rated?
+
+Best regards,
+Claire Robinson",03_Billing_Refunds_Policy,AI_HANDLES,NO,Pro-rated charges apply for mid-cycle upgrades; no pro-rated refunds for downgrades
+TC053,Billing,Payment Declined,My payment keeps failing - I think I hit a daily limit,"Hello Support,
+
+I am trying to complete my purchase but my card keeps getting declined. I have already made a few transactions today with the same card and I think I may have hit some kind of daily limit.
+
+What should I do in this situation?
+
+Regards,
+Patrick O'Neill",03_Billing_Refunds_Policy,AI_HANDLES,NO,Daily limit exceeded: try smaller amount or wait 24 hours; or use different payment method
+TC054,Billing,Duplicate Charge,I see two identical charges - what information do you need from me?,"Dear Customer Support,
+
+I noticed two identical charges from TechFlow on my credit card statement dated the same day. I only made one purchase.
+
+I want to get this sorted out. What information do I need to provide you so you can investigate?
+
+Thank you,
+Susan Blake",03_Billing_Refunds_Policy,AI_HANDLES,NO,"Provide: order number, last 4 digits of card, screenshots of both charges; agent will initiate chargeback if confirmed"
+TC055,Billing,Incorrect Amount,Why was I charged more than the price shown at checkout?,"Hello,
+
+I completed a purchase and the amount charged to my card was higher than the price shown when I added the item to my cart. The difference is about $15.
+
+I am quite confused. What could cause this?
+
+Kind regards,
+Felipe Gonzalez",03_Billing_Refunds_Policy,AI_HANDLES,NO,"Check for: taxes (vary by location), shipping fees, currency conversion fees; also verify promo code was applied correctly"
+TC056,Billing,Incorrect Amount,My promo code was not applied to my order - can I still get the discount?,"Hi Support,
+
+I forgot to enter my promo code before completing my order earlier today. I just realised the discount was not applied.
+
+Is there any way to apply the promo code now and get a partial refund for the difference?
+
+Thanks,
+Rachel Adams",03_Billing_Refunds_Policy,AI_HANDLES,NO,Contact support within 48 hours with order number and promo code; difference refunded if promo is valid
+TC057,Billing,Subscription Billing,I was charged after cancelling my subscription - this is an error,"Dear TechFlow Support,
+
+I cancelled my subscription last month but I have just been charged again for the next month. I have a confirmation that the cancellation went through.
+
+Can you please verify this and issue a refund?
+
+Best regards,
+Tom Henderson",03_Billing_Refunds_Policy,ESCALATE,YES,"Verify cancellation confirmation email; check if charge was for final billing cycle; if confirmed error, full refund within 5-7 days"
+TC058,Billing,Refund Policy,What is the restocking fee if I return a TV I no longer want?,"Hello,
+
+I purchased a Sony TV 2 weeks ago and I changed my mind. The TV is in perfect working condition and I have all the original packaging and accessories.
+
+Will there be any restocking fee if I return it?
+
+Thank you,
+Diana Foster",03_Billing_Refunds_Policy,AI_HANDLES,NO,Electronics 30-day return window; no restocking fee for defective items; 15% restocking fee for change of mind
+TC059,Billing,Refund Policy,Can I get a refund on software I purchased but never activated?,"Hi,
+
+I bought a Microsoft Office licence last week but I ended up getting it from another source and never used or activated the key from TechFlow.
+
+Am I eligible for a refund given I never activated it?
+
+Kind regards,
+Greg Lawson",03_Billing_Refunds_Policy,ESCALATE,YES,Software: 14-day refund window; eligible if activation key not used; no refund if significant usage detected
+TC060,Billing,Refund Policy,Will I get a full refund if my returned item is missing one accessory?,"Dear Support,
+
+I am returning a product but I realised I cannot find one of the accessories that came in the box. I have everything else including the original packaging.
+
+Will I still receive a full refund or will something be deducted?
+
+Regards,
+Nina Carlson",03_Billing_Refunds_Policy,AI_HANDLES,NO,Partial refund may apply: missing accessories deducted; damaged packaging up to 15% deduction
+TC061,Billing,Refund Policy,Can I return earbuds I bought but never used?,"Hello Support Team,
+
+I bought a pair of wireless earbuds as a gift but the person already had the same model. They are completely unopened and still in the sealed original packaging.
+
+Can I return them for a full refund?
+
+Thank you,
+Omar Hassan",03_Billing_Refunds_Policy,AI_HANDLES,NO,Wearables/accessories: 30-day return window; hygiene items like earbuds only refundable if defective; must be in original packaging if opened
+TC062,Billing,Non-Refundable,Can I get a refund on a gift card I purchased?,"Hello,
+
+I purchased a TechFlow gift card last week as a birthday present but the person said they would prefer something else.
+
+Is it possible to get a refund on the gift card?
+
+Best,
+Lucy Evans",03_Billing_Refunds_Policy,ESCALATE,YES,Gift cards are non-refundable
+TC063,Billing,Order Cancellation,I just placed an order and want to cancel it immediately,"Hi TechFlow,
+
+I placed an order about 5 minutes ago and I immediately realised I ordered the wrong model. I need to cancel before it ships.
+
+Is this possible and will I get a full refund?
+
+Please respond quickly.
+
+Thank you,
+Sam Mitchell",03_Billing_Refunds_Policy,AI_HANDLES,NO,"Before shipment: full refund, no fees; cancel via account or contact support; confirmation within 1 hour"
+TC064,Billing,Order Cancellation,Can I cancel an order that has already been shipped?,"Dear Support,
+
+I tried to cancel my order but I see it has already been shipped. I no longer need the item.
+
+What are my options at this point?
+
+Regards,
+Kim Park",03_Billing_Refunds_Policy,AI_HANDLES,NO,Cannot cancel after shipment; must wait for delivery and initiate return; or refuse delivery so carrier returns to sender
+TC065,Billing,Subscription Cancellation,How far in advance do I need to cancel to avoid being charged again?,"Hello,
+
+My subscription renews in 2 days and I want to make sure I cancel before the next payment goes through. 
+
+Is there a minimum notice period I need to give before the renewal date?
+
+Kind regards,
+Alice Fernandez",03_Billing_Refunds_Policy,AI_HANDLES,NO,Cancel at least 24 hours before renewal to avoid charge; access continues until end of paid period; can resubscribe anytime
+TC066,Billing,Price Match,I found the same product cheaper elsewhere - can you match the price?,"Hi Support,
+
+I purchased a Dell XPS laptop from TechFlow last week. I just saw the exact same model being sold at another authorised retailer for $150 less and they have it in stock.
+
+Do you have a price match policy? If so, how do I apply for it?
+
+Thank you,
+Ben Crawford",03_Billing_Refunds_Policy,AI_HANDLES,NO,Price match within 14 days; must be identical item from authorised retailer with stock; contact support with competitor link; difference refunded to original payment
+TC067,Billing,Promo Code,My promo code is not working at checkout,"Dear Customer Support,
+
+I have a promo code that I received in a marketing email but it is not working when I enter it at checkout. I get an error saying the code is not valid.
+
+What could be causing this?
+
+Best regards,
+Zara Collins",03_Billing_Refunds_Policy,AI_HANDLES,NO,"Check: expiration date, minimum purchase requirement, product eligibility, one-per-customer limit; codes are case-sensitive"
+TC068,Billing,Payment Method,I cannot add my new credit card to my account,"Hello,
+
+I am trying to add a new Visa credit card to my account but I keep getting an error when I try to save it. I have checked that all the details are correct.
+
+What should I try?
+
+Regards,
+Max Turner",03_Billing_Refunds_Policy,AI_HANDLES,NO,Verify card details; try different browser/device; clear browser cache; contact bank to authorise online transactions; try alternative payment method
+TC069,Billing,Payment Method,I cannot remove my old credit card from my account,"Hi Support,
+
+I am trying to remove an old expired credit card from my account but the remove option is not available. I have added a new card already.
+
+Why can I not delete the old one?
+
+Thank you,
+Hannah West",03_Billing_Refunds_Policy,AI_HANDLES,NO,Pay any outstanding balance first; cancel associated subscriptions first; add alternative payment method first; then remove unwanted method
+TC070,Billing,Unauthorized Charge,I see a charge on my account that I did not authorise,"Dear TechFlow Support,
+
+I was reviewing my bank statement and I noticed a charge from TechFlow that I did not make. I live alone and no one else has access to my account.
+
+What should I do? I am worried my account may have been compromised.
+
+Please help urgently.
+
+Kind regards,
+Julia Moore",03_Billing_Refunds_Policy,ESCALATE,YES,Contact support immediately; team investigates and secures account; fraudulent charges refunded within 24 hours; new payment method may be required
+TC071,Technical,Product Setup,Device not recognized during initial setup,"Hi TechFlow Support Team,
+
+I just unboxed my new device and I am trying to set it up using the companion app on my phone. However, the app cannot find the device at all during the pairing process.
+
+I have Bluetooth and WiFi enabled on my phone and the device is turned on. My phone is a Samsung Galaxy running Android 14.
+
+What should I do?
+
+Thank you,
+Lucas Bennett",02_Technical_Issues_Guide,AI_HANDLES,NO,Ensure Bluetooth/WiFi enabled; keep phone within 3 feet; restart both; clear app cache; check if firmware update required
+TC072,Technical,Product Setup,Companion app cannot find my device during pairing,"Dear Support,
+
+I am setting up my new smart home device for the first time. The companion app opens fine but when I tap 'Add Device' it searches for a long time and then says no devices found.
+
+The device is in pairing mode - I can see it blinking as described in the instructions.
+
+What am I missing?
+
+Kind regards,
+Maya Patel",02_Technical_Issues_Guide,AI_HANDLES,NO,Verify location permissions enabled for app; ensure device in pairing mode (blinking light); check phone OS meets minimum requirements; try reinstalling app
+TC073,Technical,Hardware - Power,My device completely stopped turning on,"Hello Support,
+
+My device has been completely unresponsive since this morning. It will not turn on at all. The charging light does not appear either.
+
+I have had it for 14 months. It was working fine yesterday with no warning signs.
+
+I have already tried holding the power button for 10 seconds.
+
+What else can I try?
+
+Best regards,
+Oliver Wright",02_Technical_Issues_Guide,AI_HANDLES,NO,Charge minimum 30 min; try different charger/cable; try different power outlet; hard reset: hold power 15-20 sec; if none work collect purchase date + serial number for warranty service
+TC074,Technical,Hardware - Power,Device not charging at all - tried different cables,"Hi there,
+
+My device simply will not charge. I have tried three different cables and two different adapters but nothing works. The charging icon never appears on the screen.
+
+I cleaned the charging port with a dry toothbrush to check for debris.
+
+Is there anything else I can try before assuming the port is broken?
+
+Thank you,
+Priya Sharma",02_Technical_Issues_Guide,AI_HANDLES,NO,Try different cable and adapter; clean charging port with compressed air; restart device while connected; try wireless charging if supported; port may need warranty service
+TC075,Technical,Hardware - Battery,My laptop battery drains from 100% to 0% in 2 hours,"Dear TechFlow Support,
+
+My laptop battery life has deteriorated dramatically. It used to last all day but now it only lasts about 2 hours even when I am just browsing the web.
+
+The laptop is about 2.5 years old. Is there a way to fix this or does the battery need to be replaced?
+
+Regards,
+Felix Adler",02_Technical_Issues_Guide,AI_HANDLES,NO,Check which apps use most battery (Settings > Battery); reduce brightness; disable unused features; close background apps; battery may need replacement if device over 2 years old
+TC076,Technical,Hardware - Battery,Battery percentage is stuck and not moving,"Hello,
+
+My device shows the battery percentage as stuck at 47% for the past 3 hours even though I have been using it continuously. Then it suddenly jumped to 12% and shut down.
+
+Is the battery indicator broken or is there a calibration issue?
+
+Best,
+Charlotte Hughes",02_Technical_Issues_Guide,AI_HANDLES,NO,Fully discharge device; charge to 100% without interruption; restart device to recalibrate battery indicator
+TC077,Technical,Hardware - Display,My screen keeps flickering randomly,"Hi Support,
+
+The screen on my device started flickering about 3 days ago. It happens randomly, sometimes every few minutes, sometimes less often. It lasts about 1 second each time.
+
+I updated the software yesterday hoping it would fix it but the flickering continues.
+
+Is this a hardware or software issue?
+
+Thank you,
+Samuel Torres",02_Technical_Issues_Guide,AI_HANDLES,NO,Adjust brightness settings; check for further software updates; disable adaptive brightness; factory reset if issue persists; if hardware suspected contact support with photos/video
+TC078,Technical,Hardware - Display,I can see dead pixels on my camera screen,"Dear Support Team,
+
+I noticed a cluster of dead pixels on the LCD screen of my Canon DSLR camera. There are about 5-6 permanently black dots in the upper right area of the screen.
+
+The camera is 7 months old and is still under warranty.
+
+What is the process for getting this fixed?
+
+Kind regards,
+Natalie Foster",02_Technical_Issues_Guide,AI_HANDLES,NO,Document with photos/video; check warranty status; contact support for replacement eligibility; pixel defects covered under standard warranty
+TC079,Technical,Hardware - Display,Touch screen is not responding to my touches,"Hello,
+
+The touch screen on my device has stopped responding properly. Sometimes I tap an icon and nothing happens, and other times it registers a touch in a completely different location.
+
+I put on a new tempered glass screen protector last week. Could this be related?
+
+Regards,
+Aiden Murphy",02_Technical_Issues_Guide,AI_HANDLES,NO,Remove screen protector temporarily to test; clean screen with microfiber cloth; restart device; check for software updates; calibrate touch screen if option available
+TC080,Technical,Network - WiFi,Device connects to WiFi but drops connection every few minutes,"Hi TechFlow,
+
+My smart TV connects to my home WiFi without any problem but then drops the connection every 10-20 minutes. I have to reconnect manually every time.
+
+My other devices like my phone and laptop stay connected without any issue.
+
+What could be causing this on the TV specifically?
+
+Thank you,
+Isabella Russo",02_Technical_Issues_Guide,AI_HANDLES,NO,"Check for interference (microwaves, cordless phones); update router firmware; change WiFi channel in router settings; disable power saving mode for WiFi; reset network settings on device"
+TC081,Technical,Network - WiFi,WiFi speed is very slow only on this device,"Dear Support,
+
+My device connects to WiFi fine but the internet is extremely slow - pages take 20-30 seconds to load. My other devices on the same network are perfectly fast.
+
+I have restarted both the device and the router but no improvement.
+
+What should I check?
+
+Best regards,
+James Kowalski",02_Technical_Issues_Guide,AI_HANDLES,NO,Run speed test on multiple devices to isolate issue; restart router; check for bandwidth-heavy apps on device; check WiFi frequency (2.4GHz vs 5GHz); consider router upgrade if consistently slow
+TC082,Technical,Network - WiFi,My device only supports 2.4GHz but my router is 5GHz only,"Hello Support Team,
+
+I bought a new router that only broadcasts on 5GHz for faster speeds, but my older smart home device cannot connect to it at all. It worked on my old router.
+
+Is there a way to make them work together?
+
+Kind regards,
+Sophie Dubois",02_Technical_Issues_Guide,AI_HANDLES,NO,"2.4GHz: better range, slower speed; 5GHz: faster speed, shorter range; device may only support 2.4GHz - need to enable 2.4GHz band on router or get a dual-band router"
+TC083,Technical,Network - Bluetooth,My Bluetooth headphones keep cutting out during audio playback,"Hi,
+
+I paired my Bose QuietComfort headphones with my phone and the audio keeps stuttering and cutting out every few seconds. This happens even when I am sitting right next to my phone.
+
+I am in a busy office environment. Could this be causing interference?
+
+Thank you,
+Daniel Kim",02_Technical_Issues_Guide,AI_HANDLES,NO,Reduce distance from paired device; remove other Bluetooth devices from area; check for wireless interference; update Bluetooth firmware; try lower quality audio codec if available
+TC084,Technical,Network - Bluetooth,My gaming controller will not stay connected to the console,"Dear Support,
+
+My Xbox controller keeps disconnecting from the console every 5-10 minutes. I have to press the connect button again each time to reconnect it.
+
+I replaced the batteries last week so that is not the issue.
+
+What else could cause this?
+
+Best,
+Marcus Johnson",02_Technical_Issues_Guide,AI_HANDLES,NO,Ensure device in pairing mode; clear previously paired devices; restart Bluetooth on both; check device compatibility; update firmware on both; stay within 30 feet with no obstructions
+TC085,Technical,Software - Crash,My app crashes immediately after the loading screen,"Hello TechFlow Support,
+
+The companion app on my Android phone crashes every single time I open it. It shows the loading screen for 2 seconds and then closes completely.
+
+This started after my phone updated to Android 14 last week. The app was working perfectly before.
+
+I have already restarted my phone multiple times.
+
+What should I try?
+
+Regards,
+Emma Larson",02_Technical_Issues_Guide,AI_HANDLES,NO,Force close and restart app; clear app cache and data; check for app updates; restart device; uninstall and reinstall app; report bug through app feedback feature
+TC086,Technical,Software - Crash,My laptop freezes completely and I have to force restart,"Hi Support,
+
+My laptop freezes completely about once a day. The screen just stops responding and I cannot move the cursor or do anything. I have to hold the power button to force restart.
+
+This has been happening for about 2 weeks and I am worried about losing my work.
+
+What should I do?
+
+Thank you,
+Ryan O'Brien",02_Technical_Issues_Guide,AI_HANDLES,NO,Wait 30 seconds for device to respond; perform soft reset; perform hard reset if unresponsive; boot in safe mode to identify problematic apps; factory reset as last resort (backup data first)
+TC087,Technical,Software - Update,Software update fails every time I try to install it,"Dear Support Team,
+
+I have been trying to install the latest software update for 3 days now but it always fails. The update downloads fully but then shows an error during installation and rolls back.
+
+I have 64GB of storage and about 20GB free. My device is at 80% battery.
+
+Is there a way to force the update or install it manually?
+
+Kind regards,
+Victoria Chen",02_Technical_Issues_Guide,AI_HANDLES,NO,Need at least 2GB free storage; connect to stable WiFi; charge to at least 50%; restart and retry; download update manually from website if available
+TC088,Technical,Software - Update,My device shows there is no update available but others say there is,"Hello,
+
+I have seen online that there is a new firmware update for my device model but when I check for updates in the settings it says my device is already up to date.
+
+I have checked multiple times over 3 days.
+
+How can I get the update?
+
+Best regards,
+Liam Nakamura",02_Technical_Issues_Guide,AI_HANDLES,NO,Software updates can be done: automatically via settings auto-update; manually via device settings or website; via companion app for smart devices; try checking for updates manually on company website
+TC089,Technical,Data Recovery,I accidentally deleted files - can I recover them?,"Hi TechFlow Support,
+
+I accidentally deleted an entire folder of important work documents from my device yesterday. I did not realise they would be permanently removed.
+
+Is there any way to recover them? I need these files urgently.
+
+Thank you,
+Aisha Mohamed",02_Technical_Issues_Guide,AI_HANDLES,NO,Check Trash/Recently Deleted folder - usually recoverable for 30 days; check cloud backup if enabled; data recovery software has limited success; for critical data consult professional recovery service
+TC090,Technical,Data - Prevention,How do I prevent losing data on my device?,"Dear Support,
+
+I had a scare recently when my device crashed and I thought I had lost everything. Luckily I recovered it but now I want to make sure this never happens again.
+
+What is the best way to back up and protect my data?
+
+Kind regards,
+Ethan Williams",02_Technical_Issues_Guide,AI_HANDLES,NO,Enable automatic cloud backup; create regular local backups; use surge protector for desktop devices; keep software updated to prevent corruption
+TC091,Technical,Peripherals,My external hard drive is not showing up on my MacBook,"Hello,
+
+I connected my external hard drive to my MacBook Pro via USB-C but it does not appear in Finder or on the desktop. The drive makes a spinning sound so it seems to be getting power.
+
+The drive works fine on my Windows PC.
+
+What should I try?
+
+Regards,
+Hannah Johansson",02_Technical_Issues_Guide,AI_HANDLES,NO,Try different USB port; update device drivers; check peripheral power requirements; verify compatibility with OS version; MacBook supports USB-C/Thunderbolt docks and external storage
+TC092,Technical,Peripherals,My USB keyboard is not working when plugged into a USB hub,"Hi Support Team,
+
+I use a USB hub to connect multiple peripherals to my laptop. My keyboard worked fine when plugged directly into the laptop but when I use it through the hub it does not register any keystrokes.
+
+The hub works fine with my mouse and USB drive.
+
+Is there a fix for this?
+
+Thank you,
+Carlos Mendez",02_Technical_Issues_Guide,AI_HANDLES,NO,Try different USB port; check peripheral power requirements; connect directly to device (avoid USB hubs); update firmware on both; check for electromagnetic interference
+TC093,Technical,Camera - Memory Card,My Canon camera shows memory card error and won't take photos,"Dear TechFlow Support,
+
+My Canon EOS camera is showing a memory card error every time I try to take a photo. The card was working perfectly yesterday.
+
+I have tried removing and reinserting the card several times. The card is a 32GB SD card that I have used for a year.
+
+What should I do?
+
+Best regards,
+Sophie Anderson",02_Technical_Issues_Guide + 04_Product_Catalog,AI_HANDLES,NO,Format card IN camera (not on computer); try different memory card; clean card contacts; check card speed rating requirements for camera model
+TC094,Technical,Camera - Image Quality,My GoPro videos are blurry and unstabilised,"Hi,
+
+My GoPro Hero videos have started coming out blurry and very shaky. The HyperSmooth stabilization that worked before does not seem to be doing anything.
+
+I have not changed any settings recently.
+
+What could have happened?
+
+Thank you,
+Noah Clark",02_Technical_Issues_Guide + 04_Product_Catalog,AI_HANDLES,NO,"Clean lens with appropriate cloth; check camera settings (ISO, stabilization mode); update firmware; reset to factory settings; check if HyperSmooth is enabled in settings"
+TC095,Technical,Smart Home - Voice,My Amazon Echo is not responding to the Alexa wake word,"Dear Support,
+
+My Amazon Echo has stopped responding to 'Alexa'. The ring light does not appear at all when I say the wake word. The device is plugged in and powered on.
+
+This started happening after I moved the device to a different room.
+
+Is there a fix?
+
+Kind regards,
+Zoe Harris",02_Technical_Issues_Guide + 04_Product_Catalog,AI_HANDLES,NO,Check microphone is not muted; speak clearly at normal volume; reduce background noise; retrain voice recognition; check internet connection; verify Alexa not responding issue
+TC096,Technical,Smart Home - Automation,My Nest Thermostat automation is not triggering at the right time,"Hello Support Team,
+
+I set up my Nest Thermostat to automatically lower the temperature at 10pm every night but it has not been doing this for the past week. The automation shows as active in the app.
+
+The thermostat responds fine when I control it manually.
+
+What should I check?
+
+Regards,
+Benjamin Scott",02_Technical_Issues_Guide + 04_Product_Catalog,AI_HANDLES,NO,Verify automation rules are enabled; check device WiFi connectivity; review automation logs for errors; recreate the automation; check for scheduling conflicts; check Home/Away assist settings
+TC097,Technical,Wearable - Sync,My Fitbit is not syncing with the app on my phone,"Hi TechFlow,
+
+My Fitbit Charge has not synced with the Fitbit app for 4 days. I can see all my data on the device itself (steps, heart rate, sleep) but it does not update in the app.
+
+I have tried opening the app multiple times and it just says 'Last synced 4 days ago'.
+
+What should I do?
+
+Thank you,
+Grace Mitchell",02_Technical_Issues_Guide + 04_Product_Catalog,AI_HANDLES,NO,Restart the wearable; force close companion app; disable then enable Bluetooth; unpair and re-pair device; check account sync settings in app
+TC098,Technical,Wearable - Accuracy,My Garmin watch GPS is very inaccurate during runs,"Dear Support,
+
+My Garmin Forerunner is showing very inaccurate GPS tracking during my runs. It shows me running through buildings and adds about 20% extra distance to every run.
+
+I wait for the GPS to lock before I start but it still happens.
+
+Is there a calibration I can do?
+
+Best regards,
+Tom Fischer",02_Technical_Issues_Guide + 04_Product_Catalog,AI_HANDLES,NO,Ensure proper placement on wrist; update device firmware; check sensor cleanliness; calibrate device if option available; check GPS accuracy settings in Garmin Connect
+TC099,Technical,Audio - No Sound,My Samsung Soundbar is not producing any sound from the TV,"Hello,
+
+I connected my Samsung Soundbar to my Sony TV via HDMI eARC but there is no sound coming from the soundbar at all. The TV speakers work fine.
+
+I set the TV audio output to the soundbar in the settings but it still does not work.
+
+What am I missing?
+
+Kind regards,
+Lily Park",02_Technical_Issues_Guide + 04_Product_Catalog,AI_HANDLES,NO,Check volume on device and source; verify correct audio output selected; re-pair Bluetooth if wireless; check HDMI-CEC settings; check audio cable connection; update soundbar firmware
+TC100,Technical,Software - General,My Microsoft Office keeps asking me to activate every time I open it,"Dear TechFlow Support,
+
+Every time I open any Microsoft Office application like Word or Excel, it shows an activation prompt and I have to sign in again. This happens even though I already activated it when I first installed it.
+
+I have a Microsoft 365 subscription which should be active.
+
+How do I fix this permanently?
+
+Thank you very much,
+Alice Thompson",04_Product_Catalog,AI_HANDLES,NO,Microsoft Office common issue: activation problems and license transfer; verify Microsoft 365 subscription is active; sign in with correct Microsoft account; check if device limit reached (multi-device installation supported)
+TC101,Escalation,Request for Human,I want to speak to a real human agent please,"Hello TechFlow Support,
+
+I have been going back and forth trying to resolve my issue for the past week and I am not getting anywhere. I would like to speak with a real human agent, not an automated system.
+
+Please connect me with a person who can actually help me.
+
+Thank you,
+Andrew Foster",05_Escalation_Guidelines,ESCALATE,YES,"Trigger: explicit request for human agent → never argue, transfer to human agent immediately"
+TC102,Escalation,Request for Manager,I need to speak to a manager right now,"Dear Support Team,
+
+I am extremely unhappy with the service I have received and I am requesting to speak to a manager or supervisor immediately.
+
+This situation is unacceptable and I need someone with authority to handle my case.
+
+Regards,
+Patricia Stone",05_Escalation_Guidelines,ESCALATE,YES,"Trigger: explicit request for manager/supervisor → transfer to supervisor, never argue"
+TC103,Escalation,Request for Human,Can you transfer me to a human please - this AI is not helping,"Hi,
+
+I understand you are an automated system but you are not able to help me with my specific situation. I need to speak with a human support agent who can look into my account properly.
+
+How do I get transferred?
+
+Best,
+Kevin Walsh",05_Escalation_Guidelines,ESCALATE,YES,"Trigger: explicit request for human agent → transfer immediately, no attempt to resolve"
+TC104,Escalation,Request for Manager,I am requesting a supervisor review of my case,"Dear TechFlow,
+
+After multiple interactions with your support team without resolution, I am formally requesting a supervisor review of my case.
+
+I expect someone with decision-making authority to contact me within 24 hours.
+
+Sincerely,
+Margaret Davies",05_Escalation_Guidelines,ESCALATE,YES,"Trigger: request for manager/supervisor → escalate to supervisor tier, do not attempt to resolve"
+TC105,Escalation,Legal Threat,I am considering legal action against your company,"Dear TechFlow Support,
+
+I have been trying to resolve a billing dispute for over a month without success. At this point I am seriously considering taking legal action against TechFlow Solutions if this matter is not resolved within 48 hours.
+
+I expect a senior representative to contact me immediately.
+
+Regards,
+Jonathan Clarke",05_Escalation_Guidelines,ESCALATE,YES,"Trigger: legal action threat → never admit fault, escalate to Legal team immediately, standard response only"
+TC106,Escalation,Legal Threat,My lawyer will be in touch if this is not resolved,"Hello,
+
+I want to make it very clear that I have spoken with my solicitor about this situation. If I do not receive a full refund by end of this week, my lawyer will be contacting TechFlow directly.
+
+I expect an immediate response from management.
+
+Sincerely,
+Frances O'Sullivan",05_Escalation_Guidelines,ESCALATE,YES,"Trigger: lawyer/legal threat → escalate to Legal team, do not discuss legal matters, standard response only"
+TC107,Escalation,Legal Threat,I will be filing a complaint with the consumer protection agency,"Dear Support,
+
+This is unacceptable. I have given TechFlow multiple opportunities to resolve this and nothing has been done. I will be filing a formal complaint with the consumer protection authority and also reporting this on social media.
+
+This is your final chance to make this right.
+
+Regards,
+Brian Cunningham",05_Escalation_Guidelines,ESCALATE,YES,Trigger: legal/regulatory complaint threat + social media threat → escalate to Legal + Social Media team
+TC108,Escalation,High-Value Refund,I need a full refund of $750 for a defective product,"Dear TechFlow Support,
+
+I purchased a Dell XPS laptop for $750 last month and it has been completely defective from day one. The screen flickers constantly and the device freezes multiple times per day.
+
+I am requesting a full refund of $750 immediately. This device is completely unusable.
+
+Best regards,
+Sandra Lee",05_Escalation_Guidelines,ESCALATE,YES,"Trigger: refund >$500 → requires supervisor approval, escalate from AI to supervisor tier"
+TC109,Escalation,High-Value Refund,"Requesting full refund of $1,200 - product never worked","Hello Support Team,
+
+I purchased a Sony 4K HDR TV for $1,200 and it arrived with a completely cracked screen. I have photos documenting the damage. The courier clearly damaged it in transit.
+
+I require an immediate full refund of $1,200 and compensation for my time.
+
+Thank you,
+George Watkins",05_Escalation_Guidelines,ESCALATE,YES,Trigger: refund >$1000 → Finance team; also damaged in transit requires immediate action
+TC110,Escalation,High-Value Refund,I demand a $600 refund and I want this escalated,"Dear TechFlow,
+
+I am formally requesting a refund of $600 for my Asus ROG gaming laptop. It has developed a serious manufacturing defect after only 2 months of use. Multiple repair attempts have failed.
+
+I want this escalated to someone who has the authority to approve this refund.
+
+Regards,
+Diana Marsh",05_Escalation_Guidelines,ESCALATE,YES,Trigger: refund >$500 + explicit escalation request → supervisor approval required
+TC111,Escalation,Account Security,Someone has accessed my account without my permission,"Hi TechFlow Support,
+
+I just received an email confirming a purchase I did not make. Someone has gained unauthorised access to my account and made purchases using my saved payment details.
+
+I need this investigated urgently and my account secured immediately.
+
+Please help,
+Laura Bennett",05_Escalation_Guidelines + 08_Company_Policies,ESCALATE,YES,Trigger: account security compromised → escalate to Security team immediately; freeze account; cancel pending orders; force password reset
+TC112,Escalation,Suspected Fraud,There are multiple charges I did not authorise on my account,"Dear Support,
+
+I have discovered multiple fraudulent charges totalling over $800 on my account from TechFlow over the past 2 weeks. I did not authorise any of these transactions.
+
+This is clearly fraud and I need this escalated to your security team immediately.
+
+Regards,
+Robert Jenkins",05_Escalation_Guidelines + 08_Company_Policies,ESCALATE,YES,Trigger: suspected fraud any amount → Security team immediately; fraudulent charges refunded within 24 hours
+TC113,Escalation,Account Security,My account password was changed without my knowledge,"Hello,
+
+I tried to log into my TechFlow account today and found that my password has been changed without my knowledge. I did not make this change.
+
+I am very concerned that my account has been compromised. There may also be sensitive payment information at risk.
+
+Please help urgently,
+Michelle Turner",05_Escalation_Guidelines + 08_Company_Policies,ESCALATE,YES,Trigger: account security compromised → Security team; secure account; force password reset; recommend credit monitoring
+TC114,Escalation,Data Breach,I received an email with another customer's personal data,"Dear TechFlow Support,
+
+I received an email from TechFlow today that contained what appears to be another customer's personal information including their name, address and order details. This was clearly sent to me by mistake.
+
+I am very concerned about this data breach and what it means for my own data security.
+
+Sincerely,
+Helen Morris",05_Escalation_Guidelines + 08_Company_Policies,ESCALATE,YES,Trigger: data breach suspected → notify Security team immediately; do not discuss specifics; use approved communication only
+TC115,Escalation,Repeated Contact,This is my fourth time contacting you about the same issue,"Hi TechFlow,
+
+I cannot believe I am writing to you again about the same problem. This is now the fourth time I have contacted your support team about my defective Fitbit Versa. Each time I have been given the same troubleshooting steps which do not work.
+
+I need this resolved once and for all. I am very frustrated.
+
+Regards,
+Emma Richardson",05_Escalation_Guidelines,ESCALATE,YES,Trigger: 3+ contacts about same issue → escalate; also expressed frustration is additional trigger
+TC116,Escalation,Repeated Contact,I have already contacted you 3 times and nothing has been fixed,"Dear Support Team,
+
+I want to be very clear: I have now contacted TechFlow support three times about this billing error and each time I am told it will be fixed. It has not been fixed.
+
+I have already contacted you multiple times. I need this escalated to someone who can actually resolve this permanently.
+
+Best regards,
+Paul Harrison",05_Escalation_Guidelines,ESCALATE,YES,Trigger: stated multiple contacts (3+) about same issue → escalate immediately
+TC117,Escalation,Repeated Contact,My ticket has been reopened twice and still not resolved,"Hello,
+
+I have reopened the same support ticket twice already because the problem was not actually fixed. The agent closed the ticket but the issue returned within days both times.
+
+I need this escalated to a senior technical specialist who can properly diagnose and fix the root cause.
+
+Thank you,
+Caroline Hughes",05_Escalation_Guidelines,ESCALATE,YES,Trigger: same ticket reopened 2+ times → escalate to senior support
+TC118,Escalation,Complex Technical,I need someone to access my account backend to fix a data sync error,"Dear TechFlow Support,
+
+I have a serious data synchronisation error in my account. Some of my data appears to have been duplicated and other records seem to have been deleted. 
+
+The issue started after your server maintenance last week. This is clearly a backend database problem that requires technical access to fix, not standard troubleshooting.
+
+Please escalate to your technical team.
+
+Regards,
+Nicholas Ford",05_Escalation_Guidelines,ESCALATE,YES,Trigger: issue requires backend system access → escalate to Technical Support Specialist then Engineering if needed
+TC119,Escalation,Complex Technical,I need data recovery after your system deleted my files,"Hi Support,
+
+During a sync process with your platform, all of my stored documents were deleted from my account. This happened without any action on my part.
+
+I need these files recovered immediately. This data is critical for my business and I will suffer financial losses if it cannot be recovered.
+
+Please escalate this urgently.
+
+Thank you,
+Claire Stephenson",05_Escalation_Guidelines,ESCALATE,YES,Trigger: data recovery needed → escalate to Tier 2; data loss causing financial impact also HIGH priority
+TC120,Escalation,Complex Technical,The issue affects all 15 users in our company account,"Dear TechFlow Support,
+
+We are experiencing a major issue with our corporate TechFlow account. None of our 15 employees can log in since this morning. This appears to be an account-level problem affecting all users simultaneously.
+
+Our entire team is blocked from working. This requires urgent attention from your technical team.
+
+Sincerely,
+David Harrison, IT Manager",05_Escalation_Guidelines,ESCALATE,YES,Trigger: multiple customers affected by same issue → CRITICAL priority; also business completely blocked → escalate immediately
+TC121,Escalation,VIP Customer,As a corporate enterprise client I expect priority support,"Dear TechFlow Support Team,
+
+I am contacting you on behalf of Henderson & Associates, an enterprise client with a corporate account. We have 50 licences with TechFlow and are experiencing a critical issue affecting our operations.
+
+As an enterprise client we expect priority handling and a dedicated account manager to contact us within the hour.
+
+Best regards,
+James Henderson, Managing Director",05_Escalation_Guidelines,ESCALATE,YES,Trigger: VIP/Enterprise customer → always human agent or immediate escalation; dedicated account manager involvement
+TC122,Escalation,Social Media Threat,I will post a negative review everywhere if this is not fixed,"Hello TechFlow,
+
+I am giving you one last chance to resolve this. If I do not receive a satisfactory response by tomorrow morning, I will be posting detailed negative reviews on Trustpilot, Google, Reddit, Twitter and every other platform I can find.
+
+I have over 50,000 followers and I am not afraid to use that platform.
+
+This is your final warning.
+Alex Morgan",05_Escalation_Guidelines,ESCALATE,YES,Trigger: influencer with large following + viral threat → escalate to Social Media + PR team; extra care in tone
+TC123,Escalation,Social Media Threat,My complaint about your service has already been shared 200 times,"Dear TechFlow,
+
+I posted about my experience with your company on Twitter yesterday and it has already been shared over 200 times. Several news accounts have reached out to me.
+
+I would like to resolve this privately if possible but I need to speak with someone in management, not a frontline agent.
+
+Regards,
+Taylor Reed",05_Escalation_Guidelines,ESCALATE,YES,Trigger: post going viral (100+ shares) + media interest → escalate to Social Media + PR; move to private channel
+TC124,Escalation,Safety Concern,My device is overheating dangerously and I am concerned about fire risk,"Hi TechFlow Support,
+
+My device is overheating to the point where it is too hot to touch and I can smell something burning. I am genuinely worried about a fire risk.
+
+I have immediately unplugged it and moved it away from any flammable materials.
+
+This needs urgent attention. Is this a known safety issue?
+
+Please respond immediately,
+James Cooper",05_Escalation_Guidelines,ESCALATE,YES,Trigger: safety concern → CRITICAL priority; product poses physical danger → escalate immediately to senior support and Engineering
+TC125,Escalation,Safety Concern,My device battery is swollen and looks like it might explode,"Dear TechFlow Support,
+
+I noticed that the battery on my device has swollen significantly - the back cover is visibly bulging outward. I understand this can be a serious safety hazard.
+
+I have stopped using the device and stored it safely. What should I do? Is there a product recall or safety advisory for this?
+
+Please respond urgently.
+
+Thank you,
+Hannah Cole",05_Escalation_Guidelines,ESCALATE,YES,Trigger: product safety concern (physical danger) → CRITICAL; follow recall/safety protocol; escalate immediately
+TC126,Escalation,Billing Dispute,I want to escalate this billing dispute to your finance team,"Dear TechFlow Support,
+
+I have a billing dispute that has not been resolved after two weeks of emails. I am requesting that this be escalated immediately to your finance or billing manager.
+
+The dispute is regarding an incorrect charge of $350 that appeared on my account last month.
+
+I need a final decision in writing.
+
+Regards,
+Thomas Grant",05_Escalation_Guidelines,ESCALATE,YES,Trigger: explicit escalation request + billing dispute → Billing Specialist → Finance Team; response within 5 business days
+TC127,Escalation,Billing Dispute,I am filing a chargeback with my bank if this is not resolved today,"Hi TechFlow Support,
+
+I have been trying to resolve an incorrect charge for 3 weeks. If I do not receive a full resolution today I will have no choice but to file a chargeback with my bank and dispute the transaction.
+
+I want to make sure you are aware of my intention before I take that step.
+
+Best regards,
+Samantha Price",05_Escalation_Guidelines + 03_Billing_Refunds_Policy,ESCALATE,YES,Trigger: chargeback threat → contact us before filing; chargebacks result in account suspension; escalate to billing team urgently
+TC128,Escalation,Delivery Emergency,My order has been missing for 3 weeks - I want escalation,"Dear Support Team,
+
+I placed an order 3 weeks ago and it has completely disappeared. The tracking shows it was dispatched but then shows no further updates for 3 weeks.
+
+I have contacted your support twice already and been told to wait. I am no longer willing to wait. I want this escalated to a senior agent who can actually investigate and resolve this.
+
+Regards,
+Fiona Campbell",05_Escalation_Guidelines,ESCALATE,YES,Trigger: 3+ contacts about same issue + delivery significantly delayed >5 days → HIGH priority escalation
+TC129,Escalation,Wrong Item Received,You sent me completely the wrong product and I need a manager,"Hello TechFlow,
+
+I ordered a MacBook Pro but you sent me a completely different product - an HP Pavilion. These are not even close to the same price range.
+
+I have been a customer for 3 years and this is absolutely unacceptable. I want to speak to a manager about this immediately and I expect an urgent resolution.
+
+Regards,
+Christopher Bell",05_Escalation_Guidelines + 08_Company_Policies,ESCALATE,YES,Trigger: request for manager + high-value wrong item → ship correct item immediately; provide return label; investigate fulfillment; supervisor involvement
+TC130,Escalation,Account Disabled - Dispute,My account was disabled due to a chargeback I did not file,"Dear TechFlow Support,
+
+My account has been disabled and when I contacted support I was told it was because of a chargeback. However, I did not file any chargeback. I believe this is a bank error or fraud on someone else's part.
+
+I have been a paying customer for 2 years and I need this resolved urgently. I want to speak to a senior account manager who can investigate this properly.
+
+Sincerely,
+Victoria Shaw",05_Escalation_Guidelines + 03_Billing_Refunds_Policy,ESCALATE,YES,Trigger: account suspension + billing dispute + explicit senior agent request → Billing Specialist + Finance; chargeback investigation required
+TC131,Escalation - Frustrated,Product Quality,This is absolutely unacceptable - your product is terrible,"Hello TechFlow,
+
+I am absolutely furious right now. I purchased one of your products three weeks ago and it has been nothing but problems since day one. This is completely unacceptable and I am disgusted with the quality.
+
+I have wasted hours trying to get this to work and I am getting nowhere. Your product is terrible and I expect this to be resolved immediately.
+
+Regards,
+Steven Clarke",05_Escalation_Guidelines + 08_Company_Policies,ESCALATE,YES,"Trigger: extreme frustration + negative sentiment keywords (furious, disgusted, unacceptable) → escalate; de-escalation attempt first then transfer"
+TC132,Escalation - Frustrated,Customer Service,Your customer service is the worst I have ever experienced,"Dear TechFlow Support,
+
+I cannot believe how bad your customer service is. This is genuinely the worst experience I have ever had with any company. I have been treated with complete disrespect and I am absolutely outraged.
+
+Nobody seems to care about solving my problem. I am done being patient.
+
+Sincerely,
+Amanda Wright",05_Escalation_Guidelines + 08_Company_Policies,ESCALATE,YES,"Trigger: outrage + worst experience language → escalate; acknowledge fully, do not argue, transfer to human"
+TC133,Escalation - Frustrated,Billing,I am furious about being overcharged and nobody is helping me,"Hi Support,
+
+I am absolutely furious. I have been overcharged on my account for the past two months and every time I contact you I get the same useless response. Nobody is actually helping me and I am at my wit's end.
+
+This is the most frustrating experience I have ever had with a company. I want this fixed TODAY.
+
+Angry regards,
+Richard Thompson",05_Escalation_Guidelines + 08_Company_Policies,ESCALATE,YES,Trigger: fury + repeated contact + billing issue → escalate; HIGH priority (financial loss occurring)
+TC134,Escalation - Frustrated,Delivery,I am outraged - my order has not arrived and nobody cares,"Dear Support Team,
+
+I am outraged. My order was supposed to arrive two weeks ago and it has simply not shown up. I have contacted your team three times now and each time I am told to wait.
+
+I am sick and tired of waiting. This is completely unprofessional and I am seriously considering never using TechFlow again.
+
+Extremely frustrated,
+Caroline Nash",05_Escalation_Guidelines + 08_Company_Policies,ESCALATE,YES,Trigger: outrage + 3+ contacts + delivery delayed → escalate; CRITICAL repeated contact rule applies
+TC135,Escalation - Frustrated,Product Setup,This product is useless and I want a full refund immediately,"Hello,
+
+Your product is absolutely useless. I have spent three days trying to set it up following your instructions and it simply does not work. I have completely lost faith in TechFlow as a company.
+
+I want a full refund immediately. This has been a complete waste of my time and money and I am disgusted.
+
+Regards,
+Peter Walsh",05_Escalation_Guidelines + 08_Company_Policies,ESCALATE,YES,Trigger: disgusted + lost faith + refund demand → escalate; refund amount unknown so flag for human assessment
+TC136,Escalation - Frustrated,Technical Support,I am absolutely done - your technical support is incompetent,"Dear TechFlow,
+
+I am absolutely done with this. Your technical support team is completely incompetent. I have spoken with three different agents and not one of them has been able to fix my issue. Each one gives me different advice that contradicts the last.
+
+I am furious and I need someone who actually knows what they are doing to contact me right now.
+
+Fed up,
+Laura O'Brien",05_Escalation_Guidelines + 08_Company_Policies,ESCALATE,YES,Trigger: furious + competence complaint + 3+ contacts → escalate to senior agent; complex issue spanning multiple interactions
+TC137,Escalation - Frustrated,Refund,I am disgusted that my refund has not been processed after 3 weeks,"Hi Support,
+
+I am absolutely disgusted. I returned my product three weeks ago and I still have not received my refund. I have sent four emails about this and received nothing but automated responses.
+
+This is completely unacceptable. I am furious and I want my money back NOW. If this is not resolved today I will be taking action.
+
+Furious customer,
+Sarah Bennett",05_Escalation_Guidelines + 08_Company_Policies,ESCALATE,YES,Trigger: disgusted + furious + 4 contacts + implicit threat → escalate urgently; HIGH priority
+TC138,Escalation - Frustrated,Account,Your company has wasted hours of my time and I am livid,"Dear TechFlow Support,
+
+I am absolutely livid. Your company has wasted hours of my precious time over the past week. Every time I try to resolve my account issue I get passed from one agent to another with zero progress.
+
+I am livid and I will not tolerate this treatment any longer. I expect a senior manager to personally call me today.
+
+Livid,
+James Holloway",05_Escalation_Guidelines + 08_Company_Policies,ESCALATE,YES,Trigger: livid + hours wasted + explicit senior manager request → escalate to supervisor immediately
+TC139,Escalation - Frustrated,Product Quality,Worst purchase of my life - I am appalled by the quality,"Hello,
+
+I am appalled. This is genuinely the worst purchase I have ever made in my life. The product broke after only two weeks of normal use and the quality is shocking. I paid a lot of money for this and I am absolutely appalled by what I received.
+
+TechFlow should be ashamed of selling such a poor quality product.
+
+Appalled,
+Emma Richardson",05_Escalation_Guidelines + 08_Company_Policies,ESCALATE,YES,Trigger: appalled + worst purchase + quality complaint → escalate; potential warranty claim requiring human review
+TC140,Escalation - Frustrated,Customer Service,I have never been treated so poorly by any company ever,"Dear Support,
+
+I want to make it very clear that I have never in my life been treated this poorly by any company. The way I have been handled by your team is shocking and completely unprofessional.
+
+I am deeply disappointed and furious. I deserve to be treated with basic respect as a paying customer and your team has completely failed at this.
+
+Deeply disappointed,
+Michael Green",05_Escalation_Guidelines + 08_Company_Policies,ESCALATE,YES,Trigger: deeply disappointed + furious + treatment complaint → escalate to Customer Experience Specialist
+TC141,Escalation - Frustrated,Billing,I am absolutely horrified by the charges on my account,"Hi TechFlow,
+
+I am absolutely horrified by what I have just seen on my account. There are multiple charges that I did not authorise and when I try to find out what they are for nobody can explain them to me clearly.
+
+I am horrified and I want a complete explanation and full refund for any incorrect charges immediately.
+
+Horrified,
+Diana Peters",05_Escalation_Guidelines + 08_Company_Policies,ESCALATE,YES,Trigger: horrified + unauthorised charges + billing confusion → escalate; potential fraud flag
+TC142,Escalation - Frustrated,Delivery,I am beyond frustrated - this is the worst service imaginable,"Dear TechFlow Support Team,
+
+I am beyond frustrated at this point. My order arrived damaged and when I contacted your team they told me to simply return it. However the return process has been a complete nightmare and nothing is working.
+
+This is the worst service I could possibly imagine. I am beyond angry and I need someone to actually take responsibility and fix this immediately.
+
+Beyond frustrated,
+Thomas Hughes",05_Escalation_Guidelines + 08_Company_Policies,ESCALATE,YES,Trigger: beyond frustrated + damaged item + broken return process → escalate; damaged in transit requires human resolution
+TC143,Escalation - Frustrated,Technical,I am seething - your software has destroyed my work,"Hello Support,
+
+I am absolutely seething with anger right now. Your software crashed and took all of my unsaved work with it. I had been working on something important for hours and it is all gone because of a bug in your system.
+
+I am seething and I demand compensation for the time and work I have lost because of your faulty product.
+
+Seething,
+Hannah Cole",05_Escalation_Guidelines + 08_Company_Policies,ESCALATE,YES,Trigger: seething + data loss causing financial/work impact → escalate; data recovery + compensation requires supervisor
+TC144,Escalation - Frustrated,Subscription,I am enraged that I was charged after I cancelled months ago,"Dear TechFlow,
+
+I am absolutely enraged. I cancelled my subscription four months ago and I have been charged every single month since then. This is four unauthorised charges and I want every single penny refunded immediately.
+
+I am enraged by this complete disregard for my cancellation request. This is theft as far as I am concerned.
+
+Enraged,
+Oliver Fraser",05_Escalation_Guidelines + 08_Company_Policies,ESCALATE,YES,"Trigger: enraged + multiple unauthorised charges + theft language → ESCALATE urgently; potential fraud, Finance team required"
+TC145,Escalation - Frustrated,Warranty,I am incensed that my warranty claim has been rejected unfairly,"Hi Support,
+
+I am incensed. My product developed a defect that is clearly a manufacturing issue and your team has rejected my warranty claim saying it is accidental damage. This is completely wrong and I am incensed by this unfair decision.
+
+I want this decision reviewed by a senior manager immediately. I will not accept this outcome.
+
+Incensed,
+Charlotte Davies",05_Escalation_Guidelines + 08_Company_Policies,ESCALATE,YES,Trigger: incensed + warranty dispute + rejected claim → escalate to supervisor for review
+TC146,Escalation - Frustrated,Customer Service,Your agent was rude and dismissive - I am absolutely disgusted,"Dear TechFlow Management,
+
+I am writing to complain about the appalling treatment I received from one of your support agents today. The agent was rude, dismissive and spoke to me in a condescending manner. I am absolutely disgusted by this behaviour.
+
+I expect an apology and I want to know what action will be taken against this agent. This is not acceptable.
+
+Disgusted,
+Rebecca Morrison",05_Escalation_Guidelines + 08_Company_Policies,ESCALATE,YES,Trigger: disgusted + agent conduct complaint → escalate to Customer Experience Specialist/Manager; complaint requires documentation
+TC147,Escalation - Frustrated,Product,I am absolutely speechless at how bad this product is,"Hello TechFlow,
+
+I am absolutely speechless. I cannot believe that a company is allowed to sell a product this bad. From the moment I opened the box it has had problems. I have never been more disappointed in a purchase in my entire life.
+
+I am angry, I am disappointed and I want this sorted out. Please connect me with someone who can actually help.
+
+Speechless,
+Nathan Brooks",05_Escalation_Guidelines + 08_Company_Policies,ESCALATE,YES,Trigger: angry + deeply disappointed + explicit request for help from someone qualified → escalate
+TC148,Escalation - Frustrated,Refund,I am at breaking point - this refund situation is outrageous,"Dear Support,
+
+I am at absolute breaking point. I have been trying to get my refund processed for six weeks now. Six weeks. I have been patient, I have followed every instruction and I am still waiting.
+
+This situation is outrageous and I cannot cope with this level of stress. I need this resolved today without any more delays.
+
+At breaking point,
+Fiona Campbell",05_Escalation_Guidelines + 08_Company_Policies,ESCALATE,YES,Trigger: at breaking point + 6 weeks unresolved + high stress language → escalate immediately; long delay requires senior agent
+TC149,Escalation - Frustrated,Account Security,I am terrified and furious - my account has been hacked,"Hi TechFlow Support,
+
+I am terrified and absolutely furious at the same time. I believe my TechFlow account has been hacked. I am seeing purchases I did not make and my personal details appear to have been changed.
+
+I am scared about what has happened to my personal information and financial data. Please help me urgently. I am furious that this could happen on your platform.
+
+Terrified and furious,
+Alice Morgan",05_Escalation_Guidelines + 08_Company_Policies,ESCALATE,YES,Trigger: terrified + furious + account hacked + personal data at risk → CRITICAL; Security team immediately
+TC150,Escalation - Frustrated,General,I have completely lost trust in TechFlow and I am furious,"Dear TechFlow,
+
+I want you to know that I have completely and utterly lost all trust in TechFlow as a company. After everything I have been through over the past month I am furious, exhausted and deeply disappointed.
+
+I have been a loyal customer for three years and this is how I am treated. I am genuinely considering sharing my experience publicly so that others know what to expect.
+
+No longer a happy customer,
+George Harrison",05_Escalation_Guidelines + 08_Company_Policies,ESCALATE,YES,Trigger: furious + lost trust + implicit social media threat + loyal customer → escalate; retention risk + PR risk

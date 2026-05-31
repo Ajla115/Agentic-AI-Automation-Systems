@@ -1,0 +1,31 @@
+TEST_ID,SUBCATEGORY,CUSTOMER QUESTION,EXPECTED SOURCE DOC,RETRIEVAL METHOD,EXPECTED OUTCOME,NOTES
+CAT5-D-001,D - Paraphrase,How do I reset my password?,01_FAQ_General,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Base phrasing
+CAT5-D-002,D - Paraphrase,I forgot my password and can't log in. What should I do?,01_FAQ_General,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Informal phrasing
+CAT5-D-003,D - Paraphrase,Password recovery — what is the process?,01_FAQ_General,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Keyword phrasing
+CAT5-D-004,D - Paraphrase,My account login is not working because I changed my email. How do I get back in?,01_FAQ_General,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Extended context phrasing
+CAT5-D-005,D - Paraphrase,What is your return policy?,03_Billing_Refunds_Policy,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Base phrasing
+CAT5-D-006,D - Paraphrase,I want to send something back. How long do I have?,03_Billing_Refunds_Policy,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Informal phrasing
+CAT5-D-007,D - Paraphrase,Returns — what are the conditions and timeframes?,03_Billing_Refunds_Policy,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Keyword phrasing
+CAT5-D-008,D - Paraphrase,I bought a product last week and it doesn't work. Can I still return it and get my money back?,03_Billing_Refunds_Policy,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Specific scenario phrasing
+CAT5-D-009,D - Paraphrase,How do I fix WiFi connectivity issues?,02_Technical_Issues_Guide,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Base phrasing
+CAT5-D-010,D - Paraphrase,My internet keeps cutting out on my laptop. What can I do?,02_Technical_Issues_Guide,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Informal phrasing
+CAT5-D-011,D - Paraphrase,WiFi drops — troubleshooting steps?,02_Technical_Issues_Guide,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Keyword phrasing
+CAT5-D-012,D - Paraphrase,Every 5 minutes my device disconnects from the wireless network. Is there a setting I should check?,02_Technical_Issues_Guide,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Detailed scenario phrasing
+CAT5-D-013,D - Paraphrase,How do I cancel my subscription?,03_Billing_Refunds_Policy,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Base phrasing
+CAT5-D-014,D - Paraphrase,I don't want to be charged next month. How do I stop my plan?,03_Billing_Refunds_Policy,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Informal phrasing
+CAT5-D-015,D - Paraphrase,Subscription termination — what are the steps?,03_Billing_Refunds_Policy,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Keyword phrasing
+CAT5-D-016,D - Paraphrase,I signed up for the Pro plan last month and I want to go back to the free version. What do I need to do?,03_Billing_Refunds_Policy,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Extended scenario phrasing
+CAT5-D-017,D - Paraphrase,What does your warranty cover?,08_Company_Policies,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Base phrasing
+CAT5-D-018,D - Paraphrase,My product broke after 6 months. Is it still under warranty?,08_Company_Policies,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Informal phrasing
+CAT5-D-019,D - Paraphrase,Warranty terms — what is and isn't included?,08_Company_Policies,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Keyword phrasing
+CAT5-D-020,D - Paraphrase,I dropped my laptop and the screen cracked. The device is 4 months old. Does the warranty apply to physical damage?,08_Company_Policies,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Edge case scenario phrasing
+CAT5-D-021,D - Paraphrase,When will I receive my refund?,03_Billing_Refunds_Policy,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Base phrasing — refund status
+CAT5-D-022,D - Paraphrase,I returned my item last week. How long until the money comes back?,03_Billing_Refunds_Policy,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Informal phrasing — refund status
+CAT5-D-023,D - Paraphrase,Refund processing time — what is it after item is received?,03_Billing_Refunds_Policy,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Keyword phrasing — refund status
+CAT5-D-024,D - Paraphrase,My return tracking shows delivered 3 days ago but I haven't seen the refund on my card yet. Is this normal?,03_Billing_Refunds_Policy,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Scenario phrasing — refund status
+CAT5-D-025,D - Paraphrase,Is the Logitech MX Master 3 compatible with Mac?,04_Product_Catalog,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Base phrasing — compatibility
+CAT5-D-026,D - Paraphrase,I have a MacBook Pro. Will the MX Master 3 mouse work with it?,04_Product_Catalog,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Informal phrasing — compatibility
+CAT5-D-027,D - Paraphrase,MX Master 3 macOS compatibility — confirmed?,04_Product_Catalog,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Keyword phrasing — compatibility
+CAT5-D-028,D - Paraphrase,I'm switching from Windows to a MacBook M3. I already own the Logitech MX Master 3. Do I need to buy a new mouse or will it work?,04_Product_Catalog,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Extended scenario — compatibility
+CAT5-D-029,D - Paraphrase,How fast will you respond to my support ticket?,07_SLA_Performance_Metrics,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Base phrasing — SLA
+CAT5-D-030,D - Paraphrase,I sent an email an hour ago and haven't heard back. What is your typical reply time?,07_SLA_Performance_Metrics,PageIndex or Pinecone,RETRIEVED — same answer regardless of phrasing,Scenario phrasing — SLA

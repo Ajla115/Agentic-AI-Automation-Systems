@@ -1,0 +1,567 @@
+TEST_ID,ACTUAL RESPONSE / OUTCOME,ACTUAL SOURCE DOC,RETRIEVAL METHOD USED,EXPECTED OUTCOME,PASS/FAIL,RESPONSE TIME (ms),CONFIDENCE,CONFIDENCE_SCORE,NOTES
+CAT5-A-015,"Hello,
+
+Restocking fees, also known as partial refunds, may be applied in the following situations:
+
+• Deductions for missing accessories.
+• Deductions for damaged packaging (up to 15% of the item's value).
+• Deductions for signs of use, which are assessed on an individual basis.
+
+Additionally, if an item is returned outside the standard return window but within 45 days of purchase, a 50% refund will be issued.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,PINECONE,03_Billing_Refunds_Policy,PASS,66455,HIGH,0.9,
+CAT5-A-021,"Hello,
+
+Thank you for reaching out.
+
+The system is configured to escalate an inquiry to a human agent if the AI confidence score is below 60%.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",Official Documentation - Escalation Thresholds,PINECONE,05_Escalation_Guidelines,PASS,67046,HIGH,0.95,
+CAT5-A-023,Pending,,PINECONE,05_Escalation_Guidelines,PASS,,,,
+CAT5-A-024,Pending,,PINECONE,05_Escalation_Guidelines,PASS,,,,
+CAT5-A-031,"Hello, Thank you for your inquiry regarding the target first response time for a High priority ticket. I apologize, but I could not find a specific target response time in our current documentation.",,PINECONE,07_SLA_Performance_Metrics,PASS,39000,,,
+CAT5-A-036,"Hello, I apologize, but I was unable to locate TechFlow's specific data privacy policy for customer information within our current documentation. For the most accurate and up-to-date information",,PINECONE,08_Company_Policies,PASS,43000,,,
+CAT5-A-037,"Hello, Thank you for reaching out. I was unable to locate specific documentation detailing TechFlow's process for handling customer complaints that remain unresolved after 3 contacts. This type of",,PINECONE,08_Company_Policies,PASS,33000,,,
+CAT5-A-039,"Hello! Thank you for your inquiry regarding TechFlow's fraud prevention policy. We have outlined our policy, which includes identifying certain red flags and the specific steps our agents take when",,PINECONE,08_Company_Policies,PASS,67000,,,
+CAT5-A-040,"Hello,
+
+Thank you for reaching out!
+
+I understand you were looking for documentation on TechFlow's communication standards for customer interactions. I found the following guidelines:
+
+**Response Tone Guidelines:**
+
+*   Always use the customer's name, express empathy, take ownership, provide clear next steps, and thank them for their patience/feedback.
+*   Never blame the customer, use technical jargon without explanation, make promises you can't keep, argue with the customer, or use negative language.
+
+**Language Guidelines (Positive Alternatives):**
+
+*   Instead of ""I can't do that"", say ""What I can do is...""
+*   Instead of ""You should have..."", say ""Going forward, I recommend...""
+*   Instead of ""That's our policy"", say ""Here's why this helps protect you...""
+*   Instead of ""I don't know"", say ""Let me find out for you.""
+*   Instead of ""No problem"", say ""Absolutely!"" or ""Happy to help!""
+*   Instead of ""Sorry for the inconvenience"", say ""Thank you for your patience.""
+
+**Channel-Specific Guidelines:**
+
+*   **Email:** Use complete sentences, formal grammar, clear subject lines, proper greetings and closings, include ticket/order numbers, and proofread.
+*   **Chat:** A more conversational tone is acceptable, use shorter messages (2-3 sentences max), use canned responses when appropriate, and acknowledge the customer within 30 seconds (don't leave them waiting more than 2 minutes).
+*   **Phone:** Smile (it affects your tone), speak clearly and at a moderate pace.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.","company_documents_tool_response - Response Tone Guidelines
+company_documents_tool_response - Language Guidelines (Positive Alternatives)
+company_documents_tool_response - Channel-Specific Guidelines",PINECONE,08_Company_Policies,PASS,64403,HIGH,0.95,
+CAT5-A-041,"Hello!
+
+TechFlow Solutions Inc. was founded in January 2020.
+
+I hope this historical information is helpful to you.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",Company Records,PINECONE,09_Company_Overview,PASS,59272,HIGH,0.98,
+CAT5-A-042,"Hello!
+
+TechFlow Solutions Inc. currently has 15 full-time employees.
+
+The organizational structure is divided into several departments:
+
+• Engineering (7 employees)
+• Design (2 employees)
+• Product (1 employee)
+• Sales (1 employee)
+• Marketing (1 employee)
+• HR (1 employee)
+• Finance (1 employee)
+• Operations (1 employee)
+
+Key roles within the company include CEO Sarah Johnson, CTO Michael Chen, and Head of Product Emily Rodriguez, among others.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,PINECONE,09_Company_Overview,PASS,59877,HIGH,0.98,
+CAT5-A-044,"Hello, I apologize, but I could not find any specific information about TechFlow's work-from-home policy in our available documentation. For detailed information, I recommend checking with your",,PINECONE,09_Company_Overview,PASS,32000,,,
+CAT5-B-001,"Hello,
+
+Thank you for reaching out! While returning a product and canceling a subscription are separate processes, I can guide you through the steps for each.
+
+To return a product:
+
+• Wait for the product to be delivered and then initiate the return process. Alternatively, you can refuse delivery, and the carrier will return it to the sender.
+
+To cancel your subscription:
+
+1. Log into your account.
+2. Navigate to the ""Subscriptions"" section.
+3. Select the specific subscription you wish to cancel.
+4. Click on ""Cancel Subscription.""
+5. Confirm your cancellation.
+6. You should then receive a confirmation email for your records.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,PINECONE,FALLBACK TO PINECONE,PASS,63333,HIGH,0.9,
+CAT5-B-002,Pending,,PINECONE,FALLBACK TO PINECONE,PASS,,,,
+CAT5-B-003,"Hello,
+
+Certainly! Here's a comparison of our return policies for electronics and software products:
+
+Electronics (e.g., TVs, Cameras, Computers):
+
+*   Return Window: 30 days from the delivery date.
+*   Condition: Must be in original condition with all accessories included. Original packaging is preferred.
+*   Restocking Fee: No fee for defective items. A 15% restocking fee applies for returns due to a change of mind.
+
+Software (e.g., Microsoft Office, Adobe Photoshop):
+
+*   Return Window: 14 days from purchase.
+*   Condition: No refund if the activation key has been used or if significant usage is detected.
+*   Subscription Software: A pro-rated refund will be issued, minus any discounts received.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,PINECONE,FALLBACK TO PINECONE,PASS,60372,HIGH,0.95,
+CAT5-B-004,"Hello,
+
+Our billing policy covers international transactions under the ""Common Billing Issues"" section.
+
+This section details that international transactions are subject to conversion at the current exchange rate, and additional conversion fees may be applied by your bank.
+
+Furthermore, it clarifies that international orders may incur customs duties, and customers are responsible for local taxes. Duties are not included in the order total, and they cannot be refunded for returned items.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",Billing Policy - Common Billing Issues,PINECONE,FALLBACK TO PINECONE,PASS,60235,HIGH,0.9,
+CAT5-B-005,"Hello,
+
+There are several ways to escalate a billing issue beyond the chatbot:
+
+• For standard issues, you can be directed to a Billing Specialist.
+• For larger billing disputes, especially those over $1,000, the issue can be escalated to our Finance Team or a Finance Manager.
+• If you request to speak with a supervisor or manager, your issue will be escalated to them directly.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,PINECONE,FALLBACK TO PINECONE,PASS,60347,HIGH,0.95,
+CAT5-B-006,"Hello,
+
+The Service Level Agreement (SLA) response times for our support channels differ as follows:
+
+For Chat, the expected First Response Time (FRT) is less than 30 seconds.
+
+For Email, the expected First Response Time (FRT) is less than 4 hours, during business hours.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool,PINECONE,FALLBACK TO PINECONE,PASS,56687,HIGH,0.98,
+CAT5-B-007,"Hello!
+
+I can help you with the return windows for your recently purchased items:
+
+*   Laptop: You have a 30-day return window from the delivery date. The laptop must be in its original condition, include all accessories, and preferably in its original packaging. Please note that there is a 15% restocking fee for returns due to a change of mind, but no fee for defective laptops.
+*   Mouse: The return window for a mouse is 30 days. If opened, it must be returned in its original packaging.
+*   Headphones: Headphones also have a 30-day return window. If they are considered a hygiene item (like earbuds), they are only eligible for return if defective. Otherwise, they must be in original packaging if opened.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.","company_documents_tool_response - Return Policy for Laptop, Mouse, and Headphones",PINECONE,FALLBACK TO PINECONE,PASS,67086,HIGH,0.95,
+CAT5-B-008,"Hello,
+
+Thank you for your inquiry.
+
+While we do not have specific troubleshooting steps for Samsung versus Dell monitors in our current documentation, general monitor troubleshooting principles typically apply. These include:
+
+• Checking all power connections.
+• Ensuring video cables are securely attached at both ends.
+• Updating the display drivers on your computer.
+• Testing the monitor with a different device, if possible.
+
+For detailed, model-specific solutions, we recommend consulting the official support website or the user manual for your particular Samsung or Dell monitor.
+
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",,PINECONE,FALLBACK TO PINECONE,PASS,55043,MEDIUM,0.65,
+CAT5-B-009,"Hello!
+
+According to our product catalog, the iPhone is listed as having known battery issues. The specific issue noted is ""Battery life concerns"" under its ""Common Issues"" section.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",Company Documentation - Common Issues - iPhone,PINECONE,FALLBACK TO PINECONE,PASS,54507,HIGH,0.95,
+CAT5-B-010,"Hello,
+
+Regarding your question about the step-by-step process when a ticket breaches the SLA threshold:
+
+While our current documentation defines Service Level Agreement (SLA) targets, such as Response Time and Resolution Target for different priority levels, a specific step-by-step process detailing what happens after a ticket breaches these thresholds is not explicitly outlined.
+
+Typically, in systems that track SLAs, breaching a threshold would trigger internal alerts to relevant teams or managers. This could potentially lead to a review of the ticket's status and an effort to expedite its resolution. However, the exact procedural steps are not detailed in our available guidelines.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",Escalation Guidelines,PINECONE,FALLBACK TO PINECONE,PASS,59603,MEDIUM,0.6,
+CAT5-B-011,"Hello,
+
+Our data privacy policy is based on high standards of compliance, including principles aligned with GDPR.
+
+This generally means we apply a consistent approach to data protection across our customer base. While the document does not explicitly state a different policy for customers outside Bosnia and Herzegovina, it implies a universal standard, especially for data that falls under GDPR regulations, which protect individuals within the European Union regardless of the company's location.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,PINECONE,FALLBACK TO PINECONE,PASS,56587,MEDIUM,0.75,
+CAT5-B-012,"Hello,
+
+The exact wording of our warranty exclusion clause is as follows:
+
+What's NOT Covered:
+• Physical damage (drops, spills, crushing)
+• Water damage (unless waterproof rated)
+• Unauthorized modifications
+• Cosmetic wear and tear
+• Consumables (batteries, filters)
+• Software issues on third-party hardware
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,PINECONE,FALLBACK TO PINECONE,PASS,53355,HIGH,0.98,
+CAT5-B-013,"Hello,
+
+Regarding your inquiry about the number of troubleshooting rounds before escalation:
+
+Agents should ensure that all standard troubleshooting steps have been attempted. Our documentation emphasizes that a comprehensive effort in troubleshooting should be made prior to escalation, rather than specifying a fixed number of rounds.
+
+This approach ensures all avenues are explored before moving to a higher level of support.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",,PINECONE,FALLBACK TO PINECONE,PASS,52973,MEDIUM,0.7,
+CAT5-B-014,"Hello,
+
+While there isn't a specific template solely for a customer who received the wrong item, you can adapt a general complaint template found in our 'Social Media Policy'. It emphasizes empathy and directs the customer to provide their order details for further assistance.
+
+Here's an adaptable template:
+
+Hi [Customer Name], we're truly sorry to hear that you received the wrong item. We want to make this right for you as quickly as possible. Please reply to this email with your order number, and we'll investigate this immediately to ensure you receive the correct item.
+
+Remember to personalize the response and ensure it conveys empathy, as highlighted in our communication guidelines.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.","Social Media Policy - Response Template
+Social Media Policy - Key Principles",PINECONE,FALLBACK TO PINECONE,PASS,57502,MEDIUM,0.75,
+CAT5-B-015,"Hello,
+
+Yes, you can generally return an opened product if it is defective.
+
+For most products, 'Defective/damaged' is a valid reason for return.
+
+However, please note that opened hygiene products are only eligible for return if they are defective.
+
+When initiating a return, you would select 'Defective/damaged' as the reason.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",Company Documents - Return Policy,PINECONE,FALLBACK TO PINECONE,PASS,54905,HIGH,0.95,
+CAT5-B-016,"Hello,
+
+In SLA terms, First Response Time (FRT) measures the time from when a ticket is created to when the first substantive response is sent to the customer. This focuses on the initial acknowledgement.
+
+Time to Resolution (TTR) measures the entire duration from ticket creation to ticket closure. This represents the total time taken to fully resolve the customer's issue.
+
+Essentially, FRT is about the initial contact, while TTR is about the complete solution.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",,PINECONE,FALLBACK TO PINECONE,PASS,52883,HIGH,0.95,
+CAT5-B-017,"Hello,
+
+Thank you for your inquiry.
+
+The Billing Specialists at TechFlow Solutions handle payment and refund issues. You can reach them via their Slack channel, #billing-team.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",Internal Contacts Guide - Billing Team Information,PINECONE,FALLBACK TO PINECONE,PASS,52160,HIGH,0.9,
+CAT5-B-018,"Hello,
+
+To de-escalate situations with angry customers, you can use the following techniques:
+
+1. Acknowledge and Empathize: Show understanding for their frustration with phrases like, ""I completely understand your frustration,"" or ""I would feel the same way in your situation.""
+
+2. Take Ownership: Reassure them that you will personally ensure the issue is resolved. Examples include, ""I'm going to personally make sure this gets resolved,"" and ""I won't stop until we've solved this for you.""
+
+3. Offer Immediate Action: Provide a concrete next step to address their concerns.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool,PINECONE,FALLBACK TO PINECONE,PASS,51866,HIGH,0.9,
+CAT5-B-019,"Hello!
+
+Regarding the warranty coverage for your GoPro Hero 12 and Logitech MX Master 3, they are covered under different warranty periods and terms.
+
+Your GoPro Hero 12, as a camera, typically comes with a 1-year standard warranty.
+
+The Logitech MX Master 3, likely categorized as an accessory, generally has a 90-day warranty that covers manufacturing defects.
+
+Please note that this warranty does not cover:
+
+• Physical damage
+• Water damage (unless waterproof rated)
+• Unauthorized modifications
+• Cosmetic wear and tear
+• Consumables
+• Software issues on third-party hardware
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.","Internal company documentation - Camera Warranties
+Internal company documentation - Accessories Warranties",PINECONE,FALLBACK TO PINECONE,PASS,60573,HIGH,0.9,
+CAT5-B-020,"Hello,
+
+While the term 'moderate' tone isn't explicitly defined in TechFlow's communication standards, our guidelines for chat suggest that a more conversational tone is acceptable there. This is in contrast to the formal grammar and complete sentences required for email.
+
+This implies that a 'moderate' tone would be less formal than email communication, leaning towards natural and friendly language. However, it still requires maintaining professionalism, particularly in channels like chat.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response - Channel-Specific Guidelines - Chat,PINECONE,FALLBACK TO PINECONE,PASS,50405,MEDIUM,0.7,
+CAT5-B-021,"Hello,
+
+Here are the channel-specific escalation procedures for social media complaints:
+
+*   Escalate public complaints to the dedicated Social Media Team.
+*   Respond to public posts within 1 hour.
+*   Move the conversation to a private channel whenever possible.
+*   Never engage in public arguments.
+*   Always document the social handle and the URL of the post.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool,PINECONE,FALLBACK TO PINECONE,PASS,49149,HIGH,0.9,
+CAT5-B-022,"Hello,
+
+TechFlow currently accepts the following payment methods:
+
+• Debit cards
+• PayPal
+• Apple Pay / Google Pay
+• Bank transfers (for orders over $500)
+
+Any payment methods not explicitly listed above are not accepted by TechFlow.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",,PINECONE,FALLBACK TO PINECONE,PASS,48791,HIGH,0.9,
+CAT5-B-023,"Hello,
+
+Thank you for your inquiry regarding the Dell XPS 15.
+
+Our documentation indicates that the Dell XPS 15 features Thunderbolt 4 support. This enables compatibility with a wide array of peripheral devices that utilize the Thunderbolt 4 standard, although specific models are not explicitly listed.
+
+Generally, you can connect any Thunderbolt 4 or USB-C compatible peripherals, which commonly include:
+
+• External displays
+• Docking stations
+• Storage devices
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",,PINECONE,FALLBACK TO PINECONE,PASS,49630,MEDIUM,0.7,
+CAT5-B-024,"Hello,
+
+Yes, there is an emergency protocol for data breaches.
+
+This protocol includes the following steps:
+
+• Immediately notifying the Security team.
+• Not discussing specifics with customers.
+• Using only approved breach communication.
+• Documenting all inquiries.
+• Escalating media inquiries to PR.
+
+However, the provided documentation does not explicitly specify that these protocols belong to 'TechFlow'.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",Company Documents - Data Breach Protocol,PINECONE,FALLBACK TO PINECONE,PASS,49963,HIGH,0.9,
+CAT5-B-025,Pending,,PINECONE,FALLBACK TO PINECONE,PASS,,,,
+CAT5-B-026,"Hello,
+
+To avoid being charged for the next billing cycle, you must cancel your subscription at least 24 hours before your renewal date.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,PINECONE,FALLBACK TO PINECONE,PASS,45534,HIGH,0.95,
+CAT5-B-027,"Hello,
+
+Thank you for your inquiry.
+
+Our technical guide does not specifically document software errors for Windows 11 itself. However, it does mention common issues that can occur on devices running Windows 11. These include:
+
+• WiFi driver issues
+• BIOS update requirements for Dell XPS devices
+• Software update delays for HP Pavilion devices
+
+These issues are typically related to drivers, firmware, or hardware interactions rather than inherent software errors within Windows 11.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,PINECONE,FALLBACK TO PINECONE,PASS,48182,HIGH,0.9,
+CAT5-B-028,"Hello,
+
+AI agent performance tracking differs from human agent tracking in several key areas:
+
+**AI Agent Metrics:**
+
+*   **Granular Accuracy:** Evaluated on metrics like response accuracy (>90%), information accuracy (>98%), sentiment accuracy (>85%), and intent classification (>92%).
+*   **Confidence Scoring:** Utilizes levels (HIGH, MEDIUM, LOW) to determine the need for human intervention.
+*   **Performance Speed:** Aims for a first response time under 30 seconds.
+*   **Response Volume:** Capable of handling 50+ responses per hour.
+*   **Efficiency:** Offers greater efficiency, scalability, and consistency, with lower cost per ticket and 24/7 availability.
+
+**Common Metrics with Differing Targets:**
+
+*   Reopen Rate
+*   CSAT Score
+*   First Contact Resolution
+*   General Accuracy Rate
+
+While some metrics are common to both AI and human agents, their specific targets and implications often vary significantly.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,PINECONE,FALLBACK TO PINECONE,PASS,56281,HIGH,0.98,
+CAT5-B-029,"Hello,
+
+We're happy to clarify our refund policy for you.
+
+**Full Refund Conditions:**
+
+* If an order is canceled before it has been shipped, a full refund with no fees will be issued.
+* A full refund is processed if the returned item meets all return conditions and none of the partial refund conditions apply.
+
+**Partial Refund Conditions:**
+
+* A deduction will be applied to the refund for any missing accessories.
+* Up to a 15% deduction may be applied if the item's packaging is damaged.
+* If there are signs of use, a partial refund may apply, evaluated on a case-by-case basis.
+* A 50% refund will be issued if the item is returned outside the standard return window but within 45 days of purchase.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,PINECONE,FALLBACK TO PINECONE,PASS,47308,HIGH,0.95,
+CAT5-B-030,"Hello,
+
+I've received your request to cancel your [Service Name] subscription.
+
+This is to acknowledge that your request has been received. We will process your subscription cancellation shortly.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",Subscription Cancellation - Process Template,PINECONE,FALLBACK TO PINECONE,PASS,44217,HIGH,0.98,

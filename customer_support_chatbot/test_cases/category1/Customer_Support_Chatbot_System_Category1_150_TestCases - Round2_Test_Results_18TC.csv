@@ -1,0 +1,186 @@
+TEST_ID,GROUP,TIMESTAMP,ACTUAL_CLASSIFICATION,ACTUAL_ESCALATION,CLASSIFICATION_CORRECT,AI_RESPONSE,RESPONSE_TIME_MS,CONFIDENCE_SCORE,NOTES
+TC013,B,2026-04-20T19:51:10.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+Thank you for reaching out.
+
+Once your return is delivered to our warehouse, it undergoes an inspection process which typically takes 2-3 business days. After the inspection is complete, your refund will be processed. Since you paid with a Visa credit card, you can expect to see the refund reflected in your account within 5-7 business days from the processing date.
+
+Regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",13380,0.98,Match: 1.00 | [Routine/Returns] | TRIG: refund | KB: 01_FAQ_General
+TC014,B,2026-04-20T19:53:10.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+Yes, you can absolutely exchange your product instead of receiving a refund. Here's how you can do it:
+
+1. Log into your account.
+2. Navigate to your Order History.
+3. Select the specific order that contains the item you wish to exchange.
+4. Click on ""Return Item.""
+5. When prompted, choose ""Exchange"" as your preferred method instead of ""Refund.""
+
+Please note that if the replacement item has a different price, you will either be charged or refunded the difference accordingly.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",12670,0.95,Match: 1.00 | [Routine/Returns] | TRIG: refund/exchange | KB: 01_FAQ_General
+TC015,B,2026-04-20T19:55:11.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+Thank you for reaching out.
+
+To cancel your subscription, please follow these steps:
+
+1. Log into your account.
+2. Navigate to the ""Subscriptions"" or ""Billing"" section.
+3. Select the subscription you wish to cancel.
+4. Click on ""Cancel Subscription"".
+5. Follow the prompts to confirm your cancellation.
+
+Upon successful cancellation, you will receive a confirmation email. Your access to the service will continue until the end of your current billing period.
+
+To ensure you are not charged for the next billing cycle, we recommend completing the cancellation process at least 24 hours before your scheduled renewal date.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",12060,0.98,Match: 1.00 | [Routine/Subscription] | TRIG: cancel | KB: 01_FAQ_General
+TC016,B,2026-04-20T19:57:11.000Z,ESCALATED,YES,FALSE,Pending,,,Match: 1.00 | [Routine/Subscription] | TRIG: refund+cancel | KB: 03_Billing_Refunds_Policy
+TC017,B,2026-04-20T19:59:12.000Z,AI_HANDLES,NO,TRUE,"Hi Olivia,
+
+Yes, you can definitely pause your subscription instead of canceling it.
+
+Most subscriptions offer a pause option, typically for a duration of 1 to 3 months.
+
+To pause your subscription:
+1. Go to your Subscription Settings.
+2. Select ""Pause Subscription.""
+3. Choose your desired pause duration.
+
+Your billing will automatically resume after the pause period.
+
+Enjoy your extended holiday!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",9070,0.98,Match: 1.00 | [Routine/Subscription] | TRIG: cancel | KB: 01_FAQ_General
+TC055,B,2026-04-20T20:01:12.000Z,ESCALATED,YES,FALSE,Pending,,,Match: 1.00 | [Billing/Incorrect Amount] | TRIG: charged | KB: 03_Billing_Refunds_Policy
+TC056,B,2026-04-20T20:03:13.000Z,ESCALATED,YES,FALSE,Pending,,,Match: 1.00 | [Billing/Incorrect Amount] | TRIG: refund | KB: 03_Billing_Refunds_Policy
+TC063,B,2026-04-20T20:05:13.000Z,ESCALATED,YES,FALSE,Pending,,,Match: 1.00 | [Billing/Order Cancellation] | TRIG: cancel+refund | KB: 03_Billing_Refunds_Policy
+TC064,B,2026-04-20T20:07:14.000Z,AI_HANDLES,NO,TRUE,"Hello Kim Park,
+
+Thank you for reaching out. Unfortunately, an order cannot be canceled once it has already been shipped. However, you have a couple of options since you no longer need the item:
+
+1. Refuse Delivery: You can refuse to accept the package when the carrier attempts to deliver it. The package will then be returned to us, and a refund will be processed once it is received.
+2. Return After Delivery: You can accept the package when it arrives and then initiate a return through your account. A prepaid return label will be provided for this process.
+
+We hope this helps clarify your options.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",17580,0.98,Match: 0.86 | [Billing/Order Cancellation] | TRIG: cancel | KB: 03_Billing_Refunds_Policy
+TC065,B,2026-04-20T20:09:14.000Z,ESCALATED,YES,FALSE,Pending,,,Match: 1.00 | [Billing/Subscription Cancellation] | TRIG: cancel | KB: 03_Billing_Refunds_Policy
+TC047,C,2026-04-20T20:11:15.000Z,ESCALATED,YES,FALSE,Pending,,,Match: 1.00 | [Routine/Product Info] | TRIG: none (LLM decision) | KB: 01_FAQ_General
+TC048,C,2026-04-20T20:13:15.000Z,ESCALATED,YES,FALSE,Pending,,,Match: 1.00 | [Routine/Product Info] | TRIG: none (LLM decision) | KB: 01_FAQ_General
+TC079,C,2026-04-20T20:15:16.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+I'm sorry to hear you're experiencing issues with your touch screen. This can often be resolved with a few simple steps. Please try the following:
+
+• Temporarily remove any screen protector, as it can sometimes interfere with touch sensitivity.
+• Clean your screen thoroughly with a microfiber cloth to remove any dirt or smudges.
+• Restart your device, as this can often clear up temporary software glitches.
+• Check for any available software updates, as these often include bug fixes for touch screen issues.
+• If your device has a touch screen calibration option in its settings, performing a calibration might help correct misaligned touch registration.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",11510,0.9,Match: 1.00 | [Technical/Hardware - Display] | TRIG: none (LLM decision) | KB: 02_Technical_Issues
+TC083,C,2026-04-20T20:17:17.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+I understand you're experiencing issues with your Bose QuietComfort headphones, where the audio is stuttering and cutting out. This can definitely be frustrating, especially when you're close to your phone.
+
+Here are some troubleshooting steps that often resolve this type of issue:
+
+1. Reduce distance from paired device: Even though you mentioned being close to your phone, ensuring there are no obstructions and you are within optimal range can help.
+2. Remove other Bluetooth devices from area: Other active Bluetooth devices nearby can sometimes cause interference with your headphones' connection.
+3. Check for wireless interference: Common sources like Wi-Fi routers, microwaves, or cordless phones can interfere with Bluetooth signals. Try moving away from these if possible.
+4. Check for electromagnetic interference: Other electronic devices in your vicinity might also be causing interference.
+5. Update firmware: Ensure your Bose QuietComfort headphones have the latest firmware. Firmware updates often include important bug fixes and performance improvements, which can address connectivity and audio issues.
+
+Please try these steps, and let me know if the issue persists.
+
+Cheers,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",11850,0.9,Match: 1.00 | [Technical/Network - Bluetooth] | TRIG: none (LLM decision) | KB: 02_Technical_Issues
+TC087,C,2026-04-20T20:19:17.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+Thank you for reaching out. I understand you are experiencing issues with your software update failing during installation and rolling back. This can be frustrating, but I'm here to help.
+
+Here are some troubleshooting steps you can try:
+
+1. Ensure sufficient storage space: Please make sure your device has at least 2GB of free storage.
+2. Connect to stable WiFi: A strong and stable internet connection is crucial for successful updates.
+3. Charge device: Ensure your device is charged to at least 50% battery before attempting the update.
+4. Restart and retry: Try restarting your device and then attempt the update again.
+5. Download update manually: If available, you can try downloading the update manually from our official website.
+
+Please try these steps, and if the issue persists, don't hesitate to contact us again.
+
+Sincerely,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",9350,0.9,Match: 1.00 | [Technical/Software - Update] | TRIG: none (LLM decision) | KB: 02_Technical_Issues
+TC089,C,2026-04-20T20:21:18.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+I understand you've accidentally deleted an important folder of work documents.
+
+Here are the steps you can take to recover your files:
+
+1.  **Check your device's Trash or Recently Deleted folder:** Files are typically recoverable from here for about 30 days.
+2.  **Check your cloud storage:** If you have cloud backup enabled, your files might be stored there.
+3.  **Consider application-specific recovery:** In some cases, if the deletion was specific to an application's data, uninstalling and reinstalling the app might help.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",12610,0.9,Match: 1.00 | [Technical/Data Recovery] | TRIG: none (LLM decision) | KB: 02_Technical_Issues
+TC091,C,2026-04-20T20:23:18.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+I understand your external hard drive is not appearing in Finder or on your desktop, even though it seems to be receiving power. Here are some steps you can take to troubleshoot this issue:
+
+1. Try a different USB port: Connect your external hard drive to another USB-C or Thunderbolt port on your MacBook Pro.
+2. Test on another device: If possible, try connecting the external hard drive to a different computer to determine if the drive itself is functioning correctly.
+3. Check for system updates: Ensure your macOS is up to date, as this can sometimes resolve compatibility issues.
+4. Consider adapters/dongles: If you are using an adapter or dongle, try a different one or connect the drive directly if possible.
+
+Please try these steps, and let me know if your external hard drive appears. If it still doesn't show up, we can explore further options.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",17460,0.9,Match: 1.00 | [Technical/Peripherals] | TRIG: none (LLM decision) | KB: 02_Technical_Issues
+TC099,C,2026-04-20T20:25:19.000Z,ESCALATED,YES,FALSE,Pending,,,Match: 1.00 | [Technical/Audio - No Sound] | TRIG: none (LLM decision) | KB: 02_Technical_Issues

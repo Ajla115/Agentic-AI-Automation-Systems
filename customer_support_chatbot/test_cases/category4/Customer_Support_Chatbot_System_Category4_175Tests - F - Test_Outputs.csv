@@ -1,0 +1,282 @@
+TEST_ID,ACTUAL AI RESPONSE (AFTER KB UPDATE),ACTUAL SOURCE DOC,EXPECTED OUTCOME,PASS/FAIL (AFTER),CONFIDENCE,CONFIDENCE_SCORE,RESPONSE TIME (ms),NOTES
+CAT5-F-001,"Hello!
+
+It's great to hear you're planning a scuba diving holiday with your new GoPro Hero 12.
+
+The GoPro Hero 12 has a built-in waterproofing rating of 10 meters (33 feet) without any additional housing.
+
+For any dives that go beyond this depth, you will need an appropriate waterproof housing accessory to ensure your camera remains protected.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",Product Documentation - GoPro Hero 12 Specifications,PDF contains resolved GoPro case with correct Q&A,✅ PASS,HIGH,0.95,25517,
+CAT5-F-002,"Hello,
+
+Yes, you can transfer your Microsoft Office license to your new laptop.
+
+To do this, follow these steps:
+
+1. Sign in to account.microsoft.com on your old laptop and deactivate the Office installation.
+2. Install and activate Office on your new laptop using the same Microsoft account.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,PDF contains billing dispute case with human resolution,✅ PASS,HIGH,0.98,18700,
+CAT5-F-003,Pending,,PDF includes battery case; retrieval returns resolution steps,✅ PASS,,,,
+CAT5-F-004,"Hello,
+
+We understand you're concerned about your Dell XPS laptop's warranty after relocating from Germany to Bosnia and Herzegovina.
+
+We're happy to confirm that TechFlow honors warranty claims for products purchased from us or an authorized TechFlow retailer, regardless of your current country of residence.
+
+Our standard warranty for computers covers hardware defects for 1 year. To help you with your screen issue, please provide us with your original purchase details, including the date of purchase and the laptop's serial number, so we can assist you further with your warranty claim.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,PDF contains GDPR case; kbLastUpdated timestamp set in logs,✅ PASS,HIGH,0.9,20231,
+CAT5-F-005,"Hello,
+
+Thank you for your inquiry regarding bulk discounts for business orders.
+
+We do offer tiered discounts based on order volume:
+
+*   **10-24 units:** 8% discount
+*   **25-49 units:** 12% discount (This would apply to your interest in 30 Dell XPS units.)
+*   **50 or more units:** 18% discount
+
+Please let us know if you have any further questions or wish to proceed with an order.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool - Bulk discount structure for business orders,PDF built + Pinecone vectors for new case exist,✅ PASS,HIGH,0.98,18667,
+CAT5-F-006,"Hi there!
+
+TechFlow offers a Device Trade-In Programme, which was launched in January 2026.
+
+We accept a variety of eligible devices, including:
+
+• Laptops
+• Desktop computers
+• Smartphones
+• Tablets
+• Smart home hubs
+
+You can obtain a trade-in estimate for your Dell Inspiron 15 by following our online procedure.
+
+Our current documentation does not mention a separate recycling program.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response - Device Trade-In Programme,Old PDF deleted; no duplicate PDFs in folder,✅ PASS,HIGH,0.95,18859,
+CAT5-F-007,"Hello!
+
+Philips Hue lights are compatible with your Samsung SmartThings hub. There are two main ways to connect them:
+
+• Use the Philips Hue Bridge (recommended method).
+• For Zigbee-enabled Philips Hue bulbs, connect them directly to your SmartThings hub.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,Exactly one PDF in folder; no stale version remains,✅ PASS,HIGH,0.95,17679,
+CAT5-F-008,"Hello!
+
+Thank you for reaching out.
+
+Regarding your HP Pavilion 15, thermal throttling after 20-30 minutes of gaming is a known characteristic for this series. This is generally considered a design trade-off for the model, rather than a manufacturing defect.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,Zero duplicate vectors for human cases in Pinecone,✅ PASS,HIGH,0.95,76450,
+CAT5-F-009,"Hello!
+
+Thank you for your interest in TechFlow Pro!
+
+We do offer a Family Plan for TechFlow Pro. This plan allows for up to 5 individual accounts under a single billing profile.
+
+The TechFlow Pro Family Plan is priced at €24.99 per month. Please note that while billing is consolidated, each family member will maintain their own individual TechFlow account, with separate data and device licenses tied to each user.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,All resolved rows show non-empty kbLastUpdated timestamp,✅ PASS,HIGH,0.98,77979,
+CAT5-F-010,"Hello,
+
+We are happy to inform you that you are eligible for our Price Protection Policy.
+
+Since you purchased the Bose QC45 headphones on Monday for €279 and the sale started today (Wednesday) at €239, your purchase falls within the 7-day window for a TechFlow-initiated price reduction.
+
+You will receive a refund of €40, which is the difference in price. Please allow 3-5 business days for the refund to be processed and reflected in your account.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response - Price Protection Policy,Rows with existing kbLastUpdated are skipped on 2nd run,✅ PASS,HIGH,0.95,76235,
+CAT5-F-011,"Hello!
+
+Thank you for reaching out.
+
+At the moment, we do not have specific information regarding a student discount program for university students at TechFlow. While some tech retailers do offer such programs, we cannot confirm if TechFlow currently has one.
+
+Please check our website regularly or contact us again in the future, as our policies and promotions can change.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",,AI answers with correct depth information from human case,✅ PASS,MEDIUM,0.6,83836,
+CAT5-F-012,"Hello!
+
+Thank you for reaching out. You can certainly extend the warranty coverage for your Dell XPS laptop.
+
+Our extended warranty plans can be purchased either while the original warranty is still active or within 30 days of its expiry.
+
+Since your one-year warranty is due to expire at the end of January 2026, you are within the eligible timeframe to purchase an extension.
+
+To proceed with purchasing an extended warranty, please visit our website or contact our sales team directly.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,AI provides specific resolution steps from human case,✅ PASS,HIGH,0.9,75167,
+CAT5-F-013,"Hello!
+
+You can purchase TechFlow gift cards in the following denominations: €25, €50, €100, €200, and €500. These are available in both physical and digital formats. Digital gift cards will be sent directly to the recipient via email.
+
+Unfortunately, the specific steps for your nephew to redeem and use the gift card for purchases are not detailed in our current documentation. For detailed instructions on how to redeem the gift card, please contact our customer support team directly.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",,AI returns human agent's documented resolution steps,✅ PASS,MEDIUM,0.7,84588,
+CAT5-F-014,"Hello,
+
+Thank you for reaching out regarding docking station compatibility for your Dell XPS 15.
+
+Based on your requirement for a dual-monitor setup with two external 4K monitors and several USB-A peripherals, the Dell WD22TB4 docking station is recommended.
+
+This docking station is designed to support multiple high-resolution displays and provides ample connectivity for your peripherals, leveraging the Thunderbolt 4 ports on your Dell XPS 15.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",Dell Docking Station Compatibility Guide - Dell WD22TB4 Product Page,AI returns correct GDPR procedure from human case,✅ PASS,HIGH,0.98,73527,
+CAT5-F-015,"Hello,
+
+Thank you for reaching out. I'm sorry to hear that your Samsung 27-inch monitor arrived with a cracked screen.
+
+To file a damage claim for an item damaged in transit, please follow these steps:
+
+1. Take photos documenting the damage to both the monitor and the outer box.
+2. File a claim directly with the shipping carrier.
+
+Please note that physical damage like a cracked screen is typically not covered under our standard product warranty if it occurs after delivery.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,AI provides activation steps learned from human resolution,✅ PASS,HIGH,0.9,79277,
+CAT5-F-016,"Hello!
+
+To set up a corporate procurement account for your company, we recommend applying for a TechFlow Enterprise account.
+
+This type of account offers several benefits that might be valuable for a medium-sized company like yours:
+
+• Consolidated invoicing
+• Net-30 payment terms
+• A dedicated account manager
+• Volume pricing
+
+To initiate the application process, please email the relevant department with your company details.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",,,✅ PASS,HIGH,0.9,73800,
+CAT5-F-017,"Hello!
+
+Yes, the iRobot Virtual Wall Barrier (specifically the Dual Mode Virtual Wall Barrier, model 4512) is compatible with your Roomba 694.
+
+This accessory will help you keep your Roomba from entering specific areas, such as your kitchen while you are cooking.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool,,✅ PASS,HIGH,0.95,72017,
+CAT5-F-018,"Hi there!
+
+Yes, you can definitely pause your TechFlow Pro monthly subscription instead of cancelling it.
+
+You can typically choose to pause your subscription for a duration of 1 to 3 months.
+
+Your billing will automatically resume once the pause period has ended.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",Company Documents - Subscription Management,,✅ PASS,HIGH,0.95,70739,
+CAT5-F-019,"Hello!
+
+Yes, you can absolutely attach your GoPro Hero 12 to your existing RAM Mount that has a 1/4-20 thread connection point.
+
+To do this, you will need a GoPro Tripod Mount Adapter (SKU: GP-TMBU2). This adapter acts as the bridge between your GoPro Hero 12 and the 1/4-20 thread on your RAM Mount.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool - GoPro Hero 12 compatibility with RAM Mounts,,✅ PASS,HIGH,0.98,72051,
+CAT5-F-020,"Hi there!
+
+Thank you for reaching out to TechFlow.
+
+To clarify, TechFlow accounts cannot be shared, as each user is required to have their own individual account per our Terms of Service.
+
+However, we do offer a Family Plan which is likely a great option for you and your daughter. The TechFlow Family Plan subscriptions, introduced in March 2026, cover up to 5 individual accounts under one consolidated billing profile and are priced at €24.99 per month.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,,✅ PASS,HIGH,0.98,72703,

@@ -1,0 +1,778 @@
+TEST_ID,TIMESTAMP_START,TIMESTAMP_END,EXPECTED CLASSIFICATION,EXPECTED ESCALATION,CLASSIFICATION_CORRECT,AI_RESPONSE,RESPONSE_TIME_MS,ERROR_OCCURRED,ERROR_MESSAGE,GRACEFUL_DEGRADATION,SYSTEM_CRASHED,NOTES
+TC541,2026-05-07T14:31:48.994Z,2026-05-07T14:31:50.142Z,AI_HANDLES,NO,YES,"Hello,
+
+Thank you for contacting us regarding ""TC541 - Need help with my account"". We received your email, but we couldn't find any details in the message body.
+
+To help you effectively, could you please share:
+• What product or service you're contacting us about
+• The specific question or issue you need help with
+• Any relevant order or account number, if applicable
+
+We'll be happy to assist as soon as we have more details.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response. If you would like to speak with a human representative, please mention this in your reply.",1150,,,,,
+TC542,2026-05-06T13:27:57.000Z,2026-05-06T13:28:50.423Z,AI_HANDLES,NO,YES,"Hello,
+
+Thank you for contacting us regarding ""TC542-Refund request"". We received your email, but we couldn't find any details in the message body.
+
+To help you effectively, could you please share:
+• What product or service you're contacting us about
+• The specific question or issue you need help with
+• Any relevant order or account number, if applicable
+
+We'll be happy to assist as soon as we have more details.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response. If you would like to speak with a human representative, please mention this in your reply.",53423,NO,NO,,,matched by TC ID in log subject
+TC543,2026-05-06T13:29:57.000Z,2026-05-06T13:30:50.905Z,AI_HANDLES,NO,YES,"Hello,
+
+Thank you for contacting us regarding ""TC543-URGENT - please help"". We received your email, but we couldn't find any details in the message body.
+
+To help you effectively, could you please share:
+• What product or service you're contacting us about
+• The specific question or issue you need help with
+• Any relevant order or account number, if applicable
+
+We'll be happy to assist as soon as we have more details.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response. If you would like to speak with a human representative, please mention this in your reply.",53905,NO,NO,,,matched by TC ID in log subject
+TC544,2026-05-06T13:31:57.000Z,2026-05-06T13:32:50.464Z,AI_HANDLES,NO,YES,"Hello,
+
+Thank you for contacting us regarding ""TC544-Technical issue with my device"". We received your email, but we couldn't find any details in the message body.
+
+To help you effectively, could you please share:
+• What product or service you're contacting us about
+• The specific question or issue you need help with
+• Any relevant order or account number, if applicable
+
+We'll be happy to assist as soon as we have more details.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response. If you would like to speak with a human representative, please mention this in your reply.",53464,NO,NO,,,matched by TC ID in log subject
+TC545,2026-05-06T13:33:58.000Z,2026-05-06T13:34:50.512Z,AI_HANDLES,NO,YES,"Hello,
+
+Thank you for contacting us regarding ""TC545-Billing question"". We received your email, but we couldn't find any details in the message body.
+
+To help you effectively, could you please share:
+• What product or service you're contacting us about
+• The specific question or issue you need help with
+• Any relevant order or account number, if applicable
+
+We'll be happy to assist as soon as we have more details.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response. If you would like to speak with a human representative, please mention this in your reply.",52512,NO,NO,,,matched by TC ID in log subject
+TC546,2026-05-06T13:35:59.000Z,2026-05-06T13:36:50.560Z,ESCALATE,YES,NO,"Hello,
+
+Thank you for contacting us regarding ""TC546-Cancel my subscription"". We received your email, but we couldn't find any details in the message body.
+
+To help you effectively, could you please share:
+• What product or service you're contacting us about
+• The specific question or issue you need help with
+• Any relevant order or account number, if applicable
+
+We'll be happy to assist as soon as we have more details.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response. If you would like to speak with a human representative, please mention this in your reply.",51560,NO,NO,,,matched by TC ID in log subject
+TC547,2026-05-06T13:37:59.000Z,2026-05-06T13:38:50.362Z,AI_HANDLES,NO,YES,"Hello,
+
+Thank you for contacting us regarding ""TC547-Complaint"". We received your email, but we couldn't find any details in the message body.
+
+To help you effectively, could you please share:
+• What product or service you're contacting us about
+• The specific question or issue you need help with
+• Any relevant order or account number, if applicable
+
+We'll be happy to assist as soon as we have more details.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response. If you would like to speak with a human representative, please mention this in your reply.",51362,NO,NO,,,matched by TC ID in log subject
+TC548,2026-05-06T13:40:00.000Z,2026-05-06T13:40:50.600Z,AI_HANDLES,NO,YES,"Hello,
+
+Thank you for contacting us regarding ""TC548-Order not arrived"". We received your email, but we couldn't find any details in the message body.
+
+To help you effectively, could you please share:
+• What product or service you're contacting us about
+• The specific question or issue you need help with
+• Any relevant order or account number, if applicable
+
+We'll be happy to assist as soon as we have more details.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response. If you would like to speak with a human representative, please mention this in your reply.",50600,NO,NO,,,matched by TC ID in log subject
+TC549,2026-05-06T13:42:00.000Z,2026-05-06T13:42:50.837Z,AI_HANDLES,NO,YES,"Hello,
+
+Thank you for contacting us regarding ""TC549-Hello"". We received your email, but we couldn't find any details in the message body.
+
+To help you effectively, could you please share:
+• What product or service you're contacting us about
+• The specific question or issue you need help with
+• Any relevant order or account number, if applicable
+
+We'll be happy to assist as soon as we have more details.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response. If you would like to speak with a human representative, please mention this in your reply.",50837,NO,NO,,,matched by TC ID in log subject
+TC550,2026-05-06T13:44:01.000Z,2026-05-06T13:44:50.243Z,AI_HANDLES,NO,YES,"Hello,
+
+Thank you for contacting us regarding ""TC550-Re: Your recent support ticket"". We received your email, but we couldn't find any details in the message body.
+
+To help you effectively, could you please share:
+• What product or service you're contacting us about
+• The specific question or issue you need help with
+• Any relevant order or account number, if applicable
+
+We'll be happy to assist as soon as we have more details.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response. If you would like to speak with a human representative, please mention this in your reply.",49243,NO,NO,,,matched by TC ID in log subject
+TC551,2026-05-06T13:46:01.000Z,2026-05-06T13:46:50.605Z,AI_HANDLES,NO,YES,"Hello,
+
+Thank you for contacting us regarding ""TC551-Help"". We received your email, but we couldn't find any details in the message body.
+
+To help you effectively, could you please share:
+• What product or service you're contacting us about
+• The specific question or issue you need help with
+• Any relevant order or account number, if applicable
+
+We'll be happy to assist as soon as we have more details.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response. If you would like to speak with a human representative, please mention this in your reply.",49605,NO,NO,,,matched by TC ID in log subject
+TC552,2026-05-06T13:48:02.000Z,2026-05-06T13:48:50.627Z,AI_HANDLES,NO,YES,"Hello,
+
+Thank you for contacting us regarding ""TC552-?"". We received your email, but we couldn't find any details in the message body.
+
+To help you effectively, could you please share:
+• What product or service you're contacting us about
+• The specific question or issue you need help with
+• Any relevant order or account number, if applicable
+
+We'll be happy to assist as soon as we have more details.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response. If you would like to speak with a human representative, please mention this in your reply.",48627,NO,NO,,,matched by TC ID in log subject
+TC553,2026-05-06T13:50:02.000Z,2026-05-06T13:50:50.394Z,AI_HANDLES,NO,YES,"Hello,
+
+Thank you for contacting us regarding ""TC553-Refund"". We received your email, but we couldn't find any details in the message body.
+
+To help you effectively, could you please share:
+• What product or service you're contacting us about
+• The specific question or issue you need help with
+• Any relevant order or account number, if applicable
+
+We'll be happy to assist as soon as we have more details.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response. If you would like to speak with a human representative, please mention this in your reply.",48394,NO,NO,,,matched by TC ID in log subject
+TC554,2026-05-06T13:52:03.000Z,2026-05-06T13:52:50.439Z,AI_HANDLES,NO,YES,"Hello,
+
+Thank you for contacting us regarding ""TC554-Hello"". We received your email, but we couldn't find any details in the message body.
+
+To help you effectively, could you please share:
+• What product or service you're contacting us about
+• The specific question or issue you need help with
+• Any relevant order or account number, if applicable
+
+We'll be happy to assist as soon as we have more details.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response. If you would like to speak with a human representative, please mention this in your reply.",47439,NO,NO,,,matched by TC ID in log subject
+TC555,2026-05-06T13:54:04.000Z,2026-05-06T13:54:50.495Z,AI_HANDLES,NO,YES,"Hello,
+
+Thank you for contacting us regarding ""TC555-Broken"". We received your email, but we couldn't find any details in the message body.
+
+To help you effectively, could you please share:
+• What product or service you're contacting us about
+• The specific question or issue you need help with
+• Any relevant order or account number, if applicable
+
+We'll be happy to assist as soon as we have more details.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response. If you would like to speak with a human representative, please mention this in your reply.",46495,NO,NO,,,matched by TC ID in log subject
+TC556,2026-05-06T13:56:05.000Z,2026-05-06T13:56:50.385Z,AI_HANDLES,NO,YES,"Hello,
+
+Thank you for contacting us regarding ""TC556-HELP!!!"". We received your email, but we couldn't find any details in the message body.
+
+To help you effectively, could you please share:
+• What product or service you're contacting us about
+• The specific question or issue you need help with
+• Any relevant order or account number, if applicable
+
+We'll be happy to assist as soon as we have more details.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response. If you would like to speak with a human representative, please mention this in your reply.",45385,NO,NO,,,matched by TC ID in log subject
+TC557,2026-05-06T13:58:05.000Z,2026-05-06T13:58:50.914Z,AI_HANDLES,NO,YES,"Hello,
+
+Thank you for contacting us regarding ""TC557-Can you help?"". We received your email, but we couldn't find any details in the message body.
+
+To help you effectively, could you please share:
+• What product or service you're contacting us about
+• The specific question or issue you need help with
+• Any relevant order or account number, if applicable
+
+We'll be happy to assist as soon as we have more details.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response. If you would like to speak with a human representative, please mention this in your reply.",45914,NO,NO,,,matched by TC ID in log subject
+TC558,2026-05-07T11:46:58.257Z,2026-05-07T11:46:59.315Z,AI_HANDLES,NO,YES,"[MINIMAL_INPUT] ""Urgent"" subject=""TC558-Urgent""",1060,YES,YES,,,no matching log
+TC559,2026-05-06T14:02:08.000Z,2026-05-06T14:02:51.007Z,AI_HANDLES,NO,YES,"Hello,
+
+Thank you for contacting us regarding ""TC559-Invoice"". We received your email, but we couldn't find any details in the message body.
+
+To help you effectively, could you please share:
+• What product or service you're contacting us about
+• The specific question or issue you need help with
+• Any relevant order or account number, if applicable
+
+We'll be happy to assist as soon as we have more details.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response. If you would like to speak with a human representative, please mention this in your reply.",43007,NO,NO,,,matched by TC ID in log subject
+TC560,2026-05-06T14:04:10.000Z,2026-05-06T14:04:51.403Z,AI_HANDLES,NO,YES,"Hello,
+
+Thank you for contacting us regarding ""TC560-Password"". We received your email, but we couldn't find any details in the message body.
+
+To help you effectively, could you please share:
+• What product or service you're contacting us about
+• The specific question or issue you need help with
+• Any relevant order or account number, if applicable
+
+We'll be happy to assist as soon as we have more details.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response. If you would like to speak with a human representative, please mention this in your reply.",41403,NO,NO,,,matched by TC ID in log subject
+TC561,2026-05-06T14:06:10.000Z,2026-05-06T14:07:23.076Z,ESCALATE,YES,NO,"Hello,
+
+Thank you for reaching out to the TechFlow Customer Support Team.
+
+It appears your message may have been incomplete. To ensure we can thoroughly assist you with your complex situation, please provide the full details of the issues you are experiencing.
+
+Once we have all the necessary information, we will be able to offer a comprehensive solution.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",73076,NO,NO,,,matched by substring containment
+TC562,2026-05-07T11:33:38.709Z,2026-05-07T11:33:44.311Z,ESCALATE,YES,YES,"Hello,
+
+We understand that you are experiencing a complex and multifaceted situation regarding our service over the past six months.
+
+To properly address your detailed complaint, a human agent will need to review your account and the specifics of your experience.
+
+We are escalating this to our dedicated support team, and a specialist will reach out to you directly to gather more information and assist you further.
+
+Kind regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",5600,NO,NO,,,matched by overlap 0.50
+TC571,2026-05-06T14:10:11.000Z,2026-05-06T14:11:09.464Z,AI_HANDLES,NO,YES,"Hello!
+
+I understand that something isn't working for you.
+
+To help me diagnose the issue and provide the best assistance, could you please provide more details about the specific product or feature that is malfunctioning?
+
+For instance, are you experiencing:
+
+• A setup issue?
+• A problem with voice commands?
+• An issue related to a wearable device?
+
+Once I have more specific information, I can offer targeted troubleshooting steps.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",58464,NO,NO,,,matched by exact body
+TC572,2026-05-06T14:12:12.000Z,2026-05-06T14:12:56.726Z,AI_HANDLES,NO,YES,"Hello Jane,
+
+I'm sorry to hear that you're experiencing a problem with your recent purchase.
+
+To help me understand what's happening and provide you with the best assistance, could you please tell me more about what you bought and what exactly isn't working as it should?
+
+Once I have a few more details, I'll be happy to look into this for you.
+
+Regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",44726,NO,NO,,,matched by exact body
+TC573,2026-05-06T14:14:13.000Z,2026-05-06T14:14:55.670Z,AI_HANDLES,NO,YES,"Hello Paul,
+
+We understand you're experiencing an issue and need help. Since the problem is unspecified and requires direct assistance, we are escalating this to our support team.
+
+A human agent will contact you directly to help resolve what has gone wrong. Please expect to hear from them shortly.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",42670,NO,NO,,,matched by exact body
+TC574,2026-05-06T14:16:13.000Z,2026-05-06T14:16:55.140Z,AI_HANDLES,NO,YES,"Hello,
+
+I understand that receiving the wrong item is frustrating, and I want to assure you that we will get this sorted out for you.
+
+Since this requires looking into your specific order details, I am escalating this to our customer support team.
+
+A specialist will be in touch shortly to assist you with getting the correct item.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",42140,NO,NO,,,matched by exact body
+TC575,2026-05-06T14:18:14.000Z,2026-05-06T14:19:03.351Z,AI_HANDLES,NO,YES,"Hello,
+
+We understand that you are not happy with your experience and expected better.
+
+We want to assure you that we take your feedback seriously. To fully understand and address your concerns, we are escalating this to our dedicated support team.
+
+A specialist will be in touch with you shortly to discuss your feedback and help resolve any issues you may be experiencing.
+
+Kind regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",49351,NO,NO,,,matched by exact body
+TC576,2026-05-06T14:20:14.000Z,2026-05-06T14:21:06.077Z,AI_HANDLES,NO,YES,"Hi Mike,
+
+I'm sorry to hear your device stopped working suddenly this morning. Let's try a few common troubleshooting steps that often resolve this issue:
+
+1.  Check Power and Charging: Please connect your device to its original charger and cable, and let it charge for at least 30 minutes. Sometimes, a drained battery can make it seem like the device isn't working.
+2.  Try Different Components: If that doesn't work, try using a different charger and cable, if available, and also try plugging it into a different power outlet to rule out issues with your current power source.
+3.  Perform a Hard Reset: While the device is connected to power, press and hold the power button for 15-20 seconds. This can often resolve temporary software glitches.
+4.  Inspect for Damage: Briefly check for any visible physical damage or signs of water exposure, which could explain the sudden stop.
+
+If these steps don't resolve the problem, the device might require warranty service. In that case, please gather your purchase date and the device's serial number, and we can explore further options.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",52077,NO,NO,,,matched by exact body
+TC577,2026-05-06T14:22:15.000Z,2026-05-06T14:24:02.040Z,AI_HANDLES,NO,YES,"Hello,
+
+We understand you have not yet received your item and are looking for its status.
+
+To help us locate your package or to arrange for a reshipment or refund, we need to access your specific order details. As an AI, I do not have access to your personal account information.
+
+Therefore, I am escalating this to our support team. They will be able to check your shipping address, tracking status, and guide you through the necessary next steps. A specialist will reach out to you shortly to assist with your inquiry.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",107040,NO,NO,,,matched by exact body
+TC578,2026-05-06T14:24:16.000Z,2026-05-06T14:24:54.186Z,AI_HANDLES,NO,YES,"Hi Sarah,
+
+I understand that something seems off with your account, and I want to ensure this is resolved for you quickly.
+
+As an AI, I don't have access to your personal account details for security reasons.
+
+I'm escalating your request to a human agent who can securely access your account and investigate what's happening. They will reach out to you directly to assist.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",38186,NO,NO,,,matched by exact body
+TC579,2026-05-06T14:26:16.000Z,2026-05-06T14:27:01.280Z,AI_HANDLES,NO,YES,"Hello Dan,
+
+I'm sorry to hear you're experiencing issues with the app. Things not appearing where they should can be frustrating.
+
+Here are some troubleshooting steps that often resolve such problems:
+
+1. Force close and restart the app.
+2. Clear the app cache and data. You can usually find this option in your device's app settings.
+3. Check for app updates. Ensure you have the latest version installed, as updates often include bug fixes and improvements.
+4. Restart your device.
+5. Uninstall and reinstall the app. If the above steps don't work, a fresh installation can often resolve deeper issues.
+6. Report the bug through the app feedback feature. If the problem persists after these steps, please use the in-app feedback option to report the issue directly to our development team.
+
+Hopefully, one of these steps will get your app working as expected again!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",45280,NO,NO,,,matched by exact body
+TC580,2026-05-06T14:28:17.000Z,2026-05-06T14:29:05.798Z,AI_HANDLES,NO,YES,"Hello,
+
+Thank you for reaching out to us about your recent purchase.
+
+I can certainly help you with your question. To provide you with the most accurate assistance, could you please tell me more about what you need help with regarding your purchase?
+
+For example, are you inquiring about:
+
+• A refund
+• An exchange
+• Product details
+• Something else?
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",48798,NO,NO,,,matched by exact body
+TC581,2026-05-07T11:31:05.181Z,2026-05-07T11:31:22.029Z,AI_HANDLES,NO,YES,"Dear Customer,
+
+We are very sorry to hear that the product you received was not as described, and we understand your disappointment.
+
+We take product accuracy very seriously. To help us resolve this for you, please provide us with more details about how the product differs from its description.
+
+Once we have this information, we can investigate and work towards a resolution, which may include a replacement or a refund, in accordance with our policy for product complaints.
+
+Sincerely,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",168500,YES,YES,,,no match (best dice 0.12)
+TC582,2026-05-06T14:32:18.000Z,2026-05-06T14:32:56.274Z,AI_HANDLES,NO,YES,"Hello,
+
+We understand that you're feeling that things are taking too long, and we sincerely apologize for any inconvenience this delay has caused.
+
+We are escalating your concern to a human agent who will be able to review your situation and assist you further. You should hear from them shortly.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",38274,NO,NO,,,matched by exact body
+TC583,2026-05-06T14:34:18.000Z,2026-05-06T14:35:06.554Z,AI_HANDLES,NO,YES,"Hi Tom,
+
+I understand you've made a mistake with your order and are looking for assistance. 
+
+Since order issues are often specific to individual orders, the most efficient way to resolve this is for our dedicated support team to help you directly. They can quickly access your order details and guide you through the necessary steps. This could involve modifying an order that hasn't yet shipped or managing a return for an order that is already in transit.
+
+A support specialist will be reaching out to you shortly to help resolve this matter.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",48554,NO,NO,,,matched by exact body
+TC584,2026-05-06T14:36:19.000Z,2026-05-06T14:36:55.331Z,AI_HANDLES,NO,YES,"Hello!
+
+I understand you're seeing an unfamiliar charge and need to know what it is.
+
+Since I do not have access to your personal account details, I am unable to look up specific transactions. 
+
+I am escalating this to our billing team, who will investigate the charge and get back to you directly to help resolve this. You can expect to hear from them shortly.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",36331,NO,NO,,,matched by exact body
+TC586,2026-05-06T14:38:19.000Z,2026-05-06T14:39:00.963Z,AI_HANDLES,NO,YES,"Poštovana Ajla,
+
+Razumijem vašu zabrinutost zbog kašnjenja narudžbe ORD-2024-88234.
+
+Iako vam ne mogu direktno pružiti informacije o statusu pošiljke jer nemam pristup tim podacima, proslijedila sam vaš upit našem timu za podršku. Oni će provjeriti status vaše narudžbe i kontaktirati vas s daljnjim informacijama što je prije moguće.
+
+Hvala vam na strpljenju.
+
+S poštovanjem,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",41963,NO,NO,,,matched by exact body
+TC587,2026-05-07T14:43:46.840Z,2026-05-07T14:43:53.212Z,ESCALATE,YES,YES,"Poštovani Amire,
+
+Razumijem vašu zabrinutost zbog dvostruke naplate.
+Kako bismo provjerili vaš nalog i obradili povrat sredstava, potrebno je da naš tim za podršku pristupi vašim podacima. Molim vas, budite strpljivi dok se ne povežemo s vama kako bismo riješili ovaj problem.
+
+S poštovanjem,
+
+Customer Support Team",14.785s,,,,,
+TC591,2026-05-08T09:50:31.820Z,,ESCALATE,YES,YES,"Hello,
+
+To cancel your subscription, please follow these steps:
+1. Log in to your account. 2. Navigate to the ""Subscriptions"" section. 3. Select the subscription you wish to cancel. 4. Click the ""Cancel Subscription"" button and confirm.
+
+You will receive a confirmation email once the cancellation is complete. To ensure your next billing cycle is not charged, please complete the cancellation at least 24 hours before your renewal date.
+
+Your subscription cancellation will be effective at the end of the current billing period, and you will retain access to the service until then.
+
+Regarding your request to close your entire account, this requires system access and will need to be handled by a human representative. Someone will be in touch with you shortly to assist with this process.
+
+Best regards,
+
+Customer Support Team",24.473s,,,,,
+TC601,2026-05-07T14:24:00.000Z,,AI_HANDLES,NO,YES,,7297,,,,,SPAM
+TC602,2026-05-06T14:40:20.000Z,,AI_HANDLES,NO,YES,,4624,YES,YES,,,SPAM
+TC603,2026-05-06T14:42:20.000Z,,AI_HANDLES,NO,YES,,4982,YES,YES,,,SPAM
+TC604,2026-05-06T14:44:21.000Z,,AI_HANDLES,NO,YES,,4378,YES,YES,,,SPAM
+TC605,2026-05-06T14:46:22.000Z,,AI_HANDLES,NO,YES,,3972,YES,YES,,,SPAM
+TC606,2026-05-06T14:48:22.000Z,,AI_HANDLES,NO,YES,,4493,YES,YES,,,SPAM
+TC607,2026-05-06T14:50:23.000Z,,AI_HANDLES,NO,YES,,4400,YES,YES,,,SPAM
+TC608,2026-05-06T16:52:23.000Z,,AI_HANDLES,NO,YES,,4838,YES,YES,,,SPAM
+TC609,2026-05-06T14:54:24.000Z,,AI_HANDLES,NO,YES,,4487,YES,YES,,,SPAM
+TC610,2026-05-06T16:56:24.000Z,,AI_HANDLES,NO,YES,,4615,YES,YES,,,SPAM
+TC611,2026-05-06T14:58:25.000Z,,ESCALATE,YES,YES,Pending,,NO,NO,,,matched by exact body
+TC612,2026-05-06T15:00:25.000Z,,ESCALATE,YES,YES,Pending,,NO,NO,,,matched by exact body
+TC613,2026-05-06T15:02:26.000Z,,ESCALATE,YES,YES,Pending,,NO,NO,,,matched by exact body
+TC614,2026-05-06T15:04:27.000Z,,ESCALATE,YES,YES,Pending,,NO,NO,,,matched by exact body
+TC615,2026-05-06T15:06:27.000Z,,ESCALATE,YES,YES,Pending,,NO,NO,,,matched by exact body
+TC617,2026-05-06T15:08:28.000Z,2026-05-06T15:08:57.303Z,ESCALATE,YES,NO,"Hello Angela,
+
+I understand your frustration regarding the cancellation confirmation and subsequent delivery, and I sincerely apologize for the inconvenience this has caused.
+
+As this issue requires access to your specific order details and account information, which I cannot directly access, I am escalating this matter.
+
+A human support specialist will investigate why your cancellation was not fully processed and will work to resolve the delivery issue for you. They will be in touch shortly to assist further.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",29303,NO,NO,,,matched by exact body
+TC618,2026-05-06T15:10:28.000Z,,ESCALATE,YES,YES,Pending,,NO,NO,,,matched by exact body
+TC619,2026-05-06T15:12:29.000Z,2026-05-06T15:12:55.397Z,ESCALATE,YES,NO,"Hello Olivia,
+
+I understand your frustration with the ongoing delay and I apologize that your issue hasn't been resolved yet.
+
+As an AI, I don't have access to your account details or past case information to provide an immediate solution or update. I am escalating your concern to our support team.
+
+A human agent will reach out to you directly to investigate why there has been no progress and to help resolve this for you.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",26397,NO,NO,,,matched by exact body
+TC620,2026-05-06T15:14:29.000Z,2026-05-06T15:14:57.034Z,ESCALATE,YES,NO,"Hello,
+
+We understand how frustrating it can be to not be able to access your account, especially after trying to reset your password multiple times.
+
+Since the password reset emails are not working for you, this issue requires secure verification and access to your account details, which we do not have.
+
+We are escalating this to our support team right away. A specialist will contact you directly to help you regain access to your account as quickly as possible.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",28034,NO,NO,,,matched by exact body
+TC621,2026-05-06T15:16:30.000Z,2026-05-06T15:17:04.626Z,AI_HANDLES,NO,YES,"Hello,
+
+Thank you for reaching out to TechFlow. I'd be happy to help you with your recent purchase.
+
+To assist you best, could you please provide more details about your question?
+
+For example, are you looking for information about:
+
+• Your order status
+• Delivery
+• A specific product feature
+• Something else?
+
+Once I have more information, I can provide a more specific answer.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",34626,NO,NO,,,matched by exact body
+TC622,2026-05-06T15:18:30.000Z,2026-05-06T15:19:04.179Z,AI_HANDLES,NO,YES,"Hello Sarah,
+
+I understand you're having trouble logging into your account. Here are the steps to help you regain access:
+
+To Reset Your Password:
+• Go to our website and click ""Login"" in the top right corner.
+• Click the ""Forgot Password"" link to receive a password reset link in your email.
+
+Troubleshooting Other Login Issues (e.g., 'Invalid Credentials'):
+• Double-check your email address and password for typos, as passwords are case-sensitive.
+• If you've tried logging in multiple times, your account might be temporarily locked.
+• Try clearing your browser's cache and cookies, or use a different browser or device.
+
+If you continue to experience problems after trying these steps, please contact our support team with your registered email address. For security, they may ask for your billing zip code or the last four digits of your card on file to verify your identity.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",34179,NO,NO,,,matched by overlap 1.00
+TC623,2026-05-06T15:20:31.000Z,2026-05-06T15:21:31.264Z,AI_HANDLES,NO,YES,"Hi,
+
+I received your message ""Yes please.""
+
+To ensure I can assist you correctly, I need a little more context about what you are affirming. A human agent will review our previous communications or the details of your ticket to understand your request and follow up with you shortly.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",60264,NO,NO,,,matched by substring containment
+TC625,2026-05-06T15:22:32.000Z,2026-05-06T15:23:00.141Z,AI_HANDLES,NO,YES,"Hello Tom,
+
+Yes, I can certainly help you with your order!
+
+To assist you best, please contact our support team with your order number. They will be able to provide you with the most accurate and timely assistance.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",28141,NO,NO,,,matched by exact body
+TC626,2026-05-06T15:24:32.000Z,,AI_HANDLES,NO,,,4197,YES,YES,,,SPAM
+TC627,2026-05-06T15:26:33.000Z,2026-05-06T15:27:04.734Z,AI_HANDLES,NO,YES,"Hello John,
+
+I understand you are having trouble logging in. To help you regain access, please try the following steps:
+
+1. Reset your password: Go to our website, click ""Login,"" and then ""Forgot Password"" to receive a reset link via email.
+
+2. Check for common errors: Ensure your email address is spelled correctly and remember that passwords are case-sensitive. Your account might also be locked after several incorrect attempts.
+
+3. Browser troubleshooting: Try clearing your browser's cache and cookies, or attempt to log in using a different browser or device.
+
+If the issue persists after trying these steps, please contact us again with your registered email address, and we will assist you further.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",31734,NO,NO,,,matched by exact body
+TC628,2026-05-06T15:28:33.000Z,2026-05-06T15:28:57.456Z,AI_HANDLES,NO,YES,"Hi Anna,
+
+I understand you wish to pay for your order. However, for security reasons and to process your payment, our support team will need to assist you directly.
+
+I do not have access to sensitive payment information or the ability to process transactions. Therefore, I am escalating this to a human agent who will reach out to you shortly to complete your payment securely.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",24456,NO,NO,,,matched by exact body
+TC630,2026-05-07T14:48:58.976Z,2026-05-07T14:49:16.026Z,AI_HANDLES,NO,NO,"Hello,
+
+Thank you for reaching out.
+To help me understand your situation better and provide the most accurate assistance, please provide the following details:
+
+• The specific name of the product you are experiencing an issue with.
+• A clear description of the issue you are facing.
+• Your desired outcome or resolution.
+
+Once I have this information, I will be able to search our resources and offer the best possible solution.
+
+Best regards,
+
+Customer Support Team",17050,,,,,
+TC631,2026-05-06T17:30:34.000Z,,AI_HANDLES,NO,YES,/,3991,NO,NO,,,SPAM
+TC633,2026-05-06T17:32:34.000Z,,AI_HANDLES,NO,YES,/,4566,NO,NO,,,SPAM
+TC634,2026-05-06T17:34:35.000Z,,AI_HANDLES,NO,YES,/,4073,NO,NO,,,SPAM
+TC635,2026-05-06T17:36:36.000Z,,AI_HANDLES,NO,YES,/,4745,NO,NO,,,SPAM
+TC637,2026-05-06T17:38:36.000Z,,AI_HANDLES,NO,YES,/,4030,NO,NO,,,SPAM
+TC639,2026-05-06T15:40:37.000Z,,ESCALATE,YES,YES,Pending,,NO,NO,,,matched by substring containment
+TC640,2026-05-06T15:40:37.000Z,,AI_HANDLES,NO,YES,/,4068,NO,NO,,,SPAM

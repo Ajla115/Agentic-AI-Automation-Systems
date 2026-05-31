@@ -1,0 +1,550 @@
+TEST_ID,ACTUAL RESPONSE / OUTCOME,ACTUAL SOURCE DOC,RETRIEVAL METHOD USED,EXPECTED OUTCOME,PASS/FAIL,RESPONSE TIME (ms),CONFIDENCE,CONFIDENCE_SCORE,NOTES
+CAT5-D-001,"Hello,
+
+To reset your password, please follow these steps:
+
+1. Visit our website and click ""Login"" in the top right corner.
+2. From the login page, click on ""Forgot Password.""
+3. You will receive a password reset link via email.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,,RETRIEVED — same answer regardless of phrasing,✅ PASS,58072,HIGH,0.95,
+CAT5-D-002,"Hello!
+
+If you've forgotten your password and are unable to log in, please follow these steps:
+
+1. Go to our login page.
+2. Click on the ""Forgot Password"" link.
+3. You will then receive a reset link in your email to help you regain access to your account.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool,,RETRIEVED — same answer regardless of phrasing,✅ PASS,56325,HIGH,0.95,
+CAT5-D-003,"Hello,
+
+To recover your password, the primary method is to use the email verification link.
+
+If you encounter issues after resetting your password, please try the following:
+
+• Clear your browser cache and cookies.
+• Use a different browser or device.
+
+If you are still unable to access your account, you can request manual assistance. For security purposes, you will need to verify your identity by providing the email address registered to your account and either your billing zip code or the last 4 digits of the card on file.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,,RETRIEVED — same answer regardless of phrasing,✅ PASS,56676,HIGH,0.95,
+CAT5-D-004,"Hello,
+
+We understand that your account login is not working because you recently changed your email address. To help you regain access, please try the following troubleshooting steps:
+
+1. Reset your password using your current registered email address.
+2. Clear your browser's cache and cookies.
+3. Attempt to log in from a different browser or device.
+
+If these steps do not resolve the issue, you will need to contact our support team for manual account recovery. For security reasons, they will verify your identity and may ask for your registered email address or billing details.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,,RETRIEVED — same answer regardless of phrasing,✅ PASS,58899,MEDIUM,0.75,
+CAT5-D-005,"Hello,
+
+Thank you for reaching out regarding our return policy.
+
+Here are the key details:
+
+*   **Eligibility:** Items can be returned if they are in their original condition, include all accessories, and have proof of purchase.
+*   **Initiating a Return:**
+    1. Log into your account.
+    2. Navigate to your Order History.
+    3. Select the relevant order.
+    4. Click 'Return Item'.
+    5. Choose your reason for return and preferred refund method.
+    6. Print the prepaid shipping label.
+*   **Shipping:** Please ship the item within 14 days of initiating the return.
+*   **Processing:** Once received, items undergo a 2-3 business day inspection. Approved refunds are processed within 5-7 business days, depending on your payment method.
+*   **Exchanges:** You also have the option to request an exchange.
+*   **Important Notes:**
+    *   Partial refunds may apply for missing accessories, damaged packaging, or signs of use.
+    *   The following items are non-refundable: activated downloadable software, gift cards, personalized items, and items marked 'Final Sale'.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",Company Documents - Return Policy Summary,,RETRIEVED — same answer regardless of phrasing,✅ PASS,57030,HIGH,0.95,
+CAT5-D-006,"Hello,
+
+Once your returned item is received, it undergoes a 2-3 business day inspection before the refund is processed. You will receive a confirmation email with refund details.
+
+The overall processing time for a refund varies by your payment method:
+
+• Store Credit: Immediate
+• PayPal: 3–5 business days
+• Credit Card: 5–7 business days
+• Debit Card: 7–10 business days
+• Bank Transfer: 7–10 business days
+
+In total, you can expect the entire process, including inspection and refund, to take anywhere from a few days up to about two weeks, depending on your payment method.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",PageIndex - How long does a refund take after the item is returned?,,RETRIEVED — same answer regardless of phrasing,✅ PASS,58460,HIGH,0.98,
+CAT5-D-007,"Hello,
+
+I apologize, but I couldn't find specific details regarding the conditions and timeframes for returns within our current documentation.
+
+For the most accurate and up-to-date information, I recommend the following:
+
+• Check the dedicated 'Returns Policy' or 'FAQ' section on our official website.
+• Contact our customer support team directly.
+
+We appreciate your understanding.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",,,RETRIEVED — same answer regardless of phrasing,✅ PASS,64473,MEDIUM,0.65,
+CAT5-D-008,"Hello,
+
+Thank you for contacting us.
+
+Yes, you can return a defective product. Since you purchased it last week, it falls within our return period.
+
+Defective items are eligible for a full refund or replacement. Please note that the item will undergo an inspection, which typically takes 2-3 business days after we receive it, to confirm it meets the return conditions and falls under warranty coverage. Once confirmed, your refund will be processed.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response - For a defective product,,RETRIEVED — same answer regardless of phrasing,✅ PASS,56606,HIGH,0.9,
+CAT5-D-009,"Hello,
+
+To resolve WiFi connectivity issues, please try the following troubleshooting steps:
+
+1. Restart your device and your WiFi router.
+2. Ensure you are entering the correct WiFi password (it is case-sensitive).
+3. Move your device closer to your router during setup.
+4. Verify if your router uses 2.4GHz or 5GHz; your device might only support 2.4GHz.
+
+If the issue continues after these steps, please provide the name of your WiFi network, any error messages you see, and whether other devices connect to this network successfully.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,,RETRIEVED — same answer regardless of phrasing,✅ PASS,63075,HIGH,0.9,
+CAT5-D-010,"Hello,
+
+I understand you're experiencing intermittent internet connectivity on your laptop. This can be frustrating, but here are several steps you can take to troubleshoot the issue:
+
+1.  **Check for Interference:** Other electronic devices such as microwaves or cordless phones can disrupt your WiFi signal. Try moving your laptop or these devices further away from your router to see if the connection stabilizes.
+
+2.  **Update Router Firmware:** Ensure your router's software is up-to-date. You can typically find instructions for updating the firmware in your router's manual or on the manufacturer's website.
+
+3.  **Change WiFi Channel:** If your router is in an area with many other WiFi networks, congestion can occur. You can try changing the WiFi channel within your router's settings to find a less crowded channel.
+
+4.  **Disable Power Saving Mode for WiFi:** Some laptops have power-saving features that can cause the WiFi adapter to disconnect to conserve energy. Check your device's network adapter settings and disable any power-saving options related to WiFi.
+
+5.  **Reset Network Settings:** Resetting your laptop's network settings can often resolve various connectivity problems. You can usually find this option within your laptop's network settings menu.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,,RETRIEVED — same answer regardless of phrasing,✅ PASS,56848,HIGH,0.9,
+CAT5-D-011,"Hello!
+
+I can certainly help you with troubleshooting steps for frequent WiFi drops. Here are some common solutions:
+
+• Check for interference from other devices like microwaves or cordless phones, as these can disrupt your WiFi signal.
+• Ensure your router's firmware is up to date, as updates often include performance improvements.
+• Consider changing the WiFi channel in your router settings to avoid crowded frequencies.
+• Disable power-saving mode for WiFi on your devices, which can sometimes cause disconnections.
+• Finally, try resetting the network settings on your device, which can resolve many connectivity issues.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",Company Documentation - WiFi Troubleshooting,,RETRIEVED — same answer regardless of phrasing,✅ PASS,53698,HIGH,0.9,
+CAT5-D-012,"Hello,
+
+We understand you're experiencing frequent disconnections from your wireless network, with your device disconnecting every 5 minutes. Here are several settings and checks you can perform to troubleshoot this issue:
+
+• Check for interference: Other electronic devices in your vicinity might be interfering with your WiFi signal. Try moving your device or router away from potential sources of interference.
+
+• Update router firmware: Ensure your router's software is up to date. Manufacturers often release firmware updates to improve performance and stability.
+
+• Change WiFi channel in router settings: Your router operates on a specific WiFi channel. Adjusting this channel within your router's settings can sometimes improve connection stability, especially in crowded wireless environments.
+
+• Disable power saving mode for WiFi: Some devices have a power-saving feature for their WiFi adapter that can cause intermittent disconnections. Check your device's network settings to disable this feature.
+
+• Reset network settings on your device: This is a common troubleshooting step that can resolve various connectivity issues by resetting your device's network configuration to default.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool,,RETRIEVED — same answer regardless of phrasing,✅ PASS,51851,HIGH,0.9,
+CAT5-D-013,"Hello,
+
+To cancel your subscription, please follow these steps:
+
+1. Log into your account.
+2. Navigate to the Subscriptions or Billing section.
+3. Select the subscription you wish to cancel.
+4. Click on ""Cancel Subscription.""
+5. Follow any further prompts to confirm your cancellation.
+6. You will receive a confirmation email once the cancellation is complete.
+
+Please note that your cancellation will take effect at the end of your current billing period. We recommend canceling at least 24 hours before your renewal date to prevent being charged for the next cycle.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,,RETRIEVED — same answer regardless of phrasing,✅ PASS,50507,HIGH,0.95,
+CAT5-D-014,"Hello,
+
+To stop your plan and avoid being charged next month, please follow these steps:
+
+1. Log into your account.
+2. Navigate to the Subscriptions or Billing section.
+3. Select the specific subscription you wish to cancel.
+4. Click on the ""Cancel Subscription"" option.
+5. Follow any on-screen prompts to confirm your cancellation.
+6. You will receive a confirmation email once the cancellation is complete.
+
+Your cancellation will take effect at the end of your current billing period. We recommend canceling at least 24 hours before your next renewal date to ensure you are not charged for the upcoming period.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,,RETRIEVED — same answer regardless of phrasing,✅ PASS,51188,HIGH,0.98,
+CAT5-D-015,"Hello,
+
+To terminate your subscription, please follow these steps:
+
+1. Log into your account.
+2. Navigate to the ""Subscriptions"" section.
+3. Select the specific subscription you wish to cancel.
+4. Click on the ""Cancel Subscription"" button.
+5. Confirm your cancellation.
+6. You will receive a confirmation email shortly after.
+
+Please ensure you cancel at least 24 hours before your renewal date to prevent being charged for the next period. Your access to the service will continue until the end of your current paid subscription period.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,,RETRIEVED — same answer regardless of phrasing,✅ PASS,56754,HIGH,0.98,
+CAT5-D-016,"Hello,
+
+To return to the free version of your subscription, you will need to cancel your current Pro plan.
+
+Here are the steps to do so:
+
+1. Log in to your account.
+2. Navigate to the 'Subscriptions' or 'Billing' section.
+3. Select your Pro subscription.
+4. Click 'Cancel Subscription'.
+
+Please note that your Pro features will remain active until the end of your current billing period. The cancellation will take effect at that time.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response - Cancelling a Subscription,,RETRIEVED — same answer regardless of phrasing,✅ PASS,62247,HIGH,0.9,
+CAT5-D-017,"Hello,
+
+Our warranty coverage varies by product category:
+
+• Electronics and Computers: 1-year warranty for manufacturing and hardware defects.
+• TVs: 2-year warranty for panel and components.
+• Software: 30-day warranty for described functionality.
+• Accessories: 90-day warranty for manufacturing defects.
+• Appliances: 2-year warranty for the motor and major components.
+
+Our warranty does not cover:
+
+• Physical damage (drops, spills, crushing)
+• Water damage (unless explicitly waterproof rated)
+• Unauthorized modifications
+• Cosmetic wear and tear
+• Consumables like batteries or filters
+• Software issues on third-party hardware
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",Company Warranty Policy - General Coverage Information,,RETRIEVED — same answer regardless of phrasing,✅ PASS,60179,HIGH,0.95,
+CAT5-D-018,"Hello,
+
+Thank you for contacting us.
+
+Regarding your product that broke after 6 months, it is likely still under warranty.
+
+• Most of our products, including electronics, computers, TVs, appliances, smartphones, and laptops, come with a standard warranty of at least one year.
+
+Please note the following exceptions:
+
+• Software products have a 30-day warranty.
+• Accessories have a 90-day warranty.
+
+Standard warranties generally do not cover:
+
+• Physical damage
+• Water damage (unless the product is specifically rated as waterproof)
+• Unauthorized modifications
+• Cosmetic wear and tear
+• Consumables
+
+If you can provide the specific product type, we can offer more precise information regarding your warranty coverage.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,,RETRIEVED — same answer regardless of phrasing,✅ PASS,58057,HIGH,0.9,
+CAT5-D-019,"Hello!
+
+I can certainly help you with our warranty terms. Here's a breakdown of what's included and what's not:
+
+Included (Standard Warranty Coverage):
+
+* Electronics: 1 year for manufacturing defects
+* Computers: 1 year for hardware defects
+* TVs: 2 years for panel and components
+* Software: 30 days for functionality as described
+* Accessories: 90 days for manufacturing defects
+* Appliances: 2 years for motor and major components
+
+Not Covered:
+
+* Physical damage (drops, spills, crushing)
+* Water damage (unless waterproof rated)
+* Unauthorized modifications
+* Cosmetic wear and tear
+* Consumables (batteries, filters)
+* Software issues on third-party hardware
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,,RETRIEVED — same answer regardless of phrasing,✅ PASS,51613,HIGH,0.98,
+CAT5-D-020,"Hello,
+
+Unfortunately, our warranty does not cover physical damage such as drops, spills, or crushing. This type of damage is explicitly excluded from our warranty policy.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",Warranty Policy Documentation - Exclusions Section,,RETRIEVED — same answer regardless of phrasing,✅ PASS,50936,HIGH,0.95,
+CAT5-D-021,"Hello,
+
+Thank you for your inquiry regarding your refund.
+
+Once your return is received, your refund will be processed within 2-3 business days. The timeline for receiving your refund after processing depends on your original payment method:
+
+• **Credit card:** 5-7 business days
+• **Debit card:** 7-10 business days
+• **PayPal:** 3-5 business days
+• **Store credit:** Immediate
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response,,,✅ PASS,57664,HIGH,0.95,
+CAT5-D-022,"Hello,
+
+Thank you for reaching out.
+
+Once your returned item is received, your refund will be processed within 2-3 business days. The time it takes for the funds to appear in your account can vary based on your original payment method:
+
+- Original credit card: 5-7 business days
+- Original debit card: 7-10 business days
+- PayPal: 3-5 business days
+- Store credit: Immediate
+- Bank transfer: 7-10 business days
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",Refund Policy - Processing Times,,,✅ PASS,60442,HIGH,0.95,
+CAT5-D-023,"Hello,
+
+Once your return is received, your refund will be processed within 2-3 business days.
+
+The time it takes for the refund to reflect in your account varies by method:
+
+• Original credit cards: 5-7 business days
+• Original debit cards: 7-10 business days
+• PayPal: 3-5 business days
+• Store credit: Immediate
+• Bank transfers: 7-10 business days
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",Refund Policy Documentation - Refund Processing Time section,,,✅ PASS,58554,HIGH,0.98,
+CAT5-D-024,"Hello,
+
+Thank you for reaching out regarding your return and refund.
+
+It is normal not to see your refund on your card immediately after the return is delivered.
+
+Here is the typical process:
+
+1.  **Inspection Period:** After your return is delivered, our team takes 2-3 business days to inspect the item.
+2.  **Refund Processing:** Once the inspection is complete, the refund is initiated.
+3.  **Bank Processing:** For credit or debit card refunds, it usually takes an additional 5-10 business days for the funds to appear on your statement, depending on your bank's processing times.
+
+You will receive a confirmation email with all the refund details as soon as it has been processed.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",company_documents_tool_response - Refund Processing Information,,,✅ PASS,50839,HIGH,0.9,
+CAT5-D-025,"Hello,
+
+Regarding the compatibility of the Logitech MX Master 3 with Mac:
+
+While our specific documentation does not detail this compatibility, it is widely known that Logitech products, including the MX Master series, are designed for cross-platform use.
+
+The Logitech MX Master 3 is generally compatible with macOS and offers full functionality. This is often enhanced through the Logitech Options software.
+
+You can connect the mouse via Bluetooth or the included Unifying Receiver.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",,,,✅ PASS,46002,MEDIUM,0.7,
+CAT5-D-026,"Hello,
+
+Regarding your inquiry about the MX Master 3 mouse and its compatibility with your MacBook Pro:
+
+The MX Master 3 mouse is generally compatible with macOS, which includes your MacBook Pro.
+
+It typically connects via Bluetooth or through a USB receiver, both of which are supported by MacBook Pro models.
+
+While our specific documentation did not detail this exact compatibility, based on general product information, you should be able to use the MX Master 3 with your device without issues.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",,,,✅ PASS,54415,MEDIUM,0.65,
+CAT5-D-027,"Hello,
+
+Regarding the compatibility of the MX Master 3 mouse with macOS:
+
+While specific documentation confirming the MX Master 3's macOS compatibility was not found in our knowledge base, Logitech MX Master series mice are generally well-regarded for their compatibility with macOS.
+
+You can typically connect them via Bluetooth or the included Unifying Receiver.
+
+For detailed setup instructions and any specific system requirements, it is always best to check the official Logitech support page for the MX Master 3.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",,,,✅ PASS,59180,MEDIUM,0.65,
+CAT5-D-028,"Hello,
+
+Regarding your inquiry about the Logitech MX Master 3 compatibility with MacBook M3 models:
+
+The Logitech MX Master 3 is generally compatible with macOS devices, including the new MacBook M3 models. The primary connection methods are Bluetooth or Logitech's Unifying Receiver. Given that M3 MacBooks typically lack USB-A ports, Bluetooth is the more common and recommended connection method.
+
+To pair your mouse with your new MacBook M3:
+
+1. Ensure Bluetooth is enabled on your MacBook.
+2. Follow the standard pairing instructions for your Logitech MX Master 3 mouse.
+
+You should be able to use your existing mouse with your new MacBook M3 without needing to purchase a new one.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",,,,✅ PASS,46205,MEDIUM,0.7,
+CAT5-D-029,"Hello,
+
+The speed at which your support ticket will be responded to depends on its priority:
+
+• Critical issues: Target resolution within 4 hours (maximum 8 hours)
+• High priority: Target resolution within 24 hours (maximum 48 hours)
+• Medium priority: Target resolution within 48 hours (maximum 72 hours)
+• Low priority: Target resolution within 72 hours (maximum 5 business days)
+
+If you submit your ticket via email, you can expect an initial response within 24 hours.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",,,,✅ PASS,45970,HIGH,0.95,
+CAT5-D-030,"Hello,
+
+Thank you for reaching out.
+
+Our typical reply time for emails is within 24 hours. We appreciate your patience and will get back to you as soon as possible.
+
+Best regards,,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",Company Documentation - General Support Information,,,✅ PASS,39417,HIGH,0.9,

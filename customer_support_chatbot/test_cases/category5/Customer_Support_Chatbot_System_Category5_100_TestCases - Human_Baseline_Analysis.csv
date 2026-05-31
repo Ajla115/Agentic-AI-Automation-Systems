@@ -1,0 +1,109 @@
+TEST_ID,CATEGORY,KAGGLE_ID,PRODUCT,TICKET_TYPE,HUMAN_FRT,HUMAN_TTR,HUMAN_DURATION_MIN
+TC641,Technical Issues,3,Dell XPS,Technical issue,2023-06-01 11:14:38,2023-06-01 18:05:38,411
+TC642,Technical Issues,29,Fitbit Charge,Technical issue,2023-05-31 23:17:17,2023-06-01 06:03:17,406
+TC643,Technical Issues,48,GoPro Hero,Technical issue,2023-06-01 07:16:45,2023-06-01 05:59:45,77
+TC644,Technical Issues,138,Amazon Echo,Technical issue,2023-06-01 09:56:46,2023-06-01 09:08:46,48
+TC645,Technical Issues,150,Philips Hue Lights,Technical issue,2023-06-01 16:34:07,2023-06-01 20:02:07,208
+TC646,Technical Issues,168,Garmin Forerunner,Technical issue,2023-06-01 12:41:33,2023-06-01 06:19:33,382
+TC647,Technical Issues,220,Canon EOS,Technical issue,2023-06-01 09:57:49,2023-06-01 11:02:49,65
+TC648,Technical Issues,241,Philips Hue Lights,Technical issue,2023-06-01 12:44:21,2023-06-01 09:42:21,182
+TC649,Technical Issues,251,Roomba Robot Vacuum,Technical issue,2023-06-01 03:15:34,2023-06-01 08:04:34,289
+TC650,Technical Issues,279,Apple AirPods,Technical issue,2023-06-01 00:42:08,2023-05-31 23:05:08,97
+TC651,Technical Issues,318,Apple AirPods,Technical issue,2023-06-01 07:32:56,2023-05-31 23:53:56,459
+TC652,Technical Issues,339,iPhone,Technical issue,2023-06-01 08:44:25,2023-06-01 16:42:25,478
+TC653,Technical Issues,346,Garmin Forerunner,Technical issue,2023-06-01 15:56:32,2023-06-01 07:13:32,523
+TC654,Technical Issues,374,GoPro Hero,Technical issue,2023-06-01 10:52:08,2023-06-01 11:42:08,50
+TC655,Technical Issues,497,Sony PlayStation,Technical issue,2023-06-01 05:25:00,2023-06-01 11:38:00,373
+TC656,Technical Issues,515,Amazon Echo,Technical issue,2023-06-01 16:15:28,2023-06-01 13:23:28,172
+TC657,Technical Issues,516,GoPro Hero,Technical issue,2023-06-01 02:01:29,2023-05-31 23:55:29,126
+TC658,Technical Issues,535,Sony 4K HDR TV,Technical issue,2023-06-01 14:32:55,2023-06-01 09:59:55,273
+TC659,Technical Issues,562,LG OLED,Technical issue,2023-06-01 03:59:34,2023-06-01 11:54:34,475
+TC660,Technical Issues,680,Nikon D,Technical issue,2023-06-01 01:21:19,2023-06-01 08:07:19,406
+TC661,Technical Issues,685,Canon EOS,Technical issue,2023-06-01 04:10:27,2023-06-01 05:17:27,67
+TC662,Technical Issues,735,Bose QuietComfort,Technical issue,2023-06-01 21:25:31,2023-06-01 15:00:31,385
+TC663,Technical Issues,898,Bose QuietComfort,Technical issue,2023-06-01 15:44:14,2023-06-01 16:22:14,38
+TC664,Technical Issues,939,Microsoft Surface,Technical issue,2023-06-01 05:11:12,2023-06-01 13:59:12,528
+TC665,Technical Issues,950,Nest Thermostat,Technical issue,2023-06-01 09:36:26,2023-05-31 23:43:26,593
+TC666,Technical Issues,1136,LG Smart TV,Technical issue,2023-06-01 05:57:42,2023-06-01 03:17:42,160
+TC667,Technical Issues,1143,Xbox,Technical issue,2023-06-01 05:12:54,2023-06-01 09:58:54,286
+TC668,Technical Issues,1172,Amazon Echo,Technical issue,2023-06-01 13:55:35,2023-06-01 18:03:35,248
+TC669,Technical Issues,1188,Sony PlayStation,Technical issue,2023-06-01 09:13:59,2023-06-01 08:09:59,64
+TC670,Technical Issues,1191,GoPro Hero,Technical issue,2023-06-01 10:52:04,2023-06-01 20:12:04,560
+TC671,Billing & Refund,15,Sony PlayStation,Billing inquiry,2023-06-01 06:22:55,2023-05-31 23:08:55,434
+TC672,Billing & Refund,42,Dell XPS,Billing inquiry,2023-06-01 20:25:34,2023-06-01 14:43:34,342
+TC673,Billing & Refund,67,GoPro Hero,Billing inquiry,2023-06-01 05:06:08,2023-06-01 10:17:08,311
+TC674,Billing & Refund,78,Fitbit Charge,Billing inquiry,2023-06-01 19:16:24,2023-06-01 15:21:24,235
+TC675,Billing & Refund,99,Samsung Galaxy,Billing inquiry,2023-06-01 07:05:53,2023-06-01 14:45:53,460
+TC676,Billing & Refund,184,Google Pixel,Billing inquiry,2023-05-31 23:38:57,2023-06-01 03:51:57,253
+TC677,Billing & Refund,271,Xbox,Billing inquiry,2023-06-01 14:06:58,2023-06-01 13:27:58,39
+TC678,Billing & Refund,293,Philips Hue Lights,Billing inquiry,2023-06-01 05:29:23,2023-06-01 09:47:23,258
+TC679,Billing & Refund,366,Bose QuietComfort,Billing inquiry,2023-06-01 11:34:59,2023-06-01 07:18:59,256
+TC680,Billing & Refund,502,Canon DSLR Camera,Billing inquiry,2023-06-01 17:38:08,2023-06-01 17:52:08,14
+TC681,Billing & Refund,556,Google Pixel,Billing inquiry,2023-06-01 21:38:24,2023-06-01 12:57:24,521
+TC682,Billing & Refund,601,Canon DSLR Camera,Billing inquiry,2023-06-01 06:35:33,2023-06-01 14:52:33,497
+TC683,Billing & Refund,663,Amazon Echo,Billing inquiry,2023-05-31 22:49:57,2023-06-01 00:39:57,110
+TC684,Billing & Refund,698,Bose QuietComfort,Billing inquiry,2023-06-01 10:34:44,2023-06-01 01:21:44,553
+TC685,Billing & Refund,765,LG Smart TV,Billing inquiry,2023-06-01 08:15:16,2023-06-01 16:05:16,470
+TC686,Billing & Refund,52,LG Smart TV,Refund request,2023-06-01 16:21:49,2023-06-01 10:31:49,350
+TC687,Billing & Refund,151,Google Pixel,Refund request,2023-06-01 15:33:09,2023-06-01 06:51:09,522
+TC688,Billing & Refund,167,Xbox,Refund request,2023-06-01 04:35:32,2023-06-01 07:29:32,174
+TC689,Billing & Refund,189,Roomba Robot Vacuum,Refund request,2023-06-01 15:58:03,2023-06-01 07:32:03,506
+TC690,Billing & Refund,198,MacBook Pro,Refund request,2023-06-01 02:54:15,2023-05-31 22:36:15,258
+TC691,Billing & Refund,237,iPhone,Refund request,2023-06-01 08:21:14,2023-06-01 00:43:14,458
+TC692,Billing & Refund,250,Sony PlayStation,Refund request,2023-06-01 15:10:34,2023-06-01 14:34:34,36
+TC693,Billing & Refund,270,MacBook Pro,Refund request,2023-06-01 07:21:57,2023-06-01 16:09:57,528
+TC694,Billing & Refund,312,Bose QuietComfort,Refund request,2023-06-01 07:18:48,2023-06-01 09:18:48,120
+TC695,Billing & Refund,323,Canon DSLR Camera,Refund request,2023-06-01 06:48:03,2023-05-31 23:56:03,412
+TC696,Billing & Refund,330,GoPro Hero,Refund request,2023-06-01 04:28:12,2023-06-01 09:59:12,331
+TC697,Billing & Refund,384,Sony 4K HDR TV,Refund request,2023-06-01 08:19:21,2023-06-01 13:00:21,281
+TC698,Billing & Refund,430,Sony 4K HDR TV,Refund request,2023-06-01 15:09:28,2023-06-01 16:26:28,77
+TC699,Billing & Refund,444,Canon DSLR Camera,Refund request,2023-06-01 05:17:44,2023-06-01 12:06:44,409
+TC700,Billing & Refund,459,Amazon Echo,Refund request,2023-06-01 21:18:05,2023-06-01 11:28:05,590
+TC701,Product Inquiries,17,Xbox,Product inquiry,2023-06-01 19:46:59,2023-06-01 15:58:59,228
+TC702,Product Inquiries,200,Canon EOS,Product inquiry,2023-06-01 12:39:19,2023-06-01 20:34:19,475
+TC703,Product Inquiries,263,Microsoft Surface,Product inquiry,2023-06-01 05:44:50,2023-06-01 00:08:50,336
+TC704,Product Inquiries,295,Philips Hue Lights,Product inquiry,2023-06-01 01:49:25,2023-06-01 00:15:25,94
+TC705,Product Inquiries,340,Roomba Robot Vacuum,Product inquiry,2023-06-01 15:40:26,2023-06-01 11:02:26,278
+TC706,Product Inquiries,362,Bose QuietComfort,Product inquiry,2023-06-01 12:47:54,2023-06-01 14:54:54,127
+TC707,Product Inquiries,381,GoPro Hero,Product inquiry,2023-06-01 07:09:19,2023-06-01 13:10:19,361
+TC708,Product Inquiries,382,Sony PlayStation,Product inquiry,2023-06-01 01:57:20,2023-05-31 23:14:20,163
+TC709,Product Inquiries,395,Microsoft Surface,Product inquiry,2023-06-01 16:18:38,2023-06-01 12:07:38,251
+TC710,Product Inquiries,439,MacBook Pro,Product inquiry,2023-06-01 02:04:37,2023-06-01 01:54:37,10
+TC711,Product Inquiries,464,Canon EOS,Product inquiry,2023-06-01 05:55:14,2023-06-01 08:26:14,151
+TC712,Product Inquiries,475,Canon DSLR Camera,Product inquiry,2023-06-01 11:53:30,2023-06-01 02:25:30,568
+TC713,Product Inquiries,512,Canon EOS,Product inquiry,2023-06-01 03:19:23,2023-06-01 08:45:23,326
+TC714,Product Inquiries,519,Nest Thermostat,Product inquiry,2023-06-01 11:17:33,2023-06-01 18:17:33,420
+TC715,Product Inquiries,559,Nikon D,Product inquiry,2023-06-01 17:14:29,2023-06-01 20:09:29,175
+TC716,Product Inquiries,605,Google Pixel,Product inquiry,2023-06-01 05:10:39,2023-06-01 14:00:39,530
+TC717,Product Inquiries,612,MacBook Pro,Product inquiry,2023-06-01 19:30:48,2023-06-01 16:04:48,206
+TC718,Product Inquiries,622,Sony 4K HDR TV,Product inquiry,2023-06-01 15:57:01,2023-06-01 16:08:01,11
+TC719,Product Inquiries,689,Sony 4K HDR TV,Product inquiry,2023-06-01 06:03:31,2023-05-31 23:45:31,378
+TC720,Product Inquiries,692,Canon EOS,Product inquiry,2023-06-01 11:38:34,2023-06-01 03:12:34,506
+TC721,Mixed — Various Types,36,GoPro Hero,Cancellation request,2023-06-01 07:56:25,2023-06-01 00:14:25,462
+TC722,Mixed — Various Types,107,Nintendo Switch,Cancellation request,2023-06-01 11:38:01,2023-06-01 20:46:01,548
+TC723,Mixed — Various Types,111,Amazon Echo,Cancellation request,2023-06-01 03:14:05,2023-06-01 12:43:05,569
+TC724,Mixed — Various Types,115,Sony 4K HDR TV,Cancellation request,2023-06-01 10:27:10,2023-06-01 06:04:10,263
+TC725,Mixed — Various Types,117,iPhone,Cancellation request,2023-06-01 19:02:13,2023-06-01 18:17:13,45
+TC726,Mixed — Various Types,266,LG OLED,Cancellation request,2023-06-01 20:18:54,2023-06-01 16:15:54,243
+TC727,Mixed — Various Types,315,GoPro Hero,Cancellation request,2023-06-01 05:58:53,2023-06-01 05:41:53,17
+TC728,Mixed — Various Types,321,Nest Thermostat,Cancellation request,2023-06-01 12:49:01,2023-06-01 05:11:01,458
+TC729,Mixed — Various Types,343,Sony PlayStation,Cancellation request,2023-06-01 15:44:28,2023-06-01 21:15:28,331
+TC730,Mixed — Various Types,351,Garmin Forerunner,Cancellation request,2023-06-01 07:33:38,2023-06-01 17:15:38,582
+TC731,Mixed — Various Types,403,Sony 4K HDR TV,Cancellation request,2023-06-01 10:23:49,2023-06-01 08:51:49,92
+TC732,Mixed — Various Types,438,Canon EOS,Cancellation request,2023-06-01 10:05:35,2023-06-01 16:12:35,367
+TC733,Mixed — Various Types,440,LG OLED,Cancellation request,2023-06-01 20:32:38,2023-06-01 20:08:38,24
+TC734,Mixed — Various Types,501,Garmin Forerunner,Cancellation request,2023-06-01 07:59:07,2023-06-01 16:30:07,511
+TC735,Mixed — Various Types,581,Samsung Galaxy,Cancellation request,2023-06-01 03:37:01,2023-06-01 06:13:01,156
+TC736,Mixed — Various Types,597,LG Smart TV,Cancellation request,2023-06-01 14:02:26,2023-06-01 12:27:26,95
+TC737,Mixed — Various Types,636,Canon DSLR Camera,Cancellation request,2023-06-01 08:35:20,2023-06-01 11:51:20,196
+TC738,Mixed — Various Types,666,Xbox,Cancellation request,2023-06-01 06:41:02,2023-05-31 22:55:02,466
+TC739,Mixed — Various Types,679,Garmin Forerunner,Cancellation request,2023-06-01 11:40:17,2023-06-01 02:43:17,537
+TC740,Mixed — Various Types,708,Nest Thermostat,Cancellation request,2023-06-01 01:16:54,2023-06-01 00:04:54,72
+,,,,,,,
+STATISTICS,,,,,,,
+Total tickets,100.0,,,,,,
+Average human duration (min),298.6,,,,,,
+Median human duration (min),287.5,,,,,,
+Min human duration (min),10.0,,,,,,
+Max human duration (min),593.0,,,,,,
+Avg human duration (hours),5.0,,,,,,

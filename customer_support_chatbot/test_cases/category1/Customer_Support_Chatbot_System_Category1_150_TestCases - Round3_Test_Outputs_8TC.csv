@@ -1,0 +1,80 @@
+TEST_ID,GROUP,TIMESTAMP,ACTUAL_CLASSIFICATION,ACTUAL_ESCALATION,CLASSIFICATION_CORRECT,AI_RESPONSE,RESPONSE_TIME_MS,CONFIDENCE_SCORE,NOTES
+TC016,B,2026-04-21T08:37:54.000Z,AI_HANDLES,NO,TRUE,"Hello!
+
+Thank you for reaching out regarding your monthly subscription.
+
+Our policy states that there are no pro-rated refunds for mid-cycle cancellations.
+
+If you cancel now, your access will continue until the end of your current billing period, and you will not receive a partial refund for the remaining days.
+
+If you have any further questions, please feel free to ask.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",11770,0.95,Match: 1.00 | [Routine/Subscription] | TRIG: refund+cancel | KB: 03_Billing_Refunds_Policy
+TC055,B,2026-04-21T08:39:55.000Z,AI_HANDLES,NO,TRUE,"Hello,
+
+We understand your confusion regarding the price difference.
+
+There are a few common reasons why the amount charged to your card might be higher than the price shown in your cart:
+
+• Taxes: These can vary by location.
+• Shipping fees: These are often added during checkout after the shipping method is selected.
+• Currency conversion fees: These apply if it was an international order, as prices are typically in USD.
+
+Additionally, if you were expecting a promotional discount, please ensure the code was applied correctly and was valid.
+
+If a promotional discount was not applied, please contact support within 48 hours with your order number and promo code to get the difference refunded.
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",10720,0.95,Match: 1.00 | [Billing/Incorrect Amount] | TRIG: charged | KB: 03_Billing_Refunds_Policy
+TC056,B,2026-04-20T20:03:13.000Z,ESCALATED,YES,FALSE,Pending,,,Match: 1.00 | [Billing/Incorrect Amount] | TRIG: refund | KB: 03_Billing_Refunds_Policy
+TC063,B,2026-04-21T08:43:56.000Z,AI_HANDLES,NO,TRUE,"Hi there!
+
+Yes, absolutely! Since your order was just placed and has not yet shipped, you can cancel it and receive a full refund.
+
+You can typically do this through your account dashboard or by contacting our support team directly.
+
+Once canceled, you should receive a confirmation within an hour, and the refund should appear in your account within 3-5 business days.
+
+Let me know if you need any assistance with the cancellation process!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",244280,0.98,Match: 1.00 | [Billing/Order Cancellation] | TRIG: cancel+refund | KB: 03_Billing_Refunds_Policy
+TC065,B,2026-04-20T20:09:14.000Z,ESCALATED,YES,FALSE,Pending,,,Match: 1.00 | [Billing/Subscription Cancellation] | TRIG: cancel | KB: 03_Billing_Refunds_Policy
+TC047,C,2026-04-21T08:47:57.000Z,AI_HANDLES,NO,TRUE,"Hello Ryan,
+
+Thank you for reaching out. Here are our customer support hours:
+
+• Phone Support:
+  - Monday-Friday: 8 AM - 8 PM EST
+  - Saturday: 9 AM - 5 PM EST
+  - Sunday: Not available
+
+• Chat Support: Available 24/7, including weekends.
+
+• Email Support: You can send emails anytime, and we aim to respond within 24 hours, including on weekends.
+
+• Social Media Support: Monitored daily from 8 AM - 10 PM, including weekends.
+
+We look forward to assisting you when you call!
+
+Best regards,
+Customer Support Team
+
+
+--
+This is an automated response powered by AI. If you would like to speak with a human representative, please mention this in your next email and we will connect you with our support team immediately.",11920,0.98,Match: 1.00 | [Routine/Product Info] | TRIG: none (LLM decision) | KB: 01_FAQ_General
+TC048,C,2026-04-21T08:49:58.000Z,ESCALATED,YES,FALSE,Pending,,,Match: 1.00 | [Routine/Product Info] | TRIG: none (LLM decision) | KB: 01_FAQ_General
+TC099,C,2026-04-20T20:25:19.000Z,ESCALATED,YES,FALSE,Pending,,,Match: 1.00 | [Technical/Audio - No Sound] | TRIG: none (LLM decision) | KB: 02_Technical_Issues
