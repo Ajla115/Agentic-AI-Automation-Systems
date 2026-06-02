@@ -1,0 +1,1273 @@
+ID,Subcategory,Channel,Input_Text,Input_Metadata_JSON,Source_Dataset,Source_Record_ID,Input_Metadata_JSON_original,Input_Text_Length
+MS-SDA-001,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Susan and Sandra for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday or Wednesday. 
+
+Here are the existing schedules for everyone during the days: 
+Susan has blocked their calendar on Monday during 12:30 to 13:00, 13:30 to 14:00, Tuesday during 11:30 to 12:00, Wednesday during 9:30 to 10:30, 14:00 to 14:30, 15:30 to 16:30; 
+Sandra has meetings on Monday during 9:00 to 13:00, 14:00 to 15:00, 16:00 to 16 Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 15:00 - 15:30""}",natural-plan-calendar,calendar_scheduling_example_778,,
+MS-SDA-002,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Albert, Laura, Elijah, Kenneth, Adam and Heather for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Albert is free the entire day.
+Laura has meetings on Monday during 9:00 to 9:30, 10:00 to 11:00, 15:30 to 16:00; 
+Elijah is busy on Monday during 10:00 to 11:00, 13:00 to 13:30, 16:00 to 16:30; 
+Kenneth has meetings on Monday during 9:00 to 9:30, 10:00 to Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 9:30 - 10:00""}",natural-plan-calendar,calendar_scheduling_example_334,,
+MS-SDA-003,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Teresa, Amanda, Frances, Evelyn and Betty for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Teresa is busy on Monday during 9:30 to 10:00, 12:00 to 14:00, 16:30 to 17:00; 
+Amanda has blocked their calendar on Monday during 11:30 to 12:00, 14:00 to 14:30; 
+Frances's calendar is wide open the entire day.
+Evelyn has meetings on Monday during 9:00 to 12:00 Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 15:30 - 16:00""}",natural-plan-calendar,calendar_scheduling_example_271,,
+MS-SDA-004,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Abigail and Charlotte for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday or Thursday. 
+
+Here are the existing schedules for everyone during the days: 
+Abigail has blocked their calendar on Monday during 9:00 to 9:30, 11:00 to 11:30, 15:30 to 16:00, Wednesday during 9:30 to 10:00, 10:30 to 11:00, Thursday during 9:00 to 9:30, 12:30 to 13:30; 
+Charlotte has blocked their calendar on Monday du Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Wednesday, 11:30 - 12:00""}",natural-plan-calendar,calendar_scheduling_example_802,,
+MS-SDA-005,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Kyle, Kathleen, Ashley, Christian and Matthew for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Kyle is free the entire day.
+Kathleen has meetings on Monday during 10:00 to 10:30, 12:30 to 13:00, 14:00 to 14:30, 15:30 to 16:00; 
+Ashley is busy on Monday during 9:00 to 9:30, 12:00 to 12:30, 15:30 to 16:30; 
+Christian is busy on Monday during 9:00 to 13: Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 13:00 - 13:30""}",natural-plan-calendar,calendar_scheduling_example_216,,
+MS-SDA-006,schedule_plus_email,schedule_plus_email,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Noah, Teresa, Bradley, Philip, Joyce, Ryan and Aaron for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Noah's calendar is wide open the entire day.
+Teresa is busy on Monday during 11:00 to 12:00, 14:00 to 15:00, 16:00 to 17:00; 
+Bradley has blocked their calendar on Monday during 9:00 to 9:30, 10:00 to 10:30, 15:00 to 15:30, 16:00 to 16:30; 
+Philip has Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 13:00 - 13:30""}",natural-plan-calendar,calendar_scheduling_example_408,,
+MS-SDA-007,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Mary and Alexis for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday or Thursday. 
+
+Here are the existing schedules for everyone during the days: 
+Mary has meetings on Tuesday during 10:00 to 10:30, 15:30 to 16:00, Wednesday during 9:30 to 10:00, 15:00 to 15:30, Thursday during 9:00 to 10:00, 10:30 to 11:30; 
+Alexis has blocked their calendar on Monday during 9:00 to 10:00, 10:30 to 12:00, 12 Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 10:00 - 10:30""}",natural-plan-calendar,calendar_scheduling_example_812,,
+MS-SDA-008,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Nicholas, Elizabeth and Sandra for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Nicholas's calendar is wide open the entire day.
+Elizabeth has meetings on Monday during 9:30 to 10:00, 11:30 to 12:00, 13:30 to 14:30, 15:00 to 15:30, 16:30 to 17:00; 
+Sandra has meetings on Monday during 9:00 to 9:30, 10:00 to 10:30, 11:30 to 13:30, 15:30 to 16:30; 
+
+San Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 14:30 - 15:00""}",natural-plan-calendar,calendar_scheduling_example_94,,
+MS-SDA-009,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Albert, Rebecca, Ronald, Pamela, Noah, Diana and Jacqueline for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Albert is free the entire day.
+Rebecca is busy on Monday during 13:00 to 13:30, 14:00 to 14:30; 
+Ronald is busy on Monday during 10:30 to 11:30, 12:00 to 12:30, 15:00 to 15:30; 
+Pamela has meetings on Monday during 13:30 to 14:00, 16:00 to 16:3 Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 15:30 - 16:00""}",natural-plan-calendar,calendar_scheduling_example_487,,
+MS-SDA-010,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Gary, Douglas, Elizabeth and Daniel for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Gary has meetings on Monday during 9:30 to 10:00, 12:00 to 12:30; 
+Douglas has meetings on Monday during 10:30 to 11:00, 11:30 to 12:00, 14:00 to 14:30, 16:30 to 17:00; 
+Elizabeth has meetings on Monday during 11:30 to 13:30, 14:00 to 15:00, 16:00 to 17:00; 
+Daniel ha Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 9:00 - 9:30""}",natural-plan-calendar,calendar_scheduling_example_170,,
+MS-SDA-011,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Benjamin, Hannah and Brenda for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Benjamin is free the entire day.
+Hannah is free the entire day.
+Brenda has meetings on Monday during 9:30 to 10:00, 11:30 to 12:30, 14:00 to 16:30; 
+
+Benjamin do not want to meet on Monday after 9:30. Find a time that works for everyone's schedule and constraints. 
+SOLUTION: Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 9:00 - 9:30""}",natural-plan-calendar,calendar_scheduling_example_24,,
+MS-SDA-012,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Anthony, Zachary, Russell, Gary and Helen for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Anthony has blocked their calendar on Monday during 9:00 to 11:00, 15:00 to 16:00; 
+Zachary is busy on Monday during 12:30 to 14:00, 14:30 to 15:30, 16:30 to 17:00; 
+Russell has meetings on Monday during 9:00 to 10:00; 
+Gary has blocked their calendar on Monday  Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 16:00 - 16:30""}",natural-plan-calendar,calendar_scheduling_example_242,,
+MS-SDA-013,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Jean and Amanda for one hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Jean is busy on Monday during 9:30 to 10:00, 10:30 to 11:00, 12:30 to 13:30; 
+Amanda has meetings on Monday during 9:00 to 10:30, 11:30 to 12:30, 13:00 to 14:00, 15:30 to 17:00; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION: Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 14:00 - 15:00""}",natural-plan-calendar,calendar_scheduling_example_542,,
+MS-SDA-014,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Jean and Jennifer for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday, Thursday or Friday. 
+
+Here are the existing schedules for everyone during the days: 
+Jean has blocked their calendar on Monday during 10:00 to 10:30, 12:00 to 12:30, 13:30 to 14:00, 15:00 to 15:30, 16:30 to 17:00, Tuesday during 10:00 to 10:30, 14:00 to 14:30, 16:00 to 16:30, Thursday during 14:00 to 14:30, 15:00 to 15:30 Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Thursday, 9:00 - 9:30""}",natural-plan-calendar,calendar_scheduling_example_930,,
+MS-SDA-015,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Jesse and Robert for one hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday or Thursday. 
+
+Here are the existing schedules for everyone during the days: 
+Jesse has blocked their calendar on Monday during 9:30 to 10:00, Tuesday during 9:00 to 10:00, 13:30 to 14:00, 15:30 to 16:00, 16:30 to 17:00, Wednesday during 11:30 to 12:30, 13:00 to 13:30, 15:30 to 16:00, Thursday during 12:00 to 12:30, 13:00 to 13 Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 16:00 - 17:00""}",natural-plan-calendar,calendar_scheduling_example_886,,
+MS-SDA-016,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Donna, Albert, Jeremy, Grace, Matthew, Jean and Dylan for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Donna is busy on Monday during 10:00 to 10:30, 11:00 to 12:30, 13:00 to 13:30, 14:30 to 15:00; 
+Albert is busy on Monday during 10:00 to 10:30, 11:00 to 11:30, 13:30 to 15:00, 16:00 to 16:30; 
+Jeremyhas no meetings the whole day.
+Grace has blocked th Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 10:30 - 11:00""}",natural-plan-calendar,calendar_scheduling_example_426,,
+MS-SDA-017,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Jesse, Alan, Elijah and Amy for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Jesse has meetings on Monday during 12:30 to 13:00, 15:00 to 15:30; 
+Alan has blocked their calendar on Monday during 9:00 to 9:30, 16:00 to 16:30; 
+Elijah is busy on Monday during 9:00 to 12:00, 12:30 to 13:00, 14:00 to 15:00, 15:30 to 17:00; 
+Amy is busy on Monday during 9: Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 13:30 - 14:00""}",natural-plan-calendar,calendar_scheduling_example_125,,
+MS-SDA-018,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Natalie, Dylan, Pamela, Charlotte, Ann, Jason and Benjamin for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Natalie has meetings on Monday during 10:00 to 10:30, 11:00 to 11:30; 
+Dylan has meetings on Monday during 9:00 to 9:30, 13:00 to 13:30; 
+Pamela has meetings on Monday during 11:30 to 12:00, 13:30 to 14:00, 15:00 to 15:30, 16:00 to 16:30; 
+Charl Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 9:30 - 10:00""}",natural-plan-calendar,calendar_scheduling_example_453,,
+MS-SDA-019,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Sean and Carol for one hour between the work hours of 9:00 to 17:00 on either Monday or Tuesday. 
+
+Here are the existing schedules for everyone during the days: 
+Sean has blocked their calendar on Monday during 9:30 to 10:00, 11:00 to 12:00, 12:30 to 13:30, 14:00 to 15:00, 15:30 to 16:00, 16:30 to 17:00, Tuesday during 10:00 to 10:30, 11:00 to 11:30, 13:30 to 14:00, 15:00 to 15:30, 16:00 to 16:30; 
+Carol has blocked their calendar on Monday. Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Tuesday, 11:30 - 12:30""}",natural-plan-calendar,calendar_scheduling_example_650,,
+MS-SDA-020,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Joan and Nicole for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday, Thursday or Friday. 
+
+Here are the existing schedules for everyone during the days: 
+Joan is busy on Monday during 10:30 to 11:00, 11:30 to 12:00, 13:00 to 13:30, Tuesday during 9:00 to 9:30, 13:00 to 13:30, 14:30 to 15:30, Wednesday during 10:30 to 11:00, 12:00 to 12:30, 14:00 to 14:30, 15:30 to 16:00, Thursday during 10:3 Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Thursday, 9:00 - 9:30""}",natural-plan-calendar,calendar_scheduling_example_913,,
+MS-SDA-021,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Jean, Lauren, Olivia and Scott for one hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Jean is busy on Monday during 13:00 to 13:30, 14:00 to 14:30, 16:00 to 17:00; 
+Lauren has blocked their calendar on Monday during 9:30 to 10:00, 10:30 to 11:00; 
+Olivia is busy on Monday during 9:00 to 11:00, 12:30 to 16:00, 16:30 to 17:00; 
+Scott has blocked their calendar on Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 11:30 - 12:30""}",natural-plan-calendar,calendar_scheduling_example_168,,
+MS-SDA-022,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for John and Jennifer for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday or Wednesday. 
+
+Here are the existing schedules for everyone during the days: 
+Johnhas no meetings the whole week.
+Jennifer has meetings on Monday during 9:00 to 11:00, 11:30 to 13:00, 13:30 to 14:30, 15:00 to 17:00, Tuesday during 9:00 to 11:30, 12:00 to 17:00, Wednesday during 9:00 to 11:30, 12:00 to 12:30, 13:00 to 14:00, 14:30 to Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 13:00 - 13:30""}",natural-plan-calendar,calendar_scheduling_example_776,,
+MS-SDA-023,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Robert and Frances for one hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Robert is busy on Monday during 10:30 to 11:00, 15:00 to 15:30; 
+Frances is busy on Monday during 9:00 to 9:30, 11:00 to 11:30, 13:00 to 14:30, 15:30 to 17:00; 
+
+Frances do not want to meet on Monday before 11:00. Find a time that works for everyone's schedule and constraints. 
+SOLUTION: Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 11:30 - 12:30""}",natural-plan-calendar,calendar_scheduling_example_572,,
+MS-SDA-024,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Larry and Kenneth for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday or Thursday. 
+
+Here are the existing schedules for everyone during the days: 
+Larry is busy on Monday during 9:30 to 10:00, 10:30 to 11:30, 14:00 to 14:30, 15:00 to 15:30, 16:00 to 16:30, Tuesday during 9:30 to 10:30, 11:00 to 11:30, 13:00 to 14:00, 15:00 to 16:00, 16:30 to 17:00, Wednesday during 10:00 to 11:00, 11:30 to  Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Wednesday, 11:00 - 11:30""}",natural-plan-calendar,calendar_scheduling_example_848,,
+MS-SDA-025,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Natalie and William for one hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday or Thursday. 
+
+Here are the existing schedules for everyone during the days: 
+Natalie is busy on Monday during 9:00 to 9:30, 10:00 to 12:00, 12:30 to 13:00, 14:00 to 14:30, 15:00 to 16:30, Tuesday during 9:00 to 9:30, 10:00 to 10:30, 12:30 to 14:00, 16:00 to 17:00, Wednesday during 11:00 to 11:30, 16:00 to 16:30, Thursday du Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Wednesday, 14:30 - 15:30""}",natural-plan-calendar,calendar_scheduling_example_875,,
+MS-SDA-026,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Megan and Emily for one hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Megan has meetings on Monday during 9:30 to 10:00, 11:30 to 12:00; 
+Emily has blocked their calendar on Monday during 9:00 to 10:30, 11:00 to 12:00, 12:30 to 13:00, 13:30 to 14:30, 15:30 to 16:30; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION: Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 14:30 - 15:30""}",natural-plan-calendar,calendar_scheduling_example_590,,
+MS-SDA-027,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Anthony, Pamela and Zachary for one hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Anthony has meetings on Monday during 9:30 to 10:00, 12:00 to 13:00, 16:00 to 16:30; 
+Pamela is busy on Monday during 9:30 to 10:00, 16:30 to 17:00; 
+Zachary has meetings on Monday during 9:00 to 11:30, 12:00 to 12:30, 13:00 to 13:30, 14:30 to 15:00, 16:00 to 17:00; 
+
+Pamela do n Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 13:30 - 14:30""}",natural-plan-calendar,calendar_scheduling_example_25,,
+MS-SDA-028,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Jean, Susan, Beverly, Denise, Jeffrey, Mary and Joseph for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Jean has blocked their calendar on Monday during 12:00 to 12:30, 14:00 to 14:30, 15:30 to 16:30; 
+Susan's calendar is wide open the entire day.
+Beverly is free the entire day.
+Denise has meetings on Monday during 9:30 to 11:00, 12:30 to 13:00, 15:00 Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 13:00 - 13:30""}",natural-plan-calendar,calendar_scheduling_example_484,,
+MS-SDA-029,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Scott and Jeffrey for one hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday or Wednesday. 
+
+Here are the existing schedules for everyone during the days: 
+Scott is free the entire week.
+Jeffrey is busy on Monday during 9:30 to 12:00, 12:30 to 13:00, 14:00 to 14:30, 16:30 to 17:00, Tuesday during 9:30 to 10:30, 11:30 to 12:00, 12:30 to 13:00, 13:30 to 15:30, 16:00 to 16:30, Wednesday during 9:00 to 11:30, 12:00 t Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 13:00 - 14:00""}",natural-plan-calendar,calendar_scheduling_example_705,,
+MS-SDA-030,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Danielle and Angela for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday or Thursday. 
+
+Here are the existing schedules for everyone during the days: 
+Danielle has blocked their calendar on Monday during 9:00 to 9:30, 13:30 to 14:00, 14:30 to 15:30, 16:00 to 16:30, Tuesday during 10:30 to 11:00, 12:00 to 12:30, Wednesday during 11:30 to 12:00, 13:30 to 14:00, 15:00 to 15:30, Thursday during 9 Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 16:30 - 17:00""}",natural-plan-calendar,calendar_scheduling_example_889,,
+MS-SDA-031,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Albert and George for one hour between the work hours of 9:00 to 17:00 on either Monday or Tuesday. 
+
+Here are the existing schedules for everyone during the days: 
+Albert has blocked their calendar on Monday during 12:30 to 13:00, Tuesday during 11:00 to 12:00, 13:00 to 13:30; 
+George is busy on Monday during 10:30 to 12:30, 13:00 to 13:30, 14:30 to 15:30, 16:00 to 16:30, Tuesday during 9:00 to 10:00, 11:00 to 14:30, 15:30 to 16:00 Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Tuesday, 16:00 - 17:00""}",natural-plan-calendar,calendar_scheduling_example_681,,
+MS-SDA-032,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Gerald, Roy and Barbara for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Gerald is busy on Monday during 9:00 to 9:30, 13:00 to 14:00, 15:00 to 15:30, 16:00 to 17:00; 
+Roy is free the entire day.
+Barbara has blocked their calendar on Monday during 9:30 to 10:00, 11:30 to 14:00, 14:30 to 15:00, 15:30 to 17:00; 
+
+Gerald would like to avoid more meetings Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 14:00 - 14:30""}",natural-plan-calendar,calendar_scheduling_example_13,,
+MS-SDA-033,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Jack and Gerald for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday or Thursday. 
+
+Here are the existing schedules for everyone during the days: 
+Jack has meetings on Monday during 13:30 to 14:00, 15:30 to 16:00, Tuesday during 9:30 to 11:00, 12:00 to 12:30, 16:00 to 16:30, Wednesday during 12:00 to 13:00, 13:30 to 14:30, 15:00 to 15:30, Thursday during 9:00 to 10:00, 12:00 to 12:30, 14:30 t Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 10:30 - 11:00""}",natural-plan-calendar,calendar_scheduling_example_879,,
+MS-SDA-034,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Marilyn, Virginia, Diana, Lawrence and Angela for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Marilyn's calendar is wide open the entire day.
+Virginia is busy on Monday during 9:00 to 10:00, 11:30 to 12:00, 12:30 to 13:00, 14:30 to 15:00, 15:30 to 16:00; 
+Dianahas no meetings the whole day.
+Lawrence is busy on Monday during 9:00 to 9:30, 10:30 to 13: Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 13:00 - 13:30""}",natural-plan-calendar,calendar_scheduling_example_277,,
+MS-SDA-035,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Brittany, Gloria, Lisa, Paul, Justin and Diana for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Brittany has blocked their calendar on Monday during 9:30 to 10:00, 10:30 to 11:00, 11:30 to 12:00, 13:00 to 13:30, 16:00 to 17:00; 
+Gloria is busy on Monday during 9:00 to 9:30, 10:00 to 10:30, 13:00 to 13:30, 15:00 to 15:30; 
+Lisa has meetings on Monday d Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 14:30 - 15:00""}",natural-plan-calendar,calendar_scheduling_example_316,,
+MS-SDA-036,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Jacqueline, Lauren, Billy, Mark and Teresa for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Jacqueline has meetings on Monday during 9:00 to 9:30, 10:30 to 11:30, 12:00 to 12:30, 13:00 to 13:30, 16:30 to 17:00; 
+Lauren is busy on Monday during 10:00 to 11:00, 11:30 to 12:30, 13:30 to 14:00, 15:30 to 16:00; 
+Billy's calendar is wide open the entire day Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 16:00 - 16:30""}",natural-plan-calendar,calendar_scheduling_example_299,,
+MS-SDA-037,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Bradley, Teresa, Elizabeth and Christian for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Bradley has blocked their calendar on Monday during 9:30 to 10:00, 12:30 to 13:00, 13:30 to 14:00, 15:30 to 16:00; 
+Teresa has meetings on Monday during 10:30 to 11:00, 12:00 to 12:30, 13:00 to 13:30, 14:30 to 15:00; 
+Elizabeth has meetings on Monday during 9:00  Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 10:00 - 10:30""}",natural-plan-calendar,calendar_scheduling_example_113,,
+MS-SDA-038,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Rachel and Brandon for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday, Thursday or Friday. 
+
+Here are the existing schedules for everyone during the days: 
+Rachel has blocked their calendar on Monday during 9:00 to 12:00, 13:00 to 14:30, 15:00 to 15:30, 16:00 to 16:30, Tuesday during 10:00 to 11:00, 12:00 to 12:30, 13:00 to 13:30, 14:30 to 15:30, 16:00 to 16:30, Wednesday during 9:30 to 10: Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 14:30 - 15:00""}",natural-plan-calendar,calendar_scheduling_example_962,,
+MS-SDA-039,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Julie and Catherine for one hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Julie is busy on Monday during 9:00 to 9:30, 12:00 to 12:30, 13:30 to 14:00, 15:00 to 15:30; 
+Catherine is busy on Monday during 9:00 to 10:30, 13:30 to 16:00; 
+
+Julie would rather not meet on Monday before 13:30. Find a time that works for everyone's schedule and constraints. 
+SOLUTION: Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 16:00 - 17:00""}",natural-plan-calendar,calendar_scheduling_example_569,,
+MS-SDA-040,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Lisa, Dorothy and Raymond for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Lisa has blocked their calendar on Monday during 10:30 to 11:00, 11:30 to 12:00, 14:00 to 15:00; 
+Dorothy is free the entire day.
+Raymond is busy on Monday during 9:00 to 10:00, 10:30 to 11:00, 11:30 to 15:00, 16:00 to 17:00; 
+
+Dorothy would like to avoid more meetings on Monda Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 10:00 - 10:30""}",natural-plan-calendar,calendar_scheduling_example_60,,
+MS-SDA-041,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Martha and Carol for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday or Wednesday. 
+
+Here are the existing schedules for everyone during the days: 
+Martha has meetings on Monday during 11:30 to 12:00, Tuesday during 13:30 to 14:00, 14:30 to 15:00, Wednesday during 9:00 to 9:30; 
+Carol has meetings on Monday during 9:30 to 12:00, 12:30 to 13:00, 13:30 to 15:00, 15:30 to 17:00, Tuesday during 9:00 to 9:3 Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 9:00 - 9:30""}",natural-plan-calendar,calendar_scheduling_example_713,,
+MS-SDA-042,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Sharon and Martha for one hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday, Thursday or Friday. 
+
+Here are the existing schedules for everyone during the days: 
+Sharon has blocked their calendar on Monday during 9:30 to 10:00, 16:00 to 16:30, Wednesday during 12:00 to 12:30, Friday during 10:30 to 11:00; 
+Martha is busy on Monday during 10:00 to 10:30, 11:30 to 12:00, 13:30 to 14:00, 15:00 to 15:30,  Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Thursday, 9:00 - 10:00""}",natural-plan-calendar,calendar_scheduling_example_907,,
+MS-SDA-043,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Jennifer and Denise for one hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday or Wednesday. 
+
+Here are the existing schedules for everyone during the days: 
+Jennifer's calendar is wide open the entire week.
+Denise has blocked their calendar on Monday during 9:00 to 9:30, 10:00 to 11:00, 11:30 to 12:00, 13:00 to 17:00, Tuesday during 9:30 to 10:00, 11:00 to 11:30, 13:30 to 14:00, 15:00 to 16:30, Wednesday during  Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Tuesday, 10:00 - 11:00""}",natural-plan-calendar,calendar_scheduling_example_715,,
+MS-SDA-044,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Brittany and Bruce for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday or Wednesday. 
+
+Here are the existing schedules for everyone during the days: 
+Brittany has meetings on Monday during 9:00 to 10:00, 10:30 to 11:30, 14:30 to 15:00, 16:00 to 17:00, Tuesday during 9:00 to 9:30, 12:00 to 12:30, 13:00 to 13:30, 14:30 to 15:30, 16:30 to 17:00, Wednesday during 9:00 to 9:30, 10:30 to 11:30, 13:30 to 14:0 Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 10:00 - 10:30""}",natural-plan-calendar,calendar_scheduling_example_725,,
+MS-SDA-045,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Ryan and Adam for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday or Wednesday. 
+
+Here are the existing schedules for everyone during the days: 
+Ryan has meetings on Monday during 9:30 to 10:00, 11:00 to 12:00, 13:00 to 13:30, 15:30 to 16:00, Tuesday during 11:30 to 12:30, 15:30 to 16:00, Wednesday during 12:00 to 13:00, 15:30 to 16:00, 16:30 to 17:00; 
+Adam is busy on Monday during 9:00 to 10:30, 11:0 Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 16:00 - 16:30""}",natural-plan-calendar,calendar_scheduling_example_707,,
+MS-SDA-046,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Debra and Maria for one hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday or Wednesday. 
+
+Here are the existing schedules for everyone during the days: 
+Debra has blocked their calendar on Monday during 9:00 to 9:30, 10:00 to 11:00, 12:00 to 12:30, 13:30 to 14:00, 15:00 to 15:30, Tuesday during 13:00 to 14:30, 15:30 to 16:00, Wednesday during 11:00 to 11:30, 12:00 to 12:30, 13:30 to 14:00, 15:00 to 15:30; 
+Maria Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Tuesday, 11:30 - 12:30""}",natural-plan-calendar,calendar_scheduling_example_758,,
+MS-SDA-047,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Zachary, Kenneth, Judy, Jean, Sean and Alice for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Zachary's calendar is wide open the entire day.
+Kenneth has meetings on Monday during 9:00 to 10:00, 11:30 to 12:00, 14:30 to 15:30, 16:00 to 16:30; 
+Judy is busy on Monday during 9:30 to 10:00, 16:00 to 16:30; 
+Jean has blocked their calendar on Monday durin Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 11:00 - 11:30""}",natural-plan-calendar,calendar_scheduling_example_339,,
+MS-SDA-048,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for George and Carl for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday or Wednesday. 
+
+Here are the existing schedules for everyone during the days: 
+George has blocked their calendar on Monday during 10:00 to 10:30, 12:00 to 13:00, 13:30 to 14:30, 15:00 to 16:30, Tuesday during 10:00 to 10:30, 13:30 to 14:30, Wednesday during 9:00 to 9:30, 10:00 to 11:00, 13:30 to 15:00, 15:30 to 16:00; 
+Carl has blocked Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 11:00 - 11:30""}",natural-plan-calendar,calendar_scheduling_example_733,,
+MS-SDA-049,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Catherine and Andrea for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday, Thursday or Friday. 
+
+Here are the existing schedules for everyone during the days: 
+Catherine has blocked their calendar on Monday during 9:00 to 9:30, 10:00 to 10:30, 11:00 to 11:30, 12:30 to 14:00, 14:30 to 15:00, 15:30 to 16:30, Tuesday during 10:30 to 11:00, 12:30 to 13:00, 15:30 to 16:00, 16:30 to 17:00, Wednesda Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 11:30 - 12:00""}",natural-plan-calendar,calendar_scheduling_example_979,,
+MS-SDA-050,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Stephanie, Mark and Scott for one hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Stephanie has blocked their calendar on Monday during 9:00 to 9:30, 13:30 to 14:00; 
+Mark's calendar is wide open the entire day.
+Scott is busy on Monday during 9:00 to 10:00, 11:00 to 12:30, 14:30 to 15:00, 16:00 to 17:00; 
+
+Mark would like to avoid more meetings on Monday before  Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 15:00 - 16:00""}",natural-plan-calendar,calendar_scheduling_example_99,,
+MS-SDA-051,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Adam and Karen for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday, Thursday or Friday. 
+
+Here are the existing schedules for everyone during the days: 
+Adam has blocked their calendar on Tuesday during 9:30 to 10:00, Wednesday during 14:00 to 14:30, Thursday during 13:00 to 13:30, Friday during 15:00 to 15:30; 
+Karen has blocked their calendar on Monday during 9:30 to 10:00, 12:00 to 12:30, Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Tuesday, 9:00 - 9:30""}",natural-plan-calendar,calendar_scheduling_example_960,,
+MS-SDA-052,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Kathryn, Janet, Alexander, Alan and Henry for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Kathrynhas no meetings the whole day.
+Janet has meetings on Monday during 10:30 to 11:00, 13:30 to 14:00, 14:30 to 15:00, 15:30 to 16:00; 
+Alexander has meetings on Monday during 9:30 to 10:00, 11:30 to 12:00, 14:30 to 15:00, 16:30 to 17:00; 
+Alan has blocked th Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 14:00 - 14:30""}",natural-plan-calendar,calendar_scheduling_example_289,,
+MS-SDA-053,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Donald and Emily for one hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday, Thursday or Friday. 
+
+Here are the existing schedules for everyone during the days: 
+Donald has meetings on Monday during 9:00 to 9:30, Tuesday during 11:00 to 11:30, 15:00 to 15:30, Thursday during 14:30 to 15:00; 
+Emily is busy on Monday during 9:00 to 9:30, 10:00 to 12:30, 13:00 to 13:30, 14:00 to 14:30, 15:00 to 16:00, Tue Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Friday, 12:30 - 13:30""}",natural-plan-calendar,calendar_scheduling_example_974,,
+MS-SDA-054,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Willie, Richard and Noah for one hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Willie is free the entire day.
+Richard is busy on Monday during 10:00 to 10:30, 11:00 to 12:00, 13:00 to 14:00, 16:00 to 16:30; 
+Noah has blocked their calendar on Monday during 10:00 to 10:30, 11:30 to 13:00, 13:30 to 14:00, 14:30 to 17:00; 
+
+Find a time that works for everyone's s Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 9:00 - 10:00""}",natural-plan-calendar,calendar_scheduling_example_34,,
+MS-SDA-055,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Noah, Alice and Arthur for one hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Noah's calendar is wide open the entire day.
+Alice is busy on Monday during 9:30 to 10:00, 12:30 to 13:00, 14:30 to 15:00, 16:30 to 17:00; 
+Arthur is busy on Monday during 9:00 to 9:30, 10:00 to 11:00, 11:30 to 12:00, 13:00 to 14:00, 15:00 to 15:30, 16:30 to 17:00; 
+
+Find a time that  Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 15:30 - 16:30""}",natural-plan-calendar,calendar_scheduling_example_53,,
+MS-SDA-056,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Natalie, Evelyn, Andrea, Kimberly, Dennis and Larry for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Natalie has blocked their calendar on Monday during 14:30 to 15:00, 16:00 to 16:30; 
+Evelyn's calendar is wide open the entire day.
+Andrea is free the entire day.
+Kimberly has blocked their calendar on Monday during 9:00 to 10:00, 10:30 to 11:30, 12:30 Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 11:30 - 12:00""}",natural-plan-calendar,calendar_scheduling_example_319,,
+MS-SDA-057,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for David and Mark for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday, Thursday or Friday. 
+
+Here are the existing schedules for everyone during the days: 
+David has meetings on Tuesday during 13:30 to 14:00, Thursday during 15:00 to 15:30; 
+Mark has blocked their calendar on Monday during 9:30 to 10:00, 10:30 to 11:00, 11:30 to 13:30, 14:00 to 14:30, 15:00 to 15:30, 16:00 to 17:00, Tuesday dur Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Wednesday, 14:30 - 15:00""}",natural-plan-calendar,calendar_scheduling_example_956,,
+MS-SDA-058,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Jean and Marilyn for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday, Thursday or Friday. 
+
+Here are the existing schedules for everyone during the days: 
+Jean is busy on Monday during 11:00 to 12:00, 12:30 to 13:00, 16:00 to 17:00, Tuesday during 9:30 to 10:00, 10:30 to 11:00, 11:30 to 13:00, 13:30 to 14:00, 14:30 to 15:00, 16:00 to 16:30, Wednesday during 9:00 to 9:30, 10:30 to 11:00, 13:0 Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Monday, 9:00 - 9:30""}",natural-plan-calendar,calendar_scheduling_example_906,,
+MS-SDA-059,schedule_plus_email,Chat,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Amy and Pamela for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday or Wednesday. 
+
+Here are the existing schedules for everyone during the days: 
+Amy is busy on Wednesday during 11:00 to 11:30, 13:30 to 14:00; 
+Pamela is busy on Monday during 9:00 to 10:30, 11:00 to 16:30, Tuesday during 9:00 to 9:30, 10:00 to 17:00, Wednesday during 9:00 to 9:30, 10:00 to 11:00, 11:30 to 13:30, 14:30 to 15:00, 16:00 t Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Wednesday, 16:30 - 17:00""}",natural-plan-calendar,calendar_scheduling_example_786,,
+MS-SDA-060,schedule_plus_email,Telegram,"Schedule the meeting based on this: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Emily and Elizabeth for one hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday, Thursday or Friday. 
+
+Here are the existing schedules for everyone during the days: 
+Emily is busy on Monday during 12:00 to 12:30, 13:30 to 14:30, Tuesday during 13:00 to 13:30, Wednesday during 9:00 to 9:30, 10:00 to 11:00, 16:30 to 17:00, Thursday during 9:00 to 9:30, 11:30 to 12:00, 15:30 to 16:00, Friday during 12:30 t Then draft an agenda email to the attendees confirming the slot.","{""golden_plan"": ""Here is the proposed time: Tuesday, 13:30 - 14:30""}",natural-plan-calendar,calendar_scheduling_example_941,,
+MS-SRM-001,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Frank and Diana for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday, Thursday or Friday. 
+
+Here are the existing schedules for everyone during the days: 
+Frank has meetings on Tuesday during 11:00 to 11:30, 12:30 to 13:00, Wednesday during 10:00 to 10:30, Thursday during 12:30 to 13:00, Friday during 13:30 to 14:00, 15:30 to 16:00; 
+Diana has blocked their calendar on Monday during 9:00 to 11:30, 12:30 to 13:00, 14:00 to 15:00, 16:00 to 16:30, Tuesday during 9:30 to 10:00, 10:30 to 12:00, 14:00 to 14:30, Wednesday during 10:00 to 10:30, 11:30 to 12:30, 14:00 to 14:30, 16:00 to 16:30, Thursday during 9:00 to 11:30, 12:00 to 13:00, 13:30 to 15:00, 15:30 to 17:00, Friday during 10:00 to 10:30, 11:00 to 12:30, 14:00 to 16:00; 
+
+Diana do not want to meet on Tuesday. Thursday. You would like to schedule the meeting at their earlist availability.
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 30 minutes before.","{""reminder_offset_min"":30,""golden_plan"":""Here is the proposed time: Monday, 11:30 - 12:00""}",natural-plan-calendar,calendar_scheduling_example_908,,1388
+MS-SRM-002,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Cheryl, Juan, Alan, Christina and Grace for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Cheryl is free the entire day.
+Juan has blocked their calendar on Monday during 9:30 to 10:00, 12:00 to 13:00, 14:00 to 14:30, 16:00 to 17:00; 
+Alanhas no meetings the whole day.
+Christina has meetings on Monday during 9:00 to 10:30, 12:00 to 14:30, 15:00 to 16:00; 
+Grace is busy on Monday during 9:00 to 14:00, 15:00 to 17:00; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 10 minutes before.","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 14:30 - 15:00""}",natural-plan-calendar,calendar_scheduling_example_265,,997
+MS-SRM-003,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Shirley and Adam for half an hour between the work hours of 9:00 to 17:00 on either Monday or Tuesday. 
+
+Here are the existing schedules for everyone during the days: 
+Shirley has blocked their calendar on Monday during 10:30 to 12:00, 14:30 to 16:00, Tuesday during 9:30 to 10:30, 11:30 to 12:00, 13:30 to 14:00, 14:30 to 15:00, 16:00 to 16:30; 
+Adam has meetings on Monday during 9:30 to 11:30, 14:00 to 16:00, 16:30 to 17:00, Tuesday during 9:00 to 9:30, 10:00 to 12:00, 12:30 to 13:00, 14:00 to 16:30; 
+
+Adam can not meet on Monday after 10:00. Tuesday. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 10 minutes before.","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 9:00 - 9:30""}",natural-plan-calendar,calendar_scheduling_example_627,,1052
+MS-SRM-004,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Cynthia, Megan, Christopher, Philip, Ryan and Lauren for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Cynthia has blocked their calendar on Monday during 11:00 to 11:30, 12:00 to 12:30, 14:00 to 16:00; 
+Megan has blocked their calendar on Monday during 10:00 to 11:30, 12:30 to 13:00, 14:00 to 14:30, 15:30 to 16:00; 
+Christopherhas no meetings the whole day.
+Philip has meetings on Monday during 9:00 to 11:30, 12:00 to 13:00, 13:30 to 17:00; 
+Ryan has meetings on Monday during 9:00 to 10:30, 11:00 to 11:30, 12:30 to 15:30, 16:00 to 17:00; 
+Lauren has meetings on Monday during 9:30 to 10:30, 11:00 to 11:30, 12:00 to 13:00, 14:00 to 14:30, 15:00 to 17:00; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 10 minutes before.","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 11:30 - 12:00""}",natural-plan-calendar,calendar_scheduling_example_327,,1239
+MS-SRM-005,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Walter, Cynthia, Ann, Catherine and Kyle for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Walterhas no meetings the whole day.
+Cynthia has blocked their calendar on Monday during 9:00 to 9:30, 10:00 to 10:30, 13:30 to 14:30, 15:00 to 16:00; 
+Ann is busy on Monday during 10:00 to 11:00, 13:00 to 13:30, 14:00 to 15:00, 16:00 to 16:30; 
+Catherine has meetings on Monday during 9:00 to 11:30, 12:30 to 13:30, 14:30 to 17:00; 
+Kyle is busy on Monday during 9:00 to 9:30, 10:00 to 11:30, 12:00 to 12:30, 13:00 to 14:30, 15:00 to 16:00; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 60 minutes before.","{""reminder_offset_min"":60,""golden_plan"":""Here is the proposed time: Monday, 11:30 - 12:00""}",natural-plan-calendar,calendar_scheduling_example_244,,1111
+MS-SRM-006,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Raymond and Gerald for half an hour between the work hours of 9:00 to 17:00 on either Monday or Tuesday. 
+
+Here are the existing schedules for everyone during the days: 
+Raymond has blocked their calendar on Monday during 9:00 to 10:00, 12:00 to 12:30, 13:30 to 14:30, 16:00 to 16:30, Tuesday during 9:00 to 10:30, 13:30 to 14:30, 16:00 to 16:30; 
+Gerald has blocked their calendar on Monday during 9:00 to 10:30, 11:00 to 14:00, 14:30 to 15:00, 15:30 to 17:00, Tuesday during 9:00 to 10:30, 11:00 to 13:00, 13:30 to 14:30, 15:00 to 17:00; 
+
+Raymond would like to avoid more meetings on Tuesday. You would like to schedule the meeting at their earlist availability.
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 30 minutes before.","{""reminder_offset_min"":30,""golden_plan"":""Here is the proposed time: Monday, 10:30 - 11:00""}",natural-plan-calendar,calendar_scheduling_example_615,,1160
+MS-SRM-007,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Jeffrey and Harold for half an hour between the work hours of 9:00 to 17:00 on either Monday or Tuesday. 
+
+Here are the existing schedules for everyone during the days: 
+Jeffrey is free the entire week.
+Harold has blocked their calendar on Monday during 9:00 to 10:00, 10:30 to 17:00, Tuesday during 9:00 to 9:30, 10:30 to 11:30, 12:30 to 13:30, 14:30 to 15:30, 16:00 to 17:00; 
+
+Harold would like to avoid more meetings on Monday. Tuesday before 14:30. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 10 minutes before.","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Tuesday, 15:30 - 16:00""}",natural-plan-calendar,calendar_scheduling_example_625,,948
+MS-SRM-008,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Emma and Henry for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Emma's calendar is wide open the entire day.
+Henry has meetings on Monday during 9:00 to 13:00, 14:00 to 17:00; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 15 minutes before.","{""reminder_offset_min"":15,""golden_plan"":""Here is the proposed time: Monday, 13:00 - 13:30""}",natural-plan-calendar,calendar_scheduling_example_584,,755
+MS-SRM-009,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Debra and Eugene for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday, Thursday or Friday. 
+
+Here are the existing schedules for everyone during the days: 
+Debra has meetings on Monday during 10:00 to 11:00, 11:30 to 14:00, Tuesday during 11:00 to 11:30, 14:00 to 14:30, Wednesday during 10:00 to 10:30, 12:00 to 13:00, 13:30 to 14:00, 15:00 to 15:30, 16:30 to 17:00, Thursday during 9:30 to 10:00, 12:30 to 14:00, 16:00 to 17:00, Friday during 9:00 to 9:30, 10:30 to 11:00, 14:00 to 14:30, 15:00 to 15:30, 16:00 to 16:30; 
+Eugene is busy on Monday during 9:00 to 9:30, 10:00 to 11:30, 12:00 to 14:00, 14:30 to 15:30, 16:00 to 17:00, Tuesday during 9:00 to 10:00, 10:30 to 11:00, 12:00 to 12:30, 13:00 to 14:00, 16:00 to 16:30, Wednesday during 9:00 to 10:00, 11:00 to 14:00, 14:30 to 15:00, 15:30 to 16:00, 16:30 to 17:00, Thursday during 9:00 to 9:30, 11:00 to 11:30, 12:00 to 12:30, 13:00 to 15:30, 16:00 to 16:30, Friday during 9:30 to 11:00, 11:30 to 13:00, 13:30 to 14:00, 14:30 to 15:00, 15:30 to 17:00; 
+
+Eugene would rather not meet on Monday. Wednesday. Thursday. Friday. You would like to schedule the meeting at their earlist availability.
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 15 minutes before.","{""reminder_offset_min"":15,""golden_plan"":""Here is the proposed time: Tuesday, 10:00 - 10:30""}",natural-plan-calendar,calendar_scheduling_example_925,,1687
+MS-SRM-010,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Joe and Elijah for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Joe is busy on Monday during 9:00 to 9:30, 10:00 to 10:30, 12:30 to 13:00, 13:30 to 14:00, 14:30 to 15:30; 
+Elijah is busy on Monday during 9:00 to 13:00, 13:30 to 16:00, 16:30 to 17:00; 
+
+Joe would rather not meet on Monday after 13:30. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 10 minutes before.","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 13:00 - 13:30""}",natural-plan-calendar,calendar_scheduling_example_565,,879
+MS-SRM-011,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Jacqueline, Harold, Arthur and Kelly for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Jacqueline has blocked their calendar on Monday during 9:00 to 9:30, 11:00 to 11:30, 12:30 to 13:00, 15:30 to 16:00; 
+Harold is busy on Monday during 10:00 to 10:30, 13:00 to 13:30, 15:00 to 17:00; 
+Arthur has meetings on Monday during 9:00 to 9:30, 10:00 to 12:30, 14:30 to 15:00, 15:30 to 17:00; 
+Kelly is busy on Monday during 9:00 to 9:30, 10:00 to 11:00, 11:30 to 12:30, 14:00 to 15:00, 15:30 to 16:00; 
+
+Harold do not want to meet on Monday after 13:00. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 60 minutes before.","{""reminder_offset_min"":60,""golden_plan"":""Here is the proposed time: Monday, 9:30 - 10:00""}",natural-plan-calendar,calendar_scheduling_example_173,,1123
+MS-SRM-012,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Janet and Larry for one hour between the work hours of 9:00 to 17:00 on either Monday or Tuesday. 
+
+Here are the existing schedules for everyone during the days: 
+Janet's calendar is wide open the entire week.
+Larry is busy on Monday during 9:00 to 9:30, 11:00 to 11:30, 12:00 to 13:30, 14:00 to 16:30, Tuesday during 9:00 to 11:30, 12:00 to 12:30, 14:30 to 15:00, 15:30 to 16:00; 
+
+Larry can not meet on Monday. Tuesday after 15:30. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 30 minutes before.","{""reminder_offset_min"":30,""golden_plan"":""Here is the proposed time: Tuesday, 12:30 - 13:30""}",natural-plan-calendar,calendar_scheduling_example_675,,928
+MS-SRM-013,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Sophia and Laura for one hour between the work hours of 9:00 to 17:00 on either Monday or Tuesday. 
+
+Here are the existing schedules for everyone during the days: 
+Sophia has blocked their calendar on Monday during 9:00 to 10:30, 11:30 to 12:00, 12:30 to 14:00, 16:30 to 17:00, Tuesday during 10:30 to 11:00, 12:30 to 14:00, 15:00 to 15:30, 16:30 to 17:00; 
+Laura has blocked their calendar on Monday during 9:30 to 12:00, 12:30 to 15:00, 16:30 to 17:00, Tuesday during 9:00 to 9:30, 10:00 to 11:00, 12:00 to 14:00, 14:30 to 15:00, 15:30 to 17:00; 
+
+Laura can not meet on Tuesday. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 10 minutes before.","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 15:00 - 16:00""}",natural-plan-calendar,calendar_scheduling_example_665,,1075
+MS-SRM-014,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Alan, Nancy and Patricia for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Alan's calendar is wide open the entire day.
+Nancy has blocked their calendar on Monday during 11:00 to 12:30, 13:00 to 13:30, 14:00 to 15:00; 
+Patricia has meetings on Monday during 10:00 to 12:00, 12:30 to 13:00, 13:30 to 16:00; 
+
+Alan do not want to meet on Monday before 14:30. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 15 minutes before.","{""reminder_offset_min"":15,""golden_plan"":""Here is the proposed time: Monday, 16:00 - 16:30""}",natural-plan-calendar,calendar_scheduling_example_41,,933
+MS-SRM-015,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Bryan, Lori, Kimberly, Beverly and Dennis for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Bryan is free the entire day.
+Lori is free the entire day.
+Kimberly has blocked their calendar on Monday during 9:30 to 11:00, 12:00 to 12:30; 
+Beverly has meetings on Monday during 9:00 to 9:30, 11:00 to 11:30, 12:30 to 13:30, 14:00 to 15:00, 15:30 to 16:30; 
+Dennis has meetings on Monday during 9:30 to 11:30, 12:00 to 17:00; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 60 minutes before.","{""reminder_offset_min"":60,""golden_plan"":""Here is the proposed time: Monday, 11:30 - 12:00""}",natural-plan-calendar,calendar_scheduling_example_253,,999
+MS-SRM-016,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Albert and Denise for half an hour between the work hours of 9:00 to 17:00 on either Monday or Tuesday. 
+
+Here are the existing schedules for everyone during the days: 
+Albert has blocked their calendar on Tuesday during 10:00 to 10:30, 11:00 to 11:30, 12:30 to 13:00, 13:30 to 15:00, 15:30 to 16:00, 16:30 to 17:00; 
+Denise has blocked their calendar on Monday during 9:00 to 9:30, 10:30 to 11:30, 12:00 to 13:00, 13:30 to 14:00, 15:00 to 16:00, 16:30 to 17:00, Tuesday during 9:00 to 12:30, 13:00 to 13:30, 14:00 to 16:30; 
+
+Albert can not meet on Monday after 11:00. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 60 minutes before.","{""reminder_offset_min"":60,""golden_plan"":""Here is the proposed time: Monday, 9:30 - 10:00""}",natural-plan-calendar,calendar_scheduling_example_607,,1064
+MS-SRM-017,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Diane, Jack, Eugene and Patricia for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Diane has blocked their calendar on Monday during 9:30 to 10:00, 14:30 to 15:00; 
+Jack has blocked their calendar on Monday during 13:30 to 14:00, 14:30 to 15:00; 
+Eugene has blocked their calendar on Monday during 9:00 to 10:00, 10:30 to 11:30, 12:00 to 14:30, 15:00 to 16:30; 
+Patricia has blocked their calendar on Monday during 9:30 to 10:30, 11:00 to 12:00, 12:30 to 14:00, 15:00 to 16:30; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 10 minutes before.","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 16:30 - 17:00""}",natural-plan-calendar,calendar_scheduling_example_103,,1056
+MS-SRM-018,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Christine and Helen for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Christine has meetings on Monday during 11:00 to 11:30, 15:00 to 15:30; 
+Helen has blocked their calendar on Monday during 9:30 to 10:30, 11:00 to 11:30, 12:00 to 12:30, 13:30 to 16:00, 16:30 to 17:00; 
+
+Helen can not meet on Monday after 15:00. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 10 minutes before.","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 12:30 - 13:00""}",natural-plan-calendar,calendar_scheduling_example_579,,892
+MS-SRM-019,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Scott and Jeffrey for one hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday or Wednesday. 
+
+Here are the existing schedules for everyone during the days: 
+Scott is free the entire week.
+Jeffrey is busy on Monday during 9:30 to 12:00, 12:30 to 13:00, 14:00 to 14:30, 16:30 to 17:00, Tuesday during 9:30 to 10:30, 11:30 to 12:00, 12:30 to 13:00, 13:30 to 15:30, 16:00 to 16:30, Wednesday during 9:00 to 11:30, 12:00 to 17:00; 
+
+The group would like to meet at their earlist availability.
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 60 minutes before.","{""reminder_offset_min"":60,""golden_plan"":""Here is the proposed time: Monday, 13:00 - 14:00""}",natural-plan-calendar,calendar_scheduling_example_705,,1001
+MS-SRM-020,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Roy, Kayla, Alexis, Eugene, Matthew, Alice and Frank for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Roy is busy on Monday during 11:00 to 11:30, 15:30 to 16:00; 
+Kayla has meetings on Monday during 10:30 to 11:00, 12:00 to 13:00, 13:30 to 14:00, 14:30 to 15:00, 15:30 to 16:00; 
+Alexis is free the entire day.
+Eugene has meetings on Monday during 11:30 to 12:00, 12:30 to 13:00; 
+Matthew has meetings on Monday during 9:00 to 10:00, 11:00 to 12:30, 14:00 to 14:30, 15:00 to 16:00; 
+Alice is busy on Monday during 9:00 to 10:30, 11:00 to 13:00, 13:30 to 14:30, 15:00 to 16:30; 
+Frank is busy on Monday during 9:00 to 10:00, 11:30 to 12:00, 13:30 to 15:00, 15:30 to 16:00, 16:30 to 17:00; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 10 minutes before.","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 13:00 - 13:30""}",natural-plan-calendar,calendar_scheduling_example_485,,1268
+MS-SRM-021,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Eric and Henry for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Eric has blocked their calendar on Monday during 12:00 to 13:00, 14:00 to 15:00; 
+Henry has meetings on Monday during 9:30 to 10:00, 10:30 to 11:00, 11:30 to 12:30, 13:00 to 13:30, 14:30 to 15:00, 16:00 to 17:00; 
+
+Henry would rather not meet on Monday after 10:00. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 10 minutes before.","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 9:00 - 9:30""}",natural-plan-calendar,calendar_scheduling_example_553,,907
+MS-SRM-022,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Mary and Catherine for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday or Wednesday. 
+
+Here are the existing schedules for everyone during the days: 
+Mary is free the entire week.
+Catherine has blocked their calendar on Monday during 10:00 to 10:30, 11:00 to 11:30, 12:30 to 13:00, 13:30 to 14:00, 15:00 to 17:00, Tuesday during 9:30 to 10:30, 11:30 to 12:30, 13:00 to 14:00, 15:00 to 15:30, Wednesday during 9:30 to 12:30, 14:00 to 15:00, 15:30 to 17:00; 
+
+Mary do not want to meet on Tuesday. You would like to schedule the meeting at their earlist availability.
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 60 minutes before.","{""reminder_offset_min"":60,""golden_plan"":""Here is the proposed time: Monday, 9:00 - 9:30""}",natural-plan-calendar,calendar_scheduling_example_720,,1090
+MS-SRM-023,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Michelle and Joshua for one hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday or Wednesday. 
+
+Here are the existing schedules for everyone during the days: 
+Michelle has meetings on Monday during 9:30 to 10:00, 11:30 to 12:00, 13:00 to 14:00, 14:30 to 15:00, Tuesday during 11:00 to 11:30, 12:00 to 13:00, 13:30 to 14:00, 15:00 to 15:30, 16:00 to 17:00, Wednesday during 13:00 to 14:00, 14:30 to 15:00, 15:30 to 16:00; 
+Joshua is busy on Monday during 9:00 to 13:00, 13:30 to 17:00, Tuesday during 9:00 to 12:30, 13:00 to 15:30, 16:00 to 17:00, Wednesday during 9:00 to 10:30, 11:30 to 13:30, 14:30 to 16:30; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 15 minutes before.","{""reminder_offset_min"":15,""golden_plan"":""Here is the proposed time: Wednesday, 10:30 - 11:30""}",natural-plan-calendar,calendar_scheduling_example_796,,1126
+MS-SRM-024,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Andrea and Abigail for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Andrea is busy on Monday during 10:00 to 10:30, 11:30 to 12:00; 
+Abigail has meetings on Monday during 9:00 to 12:00, 12:30 to 14:00, 14:30 to 15:30, 16:30 to 17:00; 
+
+Andrea would rather not meet on Monday after 12:30. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 10 minutes before.","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 12:00 - 12:30""}",natural-plan-calendar,calendar_scheduling_example_539,,865
+MS-SRM-025,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Emily and Zachary for half an hour between the work hours of 9:00 to 17:00 on either Monday or Tuesday. 
+
+Here are the existing schedules for everyone during the days: 
+Emily has meetings on Monday during 10:30 to 11:00, 11:30 to 12:00, 13:30 to 14:00, 14:30 to 15:00, 16:00 to 17:00, Tuesday during 9:30 to 10:00, 11:00 to 12:00, 16:30 to 17:00; 
+Zachary has meetings on Monday during 9:00 to 11:00, 11:30 to 14:30, 15:00 to 17:00, Tuesday during 9:00 to 13:00, 13:30 to 14:30, 15:00 to 15:30, 16:00 to 16:30; 
+
+Zachary would rather not meet on Tuesday. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 60 minutes before.","{""reminder_offset_min"":60,""golden_plan"":""Here is the proposed time: Monday, 11:00 - 11:30""}",natural-plan-calendar,calendar_scheduling_example_609,,1049
+MS-SRM-026,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Jonathan, Matthew, Carl, Ryan, Albert and Danielle for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Jonathanhas no meetings the whole day.
+Matthew has meetings on Monday during 10:00 to 10:30, 14:00 to 14:30, 15:00 to 15:30, 16:00 to 16:30; 
+Carl has meetings on Monday during 9:30 to 10:00, 13:30 to 14:00; 
+Ryan is busy on Monday during 9:30 to 11:00, 11:30 to 12:30, 13:00 to 13:30, 15:00 to 16:00; 
+Albert has meetings on Monday during 9:00 to 9:30, 10:00 to 12:30, 13:00 to 15:30, 16:00 to 16:30; 
+Danielle has meetings on Monday during 9:00 to 9:30, 10:30 to 11:30, 12:30 to 14:30, 15:00 to 15:30; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 60 minutes before.","{""reminder_offset_min"":60,""golden_plan"":""Here is the proposed time: Monday, 16:30 - 17:00""}",natural-plan-calendar,calendar_scheduling_example_397,,1183
+MS-SRM-027,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Benjamin and Vincent for one hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday or Thursday. 
+
+Here are the existing schedules for everyone during the days: 
+Benjamin's calendar is wide open the entire week.
+Vincent is busy on Monday during 9:00 to 9:30, 10:00 to 11:00, 12:00 to 13:30, 14:30 to 15:00, 15:30 to 17:00, Tuesday during 10:00 to 13:30, 14:00 to 14:30, 15:00 to 17:00, Wednesday during 9:00 to 11:00, 11:30 to 12:00, 13:00 to 13:30, 14:00 to 16:00, 16:30 to 17:00, Thursday during 9:30 to 11:00, 11:30 to 13:00, 13:30 to 14:30, 15:00 to 16:00, 16:30 to 17:00; 
+
+Benjamin would like to avoid more meetings on Wednesday. Vincent would rather not meet on Monday. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 60 minutes before.","{""reminder_offset_min"":60,""golden_plan"":""Here is the proposed time: Tuesday, 9:00 - 10:00""}",natural-plan-calendar,calendar_scheduling_example_888,,1198
+MS-SRM-028,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Christine and Donna for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday, Thursday or Friday. 
+
+Here are the existing schedules for everyone during the days: 
+Christine has blocked their calendar on Tuesday during 16:30 to 17:00, Thursday during 9:00 to 10:00, Friday during 13:30 to 14:00; 
+Donna is busy on Monday during 9:00 to 14:00, 14:30 to 16:30, Tuesday during 9:00 to 11:30, 13:00 to 14:30, 15:30 to 16:00, Wednesday during 9:00 to 9:30, 10:30 to 12:30, 13:30 to 14:30, 15:00 to 16:00, Thursday during 9:00 to 9:30, 10:00 to 11:30, 12:00 to 13:30, 14:00 to 17:00, Friday during 9:00 to 9:30, 11:00 to 12:00, 13:00 to 13:30, 14:00 to 14:30, 15:30 to 16:00, 16:30 to 17:00; 
+
+Donna do not want to meet on Wednesday. The group would like to meet at their earlist availability.
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 10 minutes before.","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 14:00 - 14:30""}",natural-plan-calendar,calendar_scheduling_example_954,,1318
+MS-SRM-029,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Eric and Deborah for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Eric has blocked their calendar on Monday during 9:00 to 10:00, 11:30 to 12:00, 12:30 to 14:00; 
+Deborah is busy on Monday during 9:00 to 10:30, 11:00 to 11:30, 12:00 to 12:30, 13:30 to 14:30, 15:00 to 15:30; 
+
+Deborah would like to avoid more meetings on Monday after 15:00. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 60 minutes before.","{""reminder_offset_min"":60,""golden_plan"":""Here is the proposed time: Monday, 14:30 - 15:00""}",natural-plan-calendar,calendar_scheduling_example_556,,919
+MS-SRM-030,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Jesse, Nancy, Isabella, Harold and Linda for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Jesse is busy on Monday during 10:00 to 10:30, 15:00 to 15:30; 
+Nancy has blocked their calendar on Monday during 9:00 to 9:30, 10:30 to 11:00, 13:30 to 14:00, 14:30 to 15:00; 
+Isabella has meetings on Monday during 9:00 to 10:00, 11:30 to 12:00, 15:30 to 16:00; 
+Harold has blocked their calendar on Monday during 9:00 to 10:00, 10:30 to 16:30; 
+Linda has meetings on Monday during 9:00 to 10:00, 12:00 to 12:30, 13:30 to 16:00; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 30 minutes before.","{""reminder_offset_min"":30,""golden_plan"":""Here is the proposed time: Monday, 16:30 - 17:00""}",natural-plan-calendar,calendar_scheduling_example_208,,1099
+MS-SRM-031,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Ronald, Stephen, Brittany, Dorothy, Rebecca and Jordan for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Ronald's calendar is wide open the entire day.
+Stephen has blocked their calendar on Monday during 10:00 to 10:30, 12:00 to 12:30; 
+Brittany has blocked their calendar on Monday during 11:00 to 11:30, 13:30 to 14:00, 15:30 to 16:00, 16:30 to 17:00; 
+Dorothy has blocked their calendar on Monday during 9:00 to 9:30, 10:00 to 10:30, 11:00 to 12:30, 13:00 to 15:00, 15:30 to 17:00; 
+Rebecca has meetings on Monday during 9:30 to 10:30, 11:00 to 11:30, 12:00 to 12:30, 13:00 to 17:00; 
+Jordan is busy on Monday during 9:00 to 9:30, 10:00 to 11:00, 11:30 to 12:00, 13:00 to 15:00, 15:30 to 16:30; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 30 minutes before.","{""reminder_offset_min"":30,""golden_plan"":""Here is the proposed time: Monday, 12:30 - 13:00""}",natural-plan-calendar,calendar_scheduling_example_307,,1276
+MS-SRM-032,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Patrick, Shirley, Jeffrey, Gloria, Nathan, Angela and David for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Patrick has meetings on Monday during 13:30 to 14:00, 14:30 to 15:00; 
+Shirley has meetings on Monday during 9:00 to 9:30, 11:00 to 11:30, 12:00 to 12:30, 14:30 to 15:00, 16:00 to 17:00; 
+Jeffrey has meetings on Monday during 9:00 to 9:30, 10:30 to 11:00, 11:30 to 12:00, 13:00 to 13:30, 16:00 to 17:00; 
+Gloria is busy on Monday during 11:30 to 12:00, 15:00 to 15:30; 
+Nathan is busy on Monday during 9:00 to 9:30, 10:30 to 12:00, 14:00 to 17:00; 
+Angela has meetings on Monday during 9:00 to 9:30, 10:00 to 11:00, 12:30 to 15:00, 15:30 to 16:30; 
+David is busy on Monday during 9:00 to 9:30, 10:00 to 10:30, 11:00 to 14:00, 14:30 to 16:30; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 10 minutes before.","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 9:30 - 10:00""}",natural-plan-calendar,calendar_scheduling_example_436,,1330
+MS-SRM-033,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Dorothy, Kenneth, Madison, Brandon and Judith for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Dorothy has meetings on Monday during 10:00 to 10:30, 11:30 to 12:00, 12:30 to 13:00, 16:00 to 16:30; 
+Kenneth has meetings on Monday during 11:30 to 12:00, 12:30 to 13:00; 
+Madison has blocked their calendar on Monday during 9:30 to 10:00, 16:30 to 17:00; 
+Brandon has blocked their calendar on Monday during 9:00 to 9:30, 11:00 to 12:00, 12:30 to 15:30, 16:00 to 16:30; 
+Judith is busy on Monday during 10:00 to 10:30, 11:00 to 11:30, 12:00 to 12:30, 13:30 to 15:00, 15:30 to 16:30; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 30 minutes before.","{""reminder_offset_min"":30,""golden_plan"":""Here is the proposed time: Monday, 10:30 - 11:00""}",natural-plan-calendar,calendar_scheduling_example_250,,1159
+MS-SRM-034,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Joan, Theresa and Shirley for one hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Joan has meetings on Monday during 11:00 to 11:30, 12:30 to 13:00; 
+Theresa has meetings on Monday during 12:00 to 12:30, 15:00 to 15:30; 
+Shirley has meetings on Monday during 9:30 to 10:30, 11:00 to 12:00, 13:00 to 14:00, 15:30 to 16:30; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 10 minutes before.","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 14:00 - 15:00""}",natural-plan-calendar,calendar_scheduling_example_58,,890
+MS-SRM-035,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Matthew and Randy for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday or Wednesday. 
+
+Here are the existing schedules for everyone during the days: 
+Matthew is busy on Monday during 9:00 to 9:30, 10:30 to 11:30, 13:30 to 14:00, 15:00 to 15:30, 16:00 to 16:30, Tuesday during 10:30 to 11:30, Wednesday during 9:00 to 9:30, 10:00 to 11:00, 11:30 to 12:00, 13:00 to 14:00, 15:00 to 15:30, 16:00 to 16:30; 
+Randy has blocked their calendar on Monday during 9:00 to 9:30, 11:00 to 12:00, 12:30 to 14:00, 14:30 to 15:00, 16:30 to 17:00, Tuesday during 9:30 to 10:30, 11:00 to 11:30, 12:30 to 13:00, 13:30 to 14:30, 15:30 to 17:00, Wednesday during 9:00 to 10:30, 11:30 to 12:00, 12:30 to 14:00, 14:30 to 16:30; 
+
+Matthew would rather not meet on Wednesday. Randy can not meet on Monday. You would like to schedule the meeting at their earlist availability.
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 10 minutes before.","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Tuesday, 9:00 - 9:30""}",natural-plan-calendar,calendar_scheduling_example_745,,1376
+MS-SRM-036,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Carolyn, Russell, Emma, Maria, Mason and Hannah for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Carolyn has blocked their calendar on Monday during 10:30 to 11:30, 13:00 to 13:30, 14:30 to 15:00; 
+Russell is busy on Monday during 14:30 to 15:00, 16:30 to 17:00; 
+Emma is busy on Monday during 10:00 to 10:30, 16:30 to 17:00; 
+Maria has blocked their calendar on Monday during 9:30 to 10:30, 11:00 to 11:30, 12:30 to 14:30, 15:30 to 17:00; 
+Mason has blocked their calendar on Monday during 9:30 to 10:30, 11:00 to 11:30, 12:00 to 14:00, 15:00 to 15:30; 
+Hannah is busy on Monday during 10:00 to 12:30, 13:00 to 13:30, 15:00 to 16:00; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 30 minutes before.","{""reminder_offset_min"":30,""golden_plan"":""Here is the proposed time: Monday, 9:00 - 9:30""}",natural-plan-calendar,calendar_scheduling_example_379,,1214
+MS-SRM-037,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Brandon, Donna and Jack for one hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Brandon has meetings on Monday during 11:30 to 12:00, 12:30 to 13:30, 14:00 to 14:30; 
+Donna is busy on Monday during 10:00 to 10:30, 12:00 to 12:30; 
+Jack has meetings on Monday during 9:30 to 10:00, 10:30 to 11:00, 11:30 to 12:30, 13:00 to 14:30, 15:30 to 17:00; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 10 minutes before.","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 14:30 - 15:30""}",natural-plan-calendar,calendar_scheduling_example_51,,913
+MS-SRM-038,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Peter, Patricia, Megan and Amber for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Peter's calendar is wide open the entire day.
+Patricia has blocked their calendar on Monday during 11:00 to 11:30, 12:30 to 13:00, 13:30 to 14:00, 16:00 to 16:30; 
+Megan is busy on Monday during 9:00 to 10:30, 11:00 to 12:00, 12:30 to 14:30, 15:00 to 16:30; 
+Amber is busy on Monday during 9:30 to 10:30, 11:00 to 13:00, 13:30 to 14:00, 14:30 to 15:00; 
+
+Megan can not meet on Monday before 11:00. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 30 minutes before.","{""reminder_offset_min"":30,""golden_plan"":""Here is the proposed time: Monday, 16:30 - 17:00""}",natural-plan-calendar,calendar_scheduling_example_151,,1057
+MS-SRM-039,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for William and Natalie for one hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+William has blocked their calendar on Monday during 10:00 to 10:30, 12:00 to 13:00, 16:00 to 16:30; 
+Natalie has meetings on Monday during 9:00 to 9:30, 10:00 to 10:30, 12:00 to 13:30, 14:00 to 14:30, 15:00 to 17:00; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 30 minutes before.","{""reminder_offset_min"":30,""golden_plan"":""Here is the proposed time: Monday, 10:30 - 11:30""}",natural-plan-calendar,calendar_scheduling_example_557,,861
+MS-SRM-040,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Walter, Jessica, Robert, Nicole, Dorothy and Gabriel for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Walter has blocked their calendar on Monday during 9:00 to 9:30, 10:30 to 11:00, 13:00 to 14:00; 
+Jessica is busy on Monday during 13:30 to 14:00, 14:30 to 15:00; 
+Robert is busy on Monday during 11:00 to 11:30, 14:00 to 15:00, 16:00 to 16:30; 
+Nicole is busy on Monday during 9:00 to 9:30, 10:30 to 11:00, 11:30 to 13:00, 13:30 to 14:30, 16:00 to 16:30; 
+Dorothy is busy on Monday during 9:30 to 11:30, 12:00 to 12:30, 15:00 to 16:30; 
+Gabriel has blocked their calendar on Monday during 9:00 to 10:30, 11:00 to 12:30, 13:30 to 15:30; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 15 minutes before.","{""reminder_offset_min"":15,""golden_plan"":""Here is the proposed time: Monday, 16:30 - 17:00""}",natural-plan-calendar,calendar_scheduling_example_346,,1217
+MS-SRM-041,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Edward and Zachary for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday or Thursday. 
+
+Here are the existing schedules for everyone during the days: 
+Edward has meetings on Monday during 9:00 to 9:30, 11:00 to 11:30, 14:30 to 15:00, Tuesday during 12:00 to 13:00, 16:30 to 17:00, Wednesday during 9:00 to 9:30, 14:00 to 14:30, Thursday during 15:30 to 16:00, 16:30 to 17:00; 
+Zachary has blocked their calendar on Monday during 9:00 to 10:00, 10:30 to 11:00, 11:30 to 12:30, 14:00 to 17:00, Tuesday during 9:00 to 12:30, 13:00 to 13:30, 14:00 to 17:00, Wednesday during 9:00 to 15:00, 16:00 to 17:00, Thursday during 9:00 to 12:00, 12:30 to 14:00, 15:00 to 17:00; 
+
+Edward would like to avoid more meetings on Wednesday. Thursday. Zachary can not meet on Tuesday. The group would like to meet at their earlist availability.
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 10 minutes before.","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 10:00 - 10:30""}",natural-plan-calendar,calendar_scheduling_example_857,,1359
+MS-SRM-042,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Jordan and Michael for one hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday, Thursday or Friday. 
+
+Here are the existing schedules for everyone during the days: 
+Jordan has blocked their calendar on Monday during 9:30 to 10:00, Thursday during 12:00 to 12:30; 
+Michael is busy on Monday during 10:00 to 11:00, 11:30 to 13:00, 13:30 to 16:00, 16:30 to 17:00, Tuesday during 9:30 to 10:00, 10:30 to 11:00, 11:30 to 12:00, 12:30 to 13:00, 13:30 to 14:00, 15:00 to 16:00, 16:30 to 17:00, Wednesday during 9:00 to 9:30, 10:00 to 16:30, Thursday during 10:00 to 10:30, 11:00 to 14:30, 15:00 to 15:30, 16:30 to 17:00, Friday during 10:30 to 11:30, 12:00 to 13:30, 14:00 to 15:00, 15:30 to 16:30; 
+
+The group would like to meet at their earlist availability.
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 15 minutes before.","{""reminder_offset_min"":15,""golden_plan"":""Here is the proposed time: Tuesday, 14:00 - 15:00""}",natural-plan-calendar,calendar_scheduling_example_948,,1278
+MS-SRM-043,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Kayla, Sandra, Ryan, Kathleen, Walter, Arthur and Heather for one hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Kayla has meetings on Monday during 9:00 to 10:00, 14:30 to 15:00, 15:30 to 16:00; 
+Sandra has meetings on Monday during 12:00 to 12:30, 14:00 to 15:00, 16:30 to 17:00; 
+Ryan is busy on Monday during 9:30 to 10:30, 11:00 to 11:30, 12:30 to 13:00; 
+Kathleenhas no meetings the whole day.
+Walter is busy on Monday during 9:30 to 12:00, 14:00 to 14:30, 15:00 to 17:00; 
+Arthur has blocked their calendar on Monday during 9:00 to 11:00, 11:30 to 12:00, 12:30 to 13:00, 14:00 to 15:00; 
+Heather has meetings on Monday during 10:00 to 11:30, 12:00 to 13:00, 14:30 to 15:30, 16:30 to 17:00; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 30 minutes before.","{""reminder_offset_min"":30,""golden_plan"":""Here is the proposed time: Monday, 13:00 - 14:00""}",natural-plan-calendar,calendar_scheduling_example_404,,1266
+MS-SRM-044,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for David, Debra and Kevin for one hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Davidhas no meetings the whole day.
+Debra has meetings on Monday during 9:30 to 10:00, 11:00 to 11:30, 12:00 to 13:00, 14:00 to 14:30, 16:00 to 16:30; 
+Kevin has blocked their calendar on Monday during 9:00 to 12:00, 14:00 to 17:00; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 10 minutes before.","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 13:00 - 14:00""}",natural-plan-calendar,calendar_scheduling_example_12,,880
+MS-SRM-045,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Dylan, William, Douglas, Kimberly, Emma, Alan and Philip for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Dylan is free the entire day.
+Williamhas no meetings the whole day.
+Douglashas no meetings the whole day.
+Kimberlyhas no meetings the whole day.
+Emma has meetings on Monday during 9:30 to 10:30, 11:00 to 12:00, 12:30 to 13:00, 14:00 to 16:00, 16:30 to 17:00; 
+Alan is busy on Monday during 9:30 to 10:30, 11:00 to 17:00; 
+Philip is busy on Monday during 9:30 to 10:30, 11:00 to 12:30, 13:00 to 13:30, 14:30 to 15:00, 16:00 to 16:30; 
+
+William would rather not meet on Monday before 9:30. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 15 minutes before.","{""reminder_offset_min"":15,""golden_plan"":""Here is the proposed time: Monday, 10:30 - 11:00""}",natural-plan-calendar,calendar_scheduling_example_431,,1171
+MS-SRM-046,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Jason and Lori for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday or Thursday. 
+
+Here are the existing schedules for everyone during the days: 
+Jason is busy on Monday during 9:00 to 10:30, 13:00 to 13:30, 15:00 to 15:30, 16:00 to 16:30, Tuesday during 10:00 to 15:00, Wednesday during 9:30 to 11:00, 11:30 to 12:00, 12:30 to 13:00, 13:30 to 14:00, Thursday during 10:30 to 11:00, 12:30 to 13:00, 14:30 to 15:00, 15:30 to 16:00; 
+Lori has meetings on Monday during 10:30 to 11:00, 12:00 to 12:30, 13:30 to 14:00, 16:00 to 16:30, Tuesday during 10:00 to 12:00, 12:30 to 14:30, 15:00 to 17:00, Wednesday during 9:00 to 9:30, 10:00 to 11:00, 13:00 to 13:30, 14:00 to 14:30, 15:30 to 16:30, Thursday during 9:00 to 12:00, 12:30 to 13:30, 15:30 to 17:00; 
+
+Lori can not meet on Wednesday. You would like to schedule the meeting at their earlist availability.
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 15 minutes before.","{""reminder_offset_min"":15,""golden_plan"":""Here is the proposed time: Monday, 11:00 - 11:30""}",natural-plan-calendar,calendar_scheduling_example_884,,1391
+MS-SRM-047,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Terry, Justin, Grace, Bruce, Diane, Bryan and Beverly for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Terry's calendar is wide open the entire day.
+Justin is busy on Monday during 11:30 to 12:00, 13:00 to 13:30; 
+Grace is free the entire day.
+Bruce's calendar is wide open the entire day.
+Diane is busy on Monday during 9:30 to 10:30, 11:30 to 12:00, 12:30 to 13:30, 14:30 to 15:30, 16:00 to 16:30; 
+Bryan has blocked their calendar on Monday during 9:00 to 10:30, 12:00 to 12:30, 13:00 to 14:30, 15:00 to 15:30, 16:00 to 17:00; 
+Beverly has meetings on Monday during 9:30 to 10:30, 11:30 to 12:30, 13:00 to 13:30, 14:00 to 14:30, 16:00 to 17:00; 
+
+The group would like to meet at their earlist availability.
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 10 minutes before.","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 10:30 - 11:00""}",natural-plan-calendar,calendar_scheduling_example_462,,1287
+MS-SRM-048,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Willie, Scott, Jordan, Austin, Kimberly, Teresa and Dylan for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Willie's calendar is wide open the entire day.
+Scott is busy on Monday during 9:00 to 9:30, 10:00 to 10:30, 15:30 to 16:00, 16:30 to 17:00; 
+Jordan has blocked their calendar on Monday during 9:00 to 9:30, 10:00 to 10:30, 12:00 to 12:30, 16:30 to 17:00; 
+Austin has blocked their calendar on Monday during 11:30 to 13:00, 13:30 to 14:00, 14:30 to 15:00, 15:30 to 16:00; 
+Kimberly is busy on Monday during 9:00 to 9:30, 10:30 to 11:00, 12:30 to 14:30, 15:00 to 16:00; 
+Teresa is busy on Monday during 9:00 to 9:30, 10:00 to 11:30, 12:00 to 13:00, 15:00 to 15:30, 16:30 to 17:00; 
+Dylan has blocked their calendar on Monday during 9:30 to 10:00, 10:30 to 12:00, 13:00 to 15:00, 15:30 to 16:00, 16:30 to 17:00; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 15 minutes before.","{""reminder_offset_min"":15,""golden_plan"":""Here is the proposed time: Monday, 16:00 - 16:30""}",natural-plan-calendar,calendar_scheduling_example_471,,1394
+MS-SRM-049,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Jacob, Gabriel and Matthew for one hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+Jacob has meetings on Monday during 10:00 to 11:00, 11:30 to 12:00, 16:00 to 16:30; 
+Gabriel has meetings on Monday during 9:30 to 11:30, 13:00 to 13:30, 15:00 to 15:30; 
+Matthew has blocked their calendar on Monday during 9:00 to 9:30, 10:30 to 11:00, 11:30 to 12:00, 12:30 to 14:00, 15:30 to 16:30; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 10 minutes before.","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 14:00 - 15:00""}",natural-plan-calendar,calendar_scheduling_example_40,,952
+MS-SRM-050,schedule_plus_reminder,Telegram,"Find a slot per: You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Lisa and Carolyn for one hour between the work hours of 9:00 to 17:00 on either Monday or Tuesday. 
+
+Here are the existing schedules for everyone during the days: 
+Lisa is busy on Tuesday during 10:00 to 10:30, 13:30 to 14:00; 
+Carolyn has meetings on Monday during 12:00 to 12:30, 13:30 to 14:00, 14:30 to 15:30, 16:00 to 16:30, Tuesday during 9:00 to 10:30, 11:00 to 11:30, 12:00 to 14:00, 14:30 to 15:00, 15:30 to 16:30; 
+
+Carolyn would rather not meet on Monday after 12:30. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:  and add a reminder 10 minutes before.","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 9:00 - 10:00""}",natural-plan-calendar,calendar_scheduling_example_633,,973
+MS-RSC-001,reschedule_and_notify,Chat,"I need to reschedule. Context: User: Tell me when I'm available. 
+ Agent: Which date would you like to know? Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 3}",DA_SGD_Calendar,0,,
+MS-RSC-002,reschedule_and_notify,Chat,"I need to reschedule. Context: Agent: You're also available from 10:30 am to 5 pm. 
+ User: Is there anything else? 
+ Agent: Yes, you're free from 7 pm to 9:30 pm. Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 13}",DA_SGD_Calendar,1,,
+MS-RSC-003,reschedule_and_notify,Chat,"I need to reschedule. Context: User: I appreciate your assistance. 
+ Agent: Is there anything else I can assist you with? 
+ User: No. You have been very helpful. Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 2}",DA_SGD_Calendar,2,,
+MS-RSC-004,reschedule_and_notify,Chat,"I need to reschedule. Context: User: Is there anything else on the calendar March 12th? 
+ Agent: At 6 pm there is a Baseball game scheduled. 
+ User: Great. Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 12}",DA_SGD_Calendar,3,,
+MS-RSC-005,reschedule_and_notify,Chat,"I need to reschedule. Context: User: Can you show me all the events on my calendar? 
+ Agent: What date do you want to look at? Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 3}",DA_SGD_Calendar,4,,
+MS-RSC-006,reschedule_and_notify,Chat,"I need to reschedule. Context: User: I'd like to know my availability. Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 10}",DA_SGD_Calendar,5,,
+MS-RSC-007,reschedule_and_notify,Chat,"I need to reschedule. Context: Agent: Which date? 
+ User: The 9th of March. 
+ Agent: You have 2 events scheduled on that day. One of them is a Movie at Contra Costa Stadium Cinemas at 10 pm. Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 13}",DA_SGD_Calendar,6,,
+MS-RSC-008,reschedule_and_notify,Chat,"I need to reschedule. Context: User: Baseball game, at 1 East 161 Street in the afternoon 12 
+ Agent: Baseball game, next Thursday at 12 pm, in 1 East 161 Street: do you confirm? 
+ User: Yes, I confirm. Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 7}",DA_SGD_Calendar,7,,
+MS-RSC-009,reschedule_and_notify,Chat,"I need to reschedule. Context: User: Can you check my calendar for availability? 
+ Agent: Yes, what day should I check? Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 3}",DA_SGD_Calendar,8,,
+MS-RSC-010,reschedule_and_notify,Chat,"I need to reschedule. Context: Agent: Can you tell me the location of the event you want to do and at what time will it happen? Do you have a specific name which you want to use for the event? 
+ User: I will be going for a meal out so make a Reservation at Lulu's Kitchen as a title for the event. The restaurant is located at 1657 Willow Pass Road and the time that it will happen is one pm. 
+ Agent: Can you please confirm that the name of the event you want to add to your schedule is Reservation at Lulu's Kitchen on March 14th. The event is scheduled to happen on 1657 Willow Pass Road address, and the time when it will happen is 1 pm. Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 1}",DA_SGD_Calendar,9,,
+MS-RSC-011,reschedule_and_notify,Chat,"I need to reschedule. Context: User: Hey, can you show me when I'm free? Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 10}",DA_SGD_Calendar,10,,
+MS-RSC-012,reschedule_and_notify,Chat,"I need to reschedule. Context: Agent: There are 3 empty slots on your calendar,starting from 8 am to 11:30 am 
+ User: Please check any available time on 1st of March. 
+ Agent: Yes slots from 6:30 pm to 10:30 pm Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 13}",DA_SGD_Calendar,11,,
+MS-RSC-013,reschedule_and_notify,Chat,"I need to reschedule. Context: User: I'd like to see my availability. 
+ Agent: For which date do you want to check your availability? Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 3}",DA_SGD_Calendar,12,,
+MS-RSC-014,reschedule_and_notify,Chat,"I need to reschedule. Context: User: That's good, when am I available? 
+ Agent: There is an empty slot from 8 am to 7:30 pm. 
+ User: Okay great. Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 12}",DA_SGD_Calendar,13,,
+MS-RSC-015,reschedule_and_notify,Chat,"I need to reschedule. Context: User: Yes. 
+ Agent: I have successfully added the event to your calendar. 
+ User: Thank you. That's all for now. Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 2}",DA_SGD_Calendar,14,,
+MS-RSC-016,reschedule_and_notify,Chat,"I need to reschedule. Context: Agent: What time does the event start? 
+ User: It starts at 9:45 in the night. 
+ Agent: What title would you like for the event. Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 3}",DA_SGD_Calendar,15,,
+MS-RSC-017,reschedule_and_notify,Chat,"I need to reschedule. Context: User: Sounds great. 
+ Agent: Do you need help with anything else? 
+ User: No, thanks for your help. Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 2}",DA_SGD_Calendar,16,,
+MS-RSC-018,reschedule_and_notify,Chat,"I need to reschedule. Context: Agent: Ok, what is the name of this event? 
+ User: It is the Joe Hisaishi concert 
+ Agent: Ok, and where is it? Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 3}",DA_SGD_Calendar,17,,
+MS-RSC-019,reschedule_and_notify,Chat,"I need to reschedule. Context: User: Can you show me the events on my calendar? I need a verification. Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 10}",DA_SGD_Calendar,18,,
+MS-RSC-020,reschedule_and_notify,Chat,"I need to reschedule. Context: User: Yes, it will start at quarter to 5 in the evening. 
+ Agent: Please confirm the event scheduled tomorrow at 4:45 pm titled Restaurant reservation for 4 at Ristorante Fratello, which will be held at 1712 Meridian Avenue. 
+ User: That's perfect. Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 7}",DA_SGD_Calendar,19,,
+MS-RSC-021,reschedule_and_notify,Chat,"I need to reschedule. Context: Agent: In what time? What should I name the event? 
+ User: At afternoon 3, please. It's a Hairdresser appointment. 
+ Agent: Can you confirm the details? You want to set a Hairdresser appointment on March 11th. The location is 4175, 42151 Blacow Road. It is scheduled to begin at 3 pm. Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 1}",DA_SGD_Calendar,20,,
+MS-RSC-022,reschedule_and_notify,Chat,"I need to reschedule. Context: User: Do you know when I am available? Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 10}",DA_SGD_Calendar,21,,
+MS-RSC-023,reschedule_and_notify,Chat,"I need to reschedule. Context: User: That sounds great! 
+ Agent: Is there something else I can help you with? 
+ User: Nope, thanks for your help! Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 2}",DA_SGD_Calendar,22,,
+MS-RSC-024,reschedule_and_notify,Chat,"I need to reschedule. Context: User: Show when I'm available. Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 10}",DA_SGD_Calendar,23,,
+MS-RSC-025,reschedule_and_notify,Chat,"I need to reschedule. Context: Agent: You are available from 8 am to 1 pm on March 9th. 
+ User: Okay, That sounds great to me. 
+ Agent: Is there anything else I can help you with? Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 3}",DA_SGD_Calendar,24,,
+MS-RSC-026,reschedule_and_notify,Chat,"I need to reschedule. Context: User: Are there any other times I'm available? 
+ Agent: You are available from 6:30 pm to 7:30 pm. 
+ User: Thank you. Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 9}",DA_SGD_Calendar,25,,
+MS-RSC-027,reschedule_and_notify,Chat,"I need to reschedule. Context: User: Hello, I want to check the upcoming events on my calendar. 
+ Agent: Which dates are you looking for specifically? Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 3}",DA_SGD_Calendar,26,,
+MS-RSC-028,reschedule_and_notify,Chat,"I need to reschedule. Context: Agent: What time would you like that? 
+ User: At 9:30 in the night. 
+ Agent: Let's confirm the following. On March 13th, your bedtime at Home is scheduled for 9:30 pm. Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 1}",DA_SGD_Calendar,27,,
+MS-RSC-029,reschedule_and_notify,Chat,"I need to reschedule. Context: User: Can you show me the events on my calendar? I need a verification. 
+ Agent: Which date are you looking for? Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 3}",DA_SGD_Calendar,28,,
+MS-RSC-030,reschedule_and_notify,Chat,"I need to reschedule. Context: Agent: What's the name of the event? 
+ User: Erica Fernandez concert 
+ Agent: Please confirm Erica Fernandez concert on March 9th at 1111 Southwest Broadway at 6:30 pm. Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 1}",DA_SGD_Calendar,29,,
+MS-RSC-031,reschedule_and_notify,Chat,"I need to reschedule. Context: User: Am I available on the 2nd of this month? 
+ Agent: Yes, you are available from 8 am to 5 pm. Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 13}",DA_SGD_Calendar,30,,
+MS-RSC-032,reschedule_and_notify,Chat,"I need to reschedule. Context: Agent: There are 2 empty slots that day. Looks like 1 pm to 1:30 pm is open. 
+ User: Ok, that sounds fine. 
+ Agent: Should I add an event to your calendar? Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 0}",DA_SGD_Calendar,31,,
+MS-RSC-033,reschedule_and_notify,Chat,"I need to reschedule. Context: User: The event address is 50 South San Mateo Drive and the time is afternoon 3. The title is General Practitioner appointment. 
+ Agent: Ok so just to check this is correct: You would like to create an event called General Practitioner Appointment next Friday at 3 pm. The address is 50 South San Mateo Drive. 
+ User: That's correct. Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 7}",DA_SGD_Calendar,32,,
+MS-RSC-034,reschedule_and_notify,Chat,"I need to reschedule. Context: Agent: Would you like me to add an event to your calendar? 
+ User: Sure! Please add an event titled Restaurant reservation for 4 at Ristorante Fratello which is located at 1712 Meridian Avenue. 
+ Agent: May I know what time would the event commence? Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 3}",DA_SGD_Calendar,33,,
+MS-RSC-035,reschedule_and_notify,Chat,"I need to reschedule. Context: User: Do I have any other openings? 
+ Agent: You are free from 2:30 pm to 5 pm. 
+ User: Ok, Good. Thanks. Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 12}",DA_SGD_Calendar,34,,
+MS-RSC-036,reschedule_and_notify,Chat,"I need to reschedule. Context: User: What's my schedule like on March 7th? Any free time? 
+ Agent: Yeah, next Thursday you got nothing penciled in from 3:30 pm to 5 pm. Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 13}",DA_SGD_Calendar,35,,
+MS-RSC-037,reschedule_and_notify,Chat,"I need to reschedule. Context: User: Okay. I need to schedule something for one pm. 
+ Agent: What's the location? 
+ User: 19920 Olivewood Street. Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 10}",DA_SGD_Calendar,36,,
+MS-RSC-038,reschedule_and_notify,Chat,"I need to reschedule. Context: User: That sounds good! 
+ Agent: Can I help you with anything else? 
+ User: No, that would be it. Thank you so much for your help! Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 2}",DA_SGD_Calendar,37,,
+MS-RSC-039,reschedule_and_notify,Chat,"I need to reschedule. Context: User: What's on my calendar? 
+ Agent: About which date would you like to know? Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 3}",DA_SGD_Calendar,38,,
+MS-RSC-040,reschedule_and_notify,Chat,"I need to reschedule. Context: User: Event is 8:15 am at 1722 First Street title Movie booking for HIgh Life. 
+ Agent: Please confirm next friday 8:15 am at 1722 First Street title Movie booking for HIgh Life 
+ User: I confirm that all. Find the original event, propose a new time, and draft an email to attendees notifying them.","{""dialogue_act"": 7}",DA_SGD_Calendar,39,,
+MS-CAP-001,cancel_apology_propose,Chat,"Cancel the meeting referenced here: User: Ok, great. Can you tell me when I'm available? 
+ Agent: You currently have 3 open spots on your calendar. One slot is available from 8 am to 2 pm. 
+ User: Thank you, that sounds great. That is all I need to know.. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 2}",DA_SGD_Calendar,0,,
+MS-CAP-002,cancel_apology_propose,Chat,"Cancel the meeting referenced here: User: Okay. When should I be available? 
+ Agent: There are 4 empty slots on your calendar from 8 am through 11 am. 
+ User: Okay. That is all.. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 2}",DA_SGD_Calendar,1,,
+MS-CAP-003,cancel_apology_propose,Chat,"Cancel the meeting referenced here: User: Are there any other available times? 
+ Agent: 5 pm to 12 pm is open 
+ User: Sounds good. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 9}",DA_SGD_Calendar,2,,
+MS-CAP-004,cancel_apology_propose,Chat,"Cancel the meeting referenced here: Agent: You have a Movie booking for Breakthrough starting at 10:30 pm. 
+ User: Do I have any other events scheduled? 
+ Agent: You have a Reservation for 2 people at Mandalay Restaurant starting at 1 pm.. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 11}",DA_SGD_Calendar,3,,
+MS-CAP-005,cancel_apology_propose,Chat,"Cancel the meeting referenced here: User: Thanks a lot 
+ Agent: Do you want to d anything else? 
+ User: No. Everything is done.. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 2}",DA_SGD_Calendar,4,,
+MS-CAP-006,cancel_apology_propose,Chat,"Cancel the meeting referenced here: User: Can you help show my schedule for Thursday next week? 
+ Agent: Sure, next Thursday you have an empty slot from 8 pm until midnight.. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 13}",DA_SGD_Calendar,5,,
+MS-CAP-007,cancel_apology_propose,Chat,"Cancel the meeting referenced here: Agent: Your calendar is being updated to show the label Leave for airport on next Friday, going to SFO International Airport for 9:45 pm. Shall I confirm that for you? 
+ User: Yes, please confirm, and we're all set. 
+ Agent: Confirmed. The label has been added to update your calendar.. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 14}",DA_SGD_Calendar,6,,
+MS-CAP-008,cancel_apology_propose,Chat,"Cancel the meeting referenced here: Agent: Just to confirm, you want to add the Joe Hisaishi concert on March 9th and 9:45 am to your calendar? It is at 881 7th Avenue. 
+ User: Yes, that is correct 
+ Agent: Great, I have added that event to your calendar. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 14}",DA_SGD_Calendar,7,,
+MS-CAP-009,cancel_apology_propose,Chat,"Cancel the meeting referenced here: User: What's on my calendar? 
+ Agent: About which date would you like to know?. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 3}",DA_SGD_Calendar,8,,
+MS-CAP-010,cancel_apology_propose,Chat,"Cancel the meeting referenced here: User: Do I have any other openings? 
+ Agent: You are free from 2:30 pm to 5 pm. 
+ User: Ok, Good. Thanks.. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 12}",DA_SGD_Calendar,9,,
+MS-CAP-011,cancel_apology_propose,Chat,"Cancel the meeting referenced here: User: I have to schedule an appointment on the 10th of this month. Can you show me my availability on that date? 
+ Agent: You are available from 8 am to 5 pm on the 10th of this month.. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 11}",DA_SGD_Calendar,10,,
+MS-CAP-012,cancel_apology_propose,Chat,"Cancel the meeting referenced here: Agent: You have 3 empty time slots, from 8 am to 12:30 pm that day. 
+ User: What are my available afternoon slots? 
+ Agent: From 2 pm to 4:30 pm.. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 13}",DA_SGD_Calendar,11,,
+MS-CAP-013,cancel_apology_propose,Chat,Cancel the meeting referenced here: User: Hey. Can you show me when I am available?. Then draft an apology email and propose two alternate times next week.,"{""dialogue_act"": 10}",DA_SGD_Calendar,12,,
+MS-CAP-014,cancel_apology_propose,Chat,"Cancel the meeting referenced here: Agent: Would you like to add an event to your calandar? 
+ User: Yes, I want to add an event to my calendar. 
+ Agent: What time is the event?. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 3}",DA_SGD_Calendar,13,,
+MS-CAP-015,cancel_apology_propose,Chat,"Cancel the meeting referenced here: User: It's located at 1375 Montecito Avenue. 
+ Agent: Let me make sure. You want to add a Property viewing event for tomorrow at 8:30 am that takes place at 1375 Montecito Avenue. 
+ User: Yeah. That is correct.. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 7}",DA_SGD_Calendar,14,,
+MS-CAP-016,cancel_apology_propose,Chat,"Cancel the meeting referenced here: User: Place Appointment with Koppe Michael J. 
+ Agent: Ok, this is what I have for you: Appointment with Koppe Michael J. at 3:15 pm @ 5 Bon Air Rd # 114 tomorrow. 
+ User: That's great thank you.. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 7}",DA_SGD_Calendar,15,,
+MS-CAP-017,cancel_apology_propose,Chat,"Cancel the meeting referenced here: User: Thanks, Shelly. 
+ Agent: May I help you with anything else? 
+ User: No, that's all I needed to know.. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 2}",DA_SGD_Calendar,16,,
+MS-CAP-018,cancel_apology_propose,Chat,"Cancel the meeting referenced here: User: Yes, that sounds fine to me. 
+ Agent: I have successfully added the event to your calendar. 
+ User: Thank you for the help. That's all I need for now.. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 2}",DA_SGD_Calendar,17,,
+MS-CAP-019,cancel_apology_propose,Chat,"Cancel the meeting referenced here: User: The location is 10095 Saich Way #2. 
+ Agent: Please confirm the following details: the vent name is Hairdresser appointment. The sceduled date for the event is March 12th. The location of the eent is 10095 Saich Way #2. The scheduled time for the event is 2 pm. 
+ User: Yes, that sounds good.. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 7}",DA_SGD_Calendar,18,,
+MS-CAP-020,cancel_apology_propose,Chat,"Cancel the meeting referenced here: Agent: Adding an event Restaurant reservation for 6 at Royal Rangoon Restaurant starting at 2:15 pm on March 9th located at 2826 Telegraph Avenue. is that correct? 
+ User: Yes that sounds great. 
+ Agent: The event has been added to your Calendar.. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 14}",DA_SGD_Calendar,19,,
+MS-CAP-021,cancel_apology_propose,Chat,"Cancel the meeting referenced here: User: The event is taking place in 3455 Homestead Road. Save the event name as Apartment viewing. 
+ Agent: Please confirm this: The event name is Apartment viewing. The scheduled date for the event is next Monday. The location of the event is 3455 Homestead Road. The scheduled time for the event is 6:45 pm. 
+ User: OK. That's perfect.. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 7}",DA_SGD_Calendar,20,,
+MS-CAP-022,cancel_apology_propose,Chat,"Cancel the meeting referenced here: Agent: Do you have a particular date in mind? 
+ User: Show me if I am available on Thursday next week. 
+ Agent: For next Thursday, you have empty slot that starts at 12:30 pm and ends at 6:30 pm.. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 13}",DA_SGD_Calendar,21,,
+MS-CAP-023,cancel_apology_propose,Chat,"Cancel the meeting referenced here: User: Perfect. Tell me when I'm available. 
+ Agent: You have 3 empty slots on your calendar from 8 am to 10 am. 
+ User: Thanks. That's all.. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 2}",DA_SGD_Calendar,22,,
+MS-CAP-024,cancel_apology_propose,Chat,"Cancel the meeting referenced here: User: What about the 9th? Any times available? 
+ Agent: On March 9th you are available from 8 am to 1 pm 
+ User: Great, can you add an event?. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 10}",DA_SGD_Calendar,23,,
+MS-CAP-025,cancel_apology_propose,Chat,"Cancel the meeting referenced here: User: Do I have any time available on the 10th? 
+ Agent: Ok, you have an empty slot from 8 am to 10:30 pm on March 10th. Would you like me to set the date for the event? 
+ User: Yes, sounds good.. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 9}",DA_SGD_Calendar,24,,
+MS-CAP-026,cancel_apology_propose,Chat,"Cancel the meeting referenced here: User: I want to see what events are on my calendar. 
+ Agent: For which date?. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 3}",DA_SGD_Calendar,25,,
+MS-CAP-027,cancel_apology_propose,Chat,"Cancel the meeting referenced here: User: Yeah, I do need to add an event to my calendar. It's at 12:30. 
+ Agent: What would you like to name the event? 
+ User: Call it Viewing at Felson Management Corporation.. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 10}",DA_SGD_Calendar,26,,
+MS-CAP-028,cancel_apology_propose,Chat,"Cancel the meeting referenced here: User: whether i have any other available time other than 8 am to 12 pm? 
+ Agent: Yes you have an empty slot from 1 pm to 2:30 pm. 
+ User: That's great and now i am aware of all my events and my available time. Thanks.. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 2}",DA_SGD_Calendar,27,,
+MS-CAP-029,cancel_apology_propose,Chat,"Cancel the meeting referenced here: Agent: You have 3 empty slots on that day. There is one between 8 am and 1:30 pm. 
+ User: Yes, sounds good, 
+ Agent: Would you like to set an event for that tune?. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 0}",DA_SGD_Calendar,28,,
+MS-CAP-030,cancel_apology_propose,Chat,"Cancel the meeting referenced here: Agent: What should I call it? 
+ User: Please name it as Billy Idol concert on my calendar. 
+ Agent: Just to confirm; you want to add the Billy Idol concert next Thursday at 2901 East Hastings Street at 2:15 pm to your calendar?. Then draft an apology email and propose two alternate times next week.","{""dialogue_act"": 1}",DA_SGD_Calendar,29,,
+MS-TRI-001,triple_step,Telegram,For 'Planting flowers in the garden' on Friday at 03:11-03:26: 1) Add it to my calendar. 2) Draft an invite email to team@example.com with the agenda. 3) Set a 15-minute reminder.,"{""event"": [""Planting flowers in the garden"", ""03:11"", ""03:26""], ""reminder_offset_min"": 15}",events-scheduling,0,,
+MS-TRI-002,triple_step,Telegram,For 'Chess with Daniel' on Friday at 01:55-02:55: 1) Add it to my calendar. 2) Draft an invite email to team@example.com with the agenda. 3) Set a 15-minute reminder.,"{""event"": [""Chess with Daniel"", ""01:55"", ""02:55""], ""reminder_offset_min"": 15}",events-scheduling,1,,
+MS-TRI-003,triple_step,Telegram,For 'Silent disco party' on Friday at 01:44-02:44: 1) Add it to my calendar. 2) Draft an invite email to team@example.com with the agenda. 3) Set a 15-minute reminder.,"{""event"": [""Silent disco party"", ""01:44"", ""02:44""], ""reminder_offset_min"": 15}",events-scheduling,2,,
+MS-TRI-004,triple_step,Telegram,For 'Networking with engineers' on Friday at 06:11-06:56: 1) Add it to my calendar. 2) Draft an invite email to team@example.com with the agenda. 3) Set a 15-minute reminder.,"{""event"": [""Networking with engineers"", ""06:11"", ""06:56""], ""reminder_offset_min"": 15}",events-scheduling,3,,
+MS-TRI-005,triple_step,Telegram,For 'Silent disco party' on Friday at 01:38-02:08: 1) Add it to my calendar. 2) Draft an invite email to team@example.com with the agenda. 3) Set a 15-minute reminder.,"{""event"": [""Silent disco party"", ""01:38"", ""02:08""], ""reminder_offset_min"": 15}",events-scheduling,4,,
+MS-TRI-006,triple_step,Telegram,For 'Meeting with Emma and Jake' on Friday at 05:54-07:54: 1) Add it to my calendar. 2) Draft an invite email to team@example.com with the agenda. 3) Set a 15-minute reminder.,"{""event"": [""Meeting with Emma and Jake"", ""05:54"", ""07:54""], ""reminder_offset_min"": 15}",events-scheduling,5,,
+MS-TRI-007,triple_step,Telegram,For 'Web3 panel discussion' on Friday at 00:40-01:55: 1) Add it to my calendar. 2) Draft an invite email to team@example.com with the agenda. 3) Set a 15-minute reminder.,"{""event"": [""Web3 panel discussion"", ""00:40"", ""01:55""], ""reminder_offset_min"": 15}",events-scheduling,6,,
+MS-TRI-008,triple_step,Telegram,For 'Web3 panel discussion' on Friday at 05:55-06:55: 1) Add it to my calendar. 2) Draft an invite email to team@example.com with the agenda. 3) Set a 15-minute reminder.,"{""event"": [""Web3 panel discussion"", ""05:55"", ""06:55""], ""reminder_offset_min"": 15}",events-scheduling,7,,
+MS-TRI-009,triple_step,Telegram,For 'David Bowie tribute concert' on Friday at 01:36-02:36: 1) Add it to my calendar. 2) Draft an invite email to team@example.com with the agenda. 3) Set a 15-minute reminder.,"{""event"": [""David Bowie tribute concert"", ""01:36"", ""02:36""], ""reminder_offset_min"": 15}",events-scheduling,8,,
+MS-TRI-010,triple_step,Telegram,For 'Trying new VR headset' on Friday at 07:36-09:36: 1) Add it to my calendar. 2) Draft an invite email to team@example.com with the agenda. 3) Set a 15-minute reminder.,"{""event"": [""Trying new VR headset"", ""07:36"", ""09:36""], ""reminder_offset_min"": 15}",events-scheduling,9,,
+MS-TRI-011,triple_step,Telegram,For 'Chess with Daniel' on Friday at 02:19-03:04: 1) Add it to my calendar. 2) Draft an invite email to team@example.com with the agenda. 3) Set a 15-minute reminder.,"{""event"": [""Chess with Daniel"", ""02:19"", ""03:04""], ""reminder_offset_min"": 15}",events-scheduling,10,,
+MS-TRI-012,triple_step,Telegram,For 'Avril Lavigne concert' on Friday at 07:42-08:42: 1) Add it to my calendar. 2) Draft an invite email to team@example.com with the agenda. 3) Set a 15-minute reminder.,"{""event"": [""Avril Lavigne concert"", ""07:42"", ""08:42""], ""reminder_offset_min"": 15}",events-scheduling,11,,
+MS-TRI-013,triple_step,Telegram,For 'Async Python talk' on Friday at 01:33-03:03: 1) Add it to my calendar. 2) Draft an invite email to team@example.com with the agenda. 3) Set a 15-minute reminder.,"{""event"": [""Async Python talk"", ""01:33"", ""03:03""], ""reminder_offset_min"": 15}",events-scheduling,12,,
+MS-TRI-014,triple_step,Telegram,For 'Chemistry experiment' on Friday at 03:43-04:43: 1) Add it to my calendar. 2) Draft an invite email to team@example.com with the agenda. 3) Set a 15-minute reminder.,"{""event"": [""Chemistry experiment"", ""03:43"", ""04:43""], ""reminder_offset_min"": 15}",events-scheduling,13,,
+MS-TRI-015,triple_step,Telegram,For 'Small Language Models talk' on Friday at 07:45-09:15: 1) Add it to my calendar. 2) Draft an invite email to team@example.com with the agenda. 3) Set a 15-minute reminder.,"{""event"": [""Small Language Models talk"", ""07:45"", ""09:15""], ""reminder_offset_min"": 15}",events-scheduling,14,,
+MS-TRI-016,triple_step,Telegram,For '3D printing workshop' on Friday at 04:39-05:09: 1) Add it to my calendar. 2) Draft an invite email to team@example.com with the agenda. 3) Set a 15-minute reminder.,"{""event"": [""3D printing workshop"", ""04:39"", ""05:09""], ""reminder_offset_min"": 15}",events-scheduling,15,,
+MS-TRI-017,triple_step,Telegram,For 'Meeting with Lisa at café' on Friday at 02:40-04:40: 1) Add it to my calendar. 2) Draft an invite email to team@example.com with the agenda. 3) Set a 15-minute reminder.,"{""event"": [""Meeting with Lisa at caf\u00e9"", ""02:40"", ""04:40""], ""reminder_offset_min"": 15}",events-scheduling,16,,
+MS-TRI-018,triple_step,Telegram,For 'Planting flowers in the garden' on Friday at 02:13-02:43: 1) Add it to my calendar. 2) Draft an invite email to team@example.com with the agenda. 3) Set a 15-minute reminder.,"{""event"": [""Planting flowers in the garden"", ""02:13"", ""02:43""], ""reminder_offset_min"": 15}",events-scheduling,17,,
+MS-TRI-019,triple_step,Telegram,For 'Preparing PTO handover' on Friday at 00:02-02:02: 1) Add it to my calendar. 2) Draft an invite email to team@example.com with the agenda. 3) Set a 15-minute reminder.,"{""event"": [""Preparing PTO handover"", ""00:02"", ""02:02""], ""reminder_offset_min"": 15}",events-scheduling,18,,
+MS-TRI-020,triple_step,Telegram,For 'Reading 'Dune'' on Friday at 00:25-01:10: 1) Add it to my calendar. 2) Draft an invite email to team@example.com with the agenda. 3) Set a 15-minute reminder.,"{""event"": [""Reading 'Dune'"", ""00:25"", ""01:10""], ""reminder_offset_min"": 15}",events-scheduling,19,,

@@ -1,0 +1,414 @@
+timestamp,test_id,subcategory,channel,ai_output,new_event_count,new_draft_count,response_time_ms,status,clarification_asked,read_only_tools_used,amb_pass,notes,_new_event_ids,_new_draft_ids
+2026-05-24T18:59:41.062Z,AMB-MDT-001,missing_date_or_time,Chat,"I need more specific information to schedule the meeting. Please provide the exact day, the work hours for that day, and the specific busy times for each participant.",0,0,96974,success,Y,unknown,Y,"Backfilled: grader missed imperative clarification (""Please provide…"").",[],[]
+2026-05-24T19:01:26.553Z,AMB-MDT-002,missing_date_or_time,Chat,"To schedule the meeting, I need to know the specific day you wish to schedule it for, the work hours for that day, and the exact busy times for each participant. Please provide these details.",0,0,96915,success,Y,unknown,Y,,[],[]
+2026-05-24T19:03:10.996Z,AMB-MDT-003,missing_date_or_time,Chat,"To schedule the meeting, I need the specific date and time for the work hours and busy schedules. Please provide the exact days and times for each person's schedule and the desired meeting day and work hours.",0,0,95570,success,Y,unknown,Y,,[],[]
+2026-05-24T19:04:56.018Z,AMB-MDT-004,missing_date_or_time,Chat,"I can help schedule that meeting. To do so, I need some more specific information:
+
+*   What is the exact date or day of the week you'd like to schedule the meeting?
+*   What are the specific work hours for the meeting (e.g., 9:00 to 17:00)?
+*   Could you please provide Mark's specific meeting times and the day he cannot meet before a certain time?",0,0,96350,success,Y,unknown,Y,,[],[]
+2026-05-24T19:06:40.457Z,AMB-MDT-005,missing_date_or_time,Chat,"I need more information to schedule this meeting. Please provide the specific dates and times for:
+*   The work hours for the meeting.
+*   The specific dates for the days mentioned for Harold and Donna's busy schedules.
+*   The specific busy times for Harold and Donna.
+*   The specific time for Harold's preference (""Harold do not want to meet on [DAY-REMOVED] after [TIME-REMOVED]"").
+*   The specific day for Donna's preference (""Donna would like to avoid more meetings on [DAY-REMOVED]"").",0,0,95909,success,Y,unknown,Y,,[],[]
+2026-05-24T19:11:42.732Z,AMB-MDT-006,missing_date_or_time,Chat,"I need more information to schedule this meeting. Please provide the specific days and times for:
+
+*   The work hours for the meeting.
+*   The specific days on which the meeting can be scheduled.
+*   Cheryl's blocked calendar times, including the dates and times.
+*   Brittany's busy times, including the dates and times.
+*   The specific day Cheryl would rather not meet.
+*   The specific day Brittany does not want to meet.",0,0,95798,success,Y,unknown,Y,,[],[]
+2026-05-24T19:13:27.519Z,AMB-MDT-007,missing_date_or_time,Chat,"I cannot schedule the meeting because the dates and times for the work hours, busy intervals, and preferences are missing. Please provide the specific days and times for these constraints.",0,0,95503,success,Y,unknown,Y,,[],[]
+2026-05-24T19:15:11.606Z,AMB-MDT-008,missing_date_or_time,Chat,"I need more information to schedule the meeting. Please provide the following:
+
+*   The specific day for the meeting (instead of `[DAY-REMOVED]`).
+*   The work hours for the meeting (instead of `[TIME-REMOVED]` to `[TIME-REMOVED]`).
+*   The specific busy times for Jacqueline, Gerald, and Wayne (instead of `[TIME-REMOVED]` to `[TIME-REMOVED]`).",0,0,95036,success,Y,unknown,Y,,[],[]
+2026-05-24T19:16:57.699Z,AMB-MDT-009,missing_date_or_time,Chat,"I need more information to schedule this meeting. Could you please provide the specific times and days for:
+*   The work hours for the meeting.
+*   The specific days (e.g., Monday, Tuesday) for the meeting options.
+*   Shirley's blocked calendar times and days.
+*   Albert's busy times and days.
+*   Shirley's preference for avoiding meetings after a certain time on a specific day.",0,0,97405,success,Y,unknown,Y,,[],[]
+2026-05-24T19:18:41.651Z,AMB-MDT-010,missing_date_or_time,Chat,"I need more information to schedule this meeting. Please provide the specific date and time ranges for the work hours, and the specific dates and times for each participant's busy schedule.",0,0,94950,success,Y,unknown,Y,,[],[]
+2026-05-24T19:20:25.519Z,AMB-MDT-011,missing_date_or_time,Chat,"I need more information to schedule this meeting. Could you please provide the specific day and time range for the meeting, as well as the exact times for Lisa's, Bobby's, and Randy's busy schedules? Also, please clarify which day Bobby wants to avoid meetings after a certain time.",0,0,96027,success,Y,unknown,Y,,[],[]
+2026-05-24T19:22:10.114Z,AMB-MDT-012,missing_date_or_time,Chat,"I need more information to schedule this meeting. Could you please provide the specific date for the meeting, the exact work hours for that day, and the precise times for each participant's existing schedule?",0,0,95868,success,Y,unknown,Y,,[],[]
+2026-05-24T19:23:57.256Z,AMB-MDT-013,missing_date_or_time,Chat,"I need more information to schedule this meeting. Could you please provide the specific dates and times for the work hours, busy intervals, and preferred days?",0,0,96976,success,Y,unknown,Y,,[],[]
+2026-05-24T19:25:41.955Z,AMB-MDT-014,missing_date_or_time,Chat,"I can help with that, but I need some more information. Could you please provide the specific days and times for the meeting constraints? I need:
+
+*   The exact work hours window (e.g., 9:00 AM to 5:00 PM).
+*   The specific days you are considering (e.g., Monday, Wednesday, Friday).
+*   The exact times for Christine's and Jose's existing busy schedules on those days.",0,0,97000,success,Y,unknown,Y,,[],[]
+2026-05-24T19:27:25.860Z,AMB-MDT-015,missing_date_or_time,Chat,"I need more information to schedule this meeting. Please provide the following:
+
+*   The exact work hours for the meeting.
+*   The specific days of the week (e.g., Monday, Tuesday) on which the meeting can be scheduled.
+*   The exact times of Nicholas's and Virginia's existing meetings for each day.
+*   The specific day Nicholas would like to avoid more meetings.",0,0,95750,success,Y,unknown,Y,,[],[]
+2026-05-24T19:42:39.999Z,AMB-MDT-016,missing_date_or_time,Chat,"I can help schedule a meeting for Adam and Jose. To do this, I need more specific information. Could you please provide the following details?
+
+*   What are the exact work hours for the meeting?
+*   Which day(s) are you referring to for scheduling the meeting?
+*   What are the exact blocked times for Jose on that day?
+*   What is the specific time after which Jose cannot meet on that day?",0,0,98495,success,Y,unknown,Y,,[],[]
+2026-05-24T19:44:23.562Z,AMB-MDT-017,missing_date_or_time,Chat,"I cannot schedule the meeting without specific dates and times. Please provide the exact date for the meeting, the work hours window, and the specific busy times for each participant.",0,0,94731,success,Y,unknown,Y,,[],[]
+2026-05-24T19:46:05.704Z,AMB-MDT-018,missing_date_or_time,Chat,"I cannot schedule the meeting without the actual dates and times for Evelyn and Julia's schedules. Please provide the specific details for the work hours, meeting days, and their blocked calendar slots.",0,0,94364,success,Y,unknown,Y,,[],[]
+2026-05-24T19:47:51.392Z,AMB-MDT-019,missing_date_or_time,Chat,"I need more information to schedule this meeting. Please provide:
+*   The specific date for the meeting.
+*   The exact work hours (start and end time) for that day.
+*   The precise busy intervals for Rebecca, Donald, Diana, and Jesse on that date.
+*   The exact day and time for Diana's constraint (""Diana can not meet on [DAY-REMOVED] before [TIME-REMOVED]"").",0,0,97082,success,Y,unknown,Y,,[],[]
+2026-05-24T19:49:35.528Z,AMB-MDT-020,missing_date_or_time,Chat,"Please provide the actual times and days for the meeting, work hours, and existing schedules so I can help you schedule the meeting.",0,0,96248,success,Y,unknown,Y,,[],[]
+2026-05-24T19:51:21.647Z,AMB-MDT-021,missing_date_or_time,Chat,"I need more information to schedule a meeting. Could you please provide the following details for the meeting you'd like to schedule:
+
+*   What is the topic of the meeting?
+*   Who are the participants?
+*   What is the desired duration?
+*   What are the preferred days and work hours for the meeting?
+*   Are there any specific busy times for each participant that I should be aware of?",0,0,97132,success,Y,unknown,Y,,[],[]
+2026-05-24T19:53:05.260Z,AMB-MDT-022,missing_date_or_time,Chat,"Please provide the following missing information to schedule the meeting:
+- The exact work hours for the meeting.
+- The specific day of the week for the meeting.
+- Brenda's exact busy times and the day(s) they apply to.
+- The specific day and time Benjamin does not want to meet after.",0,0,95389,success,Y,unknown,Y,,[],[]
+2026-05-24T19:54:48.493Z,AMB-MDT-023,missing_date_or_time,Chat,"I need more information to schedule this meeting. Could you please provide the specific date and times for the work hours, Isabella's, Tyler's, and Jordan's blocked times, and the day Tyler cannot meet after a certain time?",0,0,94796,success,Y,unknown,Y,,[],[]
+2026-05-24T19:56:31.432Z,AMB-MDT-024,missing_date_or_time,Chat,"I need more information to schedule this meeting. Please provide:
+*   The specific days (e.g., Monday, Tuesday) for scheduling.
+*   The work hours for each day (e.g., 9:00-17:00).
+*   The exact busy times for Kathryn and Dorothy on those days.",0,0,94882,success,Y,unknown,Y,,[],[]
+2026-05-24T19:58:13.679Z,AMB-MDT-025,missing_date_or_time,Chat,"Please provide the specific date for the meeting, the work hours for that day, and the exact times for each participant's busy intervals.",0,0,94787,success,Y,unknown,Y,,[],[]
+2026-05-24T19:59:55.963Z,AMB-MDT-026,missing_date_or_time,Chat,"I need more information to schedule this meeting. Could you please provide the specific day for the meeting, the work hours for that day, and the exact busy times for each participant?",0,0,94762,success,Y,unknown,Y,,[],[]
+2026-05-24T20:01:41.727Z,AMB-MDT-027,missing_date_or_time,Chat,"Please provide the specific dates and times for the following:
+
+1.  What are the exact work hours for the meeting (e.g., 9:00-17:00)?
+2.  Which specific days of the week are available for the meeting (e.g., Monday, Tuesday, Wednesday)?
+3.  Could you provide the exact busy times and days for Albert and Patricia?
+4.  Which specific day does Patricia not want to meet on?",0,0,97054,success,Y,unknown,Y,,[],[]
+2026-05-24T20:03:23.705Z,AMB-MDT-028,missing_date_or_time,Chat,"Please provide the specific days of the week, the work hours, and the specific times for Nicole's and Ruth's busy schedules, as well as Ruth's meeting preferences.",0,0,94155,success,Y,unknown,Y,,[],[]
+2026-05-24T20:05:12.325Z,AMB-MDT-029,missing_date_or_time,Chat,"Please provide the specific details for scheduling the meeting:
+
+1.  What are the exact work hours for the meeting (e.g., ""9:00 to 17:00"")?
+2.  What are the specific days of the week on which the meeting can be held (e.g., ""Monday, Tuesday, Wednesday, or Thursday"")?
+3.  Could you provide Catherine's complete busy schedule for those days with specific times?
+4.  Could you provide Peter's complete busy schedule for those days with specific times?
+5.  What is the specific day Peter would rather not meet on?",0,0,99933,success,Y,unknown,Y,,[],[]
+2026-05-24T20:06:56.282Z,AMB-MDT-030,missing_date_or_time,Chat,"To schedule the meeting, I need some more information. Could you please provide the following details:
+
+*   The specific day of the week (e.g., Monday, Tuesday) for the meeting and the corresponding date.
+*   The exact work hours for the day (e.g., 9:00 AM to 5:00 PM).
+*   The precise times for Catherine's busy intervals.
+*   The precise times for Rachel's busy intervals.
+*   The precise times for Lori's busy intervals.
+*   The specific day and time Catherine would rather not meet before.",0,0,95881,success,Y,unknown,Y,,[],[]
+2026-05-24T20:08:44.055Z,AMB-MDT-031,missing_date_or_time,Chat,"To schedule the meeting, please provide the following details:
+- The specific day and date for the meeting (e.g., ""next Monday, May 15th"").
+- The exact work hours for the meeting (e.g., ""from 9:00 to 17:00"").
+- The specific busy intervals (day and time) for each participant.",0,0,100286,success,Y,unknown,Y,,[],[]
+2026-05-24T20:10:27.920Z,AMB-MDT-032,missing_date_or_time,Chat,"To schedule the meeting, I need the actual day of the week, the work hours for the meeting, and the specific busy times for each participant. Please provide the exact date and times for all the `[DAY-REMOVED]` and `[TIME-REMOVED]` placeholders in your request.",0,0,96048,success,Y,unknown,Y,,[],[]
+2026-05-24T20:12:10.558Z,AMB-MDT-033,missing_date_or_time,Chat,"Please provide the specific day and the work hours (start and end time) for the meeting. Also, please fill in all the `[TIME-REMOVED]` and `[DAY-REMOVED]` placeholders in the schedules for each participant.",0,0,94964,success,Y,unknown,Y,,[],[]
+2026-05-24T20:13:54.218Z,AMB-MDT-034,missing_date_or_time,Chat,"Please provide the specific work hours, the exact days for the meeting, and the precise busy times for Joshua and Diane so I can find an availability.",0,0,95693,success,Y,unknown,Y,,[],[]
+2026-05-24T20:15:37.684Z,AMB-MDT-035,missing_date_or_time,Chat,"Please provide the specific date for the meeting, the work hours (start and end time), and the exact duration of the meeting.",0,0,95263,success,Y,unknown,Y,,[],[]
+2026-05-24T20:38:53.546Z,AMB-MDT-036,missing_date_or_time,Chat,"I need more information to schedule the meeting. Please provide the specific work hours, the exact days for the meeting, Russell's and Amy's blocked times with actual days and times, and on which specific day Russell cannot meet.",0,0,97755,success,Y,unknown,Y,,[],[]
+2026-05-24T20:40:37.801Z,AMB-MDT-037,missing_date_or_time,Chat,"I cannot schedule the meeting because critical information is missing. Please provide:
+* The specific work hours for the meeting.
+* The specific day(s) for the meeting.
+* The specific busy times for Aaron, Frank, Diane, and Dylan.",0,0,96281,success,Y,unknown,Y,,[],[]
+2026-05-24T20:42:22.676Z,AMB-MDT-038,missing_date_or_time,Chat,"I need more information to schedule this meeting. Please provide:
+*   The specific days you would like to schedule the meeting (e.g., Monday, Tuesday, Wednesday).
+*   The work hours window for each day (e.g., 9:00-17:00).
+*   The exact busy schedules for Pamela and Judith, including specific dates and times for each blocked interval.",0,0,95652,success,Y,unknown,Y,,[],[]
+2026-05-24T20:44:05.126Z,AMB-MDT-039,missing_date_or_time,Chat,"Please provide the specific day(s) and times for the meeting, as well as the exact times for Elizabeth's and Sandra's existing meetings and Sandra's availability constraint.",0,0,94666,success,Y,unknown,Y,,[],[]
+2026-05-24T20:45:46.139Z,AMB-MDT-040,missing_date_or_time,Chat,"I need the actual days and times for the meeting. Please provide:
+- The work hours for the meeting.
+- The specific days (e.g., Monday, Tuesday) on which the meeting can be scheduled.
+- The exact busy times for Barbara and Jose.
+- The specific day Jose cannot meet.",0,0,94008,success,Y,unknown,Y,,[],[]
+2026-05-24T20:47:29.299Z,AMB-MDT-041,missing_date_or_time,Chat,"I can help schedule that meeting, but it seems like some of the key details regarding the times and days have been removed from your request. Could you please provide the specific work hours, days, and existing schedules for Edward and Zachary so I can find a suitable time?",0,0,95609,success,Y,unknown,Y,,[],[]
+2026-05-24T20:49:10.772Z,AMB-MDT-042,missing_date_or_time,Chat,"Please provide the specific date for the meeting, the exact work hours (start and end times), and the precise start and end times for each participant's busy slots.",0,0,94919,success,Y,unknown,Y,,[],[]
+2026-05-24T20:50:52.475Z,AMB-MDT-043,missing_date_or_time,Chat,"I need more information to schedule the meeting. Please provide the following details:
+
+*   The specific work hours for the meeting (start and end time).
+*   The exact day(s) the meeting should be scheduled.
+*   The specific busy times for Stephanie and Samuel.
+*   The specific day and time Stephanie would rather not meet after.",0,0,94511,success,Y,unknown,Y,,[],[]
+2026-05-24T20:52:34.883Z,AMB-MDT-044,missing_date_or_time,Chat,"To schedule the meeting, I need the specific days and times for Gary and David's schedules. Please provide:
+- The exact work hours for the meeting.
+- The specific days you would like to consider for the meeting.
+- The precise times Gary and David have blocked on their calendars.",0,0,94964,success,Y,unknown,Y,,[],[]
+2026-05-24T20:54:16.999Z,AMB-MDT-045,missing_date_or_time,Chat,"I can help you schedule that meeting. Please provide the specific date or day of the week, the work hours for the meeting, and the exact times for each participant's blocked calendar slots.",0,0,94293,success,Y,unknown,Y,,[],[]
+2026-05-24T20:55:59.938Z,AMB-MDT-046,missing_date_or_time,Chat,"Please provide the specific work hours (start and end times), the exact days for the meeting, and complete busy schedules for Hannah and Steven. Some times and days are currently marked as removed or are incomplete.",0,0,95599,success,Y,unknown,Y,,[],[]
+2026-05-24T20:57:42.603Z,AMB-MDT-047,missing_date_or_time,Chat,"Could you please provide the specific date for the meeting, the work hours for that day, and the exact busy intervals for each participant? Also, Natalie's preference statement is incomplete. Could you clarify that as well?",0,0,95279,success,Y,unknown,Y,,[],[]
+2026-05-24T20:59:22.723Z,AMB-MDT-048,missing_date_or_time,Chat,"I cannot schedule the meeting with the information provided. Please provide the actual dates, specific times for work hours and busy intervals, and the full schedule for Emily on the days mentioned.",0,0,93283,success,Y,unknown,Y,,[],[]
+2026-05-24T21:01:06.682Z,AMB-MDT-049,missing_date_or_time,Chat,"I cannot schedule the meeting without the specific dates and times. Please provide the following:
+
+*   The exact work hours for the meeting.
+*   The specific days of the week you'd like to schedule the meeting on.
+*   The blocked calendar times for Willie and Dorothy, including the days.
+*   The specific day Dorothy would like to avoid more meetings on.",0,0,95784,success,Y,unknown,Y,,[],[]
+2026-05-24T21:02:50.584Z,AMB-MDT-050,missing_date_or_time,Chat,"I need more information to schedule this meeting. Could you please provide the specific date for the meeting, the exact work hours (start and end times), and the precise busy times for each participant?",0,0,95739,success,Y,unknown,Y,,[],[]
+2026-05-24T21:04:31.782Z,AMB-MPT-001,missing_participants,Chat,"To schedule the meeting, please provide the names of the participants.",0,0,94074,success,Y,unknown,Y,,[],[]
+2026-05-24T21:06:15.992Z,AMB-MPT-002,missing_participants,Chat,"I need the actual names or email addresses of the participants to schedule the meeting. Also, what should be the title or purpose of this meeting?",0,0,95617,success,Y,unknown,Y,,[],[]
+2026-05-24T21:07:58.210Z,AMB-MPT-003,missing_participants,Chat,"What should be the title of this meeting? Could you please provide the names of the attendees instead of ""[NAME-REMOVED]""?",0,0,93363,success,Y,unknown,Y,,[],[]
+2026-05-24T21:09:40.387Z,AMB-MPT-004,missing_participants,Chat,"To schedule this meeting, I need to know who the meeting is between. Please provide the names or email addresses of the participants. I also need a topic for the meeting.",0,0,94666,success,Y,unknown,Y,,[],[]
+2026-05-24T21:11:21.195Z,AMB-MPT-005,missing_participants,Chat,Who are the participants in this meeting? What is the topic of the meeting?,0,0,93617,success,Y,unknown,Y,,[],[]
+2026-05-24T21:13:04.580Z,AMB-MPT-006,missing_participants,Chat,Who are the participants of this meeting? What is the meeting about and for how long should it be? Which days and times are preferred for the meeting?,0,0,94755,success,Y,unknown,Y,,[],[]
+2026-05-24T21:14:45.567Z,AMB-MPT-007,missing_participants,Chat,"Could you please provide the email addresses of the participants (Charles, Bryan, Ruth, Keith, and William)?",0,0,94247,success,Y,unknown,Y,,[],[]
+2026-05-24T21:16:25.860Z,AMB-MPT-008,missing_participants,Chat,Could you please provide the names of the participants for this meeting? The names in the example task are redacted.,0,0,92292,success,Y,unknown,Y,,[],[]
+2026-05-24T21:18:09.619Z,AMB-MPT-009,missing_participants,Chat,Who should I invite to this meeting and what should the topic be?,0,0,95300,success,Y,unknown,Y,,[],[]
+2026-05-24T21:19:51.119Z,AMB-MPT-010,missing_participants,Chat,"To set up the meeting, I need a little more information. Could you please tell me:
+
+1.  Who are the participants in this meeting?
+2.  What is the topic or summary of the meeting?
+3.  How long should the meeting be?",0,0,93951,success,Y,unknown,Y,,[],[]
+2026-05-24T21:21:31.794Z,AMB-MPT-011,missing_participants,Chat,Could you please confirm all the participants for this meeting?,0,0,94121,success,Y,unknown,Y,,[],[]
+2026-05-24T21:23:15.710Z,AMB-MPT-012,missing_participants,Chat,"I can help with that, but first, I need some more information for the meeting you want to set up:
+
+1.  Who are the participants for this meeting?
+2.  What is the topic or purpose of the meeting?
+3.  What is the preferred duration for the meeting?
+4.  Do you have any preferred days or times for the meeting, or any days/times to avoid?",0,0,96628,success,Y,unknown,Y,,[],[]
+2026-05-24T21:24:59.621Z,AMB-MPT-013,missing_participants,Chat,"I can help with that. To schedule the meeting, please provide the following details:
+
+*   Who are the participants for this meeting?
+*   What is the topic of the meeting?
+*   What is the desired duration of the meeting?
+*   What are the preferred days and work hours for this meeting?
+*   Could you please clarify the names of the participants for whom you've provided the schedules?",0,0,96935,success,Y,unknown,Y,,[],[]
+2026-05-24T21:26:39.794Z,AMB-MPT-014,missing_participants,Chat,Who should be invited to this meeting?,0,0,92909,success,Y,unknown,Y,,[],[]
+2026-05-24T21:28:21.814Z,AMB-MPT-015,missing_participants,Chat,"I can help you schedule a meeting, but I need some more information. Could you please specify:
+*   Who are the participants for this meeting?
+*   What is the topic or summary of the meeting?
+*   What is the desired duration for the meeting?",0,0,94650,success,Y,unknown,Y,,[],[]
+2026-05-24T21:30:09.229Z,AMB-MPT-016,missing_participants,Chat,"To schedule this meeting, please provide the following details:
+1.  Who are the specific attendees for this meeting (i.e., who does ""us"" refer to)?
+2.  What is the topic or purpose of the meeting?
+3.  What is the desired duration of the meeting?
+4.  Do you have any preferred days or times for this meeting, and what are the busy intervals for each participant you mentioned?",0,0,100242,success,Y,unknown,Y,,[],[]
+2026-05-24T21:31:50.009Z,AMB-MPT-017,missing_participants,Chat,"What is the meeting about, and who are ""us"" in this context?",0,0,94207,success,Y,unknown,Y,,[],[]
+2026-05-24T21:33:31.425Z,AMB-MPT-018,missing_participants,Chat,Who are the participants for this meeting?,0,0,94591,success,Y,unknown,Y,,[],[]
+2026-05-24T21:35:12.874Z,AMB-MPT-019,missing_participants,Chat,Who are the participants of this meeting? What is the topic of the meeting?,0,0,93487,success,Y,unknown,Y,,[],[]
+2026-05-24T21:36:53.796Z,AMB-MPT-020,missing_participants,Chat,What is the topic of the meeting and who are the participants?,0,0,93631,success,Y,unknown,Y,,[],[]
+2026-05-24T21:38:35.839Z,AMB-MPT-021,missing_participants,Chat,Who are the participants you would like to include in this meeting?,0,0,93719,success,Y,unknown,Y,,[],[]
+2026-05-24T21:40:15.438Z,AMB-MPT-022,missing_participants,Chat,"Who are ""us""? Please provide the names or email addresses of the participants. What is the subject of this meeting?",0,0,92838,success,Y,unknown,Y,,[],[]
+2026-05-24T21:41:59.049Z,AMB-MPT-023,missing_participants,Chat,"I need to know the schedules for all participants (Abigail, Roy, Deborah, Eric, Susan, and Joyce) for Monday. Could you please provide the busy times for each of them?",0,0,95931,success,Y,unknown,Y,,[],[]
+2026-05-24T21:43:41.592Z,AMB-MPT-024,missing_participants,Chat,"I can help you schedule that meeting, but first, I need a few more details:
+
+1.  What is the topic or summary of this meeting?
+2.  Could you please clarify who ""us"" refers to, and confirm all attendees' names?
+3.  Please provide the complete existing schedules for all participants.",0,0,94563,success,Y,unknown,Y,,[],[]
+2026-05-24T21:45:22.721Z,AMB-MPT-025,missing_participants,Chat,"Could you please clarify which schedule corresponds to which participant? Also, please provide your availability for the meeting.",0,0,92984,success,Y,unknown,Y,,[],[]
+2026-05-24T21:47:02.941Z,AMB-MPT-026,missing_participants,Chat,I cannot schedule a meeting without knowing the names of the participants. Please provide the names of all attendees for the meeting.,0,0,92702,success,Y,unknown,Y,,[],[]
+2026-05-24T21:48:42.081Z,AMB-MPT-027,missing_participants,Chat,Who should I invite to the meeting?,0,0,91990,success,Y,unknown,Y,,[],[]
+2026-05-24T21:50:22.054Z,AMB-MPT-028,missing_participants,Chat,I need to know which of the provided schedules belongs to Alexis and which belongs to Dorothy to find a suitable meeting time. Could you please specify that?,0,0,92539,success,Y,unknown,Y,,[],[]
+2026-05-24T21:52:05.820Z,AMB-MPT-029,missing_participants,Chat,"I can help you set up a meeting. To do so, I need a bit more information. Could you please tell me:
+
+*   Who are the participants in the meeting?
+*   What is the topic or title of the meeting?
+*   What is the desired duration of the meeting?
+*   On what day(s) would you like the meeting to take place, and what are the preferred work hours for those days?",0,0,95357,success,Y,unknown,Y,,[],[]
+2026-05-24T21:53:54.411Z,AMB-MPT-030,missing_participants,Chat,"Please clarify who the participants are for whom the schedules are provided (the two `[NAME-REMOVED]`). Also, what is the topic of this meeting, and are you (the user) also attending? If so, please provide your name and availability.",0,0,101649,success,Y,unknown,Y,,[],[]
+2026-05-24T21:55:40.283Z,AMB-MPT-031,missing_participants,Chat,What is the topic of this meeting?,0,0,97454,success,Y,unknown,Y,,[],[]
+2026-05-24T21:57:20.234Z,AMB-MPT-032,missing_participants,Chat,Who are the participants of this meeting? Please provide their names.,0,0,92226,success,Y,unknown,Y,,[],[]
+2026-05-24T21:59:03.949Z,AMB-MPT-033,missing_participants,Chat,"Could you please clarify which of the listed participants (Debra, Sara, Theresa, Carol, Justin, and Edward) correspond to the busy schedules you provided? Also, for the last participant with a blocked calendar on Monday during 9, could you specify the full time range?",0,0,95811,success,Y,unknown,Y,,[],[]
+2026-05-24T22:00:46.093Z,AMB-MPT-034,missing_participants,Chat,"What is the meeting about? Could you please clarify who ""us"" refers to, and who ""[NAME-REMOVED]"" is in the provided schedule? Is the provided schedule for all participants, or only for ""[NAME-REMOVED]""?",0,0,94911,success,Y,unknown,Y,,[],[]
+2026-05-24T22:02:33.042Z,AMB-MPT-035,missing_participants,Chat,"Please clarify who the participants for this meeting are. Is it Edward, Zachary, and yourself, or a different set of participants? Also, what is the topic or purpose of this meeting?",0,0,99052,success,Y,unknown,Y,,[],[]
+2026-05-24T22:04:13.971Z,AMB-MPT-036,missing_participants,Chat,"I need more information to schedule this meeting. Could you please specify:
+
+1.  Who are the participants for this meeting?
+2.  What is the topic or summary of the meeting?
+3.  Could you clarify the busy schedules for the named participants? (e.g., ""Megan has meetings on Wednesday..."")",0,0,94420,success,Y,unknown,Y,,[],[]
+2026-05-24T22:05:54.403Z,AMB-MPT-037,missing_participants,Chat,Who are the participants of this meeting?,0,0,93901,success,Y,unknown,Y,,[],[]
+2026-05-24T22:07:36.685Z,AMB-MPT-038,missing_participants,Chat,"I can help with that. To set up the meeting, I need a few more details:
+
+*   Could you please specify Gary's blocked calendar times for Monday?
+*   Who are the exact participants for this meeting, including ""us""?",0,0,95266,success,Y,unknown,Y,,[],[]
+2026-05-24T22:09:20.992Z,AMB-MPT-039,missing_participants,Chat,"I can help with that. To set up the meeting, could you please tell me:
+1. What is the topic of this meeting?
+2. Could you specify which busy schedule belongs to which person (Ruth, Aaron, Brittany, Jeffrey, Virginia, Peter)?
+3. Who are the exact attendees for this meeting, including yourself if you are attending?",0,0,96678,success,Y,unknown,Y,,[],[]
+2026-05-24T22:11:02.648Z,AMB-MPT-040,missing_participants,Chat,"I can help set up a meeting. To do that, I need a few more details:
+
+*   Who should be included in this meeting?
+*   What is the topic or purpose of this meeting?
+*   What is the preferred duration for the meeting?
+*   When would you like to schedule it (e.g., specific date and time, or general availability)?",0,0,94617,success,Y,unknown,Y,,[],[]
+2026-05-24T22:12:43.753Z,AMB-VAG-001,vague_time,Telegram,"I can help with that! To set up a meeting, I need a bit more information. Could you please tell me:
+*   When would you like the meeting to take place (date and time)?
+*   How long should the meeting be?
+*   What is the topic or purpose of the meeting?
+*   Who are the specific members of your team that should be invited (their names or email addresses)?",0,0,94073,success,Y,unknown,Y,,[],[]
+2026-05-24T22:14:24.402Z,AMB-VAG-002,vague_time,Telegram,"What thing would you like to schedule, and for what specific date and time?",0,0,94074,success,Y,unknown,Y,,[],[]
+2026-05-24T22:16:04.448Z,AMB-VAG-003,vague_time,Chat,What day next week would you like to add a calendar block for? What time should it start and how long should it be? What is the purpose of this block?,0,0,92885,success,Y,unknown,Y,,[],[]
+2026-05-24T22:17:44.865Z,AMB-VAG-004,vague_time,Chat,"What would be the topic of discussion, who should be included, and what duration should I set for ""tomorrow morning""?",0,0,93233,success,Y,unknown,Y,,[],[]
+2026-05-24T22:19:24.951Z,AMB-VAG-005,vague_time,Chat,"I can help with that! To book a meeting, I need a bit more information. Could you please tell me:
+
+*   What is the meeting about?
+*   Which date would you like to book it for?
+*   What time in the afternoon works best, and how long should it be?
+*   Are there any participants I should invite?",0,0,93083,success,Y,unknown,Y,,[],[]
+2026-05-24T22:21:04.978Z,AMB-VAG-006,vague_time,Chat,"What is this ""something"" you want to put in for Tuesday? Also, what's its duration, and do you have any preferred times on Tuesday, or should I pick any available slot?",0,0,92986,success,Y,unknown,Y,,[],[]
+2026-05-24T22:22:45.856Z,AMB-VAG-007,vague_time,Telegram,"I can help with that! To schedule a meeting, I need a bit more information. Could you please tell me:
+
+*   What is the meeting about?
+*   Who should I invite to the meeting?
+*   What days and times work best for you, and how long should the meeting be?",0,0,93674,success,Y,unknown,Y,,[],[]
+2026-05-24T22:24:28.072Z,AMB-VAG-008,vague_time,Chat,Which meeting would you like to reschedule? To what date and time would you like to move it?,0,0,95148,success,Y,unknown,Y,,[],[]
+2026-05-24T22:26:09.315Z,AMB-VAG-009,vague_time,Telegram,"Which event would you like to move, and what time would you like to move it to?",0,0,93948,success,Y,unknown,Y,,[],[]
+2026-05-24T22:27:50.864Z,AMB-VAG-010,vague_time,Telegram,"I can help with that! To add a sync, I need a bit more information. Could you please tell me:
+* What is the sync about?
+* When would you like to schedule it (date and time)?
+* How long should it be?
+* Who should be included?",0,0,93254,success,Y,unknown,Y,,[],[]
+2026-05-24T22:29:31.130Z,AMB-VAG-011,vague_time,Telegram,"I can help set up a meeting for your team. To do that, I need a bit more information. Could you please tell me:
+
+*   What is the meeting about (summary)?
+*   Which specific team members should be invited?
+*   What date and time would you like the meeting to be?
+*   How long should the meeting last?",0,0,93150,success,Y,unknown,Y,,[],[]
+2026-05-24T22:31:11.364Z,AMB-VAG-012,vague_time,Chat,"I can help with that! What is the ""thing"" we talked about, what specific date and time would you like to schedule it for, and how long should it last?",0,0,92960,success,Y,unknown,Y,,[],[]
+2026-05-24T22:32:53.507Z,AMB-VAG-013,vague_time,Chat,"I can help with that! To add a calendar block, I need a bit more information. Could you please tell me:
+
+*   What specific day next week should the block be on?
+*   What time should it start and end, or how long should it be?
+*   What should the block be called (a brief summary)?",0,0,94247,success,Y,unknown,Y,,[],[]
+2026-05-24T22:34:33.594Z,AMB-VAG-014,vague_time,Chat,"I can help with that. To find a suitable time, I need a bit more information:
+
+*   What specific time tomorrow morning would you like to discuss it, and for how long?
+*   What is ""it"" that you would like to discuss?
+*   Who else should be included in this discussion?",0,0,93499,success,Y,unknown,Y,,[],[]
+2026-05-24T22:36:14.056Z,AMB-VAG-015,vague_time,Telegram,"I can help with that! To book the meeting, I need a bit more information. Could you please tell me:
+* What date would you like the meeting to be?
+* What time in the afternoon should it start, and how long should it last?
+* What should the meeting be called, and who will be attending?",0,0,93295,success,Y,unknown,Y,,[],[]
+2026-05-24T22:37:55.036Z,AMB-VAG-016,vague_time,Telegram,What should I put in for Tuesday? What is the duration of the event?,0,0,93359,success,Y,unknown,Y,,[],[]
+2026-05-24T22:39:35.545Z,AMB-VAG-017,vague_time,Telegram,"I can help with that! To schedule a meeting, I need a bit more information. Could you please tell me:
+
+*   What is the meeting about?
+*   What dates or days are you considering?
+*   What is the preferred duration for the meeting?
+*   Are there any other participants I should invite?",0,0,92855,success,Y,unknown,Y,,[],[]
+2026-05-24T22:41:16.382Z,AMB-VAG-018,vague_time,Telegram,Which meeting would you like to reschedule and to what earlier time or date?,0,0,93370,success,Y,unknown,Y,,[],[]
+2026-05-24T22:42:59.502Z,AMB-VAG-019,vague_time,Telegram,Which event would you like to move? Please specify the event and its current date and time.,0,0,96320,success,Y,unknown,Y,,[],[]
+2026-05-24T22:44:40.129Z,AMB-VAG-020,vague_time,Telegram,"I can help with that! What day and time would that be, and how long should it last? What would be the title of this sync?",0,0,93163,success,Y,unknown,Y,,[],[]
+2026-05-24T22:46:19.561Z,AMB-VAG-021,vague_time,Chat,"What date and time would you like to set up the meeting for, how long should it be, and what is the topic?",0,0,92224,success,Y,unknown,Y,,[],[]
+2026-05-24T22:47:58.648Z,AMB-VAG-022,vague_time,Chat,"What is the ""thing"" we talked about? When would ""later"" be, and for how long should I schedule it?",0,0,92137,success,Y,unknown,Y,,[],[]
+2026-05-24T22:49:39.286Z,AMB-VAG-023,vague_time,Chat,"I can help with that! To add a calendar block, I need a bit more information. Could you please tell me:
+
+*   What day next week would you like to add it?
+*   What time should it start and end, or what is the duration?
+*   What should the calendar block be called (a brief summary)?",0,0,93663,success,Y,unknown,Y,,[],[]
+2026-05-24T22:51:18.943Z,AMB-VAG-024,vague_time,Telegram,"I can help with that! To find a time for our discussion tomorrow morning, could you please tell me:
+
+*   What specific time tomorrow morning would you like to meet (e.g., 9:00 AM, 10:30 AM)?
+*   How long should the discussion last?
+*   What is the topic we will be discussing?
+*   Who else should be invited to this discussion?",0,0,92964,success,Y,unknown,Y,,[],[]
+2026-05-24T22:53:00.219Z,AMB-VAG-025,vague_time,Chat,"What day would that be for, and for how long should I book it? What is the meeting about and who should be invited?",0,0,93983,success,Y,unknown,Y,,[],[]
+2026-05-24T22:54:42.167Z,AMB-VAG-026,vague_time,Telegram,What should I put in for Tuesday? Do you have a preferred time or duration for this event?,0,0,95537,success,Y,unknown,Y,,[],[]
+2026-05-24T22:56:22.864Z,AMB-VAG-027,vague_time,Chat,"I can help with that! To schedule a meeting, I need a bit more information. Could you please tell me:
+*   What is the topic of the meeting?
+*   What is the desired date or day for the meeting?
+*   What time would you like to meet?
+*   How long should the meeting be?
+*   Are there any other participants?",0,0,92569,success,Y,unknown,Y,,[],[]
+2026-05-24T22:58:03.336Z,AMB-VAG-028,vague_time,Chat,"Which meeting would you like to reschedule, and to what earlier date or time?",0,0,92720,success,Y,unknown,Y,,[],[]
+2026-05-24T22:59:44.307Z,AMB-VAG-029,vague_time,Chat,"I need more information to help you with that.
+- Which event are you referring to? Please provide the event name or date.
+- What time would you like to move it to?",0,0,93433,success,Y,unknown,Y,,[],[]
+2026-05-24T23:01:24.844Z,AMB-VAG-030,vague_time,Telegram,"I can help with that. What is the specific date and time for the sync, and how long should it last? Also, what should the title of the sync be?",0,0,93493,success,Y,unknown,Y,,[],[]
+2026-05-24T23:03:05.366Z,AMB-VAG-031,vague_time,Chat,"I can help set up a meeting with your team. To do that, I need a little more information. Could you please tell me:
+* What specific date or day would you like the meeting to be?
+* What time should the meeting start?
+* How long should the meeting last?
+* Who are the members of your team that need to be invited?
+* What is the topic of the meeting?",0,0,93362,success,Y,unknown,Y,,[],[]
+2026-05-24T23:04:45.547Z,AMB-VAG-032,vague_time,Chat,"What is the event about, what date and time would work for you, and how long should it be? Are there any participants you'd like to include?",0,0,93634,success,Y,unknown,Y,,[],[]
+2026-05-24T23:06:24.238Z,AMB-VAG-033,vague_time,Chat,"I can help with that! What should the calendar block be called, what day next week would you like to add it, and for how long should it be?",0,0,91066,success,Y,unknown,Y,,[],[]
+2026-05-24T23:08:03.782Z,AMB-VAG-034,vague_time,Telegram,"What would you like to discuss, and who should be included in the meeting? Also, could you specify a preferred time or duration for ""tomorrow morning""?",0,0,91584,success,Y,unknown,Y,,[],[]
+2026-05-24T23:09:41.208Z,AMB-VAG-035,vague_time,Telegram,"I can help with that! What date would you like to book the meeting for, what specifically should be the topic, and who should I invite?",0,0,90335,success,Y,unknown,Y,,[],[]
+2026-05-24T23:11:20.449Z,AMB-VAG-036,vague_time,Telegram,"What should I put on the calendar for Tuesday, and how long should it be?",0,0,92061,success,Y,unknown,Y,,[],[]
+2026-05-24T23:12:58.796Z,AMB-VAG-037,vague_time,Chat,When would you like to meet and for how long? Do you have any specific days or times in mind?,0,0,91134,success,Y,unknown,Y,,[],[]
+2026-05-24T23:14:40.038Z,AMB-VAG-038,vague_time,Chat,"Which meeting would you like to reschedule, and to what earlier date or time?",0,0,93900,success,Y,unknown,Y,,[],[]
+2026-05-24T23:16:21.096Z,AMB-VAG-039,vague_time,Chat,"Which event are you referring to, and what time would you like to move it to?",0,0,92916,success,Y,unknown,Y,,[],[]
+2026-05-24T23:18:01.767Z,AMB-VAG-040,vague_time,Telegram,"I can help with that! To add a sync, I need a bit more information. Could you please tell me:
+* What is the sync about?
+* When would you like to schedule it (date and time)?
+* How long should it last?",0,0,93146,success,Y,unknown,Y,,[],[]
+2026-05-24T23:19:42.274Z,AMB-REF-001,ambiguous_referent,Chat,"What would you like to change about the event? Do you want to reschedule it, change the title, or something else?",0,0,92699,success,Y,unknown,Y,,[],[]
+2026-05-24T23:21:22.191Z,AMB-REF-002,ambiguous_referent,Chat,Which event would you like to change?,0,0,92074,success,Y,unknown,Y,,[],[]
+2026-05-24T23:23:02.495Z,AMB-REF-003,ambiguous_referent,Chat,What exactly would you like to change and for which event are you referring to? Please provide more details about the event and the changes you'd like to make.,0,0,92750,success,Y,unknown,Y,,[],[]
+2026-05-24T23:24:42.301Z,AMB-REF-004,ambiguous_referent,Chat,"What specifically are you referring to when you say ""that one,"" and what changes would you like to make?",0,0,92538,success,Y,unknown,Y,,[],[]
+2026-05-24T23:26:20.230Z,AMB-REF-005,ambiguous_referent,Chat,Which event would you like to change? What are the changes you would like to make?,0,0,91373,success,Y,unknown,Y,,[],[]
+2026-05-24T23:27:59.396Z,AMB-REF-006,ambiguous_referent,Chat,"What changes would you like to make to the ""Apartment viewing"" event? Do you want to reschedule it, cancel it, or something else?",0,0,91309,success,Y,unknown,Y,,[],[]
+2026-05-24T23:29:40.370Z,AMB-REF-007,ambiguous_referent,Chat,Which event would you like to change? What is the current summary of the event? What should the new time or date be?,0,0,94433,success,Y,unknown,Y,,[],[]
+2026-05-24T23:31:19.217Z,AMB-REF-008,ambiguous_referent,Chat,What should I change the event to? Please specify the new time or any other details you'd like to update.,0,0,92097,success,Y,unknown,Y,,[],[]
+2026-05-24T23:32:58.034Z,AMB-REF-009,ambiguous_referent,Chat,Which event are you referring to? Please specify the event you would like to change.,0,0,91636,success,Y,unknown,Y,,[],[]
+2026-05-24T23:34:39.053Z,AMB-REF-010,ambiguous_referent,Chat,What would you like to add to your calendar? Please provide a summary for the event.,0,0,94130,success,Y,unknown,Y,,[],[]
+2026-05-24T23:36:17.272Z,AMB-REF-011,ambiguous_referent,Chat,"Which event are you referring to, and what changes would you like to make to it? Please provide more details such as the event's title, date, and the specific modifications you'd like to apply.",0,0,91606,success,Y,unknown,Y,,[],[]
+2026-05-24T23:37:55.439Z,AMB-REF-012,ambiguous_referent,Chat,What do you want to change about the General Practitioner appointment?,0,0,90552,success,Y,unknown,Y,,[],[]
+2026-05-24T23:39:33.210Z,AMB-REF-013,ambiguous_referent,Chat,"What exactly would you like to change about the 10:30 am to 5 pm availability? Are you trying to reschedule an event, create a new one, or something else?",0,0,91167,success,Y,unknown,Y,,[],[]
+2026-05-24T23:41:11.608Z,AMB-REF-014,ambiguous_referent,Chat,"Could you please tell me which specific event you would like to change (e.g., by providing its date and time) and what changes you would like to make?",0,0,91293,success,Y,unknown,Y,,[],[]
+2026-05-24T23:42:51.154Z,AMB-REF-015,ambiguous_referent,Chat,"Which event would you like to change? Please provide more details about the event, such as its date, time, or title.",0,0,93064,success,Y,unknown,Y,,[],[]
+2026-05-24T23:44:30.782Z,AMB-REF-016,ambiguous_referent,Chat,"What exactly would you like to change? Are you referring to your previous request to check your calendar, or an existing event? Please provide more details.",0,0,92614,success,Y,unknown,Y,,[],[]
+2026-05-24T23:46:08.704Z,AMB-REF-017,ambiguous_referent,Chat,Which appointment are you referring to? What changes would you like to make to it?,0,0,91416,success,Y,unknown,Y,,[],[]
+2026-05-24T23:47:47.124Z,AMB-REF-018,ambiguous_referent,Chat,"Which event would you like to change? Please specify the date and time of the event ""Apartment viewing at The Enclave"".",0,0,91221,success,Y,unknown,Y,,[],[]
+2026-05-24T23:49:24.953Z,AMB-REF-019,ambiguous_referent,Chat,What would you like to change about that slot?,0,0,90715,success,Y,unknown,Y,,[],[]
+2026-05-24T23:51:03.453Z,AMB-REF-020,ambiguous_referent,Chat,"Please clarify what you would like to change. Do you want to change the time, the location, or something else entirely? Also, what is the date and summary for this event?",0,0,91587,success,Y,unknown,Y,,[],[]
+2026-05-24T23:52:41.738Z,AMB-REF-021,ambiguous_referent,Chat,"Which event would you like to change? Please specify the event by its name, date, or any other identifying details. Also, what changes would you like to make to the event?",0,0,91563,success,Y,unknown,Y,,[],[]
+2026-05-24T23:54:21.356Z,AMB-REF-022,ambiguous_referent,Chat,"What would you like to change about the event on March 14th from 5 PM to 5:30 PM? Do you want to change the time, date, or something else?",0,0,92941,success,Y,unknown,Y,,[],[]
+2026-05-24T23:55:59.018Z,AMB-REF-023,ambiguous_referent,Chat,Which event are you referring to? Could you please specify the event you would like to change?,0,0,91052,success,Y,unknown,Y,,[],[]
+2026-05-24T23:57:36.994Z,AMB-REF-024,ambiguous_referent,Chat,Which event would you like to change? Please provide more details like the event name and date.,0,0,91234,success,Y,unknown,Y,,[],[]
+2026-05-24T23:59:14.672Z,AMB-REF-025,ambiguous_referent,Chat,Which event would you like to change?,0,0,91116,success,Y,unknown,Y,,[],[]
+2026-05-25T00:00:53.400Z,AMB-REF-026,ambiguous_referent,Chat,"What exactly do you mean by ""change that one""? Do you want to create an event, update an existing one, or something else? Please provide more details, such as the event title, duration, and description.",0,0,91692,success,Y,unknown,Y,,[],[]
+2026-05-25T00:02:34.434Z,AMB-REF-027,ambiguous_referent,Chat,"Which event would you like to change, and what specific changes do you want to make to it (e.g., date, time, location, title, description)?",0,0,93411,success,Y,unknown,Y,,[],[]
+2026-05-25T00:04:14.445Z,AMB-REF-028,ambiguous_referent,Chat,Which event would you like to change?,0,0,92327,success,Y,unknown,Y,,[],[]
+2026-05-25T00:05:57.718Z,AMB-REF-029,ambiguous_referent,Chat,"Could you please clarify what you would like to change? Are you referring to the dentist appointment or the open time from 8 am to 1 pm, and what specific change would you like to make?",0,0,96354,success,Y,unknown,Y,,[],[]
+2026-05-25T00:07:35.687Z,AMB-REF-030,ambiguous_referent,Chat,"Which event would you like to change? Please specify the event by its title, date, and time.",0,0,90978,success,Y,unknown,Y,,[],[]
+2026-05-25T00:09:13.862Z,AMB-EML-001,missing_email_field,Chat,"I can help draft that email, but I need a bit more information.
+
+Could you please tell me:
+*   What is the recipient's email address?
+*   What should the subject line be?
+*   What message would you like to include in the email body?",0,0,91577,success,Y,unknown,Y,,[],[]
+2026-05-25T00:10:52.578Z,AMB-EML-002,missing_email_field,Chat,Who is this email for? What should be the subject? What details should I include about being late?,0,0,92152,success,Y,unknown,Y,,[],[]
+2026-05-25T00:12:30.354Z,AMB-EML-003,missing_email_field,Chat,"What should be the subject of the email, what should the message content be, and to whom should I send it?",0,0,91303,success,Y,unknown,Y,,[],[]
+2026-05-25T00:14:08.506Z,AMB-EML-004,missing_email_field,Telegram,"I can help draft an email. What is the recipient's email address, what should be the subject of the email, and what message would you like to send?",0,0,90697,success,Y,unknown,Y,,[],[]
+2026-05-25T00:15:46.933Z,AMB-EML-005,missing_email_field,Telegram,"I can help draft that email. What is the recipient's email address, what should the subject line be, and what specific message would you like to include about being late?",0,0,91278,success,Y,unknown,Y,,[],[]
+2026-05-25T00:17:25.350Z,AMB-EML-006,missing_email_field,Telegram,"I can help draft an email about the meeting. What should be the subject of the email, what should the message say, and to whom should I send it?",0,0,91442,success,Y,unknown,Y,,[],[]
+2026-05-25T00:19:04.254Z,AMB-EML-007,missing_email_field,Chat,"I can help draft that email. What is the recipient's email address, what should the subject line be, and what would you like the message to say?",0,0,91667,success,Y,unknown,Y,,[],[]
+2026-05-25T00:20:42.602Z,AMB-EML-008,missing_email_field,Telegram,"To whom should I send the email, and what should be the subject line? Could you also provide a more specific message for the email body?",0,0,91720,success,Y,unknown,Y,,[],[]
+2026-05-25T00:22:21.498Z,AMB-EML-009,missing_email_field,Telegram,"I can help draft an email about the meeting. Who should the email be sent to? What should be the subject of the email, and what specific details should I include in the message body?",0,0,91968,success,Y,unknown,Y,,[],[]
+2026-05-25T00:23:59.895Z,AMB-EML-010,missing_email_field,Telegram,"I can help with that. What is the recipient's email address, what should be the subject of the email, and what message would you like to send?",0,0,91850,success,Y,unknown,Y,,[],[]
+2026-05-25T00:25:38.371Z,AMB-EML-011,missing_email_field,Chat,"I can help you with that. Who should the email be sent to, and what should the subject line be?",0,0,91752,success,Y,unknown,Y,,[],[]
+2026-05-25T00:27:17.018Z,AMB-EML-012,missing_email_field,Chat,"I can help draft an email about the meeting. What should the subject of the email be? Who is the recipient, and what specific information should I include in the message body?",0,0,92194,success,Y,unknown,Y,,[],[]
+2026-05-25T00:28:54.980Z,AMB-EML-013,missing_email_field,Telegram,"I can help with that. What is the recipient's email address, what should the subject of the email be, and what message would you like to send?",0,0,91273,success,Y,unknown,Y,,[],[]
+2026-05-25T00:30:33.190Z,AMB-EML-014,missing_email_field,Telegram,"To whom should I send the email, and what should the subject line be?",0,0,91828,success,Y,unknown,Y,,[],[]
+2026-05-25T00:32:11.854Z,AMB-EML-015,missing_email_field,Chat,"I can help draft an email about the meeting. What should be the subject and message of the email, and to whom should I send it?",0,0,91514,success,Y,unknown,Y,,[],[]
+2026-05-25T00:33:50.987Z,AMB-EML-016,missing_email_field,Telegram,"I can help you draft an email. What is the recipient's email address, what should be the subject, and what message would you like to include?",0,0,91698,success,Y,unknown,Y,,[],[]
+2026-05-25T00:35:28.948Z,AMB-EML-017,missing_email_field,Telegram,"To whom should I send the email, and what should the subject line be?",0,0,91068,success,Y,unknown,Y,,[],[]
+2026-05-25T00:37:07.577Z,AMB-EML-018,missing_email_field,Chat,"I can help draft an email about the meeting. What should be the subject, to whom should I send it, and what content would you like the email to include?",0,0,92041,success,Y,unknown,Y,,[],[]
+2026-05-25T00:38:46.361Z,AMB-EML-019,missing_email_field,Telegram,"Who is the email for, what is the subject, and what should the message say?",0,0,91129,success,Y,unknown,Y,,[],[]
+2026-05-25T00:40:24.127Z,AMB-EML-020,missing_email_field,Telegram,"To whom should I draft the email, and what should be the subject?",0,0,91273,success,Y,unknown,Y,,[],[]
+2026-05-25T00:42:02.306Z,AMB-EML-021,missing_email_field,Telegram,"I can help draft an email about the meeting. What is the recipient's email address, what should the subject line be, and what specific details should I include in the email body?",0,0,91706,success,Y,unknown,Y,,[],[]
+2026-05-25T00:43:40.429Z,AMB-EML-022,missing_email_field,Chat,"To whom should I send the email (email address)? What should be the subject, and what message would you like to send?",0,0,91659,success,Y,unknown,Y,,[],[]
+2026-05-25T00:45:19.331Z,AMB-EML-023,missing_email_field,Telegram,Who should I send the email to? What should the subject be? How late will you be and for what?,0,0,91785,success,Y,unknown,Y,,[],[]
+2026-05-25T00:46:58.334Z,AMB-EML-024,missing_email_field,Telegram,"I can help you draft an email about the meeting. What should be the subject of the email, what should the body say, and to whom should I send it?",0,0,92542,success,Y,unknown,Y,,[],[]
+2026-05-25T00:48:37.702Z,AMB-EML-025,missing_email_field,Telegram,"I can help draft an email. What is the recipient's email address, what should be the subject, and what message would you like to send?",0,0,92899,success,Y,unknown,Y,,[],[]
+2026-05-25T00:50:16.179Z,AMB-EML-026,missing_email_field,Chat,"I can help with that. What is the recipient's email address and what should be the subject of the email? Is there anything else you would like to add to the message besides ""I'll be late""?",0,0,91652,success,Y,unknown,Y,,[],[]
+2026-05-25T00:51:54.989Z,AMB-EML-027,missing_email_field,Chat,"I can help draft an email about the meeting. What should be the subject of the email, what should the message content be, and to whom should I send it?",0,0,92086,success,Y,unknown,Y,,[],[]
+2026-05-25T00:53:34.195Z,AMB-EML-028,missing_email_field,Chat,"I can help draft that email! What is the recipient's email address, what should the subject line be, and what message would you like to include in the email body?",0,0,92535,success,Y,unknown,Y,,[],[]
+2026-05-25T00:55:12.839Z,AMB-EML-029,missing_email_field,Telegram,I can help draft that email. What is the recipient's email address and the subject of the email?,0,0,92033,success,Y,unknown,Y,,[],[]
+2026-05-25T00:56:51.444Z,AMB-EML-030,missing_email_field,Chat,What should be the subject and body of the email? Who should I send it to?,0,0,91687,success,Y,unknown,Y,,[],[]
+2026-05-25T00:58:29.734Z,AMB-EML-031,missing_email_field,Chat,"I can help draft that email! To whom should I send it, what should the subject line be, and what would you like the message to say?",0,0,91487,success,Y,unknown,Y,,[],[]
+2026-05-25T01:00:07.460Z,AMB-EML-032,missing_email_field,Telegram,"I can help draft that email. Who should it be sent to and what should the subject line be? Also, could you please tell me how late you will be?",0,0,91268,success,Y,unknown,Y,,[],[]
+2026-05-25T01:01:45.930Z,AMB-EML-033,missing_email_field,Telegram,"I can help draft an email about the meeting. What should be the subject, message, and who should I send it to?",0,0,91926,success,Y,unknown,Y,,[],[]
+2026-05-25T01:03:26.054Z,AMB-EML-034,missing_email_field,Chat,"I can help with that. What is the recipient's email address, what should be the subject of the email, and what message would you like to include in the body?",0,0,92705,success,Y,unknown,Y,,[],[]
+2026-05-25T01:05:05.587Z,AMB-EML-035,missing_email_field,Telegram,"I can help with that. To whom should I send the email? What should the subject line be, and what specific details should I include in the message about you being late?",0,0,92304,success,Y,unknown,Y,,[],[]
+2026-05-25T01:06:43.775Z,AMB-EML-036,missing_email_field,Telegram,"I can help draft an email about the meeting. Who should this email be sent to? What should be the subject of the email, and what specific details should I include in the message body?",0,0,91655,success,Y,unknown,Y,,[],[]
+2026-05-25T01:08:23.745Z,AMB-EML-037,missing_email_field,Chat,I can help you with that. Who should I send the email to? What would be the subject and message of the email?,0,0,93338,success,Y,unknown,Y,,[],[]
+2026-05-25T01:10:02.384Z,AMB-EML-038,missing_email_field,Chat,"I can help draft that email. What is the recipient's email address, and what should be the subject of the email?",0,0,91986,success,Y,unknown,Y,,[],[]
+2026-05-25T01:11:41.202Z,AMB-EML-039,missing_email_field,Telegram,"I can help draft an email about the meeting. Who should the email be sent to, what should the subject line be, and what specific details or points should I include in the message body?",0,0,91941,success,Y,unknown,Y,,[],[]
+2026-05-25T01:13:19.482Z,AMB-EML-040,missing_email_field,Telegram,"I can help draft that email! To whom should I send it, what should the subject line be, and what would you like the message body to say?",0,0,91880,success,Y,unknown,Y,,[],[]

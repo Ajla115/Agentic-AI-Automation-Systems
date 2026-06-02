@@ -1,0 +1,232 @@
+{
+  "name": "Telegram VA - Daily Briefing",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 7
+            }
+          ]
+        }
+      },
+      "id": "d975869d-b818-47ec-a5c2-8965cca1e8b3",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        320,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_CALENDAR_ID",
+          "mode": "list",
+          "cachedResultName": "YOUR_GOOGLE_CALENDAR_ID"
+        },
+        "returnAll": true,
+        "timeMin": "={{ $now.startOf('day').toISO() }}",
+        "timeMax": "={{ $now.endOf('day').toISO() }}",
+        "options": {
+          "orderBy": "startTime"
+        }
+      },
+      "id": "bcb48f53-a563-45d0-a8cd-a855effc8513",
+      "name": "Get Today's Events",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        592,
+        160
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CALENDAR_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst events = items.map(i => i.json).filter(e => e && e.start);\n\nconst today = new Date();\nconst dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];\nconst monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];\nconst dayName = dayNames[today.getDay()];\nconst monthName = monthNames[today.getMonth()];\nconst dateStr = `${dayName}, ${monthName} ${today.getDate()}`;\n\nlet message;\nif (events.length === 0) {\n  message = `\\u2600\\ufe0f *Good Morning! Today is ${dateStr}*\\n\\n\\u2728 Your schedule is clear today. Enjoy the day!`;\n} else {\n  const lines = events.map(ev => {\n    const startRaw = ev.start.dateTime || ev.start.date;\n    let timeStr = 'All day';\n    if (ev.start.dateTime) {\n      const d = new Date(ev.start.dateTime);\n      const hh = String(d.getHours()).padStart(2, '0');\n      const mm = String(d.getMinutes()).padStart(2, '0');\n      timeStr = `${hh}:${mm}`;\n    }\n    const title = ev.summary || '(no title)';\n    const location = ev.location ? ` (${ev.location})` : '';\n    return `\\ud83d\\udd50 ${timeStr} - ${title}${location}`;\n  });\n  message = `\\u2600\\ufe0f *Good Morning! Today is ${dateStr}*\\n\\n\\ud83d\\udccb *Your schedule:*\\n\\n${lines.join('\\n')}\\n\\n_Have a productive day!_`;\n}\n\nreturn [{ json: { content: message, event_count: events.length } }];"
+      },
+      "id": "5266dd36-1fb2-40a1-a010-3f534e6630a6",
+      "name": "Format Morning Briefing",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        848,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "={{ $json.content }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "f56f4b34-872c-48f8-b712-894408b04661",
+      "name": "Send Morning Briefing",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1104,
+        160
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "telegramApi": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_TELEGRAM_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return {\n  json: {\n    timestamp: new Date().toISOString(),\n    trigger_type: 'morning',\n    command: '/briefing',\n    action_completed: 'true',\n    response_time_ms: String(Date.now() - new Date($execution.startedAt).getTime()),\n    user_confirmed_before_action: 'n/a'\n  }\n};"
+      },
+      "id": "6e36465d-c3a2-4f01-a769-19afc83039e9",
+      "name": "Prepare Log Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1360,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "YOUR_GOOGLE_SHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "VA_Metrics"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "a3139525-d3b0-4d89-8e21-ce966b29c000",
+      "name": "Log to Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1632,
+        160
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# Telegram VA - Daily Briefing\n\n## Purpose\nA scheduled personal-assistant workflow that delivers a morning briefing to the owner over Telegram every day. It pulls the day's Google Calendar events, formats them into a friendly Markdown message, sends it to the configured Telegram chat, and logs a metrics row to Google Sheets. It is purely outbound and read-only against the calendar — there is no chat command handling, no AI, and no approval gate.\n\n## How it works\n- A Schedule Trigger fires once daily at 07:00 (Europe/Sarajevo) to start the run.\n- \"Get Today's Events\" queries the assistant's Google Calendar, returning all events between the start and end of the current day, ordered by start time.\n- \"Format Morning Briefing\" (Code node) builds a Markdown message: a \"Good Morning\" header with today's date, then either a \"schedule is clear\" note when there are no events, or a bulleted list of events showing HH:MM start time (or \"All day\"), title, and optional location. It also emits an event_count.\n- \"Send Morning Briefing\" sends that message text to the configured Telegram chat with Markdown parse mode.\n- \"Prepare Log Data\" (Code node) assembles a metrics record: ISO timestamp, trigger_type: morning, command: /briefing, action_completed: true, computed response_time_ms, and user_confirmed_before_action: n/a.\n- \"Log to Google Sheets\" appends that record to the VA_Metrics tab of the logging spreadsheet.\n\n## Triggered by\nSchedule Trigger — daily at 07:00 Europe/Sarajevo.\n\n## Calls (sub-workflows)\n- None. There are no sub-workflow calls; the entire pipeline runs in this single workflow.\n\n## Reads/writes\n- Google Calendar (read): lists all events for the current day from the assistant's calendar, ordered by start time.\n- Telegram (write): sends the briefing message to the configured chat using Markdown parse mode.\n- Google Sheets (write): appends one metrics row to the VA_Metrics tab of the logging spreadsheet.\n- Gmail: not used.",
+        "height": 848,
+        "width": 1000,
+        "color": 4
+      },
+      "id": "sticky-pa-overview",
+      "name": "Workflow Overview",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        336,
+        -1008
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Today's Events",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Today's Events": {
+      "main": [
+        [
+          {
+            "node": "Format Morning Briefing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Morning Briefing": {
+      "main": [
+        [
+          {
+            "node": "Send Morning Briefing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Morning Briefing": {
+      "main": [
+        [
+          {
+            "node": "Prepare Log Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Log Data": {
+      "main": [
+        [
+          {
+            "node": "Log to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Sarajevo",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "aa1adc7d-325f-485e-bf09-0dd84fe90799",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "1QuQRDNTLZj0oDQx",
+  "tags": []
+}

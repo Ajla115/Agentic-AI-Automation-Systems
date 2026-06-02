@@ -26,9 +26,9 @@
         "operation": "getAll",
         "calendar": {
           "__rl": true,
-          "value": "YOUR_AI_EMAIL@example.com",
+          "value": "YOUR_GOOGLE_CALENDAR_ID",
           "mode": "list",
-          "cachedResultName": "YOUR_AI_EMAIL@example.com"
+          "cachedResultName": "YOUR_GOOGLE_CALENDAR_ID"
         },
         "returnAll": true,
         "timeMin": "={{ $now.toISO() }}",
@@ -47,8 +47,8 @@
       ],
       "credentials": {
         "googleCalendarOAuth2Api": {
-          "id": "vgDIWdn7j16Ol1sl",
-          "name": "Google Calendar account"
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CALENDAR_CREDENTIAL"
         }
       }
     },
@@ -69,10 +69,10 @@
       "parameters": {
         "conditions": {
           "options": {
-            "version": 2,
-            "leftValue": "",
             "caseSensitive": true,
-            "typeValidation": "loose"
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
           },
           "conditions": [
             {
@@ -115,11 +115,11 @@
         1520,
         352
       ],
-      "webhookId": "77d9c397-4ca7-4634-bbbc-0d0bf93f5a6b",
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
       "credentials": {
         "telegramApi": {
-          "id": "Z4DjPtixNJvP438S",
-          "name": "Telegram account"
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_TELEGRAM_CREDENTIAL"
         }
       }
     },
@@ -154,7 +154,7 @@
         "documentId": {
           "__rl": true,
           "mode": "id",
-          "value": "YOUR_VA_LOG_SPREADSHEET_ID"
+          "value": "YOUR_GOOGLE_SHEET_ID"
         },
         "sheetName": {
           "__rl": true,
@@ -162,7 +162,12 @@
           "value": "VA_Metrics"
         },
         "columns": {
-          "mappingMode": "autoMapInputData"
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
         },
         "options": {}
       },
@@ -176,23 +181,26 @@
       ],
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "dFwvRpFrU3hj7eAL",
-          "name": "Google Sheets account"
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
         }
       },
       "continueOnFail": true
     },
     {
       "parameters": {
-        "content": "## Telegram VA - Event Reminders (Phase 3)\n\n**Purpose:** Checks every 30 minutes for events starting in ~30 minutes and sends a Telegram reminder.\n\n**Setup Required:**\n1. Update Google Calendar OAuth2 credential\n2. Update Telegram Bot credential and PLACEHOLDER_CHAT_ID\n\n⏰ Runs every 30 minutes, filters events starting in 25-35 min window"
+        "content": "# Telegram VA - Event Reminders\n\n## Purpose\nA scheduled personal-assistant workflow that proactively reminds the owner of upcoming calendar events over Telegram. Every 30 minutes it scans the owner's Google Calendar for events starting in roughly half an hour and, when it finds one, pushes a formatted reminder to the configured Telegram chat. Each reminder sent is logged to a Google Sheet for metrics tracking.\n\n## How it works\n- A Schedule Trigger fires every 30 minutes.\n- \"Get Upcoming Events\" queries the assistant's Google Calendar, returning all events between now and one hour from now, ordered by start time.\n- A Code node \"Filter Events (25-35 min)\" computes minutes-until-start for each event and keeps only those starting between 25 and 35 minutes out (the ~30-minute window), attaching a minutesUntil field.\n- An IF node \"Has Events?\" checks that each surviving event has a non-empty summary; matching events go to the reminder branch, others to a No-Op (\"No Events\").\n- \"Send Event Reminder\" posts a Markdown-formatted Telegram message (alarm header with minutes remaining, event title, formatted start time, and location or \"No location\") to the configured chat.\n- \"Prepare Log Data\" builds a metrics row (timestamp, trigger_type: reminder, command: auto_reminder, action_completed: true, computed response_time_ms, user_confirmed_before_action: n/a).\n- \"Log to Google Sheets\" appends that row to the VA_Metrics tab (set to continue on failure so logging errors don't break the run).\n\n## Triggered by\nA Schedule Trigger running on a 30-minute interval (timezone Europe/Sarajevo).\n\n## Calls (sub-workflows)\n- None. This workflow does not invoke any sub-workflows.\n\n## Reads/writes\n- Google Calendar (read): lists all events in the next hour from the assistant's calendar, ordered by start time.\n- Telegram (write): sends a Markdown reminder message to the configured chat.\n- Google Sheets (write): appends one metrics row to the VA_Metrics tab of the logging spreadsheet (continueOnFail enabled).\n- Gmail: not used.",
+        "height": 700,
+        "width": 1000,
+        "color": 4
       },
-      "id": "tg-remind-sticky-001",
-      "name": "Sticky Note",
+      "id": "sticky-pa-overview",
+      "name": "Workflow Overview",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        400,
-        240
+        480,
+        -480
       ]
     }
   ],
@@ -279,7 +287,7 @@
     "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false
   },
-  "versionId": "7929bfed-95c7-47a5-88ca-a1b2625fad38",
+  "versionId": "08c3970c-b9f9-4e64-bc97-8a2437824959",
   "meta": {
     "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
   },

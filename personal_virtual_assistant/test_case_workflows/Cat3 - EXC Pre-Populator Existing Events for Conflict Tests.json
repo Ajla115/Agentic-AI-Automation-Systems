@@ -1,0 +1,261 @@
+{
+  "name": "Cat3 EXC Pre-Populator — Existing Events for Conflict Tests",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "exc-trigger-001",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        208,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "cachedResultName": "03_Conflict_Handling_Tests"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "id",
+          "value": "28592036",
+          "cachedResultName": "Test Input"
+        },
+        "options": {}
+      },
+      "id": "exc-read-tests-001",
+      "name": "Read Test Cases",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        448,
+        400
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cond-keep-exc",
+              "leftValue": "={{ $json.Subcategory }}",
+              "rightValue": "existing_event_conflict",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "exc-filter-001",
+      "name": "Keep Existing-Event-Conflict Only",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        688,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const row = $json;\nconst id = String(row.ID || '').trim();\nconst inputText = String(row.Input_Text || '');\nconst metaRaw = row.Input_Metadata_JSON;\n\n// Parse the existing event from metadata JSON\n// Format: {\"existing\": [\"Event Name\", \"HH:MM\", \"HH:MM\"], ...}\nlet existing = null;\ntry {\n  const meta = (typeof metaRaw === 'string') ? JSON.parse(metaRaw) : metaRaw;\n  existing = meta && meta.existing;\n} catch (e) {\n  throw new Error('Could not parse Input_Metadata_JSON for ' + id + ': ' + e.message);\n}\nif (!Array.isArray(existing) || existing.length < 3) {\n  throw new Error('existing[] missing or malformed for ' + id);\n}\n\nconst eventName = String(existing[0]);\nconst startTime = String(existing[1]); // HH:MM\nconst endTime = String(existing[2]);   // HH:MM\n\n// Extract the weekday from input text (\"on Wednesday\")\nconst weekdays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];\nlet weekday = null;\nfor (const wd of weekdays) {\n  const re = new RegExp('\\\\b' + wd + '\\\\b');\n  if (re.test(inputText)) { weekday = wd; break; }\n}\nif (!weekday) {\n  throw new Error('No weekday found in Input_Text for ' + id);\n}\n\n// Compute next occurrence (today excluded — matches Cat3 runner logic)\nconst today = new Date();\nconst targetIdx = weekdays.indexOf(weekday);\nconst todayIdx = today.getDay();\nlet daysUntil = (targetIdx - todayIdx + 7) % 7;\nif (daysUntil === 0) daysUntil = 7;\nconst eventDate = new Date(today);\neventDate.setDate(eventDate.getDate() + daysUntil);\nconst yyyy = eventDate.getFullYear();\nconst mm = String(eventDate.getMonth() + 1).padStart(2, '0');\nconst dd = String(eventDate.getDate()).padStart(2, '0');\nconst dateStr = yyyy + '-' + mm + '-' + dd;\n\n// Build ISO datetimes with Europe/Sarajevo offset (CEST = +02:00 in May 2026)\nconst startISO = dateStr + 'T' + startTime + ':00+02:00';\nconst endISO   = dateStr + 'T' + endTime   + ':00+02:00';\n\nreturn {\n  json: {\n    test_id: id,\n    event_summary: eventName,\n    description: 'Pre-populated for ' + id + ' (existing_event_conflict). Auto-created by EXC Pre-Populator.',\n    start_iso: startISO,\n    end_iso: endISO,\n    weekday: weekday,\n    date_str: dateStr\n  }\n};"
+      },
+      "id": "exc-parse-001",
+      "name": "Parse Event Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        928,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "exc-loop-001",
+      "name": "Loop Over Events",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1168,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_CALENDAR_ID",
+          "mode": "list",
+          "cachedResultName": "YOUR_GOOGLE_CALENDAR_ID"
+        },
+        "start": "={{ $json.start_iso }}",
+        "end": "={{ $json.end_iso }}",
+        "additionalFields": {
+          "description": "={{ $json.description }}",
+          "summary": "={{ $json.event_summary }}"
+        }
+      },
+      "id": "exc-create-001",
+      "name": "Create Calendar Event",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        1408,
+        288
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CALENDAR_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "id": "exc-wait-001",
+      "name": "Wait 1s",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1648,
+        288
+      ],
+      "webhookId": "exc-wait-1s-001"
+    },
+    {
+      "parameters": {
+        "content": "## Cat 3 EXC Pre-Populator — Existing Events for Conflict Tests\n\n**Purpose:** Pre-populates the calendar with the `existing` events needed for the `existing_event_conflict` subcategory (50 rows) of `03_Conflict_Handling_Tests`. Run this ONCE before running the Cat 3 test runner against the EXC rows.\n\n### How it works\n1. Reads `03_Conflict_Handling_Tests` → `Test Input`.\n2. Keeps only rows where `Subcategory = existing_event_conflict` (50 rows).\n3. Parses `Input_Metadata_JSON.existing = [name, HH:MM, HH:MM]` and extracts the weekday from `Input_Text` (every EXC row says \"on Wednesday\").\n4. Computes the NEXT occurrence of that weekday (matches Cat3 runner's date-resolution logic — today excluded). For today = 2026-05-17 (Sunday), Wednesday → 2026-05-20.\n5. Creates a Google Calendar event with summary = existing event name, timezone = Europe/Sarajevo, on the resolved date at the existing[]'s time slot.\n\n### Important\n- Events are created in the **upcoming week** (2026-05-20). Re-running on a later day will resolve to the next future Wednesday.\n- All 50 events land on one Wednesday — many will overlap. That's OK; the Cat3 runner only cares that the specific named conflict exists at the test's requested slot.\n- The Cat3 runner's Snapshot BEFORE captures these events, so its Delete-Event step won't touch them (it only removes events the AI created).\n\n### After this runs\n1. Open the Cat 3 Test Runner.\n2. Replace the **Skip Existing-Event-Conflict** filter with one that KEEPS `existing_event_conflict` rows, OR change `notEquals` → `equals` so it only runs the EXC rows you just prepared.\n3. Run the Cat 3 runner. After grading, you can bulk-delete the pre-populated events from Google Calendar by searching for the description text `Auto-created by EXC Pre-Populator`.",
+        "height": 700,
+        "width": 880
+      },
+      "id": "exc-sticky-001",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        144,
+        -416
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read Test Cases",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Test Cases": {
+      "main": [
+        [
+          {
+            "node": "Keep Existing-Event-Conflict Only",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Keep Existing-Event-Conflict Only": {
+      "main": [
+        [
+          {
+            "node": "Parse Event Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Event Data": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Events",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Events": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Create Calendar Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Calendar Event": {
+      "main": [
+        [
+          {
+            "node": "Wait 1s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 1s": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Events",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "472177c8-1335-4b62-93ce-6676722be485",
+  "meta": {
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "7wQcABG3f5xTHNWZ",
+  "tags": []
+}

@@ -1,0 +1,72 @@
+{
+  "name": "Test Auto-Responder (Email VA Approval Simulator)",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "auto-trigger-001",
+      "name": "When Executed by Email VA",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        400,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Target distribution across 200 test cases:\n//   accepted: 90 (45%)\n//   rejected: 90 (45%)\n//   ignored:  20 (10%)\n// Random weighted choice — statistical variance over 200 trials is small.\nconst r = Math.random();\nlet decision, approved, ignored;\nif (r < 0.10) {\n  decision = 'ignore';\n  approved = false;\n  ignored = true;\n} else if (r < 0.55) {\n  decision = 'accept';\n  approved = true;\n  ignored = false;\n} else {\n  decision = 'reject';\n  approved = false;\n  ignored = false;\n}\nreturn [{\n  json: {\n    decision,\n    approved,\n    ignored,\n    // Match the shape that Telegram sendAndWait emits so downstream IF works unchanged\n    data: { approved }\n  }\n}];"
+      },
+      "id": "auto-decide-001",
+      "name": "Random Decision",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        672,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Test Auto-Responder (Email VA Approval Simulator)\n\nReplaces the Telegram approval click for batch tests of the Email VA.\n\n**Distribution across 200 cases (target):**\n- accepted: 90 (45%)\n- rejected: 90 (45%)\n- ignored:  20 (10%)\n\n**Output shape** matches Telegram sendAndWait:\n`{ data: { approved: true|false }, decision: 'accept'|'reject'|'ignore', ignored: boolean }`\n\n**Switch back to real Telegram approval:** In the Email VA workflow, flip the `Test Mode?` IF condition to `false`. Real `Telegram Approval` node is preserved on the False branch.",
+        "height": 408,
+        "width": 568
+      },
+      "id": "auto-sticky-001",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        288,
+        -192
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When Executed by Email VA": {
+      "main": [
+        [
+          {
+            "node": "Random Decision",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "b7124d0a-fa27-49b9-8b71-d6493237ddbe",
+  "meta": {
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "skOfYDilVAcGBtvV",
+  "tags": []
+}

@@ -1,0 +1,945 @@
+{
+  "name": "Cat4 SRM - Test Runner",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "tr-man",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        208,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "cat4-srm-runner",
+        "options": {}
+      },
+      "id": "tr-wh",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        208,
+        560
+      ],
+      "webhookId": "cat4-srm-runner-001"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "YOUR_GOOGLE_SHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "1380961289",
+          "cachedResultName": "04_Multistep_Tasks_Tests"
+        },
+        "options": {}
+      },
+      "id": "read",
+      "name": "Read Test Cases",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        448,
+        480
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $json.Subcategory }}",
+              "rightValue": "schedule_plus_reminder",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "c2",
+              "leftValue": "={{ $json.ID }}",
+              "rightValue": "^MS-SRM-(031|033|035|038|040|041|042|045|046|047|048)$",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "filter",
+      "name": "Keep SRM Pilot 5",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        688,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "loop",
+      "name": "Loop Over Tests",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        928,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const row = $json;\nconst testId = String(row.ID || '').trim();\nconst inputText = String(row.Input_Text || '').trim();\nconst metaRaw = String(row.Input_Metadata_JSON || '').trim();\nlet meta = {};\ntry { meta = JSON.parse(metaRaw); } catch(e) {}\nconst offset = Number(meta.reminder_offset_min || 0);\n\nlet task = '';\nconst re = /TASK:\\s*([\\s\\S]*?)\\s*SOLUTION:/g;\nlet m, last = null;\nwhile ((m = re.exec(inputText)) !== null) last = m[1];\ntask = last ? last.trim() : inputText.replace(/^Find a slot per:\\s*/i, '');\n\n// extract attendees + duration from the task\nlet attendees = [];\nlet durationMin = 30;\nconst durRe = /for\\s+(half an hour|one hour|an hour|\\d+\\s*hours?|\\d+\\s*minutes?)/i;\nconst dm = task.match(durRe);\nif (dm) {\n  const d = dm[1].toLowerCase();\n  if (d.includes('half')) durationMin = 30;\n  else if (d.includes('one hour') || d === 'an hour') durationMin = 60;\n  else { const num = parseInt(d, 10); if (d.includes('hour')) durationMin = num*60; else durationMin = num; }\n}\nconst attRe = /schedule a meeting for ([^\\.]+?) for/i;\nconst am = task.match(attRe);\nif (am) {\n  const namePart = am[1].replace(/ and /g, ', ');\n  attendees = namePart.split(',').map(s => s.trim()).filter(Boolean);\n}\n\nconst today = new Date();\nconst yyyy = today.getFullYear();\nconst mm = String(today.getMonth()+1).padStart(2,'0');\nconst dd = String(today.getDate()).padStart(2,'0');\nconst weekdays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];\nconst todayWeekday = weekdays[today.getDay()];\n\nfunction nextOcc(wd) {\n  const t = weekdays.indexOf(wd);\n  if (t < 0) return null;\n  const days = (t - today.getDay() + 7) % 7;\n  const d = new Date(today); d.setDate(d.getDate()+days);\n  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');\n}\n\nlet taskWithDates = task;\nweekdays.forEach(wd => {\n  const wdRe = new RegExp('\\\\b'+wd+'\\\\b','g');\n  if (wdRe.test(taskWithDates)) {\n    const ds = nextOcc(wd);\n    if (ds) taskWithDates = taskWithDates.replace(wdRe, ds+' ('+wd+')');\n  }\n});\n\nconst prompt = '[TEST_MODE] (test_id=' + testId + ')\\n' +\n  'Today is '+yyyy+'-'+mm+'-'+dd+' ('+todayWeekday+'). Year='+yyyy+'. ALL datetimes MUST use '+yyyy+' or later.\\n\\n' +\n  '*** SKIP THE AVAILABILITY CHECK ***\\nDo NOT call GCal - Check Availability or GCal - List Events. The calendar may have overlapping TEST_ events from prior tests — that is intentional. Trust the constraints in the task and create events at slots YOU compute.\\n\\n' +\n  '*** CRITICAL: RESPECT EVERY CONSTRAINT STATED IN THE TASK ***\\nThe task text IS the source of truth for busy windows and rules. Before choosing a slot:\\n  (a) List every busy window stated in the task.\\n  (b) List every absolute restriction (\"X cannot meet on Monday\", \"avoid after 14:30\", etc.).\\n  (c) Pick a slot inside working hours violating none of (a) or (b). If multiple valid, pick earliest.\\n\\n' +\n  'Create TWO calendar events using GCal - Create Event:\\n\\n' +\n  '1. MAIN MEETING:\\n' +\n  '   - summary: \"TEST_' + testId + ': Meeting with ' + attendees.join(', ') + '\"\\n' +\n  '   - description: 2-3 lines (participants, ' + durationMin + ' minute duration, test_id ' + testId + ')\\n' +\n  '   - start_iso / end_iso: the slot you compute from constraints (duration ' + durationMin + ' min)\\n\\n' +\n  '2. REMINDER EVENT:\\n' +\n  '   - summary: \"TEST_' + testId + ': Reminder for meeting\"\\n' +\n  '   - description: \"Reminder for TEST_' + testId + ' main meeting (' + offset + ' minutes before).\"\\n' +\n  '   - start_iso: EXACTLY ' + offset + ' minutes BEFORE the main meeting start.\\n' +\n  '   - end_iso: start_iso + ' + durationMin + ' minutes (reminder has the SAME duration as the main meeting).\\n\\n' +\n  'Do not ask for confirmation — automated test mode.\\n\\n' +\n  'IMPORTANT: Weekday names have been pre-resolved to concrete '+yyyy+' dates. Use those EXACT dates.\\n\\n' +\n  '=== SCHEDULING TASK ===\\n' + taskWithDates;\n\nreturn { json: {\n  test_id: testId,\n  subcategory: String(row.Subcategory || ''),\n  channel: String(row.Channel || ''),\n  golden_plan: metaRaw,\n  reminder_offset_min: offset,\n  duration_min: durationMin,\n  attendees: attendees.join(', '),\n  started_at: new Date().toISOString(),\n  message: { text: prompt, chat: { id: 'test_runner_srm_'+testId } }\n}};"
+      },
+      "id": "prompt",
+      "name": "Build TEST_MODE Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1168,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_CALENDAR_ID",
+          "mode": "list",
+          "cachedResultName": "YOUR_GOOGLE_CALENDAR_ID"
+        },
+        "returnAll": true,
+        "timeMin": "={{ $now.startOf('day').minus({days: 1}).toISO() }}",
+        "timeMax": "={{ $now.plus({days: 14}).toISO() }}",
+        "options": {
+          "orderBy": "startTime"
+        }
+      },
+      "id": "cal-before",
+      "name": "Calendar Snapshot BEFORE",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        1408,
+        368
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CALENDAR_CREDENTIAL"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const ids = $input.all().map(i => i.json.id).filter(Boolean);\nconst payload = $('Build TEST_MODE Prompt').first().json;\nreturn [{ json: Object.assign({}, payload, { calendar_before_ids: ids }) }];"
+      },
+      "id": "collect-before",
+      "name": "Collect Cal Before",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1648,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "ltlnCn9QWsPtfZs5",
+          "cachedResultName": "Telegram VA - Command Handler"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "id": "call-va",
+      "name": "Call Telegram VA",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        1888,
+        368
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "amount": 30
+      },
+      "id": "wait",
+      "name": "Wait 2min",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2128,
+        368
+      ],
+      "webhookId": "cat4-srm-wait-001"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_CALENDAR_ID",
+          "mode": "list",
+          "cachedResultName": "YOUR_GOOGLE_CALENDAR_ID"
+        },
+        "returnAll": true,
+        "timeMin": "={{ $now.startOf('day').minus({days: 1}).toISO() }}",
+        "timeMax": "={{ $now.plus({days: 14}).toISO() }}",
+        "options": {
+          "orderBy": "startTime"
+        }
+      },
+      "id": "cal-after",
+      "name": "Calendar Snapshot AFTER",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        2368,
+        368
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CALENDAR_CREDENTIAL"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const events = $input.all().map(i => i.json);\nconst ids = events.map(e => e.id).filter(Boolean);\nreturn [{ json: { cal_after_events: events, cal_after_ids: ids } }];"
+      },
+      "id": "agg-after",
+      "name": "Aggregate Cal After",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2608,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const agg = $input.first().json;\nconst payload = $('Collect Cal Before').first().json;\nconst calBefore = new Set(payload.calendar_before_ids || []);\nconst calAfter = agg.cal_after_events || [];\nconst newEvents = calAfter.filter(e => e.id && !calBefore.has(e.id));\nconst testId = payload.test_id;\nconst titlePrefix = 'TEST_' + testId;\nconst testEvents = newEvents.filter(e => (e.summary || '').includes(titlePrefix));\n\nlet mainEv = null, reminderEv = null;\nfor (const e of testEvents) {\n  const t = (e.summary || '').toLowerCase();\n  if (t.includes('reminder')) reminderEv = e; else mainEv = e;\n}\nif (testEvents.length === 2 && (!mainEv || !reminderEv)) {\n  const sorted = testEvents.slice().sort((a,b) => new Date(a.start.dateTime||a.start.date) - new Date(b.start.dateTime||b.start.date));\n  reminderEv = sorted[0]; mainEv = sorted[1];\n}\n\nconst mainStartISO = mainEv ? ((mainEv.start && (mainEv.start.dateTime || mainEv.start.date)) || '') : '';\nconst mainEndISO = mainEv ? ((mainEv.end && (mainEv.end.dateTime || mainEv.end.date)) || '') : '';\nconst remStartISO = reminderEv ? ((reminderEv.start && (reminderEv.start.dateTime || reminderEv.start.date)) || '') : '';\n\nlet reminderMinutesBefore = '';\nif (mainStartISO && remStartISO) {\n  reminderMinutesBefore = Math.round((new Date(mainStartISO) - new Date(remStartISO)) / 60000);\n}\nconst expectedOffset = payload.reminder_offset_min;\nconst reminderPass = (reminderMinutesBefore !== '' && reminderMinutesBefore === expectedOffset) ? 'Y' : 'N';\n\nlet day = '';\nif (mainStartISO) day = new Date(mainStartISO).toLocaleDateString('en-US', { weekday: 'long', timeZone: 'Europe/Sarajevo' });\n\nconst vaResp = $('Call Telegram VA').first()?.json || {};\nconst aiOutput = vaResp.ai_output || vaResp.output || '';\nconst startedAt = payload.started_at;\nconst elapsedMs = startedAt ? (Date.now() - new Date(startedAt).getTime()) : '';\n\nlet status = 'failed';\nif (mainEv && reminderEv) status = 'success';\nelse if (mainEv || reminderEv) status = 'partial';\n\nreturn [{ json: {\n  timestamp: new Date().toISOString(),\n  test_id: payload.test_id,\n  subcategory: payload.subcategory,\n  channel: payload.channel,\n  calendar_event_id: (mainEv && mainEv.id) || '',\n  calendar_event_title: (mainEv && mainEv.summary) || '',\n  calendar_event_description: (mainEv && mainEv.description) || '',\n  calendar_event_start_iso: mainStartISO,\n  calendar_event_end_iso: mainEndISO,\n  calendar_event_day: day,\n  draft_id: '',\n  draft_subject: '',\n  draft_to: '',\n  draft_message: '',\n  ai_output: String(aiOutput).slice(0, 800),\n  golden_plan: payload.golden_plan,\n  attendees: payload.attendees,\n  new_event_count: String(testEvents.length),\n  new_draft_count: '',\n  response_time_ms: String(elapsedMs),\n  status: status,\n  reminder_id: (reminderEv && reminderEv.id) || '',\n  reminder_minutes_before: reminderMinutesBefore === '' ? '' : String(reminderMinutesBefore),\n  reminder_pass: reminderPass\n}}];"
+      },
+      "id": "diff",
+      "name": "Diff + Pair Main/Reminder",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2848,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "YOUR_GOOGLE_SHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "category4_results"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "test_id",
+              "displayName": "test_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "subcategory",
+              "displayName": "subcategory",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "channel",
+              "displayName": "channel",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "calendar_event_id",
+              "displayName": "calendar_event_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "calendar_event_title",
+              "displayName": "calendar_event_title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "calendar_event_description",
+              "displayName": "calendar_event_description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "calendar_event_start_iso",
+              "displayName": "calendar_event_start_iso",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "calendar_event_end_iso",
+              "displayName": "calendar_event_end_iso",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "calendar_event_day",
+              "displayName": "calendar_event_day",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "draft_id",
+              "displayName": "draft_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "draft_subject",
+              "displayName": "draft_subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "draft_to",
+              "displayName": "draft_to",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "draft_message",
+              "displayName": "draft_message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ai_output",
+              "displayName": "ai_output",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "golden_plan",
+              "displayName": "golden_plan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "attendees",
+              "displayName": "attendees",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "new_event_count",
+              "displayName": "new_event_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "new_draft_count",
+              "displayName": "new_draft_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "response_time_ms",
+              "displayName": "response_time_ms",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "actions_pass",
+              "displayName": "actions_pass",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "metadata_pass",
+              "displayName": "metadata_pass",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "recipient_pass",
+              "displayName": "recipient_pass",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "time_pass",
+              "displayName": "time_pass",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "time_diff_minutes",
+              "displayName": "time_diff_minutes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "strict_pass",
+              "displayName": "strict_pass",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "lenient_pass",
+              "displayName": "lenient_pass",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "notes",
+              "displayName": "notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "reminder_id",
+              "displayName": "reminder_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "reminder_minutes_before",
+              "displayName": "reminder_minutes_before",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "reminder_pass",
+              "displayName": "reminder_pass",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "_main_id",
+              "displayName": "_main_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "_reminder_id",
+              "displayName": "_reminder_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "log",
+      "name": "Log Result",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        3088,
+        368
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_CALENDAR_ID",
+          "mode": "list",
+          "cachedResultName": "YOUR_GOOGLE_CALENDAR_ID"
+        },
+        "eventId": "={{ $('Diff + Pair Main/Reminder').first().json.calendar_event_id }}",
+        "options": {}
+      },
+      "id": "del-main",
+      "name": "Delete Main Event",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        3328,
+        256
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CALENDAR_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_CALENDAR_ID",
+          "mode": "list",
+          "cachedResultName": "YOUR_GOOGLE_CALENDAR_ID"
+        },
+        "eventId": "={{ $('Diff + Pair Main/Reminder').first().json.reminder_id }}",
+        "options": {}
+      },
+      "id": "del-rem",
+      "name": "Delete Reminder Event",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        3568,
+        256
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CALENDAR_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {},
+      "id": "wait-after",
+      "name": "Wait 5s",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3808,
+        368
+      ],
+      "webhookId": "cat4-srm-wait5s-001"
+    },
+    {
+      "parameters": {
+        "content": "## Cat4 SRM Test Runner — Schedule + Reminder\n\n**Cat4 multistep runner for the schedule_plus_reminder subcategory: it drives the Telegram VA to create a main meeting event plus a paired reminder event, then grades the pair against the calendar.**\n\n### What it does\n1. Reads the Cat4 multistep test-inputs tab (04_Multistep_Tasks_Tests).\n2. Filters to the SRM pilot (Keep SRM Pilot 5), then loops one test at a time.\n3. Per test: snapshots the calendar BEFORE → builds a [TEST_MODE] prompt (instructs VA to create a MAIN event + a REMINDER event offset before it) → calls the Telegram VA (Telegram VA - Command Handler) → waits → snapshots the calendar AFTER → diffs new TEST_<id> events and pairs them into main + reminder, then grades.\n4. Logs to the category4_results tab.\n5. Cleanup: deletes the main event and the reminder event it created (calendar only — no drafts), then waits 5s before the next test.\n\n### Scope / filter (keep this node)\nKeep SRM Pilot 5 is a Filter node with two AND conditions:\n- Subcategory equals schedule_plus_reminder — the 04_Multistep_Tasks_Tests tab is SHARED across all four Cat4 multistep subcategories (SRM/SDA/TRI/RSC/CAP), so this condition carves out the SRM rows. Without it the runner would pull in the other subcategories' rows.\n- ID matches an explicit 11-ID pilot list — the pilot sub-sample.\nBoth are load-bearing: do NOT delete the node. To run the FULL schedule_plus_reminder subcategory, drop ONLY the ID-list condition and keep the Subcategory condition — removing the whole node would sweep in SDA/TRI/RSC/CAP rows.\n\n### Pass / grading\nDiff + Pair Main/Reminder takes calendar AFTER minus the BEFORE id-set, keeps only new events whose summary contains TEST_<id>, and splits them into a main event and a reminder event (reminder = summary contains \"reminder\"; if exactly two and unlabeled, the earlier one is the reminder). status = success when BOTH exist, partial when only one, failed when neither. It also computes reminder_minutes_before (main start − reminder start) and sets reminder_pass = Y only when that equals the expected reminder_offset_min.\n\n### Logs to\ncategory4_results (autoMapInputData append). Notable columns: status, calendar_event_id/title/start_iso/end_iso/day, new_event_count, reminder_id, reminder_minutes_before, reminder_pass, ai_output, golden_plan, attendees, response_time_ms. Shared draft_* / actions_pass / time_pass columns stay blank here (SRM produces no email drafts).\n\n### Run plan\nLoop Over Tests runs one test per iteration (no explicit batchSize → default 1). Uses the shared assistant calendar; the VA is told to SKIP availability checks (overlapping TEST_ events expected). Trigger: Manual or Webhook.",
+        "height": 888,
+        "width": 920
+      },
+      "id": "runner-doc-sticky",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        144,
+        -608
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read Test Cases",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read Test Cases",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Test Cases": {
+      "main": [
+        [
+          {
+            "node": "Keep SRM Pilot 5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Keep SRM Pilot 5": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Tests",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Tests": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Build TEST_MODE Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build TEST_MODE Prompt": {
+      "main": [
+        [
+          {
+            "node": "Calendar Snapshot BEFORE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendar Snapshot BEFORE": {
+      "main": [
+        [
+          {
+            "node": "Collect Cal Before",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Collect Cal Before": {
+      "main": [
+        [
+          {
+            "node": "Call Telegram VA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Telegram VA": {
+      "main": [
+        [
+          {
+            "node": "Wait 2min",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 2min": {
+      "main": [
+        [
+          {
+            "node": "Calendar Snapshot AFTER",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendar Snapshot AFTER": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Cal After",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Cal After": {
+      "main": [
+        [
+          {
+            "node": "Diff + Pair Main/Reminder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Diff + Pair Main/Reminder": {
+      "main": [
+        [
+          {
+            "node": "Log Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Result": {
+      "main": [
+        [
+          {
+            "node": "Delete Main Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Main Event": {
+      "main": [
+        [
+          {
+            "node": "Delete Reminder Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Reminder Event": {
+      "main": [
+        [
+          {
+            "node": "Wait 5s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 5s": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Tests",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Sarajevo",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "9231d959-af61-4426-923e-6ebd5343b5cc",
+  "meta": {
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "3ujSkZqUp8aUfRtX",
+  "tags": []
+}

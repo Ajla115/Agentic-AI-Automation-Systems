@@ -1,0 +1,643 @@
+{
+  "name": "Cat2 - Test Runner",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "cat2-trigger-001",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        208,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "cachedResultName": "02_Calendar_Scheduling_Tests"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "484198618",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "cat2-read-tests-001",
+      "name": "Read Test Cases",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        448,
+        400
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "cat2-split-001",
+      "name": "Loop Over Tests",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        800,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const row = $json;\nconst testId = String(row.ID || '').trim();\nconst inputText = String(row.Input_Text || '').trim();\n\n// Extract the LAST TASK: ... SOLUTION: block\nlet task = '';\nconst re = /TASK:\\s*([\\s\\S]*?)\\s*SOLUTION:/g;\nlet m, last = null;\nwhile ((m = re.exec(inputText)) !== null) last = m[1];\ntask = last ? last.trim() : inputText;\n\nconst today = new Date();\nconst yyyy = today.getFullYear();\nconst mm = String(today.getMonth() + 1).padStart(2, '0');\nconst dd = String(today.getDate()).padStart(2, '0');\nconst weekdays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];\nconst todayWeekday = weekdays[today.getDay()];\n\nfunction nextOccurrenceDate(weekday) {\n  const targetIdx = weekdays.indexOf(weekday);\n  if (targetIdx < 0) return null;\n  const todayIdx = today.getDay();\n  let daysUntil = (targetIdx - todayIdx + 7) % 7;\n  if (daysUntil === 0) daysUntil = 7; // 'Monday' on Monday → next Monday\n  const d = new Date(today);\n  d.setDate(d.getDate() + daysUntil);\n  const y = d.getFullYear();\n  const mn = String(d.getMonth() + 1).padStart(2, '0');\n  const dy = String(d.getDate()).padStart(2, '0');\n  return y + '-' + mn + '-' + dy;\n}\n\n// Substitute each weekday mention in the task with 'YYYY-MM-DD (Weekday)'\nlet taskWithDates = task;\nweekdays.forEach(function(wd) {\n  const wdRe = new RegExp('\\\\b' + wd + '\\\\b', 'g');\n  if (wdRe.test(taskWithDates)) {\n    const dateStr = nextOccurrenceDate(wd);\n    if (dateStr) {\n      taskWithDates = taskWithDates.replace(new RegExp('\\\\b' + wd + '\\\\b', 'g'), dateStr + ' (' + wd + ')');\n    }\n  }\n});\n\nconst prompt = '[TEST_MODE] (test_id=' + testId + ') ' +\n  'Today is ' + yyyy + '-' + mm + '-' + dd + ' (' + todayWeekday + '). The current year is ' + yyyy + '. ALL datetimes you create MUST use ' + yyyy + ' or later. NEVER use 2024 or any year from your training data.\\n\\n' +\n  'Please schedule the meeting described below. After picking a valid time, CREATE the event on my calendar with:\\n' +\n  '  - TITLE: \"TEST_' + testId + ': Meeting with <participant names>\" (extract participant names; keep TEST_' + testId + ' prefix exactly).\\n' +\n  '  - DESCRIPTION: short text with participants, requested duration, 1-line constraint summary per participant, and test_id ' + testId + '.\\n\\n' +\n  'Do not ask for confirmation — automated test.\\n\\n' +\n  'IMPORTANT: All weekday names in the task below have been pre-resolved to concrete future dates in ' + yyyy + '. Use those EXACT dates in your start_iso and end_iso parameters — do not change the year.\\n\\n' +\n  '=== SCHEDULING TASK ===\\n' + taskWithDates;\n\nreturn {\n  json: {\n    test_id: testId,\n    started_at: new Date().toISOString(),\n    message: { text: prompt, chat: { id: 'test_runner' } }\n  }\n};"
+      },
+      "id": "cat2-build-prompt-001",
+      "name": "Build TEST_MODE Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1168,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_CALENDAR_ID",
+          "mode": "list",
+          "cachedResultName": "YOUR_GOOGLE_CALENDAR_ID"
+        },
+        "returnAll": true,
+        "timeMin": "={{ $now.minus({hours: 1}).toISO() }}",
+        "timeMax": "={{ $now.plus({days: 14}).toISO() }}",
+        "options": {
+          "orderBy": "startTime"
+        }
+      },
+      "id": "cat2-snap-before-001",
+      "name": "Calendar Snapshot BEFORE",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        1408,
+        288
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CALENDAR_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const ids = $input.all().map(i => i.json.id).filter(Boolean);\nconst items = $('Build TEST_MODE Prompt').all();\nconst payload = items[0].json;\nreturn [{ json: Object.assign({}, payload, { calendar_before_ids: ids }) }];"
+      },
+      "id": "cat2-collect-before-001",
+      "name": "Collect Before IDs",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1648,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "ltlnCn9QWsPtfZs5",
+          "cachedResultName": "Telegram VA - Command Handler"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "id": "cat2-call-va-001",
+      "name": "Call Telegram VA",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        1888,
+        288
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_CALENDAR_ID",
+          "mode": "list",
+          "cachedResultName": "YOUR_GOOGLE_CALENDAR_ID"
+        },
+        "returnAll": true,
+        "timeMin": "={{ $now.minus({hours: 1}).toISO() }}",
+        "timeMax": "={{ $now.plus({days: 14}).toISO() }}",
+        "options": {
+          "orderBy": "startTime"
+        }
+      },
+      "id": "cat2-snap-after-001",
+      "name": "Calendar Snapshot AFTER",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        2368,
+        288
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CALENDAR_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const payload = $('Collect Before IDs').first().json;\nconst before = payload.calendar_before_ids || [];\nconst beforeSet = new Set(before);\nconst after = $input.all().map(i => i.json);\nconst newEvents = after.filter(e => e.id && !beforeSet.has(e.id));\n// Also pull AI response from Execute Workflow output\nconst vaResp = $('Call Telegram VA').first()?.json || {};\nconst aiOutput = vaResp.ai_output || vaResp.output || '';\nlet eventId = '';\nlet day = '';\nlet startISO = '';\nlet endISO = '';\nlet title = '';\nif (newEvents.length > 0) {\n  const ev = newEvents[0];\n  eventId = ev.id || '';\n  title = ev.summary || '';\n  startISO = (ev.start && (ev.start.dateTime || ev.start.date)) || '';\n  endISO = (ev.end && (ev.end.dateTime || ev.end.date)) || '';\n  if (startISO) {\n    const d = new Date(startISO);\n    day = d.toLocaleDateString('en-US', { weekday: 'long', timeZone: 'Europe/Sarajevo' });\n  }\n}\nconst startedAt = payload.started_at;\nconst elapsedMs = startedAt ? (Date.now() - new Date(startedAt).getTime()) : '';\nreturn [{\n  json: {\n    timestamp: new Date().toISOString(),\n    test_id: payload.test_id,\n    ai_output: String(aiOutput).slice(0, 500),\n    new_event_count: newEvents.length,\n    event_id: eventId,\n    event_title: title,\n    proposed_day: day,\n    proposed_start_iso: startISO,\n    proposed_end_iso: endISO,\n    response_time_ms: elapsedMs\n  }\n}];"
+      },
+      "id": "cat2-diff-001",
+      "name": "Diff & Build Result Row",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2608,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "cachedResultName": "02_Calendar_Scheduling_Tests"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "999014264",
+          "mode": "id"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "test_id",
+              "displayName": "test_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "proposed_day",
+              "displayName": "proposed_day",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "proposed_start_iso",
+              "displayName": "proposed_start_iso",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "proposed_end_iso",
+              "displayName": "proposed_end_iso",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "event_id",
+              "displayName": "event_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "response_time_ms",
+              "displayName": "response_time_ms",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Strict_Pass",
+              "displayName": "Strict_Pass",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Lenient_Pass",
+              "displayName": "Lenient_Pass",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Overall_Pass",
+              "displayName": "Overall_Pass",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Match_Notes",
+              "displayName": "Match_Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ai_output",
+              "displayName": "ai_output",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "new_event_count",
+              "displayName": "new_event_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "event_title",
+              "displayName": "event_title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "cat2-log-001",
+      "name": "Log Result",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2848,
+        288
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cond-has-eid",
+              "leftValue": "={{ $json.event_id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "cat2-has-event-if-001",
+      "name": "Has Event To Delete?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3088,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_CALENDAR_ID",
+          "mode": "list",
+          "cachedResultName": "YOUR_GOOGLE_CALENDAR_ID"
+        },
+        "eventId": "={{ $json.event_id }}",
+        "options": {}
+      },
+      "id": "cat2-delete-event-001",
+      "name": "Delete Event",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        3312,
+        96
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CALENDAR_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "id": "cat2-wait-after-001",
+      "name": "Wait 2s before next",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3536,
+        448
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID"
+    },
+    {
+      "parameters": {
+        "content": "## Cat 2 Test Runner — Calendar Scheduling\n\n**What it does:** For each test case in the Calendar Scheduling Tests sheet (Test Input tab), it:\n1. Snapshots the Google Calendar BEFORE (event IDs)\n2. Calls the Telegram VA - Command Handler workflow with a [TEST_MODE] prefix → the AI Agent runs and schedules an event\n3. Waits for sync, then snapshots AFTER\n4. Diffs the snapshots to find the new event the AI created\n5. Logs to the category2_results tab (test_id, proposed_day/start/end, event_id, ai_output, response_time_ms)\n6. Deletes the just-created event so the next test starts clean\n7. Waits, then moves to the next test\n\n**Configurable:**\n- How many tests to run per execution\n- Google Calendar credential on the calendar nodes\n\n**Output:** One row per test in the category2_results tab. Then run the Apps Script grading step to compute Strict_Pass + Lenient_Pass.\n\n**Required pre-setup:**\n1. A tab called category2_results in the Calendar Scheduling Tests spreadsheet with header row:\n   timestamp | test_id | ai_output | new_event_count | event_id | event_title | proposed_day | proposed_start_iso | proposed_end_iso | response_time_ms\n2. A Google Calendar credential attached to: Snapshot BEFORE, Snapshot AFTER, Delete Event\n3. The Telegram VA - Command Handler workflow's AI Agent prompt includes the TEST_MODE clause",
+        "height": 560,
+        "width": 880
+      },
+      "id": "cat2-sticky-001",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        144,
+        -416
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "id": "cat2-wait-001",
+      "name": "Wait 2min",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2128,
+        288
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read Test Cases",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Test Cases": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Tests",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Tests": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Build TEST_MODE Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build TEST_MODE Prompt": {
+      "main": [
+        [
+          {
+            "node": "Calendar Snapshot BEFORE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendar Snapshot BEFORE": {
+      "main": [
+        [
+          {
+            "node": "Collect Before IDs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Collect Before IDs": {
+      "main": [
+        [
+          {
+            "node": "Call Telegram VA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Telegram VA": {
+      "main": [
+        [
+          {
+            "node": "Wait 2min",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendar Snapshot AFTER": {
+      "main": [
+        [
+          {
+            "node": "Diff & Build Result Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Diff & Build Result Row": {
+      "main": [
+        [
+          {
+            "node": "Log Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Result": {
+      "main": [
+        [
+          {
+            "node": "Has Event To Delete?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Event To Delete?": {
+      "main": [
+        [
+          {
+            "node": "Delete Event",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait 2s before next",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Event": {
+      "main": [
+        [
+          {
+            "node": "Wait 2s before next",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 2s before next": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Tests",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 2min": {
+      "main": [
+        [
+          {
+            "node": "Calendar Snapshot AFTER",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "88b594a4-7c23-42cd-a948-e6598def48bf",
+  "meta": {
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "4mOWy0JrgiMwJk0l",
+  "tags": []
+}

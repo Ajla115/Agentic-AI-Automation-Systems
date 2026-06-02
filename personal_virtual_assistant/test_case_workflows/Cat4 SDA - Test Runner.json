@@ -1,0 +1,830 @@
+{
+  "name": "Cat4 SDA - Test Runner",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "cat4-tr-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        208,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "cat4-runner",
+        "options": {}
+      },
+      "id": "cat4-tr-webhook",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        208,
+        560
+      ],
+      "webhookId": "cat4-runner-webhook-001"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "YOUR_GOOGLE_SHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "new test inputs 2"
+        },
+        "options": {}
+      },
+      "id": "cat4-tr-read",
+      "name": "Read Test Cases",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        448,
+        400
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cond-sub",
+              "leftValue": "={{ $json.Subcategory }}",
+              "rightValue": "schedule_plus_email",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "cond-id",
+              "leftValue": "={{ $json.ID }}",
+              "rightValue": "^MS-SDA-\\d+$",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "cat4-tr-filter",
+      "name": "Keep schedule_plus_email",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        688,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "cat4-tr-loop",
+      "name": "Loop Over Tests",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        928,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const row = $json;\nconst testId = String(row.ID || '').trim();\nconst inputText = String(row.Input_Text || '').trim();\nconst metaRaw = String(row.Input_Metadata_JSON || '').trim();\n\nlet task = '';\nconst re = /TASK:\\s*([\\s\\S]*?)\\s*SOLUTION:/g;\nlet m, last = null;\nwhile ((m = re.exec(inputText)) !== null) last = m[1];\ntask = last ? last.trim() : inputText.replace(/^Schedule the meeting based on this:\\s*/i, '');\n\nlet attendees = [];\nconst attRe = /schedule a meeting for ([^\\.]+?) for/i;\nconst am = task.match(attRe);\nif (am) {\n  const namePart = am[1];\n  const cleaned = namePart.replace(/ and /g, ', ');\n  attendees = cleaned.split(',').map(s => s.trim()).filter(Boolean);\n}\n\nconst today = new Date();\nconst yyyy = today.getFullYear();\nconst mm = String(today.getMonth() + 1).padStart(2, '0');\nconst dd = String(today.getDate()).padStart(2, '0');\nconst weekdays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];\nconst todayWeekday = weekdays[today.getDay()];\n\nfunction nextOccurrenceDate(weekday) {\n  const targetIdx = weekdays.indexOf(weekday);\n  if (targetIdx < 0) return null;\n  const todayIdx = today.getDay();\n  const daysUntil = (targetIdx - todayIdx + 7) % 7;\n  const d = new Date(today);\n  d.setDate(d.getDate() + daysUntil);\n  const y = d.getFullYear();\n  const mn = String(d.getMonth() + 1).padStart(2, '0');\n  const dy = String(d.getDate()).padStart(2, '0');\n  return y + '-' + mn + '-' + dy;\n}\n\nlet taskWithDates = task;\nweekdays.forEach(function(wd) {\n  const wdRe = new RegExp('\\\\b' + wd + '\\\\b', 'g');\n  if (wdRe.test(taskWithDates)) {\n    const dateStr = nextOccurrenceDate(wd);\n    if (dateStr) {\n      taskWithDates = taskWithDates.replace(new RegExp('\\\\b' + wd + '\\\\b', 'g'), dateStr + ' (' + wd + ')');\n    }\n  }\n});\n\nconst attendeeEmails = attendees.map(n => n.toLowerCase().replace(/[^a-z]/g, '') + '@example.com').join(', ');\n\nconst prompt = '[TEST_MODE] (test_id=' + testId + ') ' +\n  'Today is ' + yyyy + '-' + mm + '-' + dd + ' (' + todayWeekday + '). The current year is ' + yyyy + '. ALL datetimes MUST use ' + yyyy + ' or later. NEVER use 2024 or any year from your training data.\\n\\n' +\n  '*** SKIP THE AVAILABILITY CHECK ***\\n' +\n  'For this test the calendar will deliberately accumulate many overlapping TEST_ events across the 60 cases — that is expected and acceptable. DO NOT call GCal - Check Availability or GCal - List Events. Trust the constraints in the task below and create the event at the slot YOU compute from those constraints, even if the real calendar already has an overlapping event there. Overlaps are intentional.\\n\\n' +\n  'Perform BOTH of the following actions in sequence:\\n\\n' +\n  '1. CREATE the calendar event using GCal - Create Event with:\\n' +\n  '   - summary: \"TEST_' + testId + ': Meeting with ' + attendees.join(', ') + '\"\\n' +\n  '   - description: 2-3 lines noting the participants, the 30-minute duration, and test_id ' + testId + '.\\n' +\n  '   - start_iso / end_iso: the time you compute from the task constraints (ignore real-calendar conflicts).\\n\\n' +\n  '2. CREATE a Gmail draft using Gmail - Create Draft (do NOT send) with:\\n' +\n  '   - sendTo: ' + attendeeEmails + '\\n' +\n  '   - subject: \"TEST_' + testId + ': Meeting agenda confirmation\"\\n' +\n  '   - message: a short agenda email confirming the slot you scheduled, listing attendees (' + attendees.join(', ') + '), including the chosen date and time, with 2-3 short agenda bullet points appropriate for a sync meeting.\\n\\n' +\n  'Do not ask for confirmation — automated test mode.\\n\\n' +\n  '*** CRITICAL: RESPECT EVERY CONSTRAINT STATED IN THE TASK ***\\n' +\n  'SKIPPING the live availability check does NOT mean you can ignore busy windows or rules stated in the task. The task text IS the source of truth for who is busy when and who refuses which times.\\n' +\n  'BEFORE choosing a slot, work through this internally:\\n' +\n  '  (a) List every busy window stated in the task (e.g. \"Kenneth busy 10:00-11:30\").\\n' +\n  '  (b) List every absolute restriction (e.g. \"Sandra cannot meet on Monday before 13:00\", \"Jennifer cannot meet on Monday\").\\n' +\n  '  (c) Pick a 30-min slot inside the stated working hours that violates NONE of (a) or (b). If multiple are valid, pick the earliest.\\n' +\n  'A slot that overlaps even ONE stated busy window, or violates even ONE stated rule, is WRONG and will fail the test. DO NOT propose such a slot. The constraint check is on YOU, not on the calendar tool.\\n\\n' +\n  'IMPORTANT: All weekday names below have been pre-resolved to concrete future dates in ' + yyyy + '. Use those EXACT dates in your start_iso and end_iso parameters.\\n\\n' +\n  '=== SCHEDULING TASK (skip live availability check; respect stated constraints; create at computed slot) ===\\n' + taskWithDates;\n\nreturn {\n  json: {\n    test_id: testId,\n    subcategory: String(row.Subcategory || ''),\n    channel: String(row.Channel || ''),\n    golden_plan: metaRaw,\n    attendees: attendees.join(', '),\n    attendee_emails: attendeeEmails,\n    started_at: new Date().toISOString(),\n    message: { text: prompt, chat: { id: 'test_runner_cat4_' + testId } }\n  }\n};"
+      },
+      "id": "cat4-tr-build-prompt",
+      "name": "Build TEST_MODE Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1168,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "operation": "getAll",
+        "returnAll": true,
+        "options": {}
+      },
+      "id": "cat4-tr-drafts-before",
+      "name": "Drafts Snapshot BEFORE",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1888,
+        288
+      ],
+      "alwaysOutputData": true,
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const ids = $input.all().map(i => i.json.id).filter(Boolean);\nconst payload = $('Collect Cal Before').first().json;\nreturn [{ json: Object.assign({}, payload, { draft_before_ids: ids }) }];"
+      },
+      "id": "cat4-tr-collect-drafts-before",
+      "name": "Collect Drafts Before",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2128,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "ltlnCn9QWsPtfZs5",
+          "cachedResultName": "Telegram VA - Command Handler"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "id": "cat4-tr-call-va",
+      "name": "Call Telegram VA",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        2368,
+        288
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "amount": 120
+      },
+      "id": "cat4-tr-wait-2min",
+      "name": "Wait 2min",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2608,
+        288
+      ],
+      "webhookId": "cat4-tr-wait-2min-001"
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "operation": "getAll",
+        "returnAll": true,
+        "options": {}
+      },
+      "id": "cat4-tr-drafts-after",
+      "name": "Drafts Snapshot AFTER",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        3088,
+        288
+      ],
+      "alwaysOutputData": true,
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const agg = $input.first().json;\nconst payload = $('Collect Drafts Before').first().json;\n\nconst calBefore = new Set(payload.calendar_before_ids || []);\nconst draftBefore = new Set(payload.draft_before_ids || []);\n\n// cal_after_events comes from Aggregate Cal After, embedded into Aggregate Drafts After flow\n// because Aggregate Drafts After doesn't carry cal data forward, we read it from the upstream node directly\nconst calAfter = $('Aggregate Cal After').first()?.json?.cal_after_events || [];\nconst draftsAfter = agg.drafts_after || [];\n\nconst newEvents = calAfter.filter(e => e.id && !calBefore.has(e.id));\nconst newDrafts = draftsAfter.filter(d => d.id && !draftBefore.has(d.id));\n\nconst vaResp = $('Call Telegram VA').first()?.json || {};\nconst aiOutput = vaResp.ai_output || vaResp.output || '';\n\nlet ev = newEvents[0] || {};\nlet draftMeta = newDrafts[0] || {};\n\nconst startISO = (ev.start && (ev.start.dateTime || ev.start.date)) || '';\nconst endISO = (ev.end && (ev.end.dateTime || ev.end.date)) || '';\nlet day = '';\nif (startISO) {\n  const d = new Date(startISO);\n  day = d.toLocaleDateString('en-US', { weekday: 'long', timeZone: 'Europe/Sarajevo' });\n}\n\nconst startedAt = payload.started_at;\nconst elapsedMs = startedAt ? (Date.now() - new Date(startedAt).getTime()) : '';\n\nlet status = 'failed';\nif (newEvents.length > 0 && newDrafts.length > 0) status = 'success';\nelse if (newEvents.length > 0 || newDrafts.length > 0) status = 'partial';\n\nreturn [{ json: {\n  test_id: payload.test_id,\n  subcategory: payload.subcategory,\n  channel: payload.channel,\n  golden_plan: payload.golden_plan,\n  attendees: payload.attendees,\n  attendee_emails: payload.attendee_emails,\n  calendar_event_id: ev.id || '',\n  calendar_event_title: ev.summary || '',\n  calendar_event_description: ev.description || '',\n  calendar_event_start_iso: startISO,\n  calendar_event_end_iso: endISO,\n  calendar_event_day: day,\n  draft_id: draftMeta.id || '',\n  ai_output: String(aiOutput).slice(0, 800),\n  new_event_count: newEvents.length,\n  new_draft_count: newDrafts.length,\n  response_time_ms: elapsedMs,\n  status\n}}];"
+      },
+      "id": "cat4-tr-diff",
+      "name": "Diff: Find New Event + Draft",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3568,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "cond-has-d",
+              "leftValue": "={{ $json.draft_id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "cat4-tr-has-draft",
+      "name": "Has Draft?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3808,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "operation": "get",
+        "messageId": "={{ $json.draft_id }}",
+        "options": {}
+      },
+      "id": "cat4-tr-get-draft",
+      "name": "Get Draft Details",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        3776,
+        -192
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const draft = $json;\nconst row = $('Diff: Find New Event + Draft').first().json;\nconst headers = draft.headers || {};\nconst subject = headers.subject || draft.subject || '';\nconst toAddr = headers.to || '';\nlet body = draft.text || draft.snippet || '';\nif (!body && draft.payload) {\n  body = draft.payload.snippet || '';\n}\nreturn { json: Object.assign({}, row, {\n  draft_subject: subject,\n  draft_to: toAddr,\n  draft_message: String(body).slice(0, 2000)\n})};"
+      },
+      "id": "cat4-tr-merge-draft",
+      "name": "Merge Draft Details",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4112,
+        -192
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a-ds",
+              "name": "draft_subject",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "a-dt",
+              "name": "draft_to",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "a-dm",
+              "name": "draft_message",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "cat4-tr-skip-draft",
+      "name": "Skip Draft Fetch",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3952,
+        144
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const r = $json;\nreturn { json: {\n  timestamp: new Date().toISOString(),\n  test_id: r.test_id || '',\n  subcategory: r.subcategory || '',\n  channel: r.channel || '',\n  calendar_event_id: r.calendar_event_id || '',\n  calendar_event_title: r.calendar_event_title || '',\n  calendar_event_description: r.calendar_event_description || '',\n  calendar_event_start_iso: r.calendar_event_start_iso || '',\n  calendar_event_end_iso: r.calendar_event_end_iso || '',\n  calendar_event_day: r.calendar_event_day || '',\n  draft_id: r.draft_id || '',\n  draft_subject: r.draft_subject || '',\n  draft_to: r.draft_to || '',\n  draft_message: r.draft_message || '',\n  ai_output: r.ai_output || '',\n  golden_plan: r.golden_plan || '',\n  attendees: r.attendees || '',\n  new_event_count: String(r.new_event_count || 0),\n  new_draft_count: String(r.new_draft_count || 0),\n  response_time_ms: String(r.response_time_ms || ''),\n  status: r.status || ''\n}};"
+      },
+      "id": "cat4-tr-build-row",
+      "name": "Build Final Row",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4288,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "YOUR_GOOGLE_SHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "category4_results"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "cat4-tr-log",
+      "name": "Log Result",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        4528,
+        288
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {},
+      "id": "cat4-tr-wait-after",
+      "name": "Wait 5s",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4768,
+        288
+      ],
+      "webhookId": "cat4-tr-wait-5s-001"
+    },
+    {
+      "parameters": {
+        "content": "## Cat 4 Test Runner — schedule_plus_email (event + draft, skip availability check)\n\n**Scope:** all rows where Subcategory == `schedule_plus_email` AND ID matches `MS-SDA-\\d+` (60 tests).\n\n**Availability behavior:**\nThe TEST_MODE prompt tells the AI to **NOT call GCal - Check Availability or GCal - List Events**. Trust the task constraints, compute a slot, and create the event there even if the calendar already has an overlapping event. Overlaps are intentional and acceptable; Google Calendar accepts them without error.\n\n**Per test:**\n1. Build TEST_MODE prompt (skip-availability + create event + draft); weekday names → concrete dates.\n2. Snapshot calendar + Gmail drafts BEFORE (capture IDs).\n3. Call the Telegram VA - Command Handler workflow — AI calls `GCal - Create Event` AND `Gmail - Create Draft`.\n4. Wait 60s.\n5. Snapshot AFTER → Aggregate Cal After (1 item) → Drafts AFTER (1 in, M out, 1 run) → Aggregate Drafts After (1 item). The two aggregates collapse N-item snapshot outputs back to 1 item each so `pairedItem` survives the splitInBatches loop.\n6. Diff: new event via set-difference on cal IDs, new draft via set-difference on draft IDs. Gmail `draft.get` → fetch subject/to/body.\n7. Append row to `category4_results`: timestamp, test_id, subcategory, channel, calendar_event_id, title, description, start_iso, end_iso, day, draft_id, draft_subject, draft_to, draft_message, ai_output, golden_plan, attendees, new_event_count, new_draft_count, response_time_ms, status.\n8. Wait 5s, next test.\n\n**Calendar keeps events:** events are intentionally NOT deleted in this runner — they stay so a Cat3-style deletion subcategory can target them.\n\n**Runtime estimate:** ~100s/test × 60 = ~100 min total.\n\n**Pre-req:** Run the Cat4 Setup workflow first — wipes calendar, deletes TEST_ drafts, clears the results tab.",
+        "height": 800,
+        "width": 880
+      },
+      "id": "cat4-tr-sticky",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        416,
+        -736
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const drafts = $input.all().map(i => i.json);\nconst ids = drafts.map(d => d.id).filter(Boolean);\nreturn [{ json: { drafts_after: drafts, drafts_after_ids: ids } }];"
+      },
+      "id": "cat4-tr-agg-drafts-after",
+      "name": "Aggregate Drafts After",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3328,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_CALENDAR_ID",
+          "mode": "list",
+          "cachedResultName": "YOUR_GOOGLE_CALENDAR_ID"
+        },
+        "returnAll": true,
+        "timeMin": "={{ $now.startOf('day').minus({days: 1}).toISO() }}",
+        "timeMax": "={{ $now.plus({days: 14}).toISO() }}",
+        "options": {
+          "orderBy": "startTime"
+        }
+      },
+      "id": "cat4-tr-cal-before",
+      "name": "Calendar Snapshot BEFORE",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        1408,
+        288
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CALENDAR_CREDENTIAL"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const ids = $input.all().map(i => i.json.id).filter(Boolean);\nconst payload = $('Build TEST_MODE Prompt').first().json;\nreturn [{ json: Object.assign({}, payload, { calendar_before_ids: ids }) }];"
+      },
+      "id": "cat4-tr-collect-cal-before",
+      "name": "Collect Cal Before",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1648,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_CALENDAR_ID",
+          "mode": "list",
+          "cachedResultName": "YOUR_GOOGLE_CALENDAR_ID"
+        },
+        "returnAll": true,
+        "timeMin": "={{ $now.startOf('day').minus({days: 1}).toISO() }}",
+        "timeMax": "={{ $now.plus({days: 14}).toISO() }}",
+        "options": {
+          "orderBy": "startTime"
+        }
+      },
+      "id": "cat4-tr-cal-after",
+      "name": "Calendar Snapshot AFTER",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        2848,
+        288
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CALENDAR_CREDENTIAL"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const events = $input.all().map(i => i.json);\nconst ids = events.map(e => e.id).filter(Boolean);\nreturn [{ json: { cal_after_events: events, cal_after_ids: ids } }];"
+      },
+      "id": "cat4-tr-agg-cal-after",
+      "name": "Aggregate Cal After",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3088,
+        288
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read Test Cases",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read Test Cases",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Test Cases": {
+      "main": [
+        [
+          {
+            "node": "Keep schedule_plus_email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Keep schedule_plus_email": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Tests",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Tests": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Build TEST_MODE Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Drafts Snapshot BEFORE": {
+      "main": [
+        [
+          {
+            "node": "Collect Drafts Before",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Collect Drafts Before": {
+      "main": [
+        [
+          {
+            "node": "Call Telegram VA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Telegram VA": {
+      "main": [
+        [
+          {
+            "node": "Wait 2min",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Diff: Find New Event + Draft": {
+      "main": [
+        [
+          {
+            "node": "Has Draft?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Draft?": {
+      "main": [
+        [
+          {
+            "node": "Get Draft Details",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Skip Draft Fetch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Draft Details": {
+      "main": [
+        [
+          {
+            "node": "Merge Draft Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Draft Details": {
+      "main": [
+        [
+          {
+            "node": "Build Final Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Skip Draft Fetch": {
+      "main": [
+        [
+          {
+            "node": "Build Final Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Final Row": {
+      "main": [
+        [
+          {
+            "node": "Log Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Result": {
+      "main": [
+        [
+          {
+            "node": "Wait 5s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 5s": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Tests",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Drafts Snapshot AFTER": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Drafts After",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Drafts After": {
+      "main": [
+        [
+          {
+            "node": "Diff: Find New Event + Draft",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build TEST_MODE Prompt": {
+      "main": [
+        [
+          {
+            "node": "Calendar Snapshot BEFORE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendar Snapshot BEFORE": {
+      "main": [
+        [
+          {
+            "node": "Collect Cal Before",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Collect Cal Before": {
+      "main": [
+        [
+          {
+            "node": "Drafts Snapshot BEFORE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 2min": {
+      "main": [
+        [
+          {
+            "node": "Calendar Snapshot AFTER",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendar Snapshot AFTER": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Cal After",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Cal After": {
+      "main": [
+        [
+          {
+            "node": "Drafts Snapshot AFTER",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Sarajevo",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "01c00115-1671-4c32-b3dc-643fdaaa7bba",
+  "meta": {
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "Q90NSwBIo5ko6yG3",
+  "tags": []
+}

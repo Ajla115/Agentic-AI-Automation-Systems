@@ -1,0 +1,779 @@
+{
+  "name": "Cat5 - Test Runner",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "tr-man",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        208,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "cat5-runner",
+        "options": {}
+      },
+      "id": "tr-wh",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        208,
+        560
+      ],
+      "webhookId": "cat5-runner-001"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "YOUR_GOOGLE_SHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "891437448",
+          "cachedResultName": "Cat5 Inputs"
+        },
+        "options": {}
+      },
+      "id": "read",
+      "name": "Read Cat5 Inputs",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        448,
+        480
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "loop",
+      "name": "Loop Over Tests",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        928,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const row = $json;\nconst testId = String(row.ID || '').trim();\nconst inputText = String(row.Input_Text || '').trim();\nconst subcategory = String(row.Subcategory || '').trim();\nconst channel = String(row.Channel || '').trim();\n\nconst prompt = '[TEST_MODE] (test_id=' + testId + ', subcategory=' + subcategory + ')\\n\\n' +\n  'The user message below is INTENTIONALLY AMBIGUOUS or missing key information. Apply the CLARIFICATION GATE from your system prompt strictly:\\n\\n' +\n  '  - If any required field is missing or vague (date, time, day, participants, recipient, subject, body, referent, etc.), you MUST ask a clarifying question.\\n' +\n  '  - You MUST NOT call any of these tools: GCal - Create Event, GCal - Update Event, GCal - Delete Event, GCal - Create Reminder, Gmail - Create Draft.\\n' +\n  '  - Read-only tools (GCal - List Events, GCal - Check Availability) are allowed if you need them to phrase your clarifying question, but are not required.\\n' +\n  '  - Do NOT make up missing information. Do NOT guess a day, time, name, or address. Do NOT output [ACTION EXECUTED].\\n' +\n  '  - The correct response is ONE clarifying question (or a short list of clarifying questions) asking the user to provide the missing details.\\n\\n' +\n  '=== USER MESSAGE (verbatim) ===\\n' + inputText;\n\nreturn { json: {\n  test_id: testId,\n  subcategory,\n  channel,\n  started_at: new Date().toISOString(),\n  message: { text: prompt, chat: { id: 'test_runner_cat5_' + testId } }\n}};"
+      },
+      "id": "prompt",
+      "name": "Build TEST_MODE Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1168,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_CALENDAR_ID",
+          "mode": "list",
+          "cachedResultName": "YOUR_GOOGLE_CALENDAR_ID"
+        },
+        "returnAll": true,
+        "timeMin": "={{ $now.startOf('day').minus({days: 1}).toISO() }}",
+        "timeMax": "={{ $now.plus({days: 30}).toISO() }}",
+        "options": {
+          "orderBy": "startTime"
+        }
+      },
+      "id": "cal-before",
+      "name": "Calendar Snapshot BEFORE",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        1408,
+        368
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CALENDAR_CREDENTIAL"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const ids = $input.all().map(i => i.json.id).filter(Boolean);\nconst payload = $('Build TEST_MODE Prompt').first().json;\nreturn [{ json: Object.assign({}, payload, { calendar_before_ids: ids }) }];"
+      },
+      "id": "collect-cal-before",
+      "name": "Collect Cal Before",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1648,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "operation": "getAll",
+        "returnAll": true,
+        "options": {}
+      },
+      "id": "drafts-before",
+      "name": "Drafts Snapshot BEFORE",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1888,
+        368
+      ],
+      "alwaysOutputData": true,
+      "webhookId": "cat5-drafts-before-001",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const ids = $input.all().map(i => i.json.id).filter(Boolean);\nconst payload = $('Collect Cal Before').first().json;\nreturn [{ json: Object.assign({}, payload, { draft_before_ids: ids }) }];"
+      },
+      "id": "collect-drafts-before",
+      "name": "Collect Drafts Before",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2128,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "ltlnCn9QWsPtfZs5",
+          "cachedResultName": "Telegram VA - Command Handler"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "id": "call-va",
+      "name": "Call Telegram VA",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        2368,
+        368
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "amount": 20
+      },
+      "id": "wait",
+      "name": "Wait 20s",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2608,
+        368
+      ],
+      "webhookId": "cat5-wait20s-001"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_CALENDAR_ID",
+          "mode": "list",
+          "cachedResultName": "YOUR_GOOGLE_CALENDAR_ID"
+        },
+        "returnAll": true,
+        "timeMin": "={{ $now.startOf('day').minus({days: 1}).toISO() }}",
+        "timeMax": "={{ $now.plus({days: 30}).toISO() }}",
+        "options": {
+          "orderBy": "startTime"
+        }
+      },
+      "id": "cal-after",
+      "name": "Calendar Snapshot AFTER",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        2848,
+        368
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CALENDAR_CREDENTIAL"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const events = $input.all().map(i => i.json);\nconst ids = events.map(e => e.id).filter(Boolean);\nreturn [{ json: { cal_after_events: events, cal_after_ids: ids } }];"
+      },
+      "id": "agg-cal-after",
+      "name": "Aggregate Cal After",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3088,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "operation": "getAll",
+        "returnAll": true,
+        "options": {}
+      },
+      "id": "drafts-after",
+      "name": "Drafts Snapshot AFTER",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        3328,
+        368
+      ],
+      "alwaysOutputData": true,
+      "webhookId": "cat5-drafts-after-001",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const drafts = $input.all().map(i => i.json);\nconst ids = drafts.map(d => d.id).filter(Boolean);\nreturn [{ json: { drafts_after: drafts, drafts_after_ids: ids } }];"
+      },
+      "id": "agg-drafts-after",
+      "name": "Aggregate Drafts After",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3568,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const aggDrafts = $input.first().json;\nconst aggCal = $('Aggregate Cal After').first().json;\nconst payload = $('Collect Drafts Before').first().json;\nconst calBefore = new Set(payload.calendar_before_ids || []);\nconst draftBefore = new Set(payload.draft_before_ids || []);\nconst calAfter = aggCal.cal_after_events || [];\nconst draftsAfter = aggDrafts.drafts_after || [];\n\nconst newEvents = calAfter.filter(e => e.id && !calBefore.has(e.id));\nconst newDrafts = draftsAfter.filter(d => d.id && !draftBefore.has(d.id));\n\nconst vaResp = $('Call Telegram VA').first()?.json || {};\nconst aiOutput = String(vaResp.ai_output || vaResp.output || '');\n\n// Strong clarification patterns — any one is enough to flag clarification, even without a question mark\nconst strongPatterns = [\n  /\\bplease (provide|specify|clarify|share|tell me|let me know|give me|elaborate|confirm|fill in)\\b/i,\n  /\\bcould you (please )?(provide|specify|share|tell me|let me know|clarify|elaborate|confirm|give me|fill in)\\b/i,\n  /\\bcan you (please )?(provide|specify|share|tell me|let me know|clarify|elaborate|confirm|give me|fill in)\\b/i,\n  /\\bwould you (please )?(provide|specify|share|tell me|let me know|clarify|elaborate|confirm|give me|fill in)\\b/i,\n  /\\b(I'd|I would|I will|I) need (more|some|to know|the|additional|further)\\b/i,\n  /\\bmore (information|info|details?|context)\\b/i,\n  /\\b(missing|not (sure|clear)|unclear|ambiguous)\\b/i,\n  /\\bin order to (proceed|help|continue)\\b/i\n];\n\n// Weak patterns — question words and similar; need >=2 alone, or >=1 with a question mark\nconst weakPatterns = [\n  /\\bwhat\\b/i, /\\bwhich\\b/i, /\\bwhen\\b/i, /\\bwho\\b/i, /\\bwhom\\b/i, /\\bwhose\\b/i, /\\bwhere\\b/i, /\\bhow\\b/i,\n  /\\bcould you\\b/i, /\\bcan you\\b/i, /\\bwould you\\b/i,\n  /\\bclarif(y|ication)\\b/i, /\\bspecify\\b/i\n];\n\nconst hasQuestionMark = /\\?/.test(aiOutput);\nconst strongMatch = strongPatterns.some(re => re.test(aiOutput));\nconst weakMatchCount = weakPatterns.filter(re => re.test(aiOutput)).length;\nconst clarificationAsked = (strongMatch || (hasQuestionMark && weakMatchCount >= 1) || weakMatchCount >= 2) ? 'Y' : 'N';\n\nconst actionExecuted = /\\[ACTION EXECUTED\\]/i.test(aiOutput);\nconst readOnlyToolsUsed = 'unknown';\n\nconst startedAt = payload.started_at;\nconst elapsedMs = startedAt ? (Date.now() - new Date(startedAt).getTime()) : '';\n\nlet status, notes = '';\nif (newEvents.length > 0 || newDrafts.length > 0) {\n  status = 'wrong_action';\n  notes = 'Agent created ' + newEvents.length + ' event(s) and ' + newDrafts.length + ' draft(s) instead of asking.';\n} else if (actionExecuted) {\n  status = 'wrong_action';\n  notes = '[ACTION EXECUTED] appeared without artefacts.';\n} else if (clarificationAsked === 'Y') {\n  status = 'success';\n} else {\n  status = 'no_clarification';\n  notes = 'Agent did not act but did not ask either.';\n}\n\nconst ambPass = (newEvents.length === 0 && newDrafts.length === 0 && clarificationAsked === 'Y') ? 'Y' : 'N';\n\nreturn [{ json: {\n  timestamp: new Date().toISOString(),\n  test_id: payload.test_id,\n  subcategory: payload.subcategory,\n  channel: payload.channel,\n  ai_output: aiOutput.slice(0, 800),\n  new_event_count: String(newEvents.length),\n  new_draft_count: String(newDrafts.length),\n  response_time_ms: String(elapsedMs),\n  status: status,\n  clarification_asked: clarificationAsked,\n  read_only_tools_used: readOnlyToolsUsed,\n  amb_pass: ambPass,\n  notes: notes,\n  _new_event_ids: newEvents.map(e => e.id),\n  _new_draft_ids: newDrafts.map(d => d.id)\n}}];"
+      },
+      "id": "diff",
+      "name": "Diff + Grade",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3808,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "YOUR_GOOGLE_SHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "category5_results"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "log",
+      "name": "Log Result",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        4048,
+        368
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const row = $('Diff + Grade').first().json;\nconst ev = row._new_event_ids || [];\nconst dr = row._new_draft_ids || [];\nconst items = [];\nfor (const id of ev) items.push({ json: { kind: 'event', id } });\nfor (const id of dr) items.push({ json: { kind: 'draft', id } });\nif (items.length === 0) items.push({ json: { kind: 'noop', id: '' } });\nreturn items;"
+      },
+      "id": "cleanup-list",
+      "name": "List Stray Artefacts",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4288,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "rk-event",
+                    "leftValue": "={{ $json.kind }}",
+                    "rightValue": "event",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "rk-draft",
+                    "leftValue": "={{ $json.kind }}",
+                    "rightValue": "draft",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "id": "router-by-kind",
+      "name": "Route by Kind",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        4528,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_CALENDAR_ID",
+          "mode": "list",
+          "cachedResultName": "YOUR_GOOGLE_CALENDAR_ID"
+        },
+        "eventId": "={{ $json.id }}",
+        "options": {}
+      },
+      "id": "del-event",
+      "name": "Delete Stray Event",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        4768,
+        256
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CALENDAR_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "operation": "delete",
+        "messageId": "={{ $json.id }}"
+      },
+      "id": "del-draft",
+      "name": "Delete Stray Draft",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        4768,
+        432
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {},
+      "id": "wait-after",
+      "name": "Wait 5s",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        5008,
+        368
+      ],
+      "webhookId": "cat5-wait5s-001"
+    },
+    {
+      "parameters": {
+        "content": "## Cat5 Test Runner — Ambiguous Requests\n\n**Fires every Cat5 ambiguity row at the Telegram VA in TEST_MODE and grades whether the agent asks a clarifying question instead of silently acting.**\n\n### What it does\n1. Reads the Cat5 ambiguity inputs tab → feeds Loop Over Tests directly (batchSize 1). Pulls all Cat5 ambiguity rows.\n2. Per row: Build TEST_MODE Prompt wraps the verbatim Input_Text with a strict CLARIFICATION-GATE instruction (forbids GCal create/update/delete/reminder + Gmail draft tools, allows read-only list/availability) → Calendar Snapshot BEFORE + Drafts Snapshot BEFORE capture baseline IDs → Call Telegram VA (Telegram VA - Command Handler) → Wait 20s → Calendar Snapshot AFTER + Drafts Snapshot AFTER → aggregate → Diff + Grade computes new events/drafts vs baseline and scans the AI output.\n3. Logs to the category5_results tab.\n4. Cleanup: List Stray Artefacts turns each new event/draft ID into an item, Route by Kind routes kind=event → Delete Stray Event (GCal delete), kind=draft → Delete Stray Draft (Gmail draft delete), noop fallback straight to Wait 5s. Both deletes converge on Wait 5s before the next batch.\n\n### Scope\nRuns the whole Cat5 category in one pass — all AMB subcategories: AMB-MDT (multi-day/time), AMB-MPT (multi-part task), AMB-VAG (vague), AMB-REF (referential), AMB-EML (email). The source tab is Cat5-only, so there is no cross-category contamination.\n\n### Pass / grading\nDiff + Grade is artefact-first. amb_pass = Y only when zero new events AND zero new drafts AND clarification_asked = Y. Clarification detection scans the VA output: any one \"strong\" phrase (please/could you/can you provide/specify/clarify..., \"need more information\", \"missing/unclear/ambiguous\", \"in order to proceed\") flags Y even without a \"?\"; otherwise it needs a question mark plus one weak signal, or two weak signals (question words what/which/when/who/where/how, clarify, specify). status resolves to wrong_action (any new event/draft, or a bare [ACTION EXECUTED]), success (clarification asked, no artefacts), or no_clarification (neither acted nor asked).\n\n### Logs to\ncategory5_results. Notable columns: test_id, subcategory, channel, ai_output (first 800 chars), new_event_count, new_draft_count, response_time_ms, status, clarification_asked, read_only_tools_used (always \"unknown\"), amb_pass, notes, plus internal _new_event_ids / _new_draft_ids used by cleanup.\n\n### Run plan\nbatchSize 1 (one row at a time; 20s VA wait + 5s post-cleanup wait per row). Uses the shared assistant calendar. Trigger: Manual or Webhook. Cleanup deletes every stray artefact the agent created, so the calendar/drafts return to baseline after each run.",
+        "height": 900,
+        "width": 920
+      },
+      "id": "runner-doc-sticky",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        128,
+        -752
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read Cat5 Inputs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read Cat5 Inputs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Tests": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Build TEST_MODE Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build TEST_MODE Prompt": {
+      "main": [
+        [
+          {
+            "node": "Calendar Snapshot BEFORE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendar Snapshot BEFORE": {
+      "main": [
+        [
+          {
+            "node": "Collect Cal Before",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Collect Cal Before": {
+      "main": [
+        [
+          {
+            "node": "Drafts Snapshot BEFORE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Drafts Snapshot BEFORE": {
+      "main": [
+        [
+          {
+            "node": "Collect Drafts Before",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Collect Drafts Before": {
+      "main": [
+        [
+          {
+            "node": "Call Telegram VA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Telegram VA": {
+      "main": [
+        [
+          {
+            "node": "Wait 20s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 20s": {
+      "main": [
+        [
+          {
+            "node": "Calendar Snapshot AFTER",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendar Snapshot AFTER": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Cal After",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Cal After": {
+      "main": [
+        [
+          {
+            "node": "Drafts Snapshot AFTER",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Drafts Snapshot AFTER": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Drafts After",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Drafts After": {
+      "main": [
+        [
+          {
+            "node": "Diff + Grade",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Diff + Grade": {
+      "main": [
+        [
+          {
+            "node": "Log Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Result": {
+      "main": [
+        [
+          {
+            "node": "List Stray Artefacts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List Stray Artefacts": {
+      "main": [
+        [
+          {
+            "node": "Route by Kind",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route by Kind": {
+      "main": [
+        [
+          {
+            "node": "Delete Stray Event",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Delete Stray Draft",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait 5s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Stray Event": {
+      "main": [
+        [
+          {
+            "node": "Wait 5s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Stray Draft": {
+      "main": [
+        [
+          {
+            "node": "Wait 5s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 5s": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Tests",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Cat5 Inputs": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Tests",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Sarajevo",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "e5e1b8ef-b9ac-4bfa-b98b-9ec402d7333f",
+  "meta": {
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "dBOgGcmdwGEerI7e",
+  "tags": []
+}

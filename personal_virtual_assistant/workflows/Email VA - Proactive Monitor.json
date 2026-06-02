@@ -1,0 +1,1450 @@
+{
+  "name": "Email VA - Proactive Monitor",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "filters": {
+          "readStatus": "unread",
+          "sender": "YOUR_EMAIL_ADDRESS"
+        }
+      },
+      "id": "3e762d89-650b-4651-99a4-8e86d1c4b39b",
+      "name": "Gmail Trigger",
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        96,
+        192
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Today is {{ $now.format('YYYY-MM-DD') }} ({{ $now.format('dddd') }}) in Europe/Sarajevo.\n\nFrom: {{ $json.from }}\nSubject: {{ $json.subject }}\nBody: {{ $json.text || $json.snippet }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "You are an email classifier for a PERSONAL VIRTUAL ASSISTANT whose duties are: calendar scheduling, email drafting on the user's behalf, personal/professional correspondence, and task reminders.\n\nANY email NOT relevant to those duties — promotional / marketing emails, customer-support chatbot inquiries (belong to a different system), cold outreach / sales pitches, phishing / scams / lottery / unsolicited offers — must be classified as `spam`. Pure informational digests go to `newsletter`.\n\nReturn ONLY a JSON object (no markdown, no extra text) with EXACTLY these fields:\n\n- \"category\": one of \"urgent\", \"normal\", \"newsletter\", \"spam\".\n- \"action\": one of \"reply\", \"draft\", \"file\", \"ignore\".\n- \"summary\": 1-2 sentence neutral summary.\n- \"suggested_reply\": the COMPLETE, ready-to-send reply text if action is reply/draft, otherwise \"\". NO PLACEHOLDERS: never output bracketed placeholders such as [Sender Name], [Your Name], [Date], [Company]. Greet the sender by the real name parsed from the From field above; if no usable name is available, open with just \"Hi,\" or \"Hello,\". Do NOT add any signature or sign-off name line (no \"Best, <name>\", no \"[Your Name]\") — end with the final sentence of the message body. Every bracketed placeholder must be replaced with a real value or removed.\n- \"confirmation_required\": boolean — true for urgent/normal, false for newsletter/spam.\n- \"has_calendar_action\": boolean — true ONLY if the email explicitly proposes a SPECIFIC date+time for a meeting/event the user should put on their calendar. False for vague mentions or past events.\n- \"event_title\": string — the event title to put on the calendar if has_calendar_action, else \"\".\n- \"event_start_iso\": string — ISO 8601 timestamp WITH timezone offset for Europe/Sarajevo (e.g. 2026-05-12T14:00:00+02:00) if has_calendar_action, else \"\".\n- \"event_end_iso\": string — same format if has_calendar_action; if duration unspecified, default to start + 1 hour, else \"\".\n\nReturn ONLY the JSON object."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "id": "9a207d03-861d-4b05-9bfd-6a5e501efca3",
+      "name": "Classify Email",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        304,
+        192
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const responseText = $json.text || $json.content || ($json.message && $json.message.content) || $json.output || JSON.stringify($json);\nlet cleaned = String(responseText).trim();\nif (cleaned.startsWith('```')) {\n  cleaned = cleaned.replace(/^```(?:json)?\\n?/, '').replace(/\\n?```$/, '');\n}\n\nlet parsed;\ntry {\n  parsed = JSON.parse(cleaned);\n} catch (e) {\n  parsed = { category: 'normal', action: 'file', summary: 'Could not parse classifier output', suggested_reply: '', confirmation_required: false, has_calendar_action: false, event_title: '', event_start_iso: '', event_end_iso: '' };\n}\n\nconst validCategories = ['urgent', 'normal', 'newsletter', 'spam'];\nconst validActions = ['reply', 'draft', 'file', 'ignore'];\n\nconst category = validCategories.includes(parsed.category) ? parsed.category : 'normal';\nconst action = validActions.includes(parsed.action) ? parsed.action : 'file';\nconst confirmation_required = (category === 'urgent' || category === 'normal');\nconst requires_reply = (action === 'reply' || action === 'draft');\nconst has_calendar_action = (parsed.has_calendar_action === true) && Boolean(parsed.event_start_iso) && Boolean(parsed.event_end_iso);\n\nconst originalEmail = $('Gmail Trigger').first().json || {};\nfunction headerVal(headers, name) {\n  if (!Array.isArray(headers)) return '';\n  const h = headers.find(x => (x.name || '').toLowerCase() === name.toLowerCase());\n  return h ? (h.value || '') : '';\n}\nconst headersArr = (originalEmail.payload && originalEmail.payload.headers) || originalEmail.headers || [];\nconst from_email = originalEmail.from || originalEmail.From || (originalEmail.headers && originalEmail.headers.from) || headerVal(headersArr, 'From') || '';\nconst subject = originalEmail.subject || originalEmail.Subject || (originalEmail.headers && originalEmail.headers.subject) || headerVal(headersArr, 'Subject') || '';\nconst threadId = originalEmail.threadId || '';\nconst messageId = originalEmail.id || originalEmail.messageId || '';\n\nreturn {\n  json: {\n    category, action, confirmation_required, requires_reply,\n    summary: parsed.summary || '',\n    suggested_reply: parsed.suggested_reply || '',\n    has_calendar_action,\n    event_title: parsed.event_title || '',\n    event_start_iso: parsed.event_start_iso || '',\n    event_end_iso: parsed.event_end_iso || '',\n    from_email, subject, threadId, messageId\n  }\n};"
+      },
+      "id": "ade7af5a-f5f1-4ca2-9232-a04f359fa5cd",
+      "name": "Parse Classifier Output",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        640,
+        192
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "rule-draft",
+                    "leftValue": "={{ $json.action }}",
+                    "rightValue": "draft",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "rule-reply",
+                    "leftValue": "={{ $json.action }}",
+                    "rightValue": "reply",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "rule-file",
+                    "leftValue": "={{ $json.action }}",
+                    "rightValue": "file",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "rule-ignore",
+                    "leftValue": "={{ $json.action }}",
+                    "rightValue": "ignore",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "none"
+        }
+      },
+      "id": "email-switch-001",
+      "name": "Action Router",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        880,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cond-has-cal",
+              "leftValue": "={{ $json.has_calendar_action }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "email-cal-if-001",
+      "name": "Has Calendar Action?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1136,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "calendar",
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_CALENDAR_ID",
+          "mode": "list",
+          "cachedResultName": "YOUR_GOOGLE_CALENDAR_ID"
+        },
+        "timeMin": "={{ $json.event_start_iso }}",
+        "timeMax": "={{ $json.event_end_iso }}",
+        "options": {}
+      },
+      "id": "email-check-avail-001",
+      "name": "Check Availability",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        1392,
+        -128
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CALENDAR_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const parsed = $('Parse Classifier Output').first().json;\n\nlet slot_free = false;\nlet conflict_summary = '';\n\nif (parsed.has_calendar_action) {\n  // Came through Check Availability; $json includes a `busy` array or `available` field.\n  const availData = $json;\n  let busy = [];\n  if (Array.isArray(availData.busy)) busy = availData.busy;\n  else if (Array.isArray(availData.primary && availData.primary.busy)) busy = availData.primary.busy;\n  else if (availData.available === true) busy = [];\n  else if (availData.available === false) busy = [{ start: parsed.event_start_iso, end: parsed.event_end_iso, summary: 'existing event' }];\n\n  const startMs = Date.parse(parsed.event_start_iso);\n  const endMs = Date.parse(parsed.event_end_iso);\n  if (isNaN(startMs) || isNaN(endMs)) {\n    slot_free = false;\n    conflict_summary = 'unparseable event time';\n  } else {\n    const conflict = busy.find(b => {\n      const bs = Date.parse(b.start);\n      const be = Date.parse(b.end);\n      return !isNaN(bs) && !isNaN(be) && bs < endMs && be > startMs;\n    });\n    slot_free = !conflict;\n    if (conflict) {\n      conflict_summary = `${conflict.summary || 'existing event'} (${conflict.start} → ${conflict.end})`;\n    }\n  }\n}\n\nconst replyPreview = (parsed.suggested_reply || '').substring(0, 500);\nlet cardText = `📧 *Draft Ready For Approval*\\n\\n`;\ncardText += `*From:* ${parsed.from_email}\\n`;\ncardText += `*Subject:* ${parsed.subject}\\n`;\ncardText += `*Category:* ${parsed.category}\\n\\n`;\ncardText += `*Proposed reply:*\\n${replyPreview}\\n\\n`;\n\nif (parsed.has_calendar_action) {\n  cardText += `📅 *Will also create event:*\\n${parsed.event_title}\\n${parsed.event_start_iso} → ${parsed.event_end_iso}\\n\\n`;\n  if (slot_free) {\n    cardText += `✅ Slot is free. Approve → send reply + create event.\\n`;\n  } else {\n    cardText += `⚠️ *Conflict:* ${conflict_summary}\\nApprove → send reply ONLY; event will NOT be created.\\n`;\n  }\n} else {\n  cardText += `Approve → send the reply.\\n`;\n}\ncardText += `\\nReject → keep draft in Gmail (not sent). 24h timeout.`;\n\nreturn {\n  json: {\n    ...parsed,\n    slot_free,\n    conflict_summary,\n    cardText\n  }\n};"
+      },
+      "id": "email-build-card-001",
+      "name": "Build Approval Card",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1648,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "message": "={{ $json.cardText }}",
+        "approvalOptions": {
+          "values": {
+            "approvalType": "double",
+            "approveLabel": "✅ Approve & Send",
+            "disapproveLabel": "❌ Reject"
+          }
+        },
+        "options": {
+          "limitWaitTime": {
+            "values": {
+              "resumeAmount": 24
+            }
+          }
+        }
+      },
+      "id": "email-telegram-approve-001",
+      "name": "Telegram Approval",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2032,
+        128
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "telegramApi": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_TELEGRAM_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cond-approved",
+              "leftValue": "={{ $json.data && $json.data.approved !== undefined ? $json.data.approved : $json.approved }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "email-approved-if-001",
+      "name": "Approved?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2160,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $('Gmail Trigger').first().json.id }}",
+        "emailType": "text",
+        "message": "={{ $('Parse Classifier Output').item.json.suggested_reply }}",
+        "options": {}
+      },
+      "id": "email-send-reply-001",
+      "name": "Send Reply",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        3008,
+        -496
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_CALENDAR_ID",
+          "mode": "list",
+          "cachedResultName": "YOUR_GOOGLE_CALENDAR_ID"
+        },
+        "start": "={{ $('Parse Classifier Output').item.json.event_start_iso }}",
+        "end": "={{ $('Parse Classifier Output').item.json.event_end_iso }}",
+        "additionalFields": {
+          "description": "=Auto-created by Email VA after Telegram approval. Original email from: {{ $('Parse Classifier Output').item.json.from_email }} | Subject: {{ $('Parse Classifier Output').item.json.subject }}",
+          "summary": "={{ $('Parse Classifier Output').item.json.event_title }}"
+        }
+      },
+      "id": "email-create-event-001",
+      "name": "Create Calendar Event",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        2768,
+        -496
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CALENDAR_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "markAsRead",
+        "messageId": "={{ $('Gmail Trigger').first().json.id }}"
+      },
+      "id": "email-mark-approved-001",
+      "name": "Mark Read (Approved)",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        3424,
+        -304
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "subject": "=Re: {{ $('Parse Classifier Output').item.json.subject }}",
+        "message": "={{ $('Parse Classifier Output').item.json.suggested_reply }}",
+        "options": {
+          "threadId": "={{ $('Parse Classifier Output').item.json.threadId }}",
+          "sendTo": "={{ $('Parse Classifier Output').item.json.from_email }}"
+        }
+      },
+      "id": "47b58913-73c3-4c98-b2a6-238391926c2a",
+      "name": "Create Draft Reply",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2288,
+        160
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "markAsRead",
+        "messageId": "={{ $('Gmail Trigger').first().json.id }}"
+      },
+      "id": "email-mark-rejected-001",
+      "name": "Mark Read (Rejected)",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2560,
+        192
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const parsed = $('Parse Classifier Output').first().json;\nconst card = $('Build Approval Card').first().json;\nconst eventCreated = parsed.has_calendar_action && card.slot_free;\n\nreturn {\n  json: {\n    timestamp: new Date().toISOString(),\n    action_type: 'proactive_approved',\n    from_email: parsed.from_email || '',\n    subject: parsed.subject || '',\n    category: parsed.category || '',\n    action: parsed.action || '',\n    confirmation_required: parsed.confirmation_required ? 'true' : 'false',\n    draft_created: 'false',\n    email_sent: 'true',\n    calendar_event_created: eventCreated ? 'true' : 'false',\n    user_confirmed: 'yes'\n  }\n};"
+      },
+      "id": "email-log-approved-001",
+      "name": "Prepare Log (Approved)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3648,
+        -304
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const parsed = $('Parse Classifier Output').first().json;\n\nreturn {\n  json: {\n    timestamp: new Date().toISOString(),\n    action_type: 'proactive_rejected',\n    from_email: parsed.from_email || '',\n    subject: parsed.subject || '',\n    category: parsed.category || '',\n    action: parsed.action || '',\n    confirmation_required: parsed.confirmation_required ? 'true' : 'false',\n    draft_created: 'true',\n    email_sent: 'false',\n    calendar_event_created: 'false',\n    user_confirmed: 'no_or_timeout'\n  }\n};"
+      },
+      "id": "email-log-rejected-001",
+      "name": "Prepare Log (Rejected)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2960,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "=*New Email (FYI)*\n\n*From:* {{ $json.from_email }}\n*Subject:* {{ $json.subject }}\n*Category:* {{ $json.category }}\n*Summary:* {{ $json.summary }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "d578c18d-9a8f-4774-9659-59cf44a4c0e4",
+      "name": "Notify: FYI Only",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1040,
+        240
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "telegramApi": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_TELEGRAM_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "markAsRead",
+        "messageId": "={{ $('Gmail Trigger').first().json.id }}"
+      },
+      "id": "email-mark-fyi-001",
+      "name": "Mark Read (FYI)",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1440,
+        304
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const parsed = $('Parse Classifier Output').first().json;\n\nreturn {\n  json: {\n    timestamp: new Date().toISOString(),\n    action_type: 'proactive',\n    from_email: parsed.from_email || '',\n    subject: parsed.subject || '',\n    category: parsed.category || '',\n    action: parsed.action || '',\n    confirmation_required: parsed.confirmation_required ? 'true' : 'false',\n    draft_created: 'false',\n    email_sent: 'false',\n    calendar_event_created: 'false',\n    user_confirmed: 'n/a'\n  }\n};"
+      },
+      "id": "25502145-6779-43ed-b841-fb7a97b87da0",
+      "name": "Prepare Log Data (FYI)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1648,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Gmail Trigger').first().json.id }}",
+        "labelIds": [
+          "SPAM"
+        ]
+      },
+      "id": "email-spam-label-001",
+      "name": "Apply SPAM Label",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1136,
+        560
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "markAsRead",
+        "messageId": "={{ $('Gmail Trigger').first().json.id }}"
+      },
+      "id": "email-mark-spam-001",
+      "name": "Mark Read (Spam)",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1392,
+        560
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const parsed = $('Parse Classifier Output').first().json;\n\nreturn {\n  json: {\n    timestamp: new Date().toISOString(),\n    action_type: 'proactive',\n    from_email: parsed.from_email || '',\n    subject: parsed.subject || '',\n    category: parsed.category || '',\n    action: parsed.action || '',\n    confirmation_required: parsed.confirmation_required ? 'true' : 'false',\n    draft_created: 'false',\n    email_sent: 'false',\n    calendar_event_created: 'false',\n    user_confirmed: 'n/a'\n  }\n};"
+      },
+      "id": "email-log-prep-003",
+      "name": "Prepare Log Data (Spam)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1648,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "YOUR_GOOGLE_SHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "VA_Email_Log"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "action_type",
+              "displayName": "action_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "from_email",
+              "displayName": "from_email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "subject",
+              "displayName": "subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "category",
+              "displayName": "category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "action",
+              "displayName": "action",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "confirmation_required",
+              "displayName": "confirmation_required",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "draft_created",
+              "displayName": "draft_created",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email_sent",
+              "displayName": "email_sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "user_confirmed",
+              "displayName": "user_confirmed",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "calendar_event_created",
+              "displayName": "calendar_event_created",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "38d6f69a-d40f-4fd3-b49b-05224af6b436",
+      "name": "Log to Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        4208,
+        528
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "projectId": {
+          "__rl": true,
+          "value": "civil-honor-486310-t3",
+          "mode": "list",
+          "cachedResultName": "My First Project"
+        },
+        "options": {}
+      },
+      "id": "0cb19615-12ff-4771-b858-485ec4be4271",
+      "name": "Google Vertex Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleVertex",
+      "typeVersion": 1,
+      "position": [
+        352,
+        416
+      ],
+      "credentials": {
+        "googleApi": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SERVICE_ACCOUNT_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cond-cal-post",
+              "leftValue": "={{ $('Parse Classifier Output').item.json.has_calendar_action === true }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "email-has-cal-post-001",
+      "name": "Has Calendar Action? (Post-Approve)",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2320,
+        -272
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cond-slot-free",
+              "leftValue": "={{ $('Build Approval Card').item.json.slot_free === true }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "email-slot-free-001",
+      "name": "Slot Free?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2512,
+        -384
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "=✅ *Email sent + calendar event created*\n\n*To:* {{ $('Parse Classifier Output').item.json.from_email }}\n*Subject:* {{ $('Parse Classifier Output').item.json.subject }}\n\n*Calendar event:*\n📌 {{ $('Parse Classifier Output').item.json.event_title }}\n🕐 {{ $('Parse Classifier Output').item.json.event_start_iso }} → {{ $('Parse Classifier Output').item.json.event_end_iso }}\n\nBoth actions completed.",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "email-notify-combined-001",
+      "name": "Notify Combined Success",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        3248,
+        -496
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "telegramApi": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_TELEGRAM_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const parsed = $('Parse Classifier Output').first().json;\nconst card = $('Build Approval Card').first().json;\n\nfunction toGcalDates(iso) {\n  if (!iso) return '';\n  const d = new Date(iso);\n  if (isNaN(d.getTime())) return '';\n  return d.toISOString().replace(/[-:]/g, '').replace(/\\.\\d{3}/, '');\n}\n\nconst startGcal = toGcalDates(parsed.event_start_iso);\nconst endGcal = toGcalDates(parsed.event_end_iso);\nconst title = encodeURIComponent(parsed.event_title || 'Event from email');\nconst details = encodeURIComponent(`Proposed via email from ${parsed.from_email}. Conflict detected with: ${card.conflict_summary || 'existing event'}.`);\n\nconst calendarUrl = (startGcal && endGcal)\n  ? `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startGcal}/${endGcal}&details=${details}`\n  : 'https://calendar.google.com/calendar/r';\n\nconst conflictText = `⚠️ *Calendar conflict — nothing was sent or created*\n\n*From:* ${parsed.from_email}\n*Subject:* ${parsed.subject}\n\n*Proposed event:* ${parsed.event_title}\n*When:* ${parsed.event_start_iso} → ${parsed.event_end_iso}\n\n*Conflict:* ${card.conflict_summary || 'existing event in this slot'}\n\nThe email reply was saved to *Drafts* (NOT sent). You decide what to do:\n👉 [Open calendar to resolve manually](${calendarUrl})\n\nOnce the calendar is sorted, send the email manually from Drafts.`;\n\nreturn {\n  json: {\n    ...parsed,\n    ...card,\n    calendarUrl,\n    conflictText\n  }\n};"
+      },
+      "id": "email-build-conflict-001",
+      "name": "Build Conflict Card",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2704,
+        -176
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "={{ $json.conflictText }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "email-notify-conflict-001",
+      "name": "Notify Conflict",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2976,
+        -144
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "telegramApi": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_TELEGRAM_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "subject": "=Re: {{ $('Parse Classifier Output').item.json.subject }}",
+        "message": "={{ $('Parse Classifier Output').item.json.suggested_reply }}",
+        "options": {
+          "threadId": "={{ $('Parse Classifier Output').item.json.threadId }}",
+          "sendTo": "={{ $('Parse Classifier Output').item.json.from_email }}"
+        }
+      },
+      "id": "email-create-draft-conflict-001",
+      "name": "Create Draft (Conflict)",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        3200,
+        -144
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "markAsRead",
+        "messageId": "={{ $('Gmail Trigger').first().json.id }}"
+      },
+      "id": "email-mark-conflict-001",
+      "name": "Mark Read (Conflict)",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        3424,
+        -128
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const parsed = $('Parse Classifier Output').first().json;\n\nreturn {\n  json: {\n    timestamp: new Date().toISOString(),\n    action_type: 'proactive_conflict',\n    from_email: parsed.from_email || '',\n    subject: parsed.subject || '',\n    category: parsed.category || '',\n    action: parsed.action || '',\n    confirmation_required: parsed.confirmation_required ? 'true' : 'false',\n    draft_created: 'true',\n    email_sent: 'false',\n    calendar_event_created: 'false',\n    user_confirmed: 'yes_but_conflict'\n  }\n};"
+      },
+      "id": "email-log-conflict-001",
+      "name": "Prepare Log (Conflict)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3968,
+        -112
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ $('Gmail Trigger').first().json.id }}",
+        "emailType": "text",
+        "message": "={{ $('Parse Classifier Output').item.json.suggested_reply }}",
+        "options": {}
+      },
+      "id": "email-send-reply-simple-001",
+      "name": "Send Reply (Simple)",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2512,
+        -16
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Gmail Trigger').first().json.id }}",
+        "labelIds": [
+          "Label_2395005323705127669",
+          "SPAM"
+        ]
+      },
+      "id": "23617a10-2f77-45b5-bc41-1db0ba470def",
+      "name": "Apply Newsletter Label",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1248,
+        288
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# Email VA - Proactive Monitor\n\n## Purpose\nProactively monitors the personal-assistant Gmail inbox for new unread messages, classifies each one with an LLM, and routes it down an action-specific branch. For emails that warrant a reply it drafts a ready-to-send response, checks the calendar when a meeting is proposed, and asks the user for explicit Telegram approval before anything is sent or booked. Newsletters and spam are labeled/notified automatically, and every branch logs its outcome to Google Sheets.\n\n## How it works\n- Gmail Trigger polls every minute for unread mail from the owner.\n- Classify Email (LLM chain on Google Vertex AI, Gemini 2.5 Flash) returns JSON with category (urgent/normal/newsletter/spam), action (reply/draft/file/ignore), summary, suggested_reply, confirmation flags, and optional calendar fields (has_calendar_action, event_title, event_start_iso, event_end_iso).\n- Parse Classifier Output (Code) cleans/validates the JSON, falls back to safe defaults on parse failure, and re-attaches the original email's from/subject/threadId/messageId.\n- Action Router (Switch) splits on action into four branches: draft, reply, file, ignore.\n- draft and reply both feed Has Calendar Action?: if a specific date+time was proposed it runs Check Availability (Google Calendar getAll over the proposed window), otherwise it skips to Build Approval Card.\n- Build Approval Card (Code) recomputes slot_free / conflict_summary from the busy results and composes a Telegram card showing From, Subject, Category, the proposed reply, and (when applicable) the event details with a free/conflict notice.\n- Telegram Approval sends a double-confirmation approve/reject card to the configured Telegram chat with a 24-hour wait.\n- Approved? branches on the approval. On approve: Has Calendar Action? (Post-Approve) decides between the calendar path and a plain reply. With a calendar action, Slot Free? either creates the event (Create Calendar Event -> Send Reply -> Notify Combined Success) or, on conflict, builds a conflict card (Build Conflict Card -> Notify Conflict -> Create Draft (Conflict)) so nothing is sent. Without a calendar action it just sends Send Reply (Simple).\n- On reject/timeout: Create Draft Reply saves the response to Gmail Drafts instead of sending.\n- file (newsletters) -> Notify: FYI Only on Telegram -> Apply Newsletter Label -> Mark Read (FYI).\n- ignore (spam) -> Apply SPAM Label -> Mark Read (Spam).\n- Every terminal branch marks the original message as read and appends an outcome row to Google Sheets via dedicated Prepare Log Code nodes.\n\n## Triggered by\nGmail Trigger polling every minute for unread emails from the owner.\n\n## Calls (sub-workflows)\n- None. There are no executeWorkflow nodes; all logic runs inline within this workflow.\n\n## Reads/writes\n- Gmail: reads new unread mail via Gmail Trigger; replies in-thread (Send Reply, Send Reply (Simple)); creates drafts (Create Draft Reply, Create Draft (Conflict)); marks messages read across all branches; applies SPAM and Newsletter labels.\n- Google Calendar (the assistant's Google Calendar): Check Availability reads busy times over the proposed event window; Create Calendar Event books the meeting after approval with no conflict.\n- Telegram (the configured Telegram chat): Telegram Approval sends the double-confirmation approval card (24h wait); Notify: FYI Only, Notify Combined Success, and Notify Conflict send status messages.\n- Google Sheets: appends outcome rows to tab `VA_Email_Log` (continueOnFail enabled).\n- LLM: Google Vertex Chat Model powers the Classify Email chain.\n\n## Running large test batches — auto-answering the approval gate\nThe `Telegram Approval` node is a `sendAndWait` node: it PAUSES the run until a human taps Approve/Reject in Telegram (24h timeout). Fine for live use, but for a 200-email test batch every run would hang on a manual tap.\n\nTo auto-answer it, branch the approval to an **Execute Sub-workflow** node calling **`Test Auto-Responder (Email VA Approval Simulator)`** — the simulator built for exactly this workflow:\n- Execute-Workflow-Trigger (passthrough) → Code node returning a weighted-random verdict: 45% accept / 45% reject / 10% ignore (its target distribution over 200 cases).\n- Output matches `sendAndWait`: `{ data: { approved: true|false }, decision, ignored }`, so the existing `Approved?` IF (which reads `data.approved`) works unchanged.\n- Inline call → returns instantly, no webhook wait, so the whole batch runs unattended.\n\nRecommended wiring: add a `Test Mode?` IF before the gate — Test Mode = true → Execute Sub-workflow (auto-responder); false → the real `Telegram Approval` (kept on the False branch). For deterministic outcomes, replace the simulator's `Random Decision` with a fixed `approved:true`, or read the expected verdict from the test row.",
+        "height": 1580,
+        "width": 1100,
+        "color": 4
+      },
+      "id": "sticky-pa-overview",
+      "name": "Workflow Overview",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        448,
+        -2000
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Classify Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Classify Email": {
+      "main": [
+        [
+          {
+            "node": "Parse Classifier Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Classifier Output": {
+      "main": [
+        [
+          {
+            "node": "Action Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Action Router": {
+      "main": [
+        [
+          {
+            "node": "Has Calendar Action?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Has Calendar Action?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Notify: FYI Only",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Apply SPAM Label",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Calendar Action?": {
+      "main": [
+        [
+          {
+            "node": "Check Availability",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Build Approval Card",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Availability": {
+      "main": [
+        [
+          {
+            "node": "Build Approval Card",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Approval": {
+      "main": [
+        [
+          {
+            "node": "Approved?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Approved?": {
+      "main": [
+        [
+          {
+            "node": "Has Calendar Action? (Post-Approve)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create Draft Reply",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Read (Approved)": {
+      "main": [
+        [
+          {
+            "node": "Prepare Log (Approved)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Log (Approved)": {
+      "main": [
+        [
+          {
+            "node": "Log to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Draft Reply": {
+      "main": [
+        [
+          {
+            "node": "Mark Read (Rejected)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Read (Rejected)": {
+      "main": [
+        [
+          {
+            "node": "Prepare Log (Rejected)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Log (Rejected)": {
+      "main": [
+        [
+          {
+            "node": "Log to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notify: FYI Only": {
+      "main": [
+        [
+          {
+            "node": "Apply Newsletter Label",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Read (FYI)": {
+      "main": [
+        [
+          {
+            "node": "Prepare Log Data (FYI)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Log Data (FYI)": {
+      "main": [
+        [
+          {
+            "node": "Log to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Apply SPAM Label": {
+      "main": [
+        [
+          {
+            "node": "Mark Read (Spam)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Read (Spam)": {
+      "main": [
+        [
+          {
+            "node": "Prepare Log Data (Spam)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Log Data (Spam)": {
+      "main": [
+        [
+          {
+            "node": "Log to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Vertex Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Classify Email",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Approval Card": {
+      "main": [
+        [
+          {
+            "node": "Telegram Approval",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Calendar Action? (Post-Approve)": {
+      "main": [
+        [
+          {
+            "node": "Slot Free?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Reply (Simple)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Slot Free?": {
+      "main": [
+        [
+          {
+            "node": "Create Calendar Event",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Build Conflict Card",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Calendar Event": {
+      "main": [
+        [
+          {
+            "node": "Send Reply",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Reply": {
+      "main": [
+        [
+          {
+            "node": "Notify Combined Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notify Combined Success": {
+      "main": [
+        [
+          {
+            "node": "Mark Read (Approved)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Reply (Simple)": {
+      "main": [
+        [
+          {
+            "node": "Mark Read (Approved)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Conflict Card": {
+      "main": [
+        [
+          {
+            "node": "Notify Conflict",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notify Conflict": {
+      "main": [
+        [
+          {
+            "node": "Create Draft (Conflict)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Draft (Conflict)": {
+      "main": [
+        [
+          {
+            "node": "Mark Read (Conflict)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Read (Conflict)": {
+      "main": [
+        [
+          {
+            "node": "Prepare Log (Conflict)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Log (Conflict)": {
+      "main": [
+        [
+          {
+            "node": "Log to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Apply Newsletter Label": {
+      "main": [
+        [
+          {
+            "node": "Mark Read (FYI)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "9eb08add-7fd7-41e4-bb29-d0495a258041",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "wi27qWjPiVqr49sg",
+  "tags": []
+}

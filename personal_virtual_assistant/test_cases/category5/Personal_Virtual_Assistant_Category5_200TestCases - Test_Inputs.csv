@@ -1,0 +1,1170 @@
+ID,Subcategory,Channel,Input_Text,Input_Metadata_JSON,Source_Dataset,Source_Record_ID,_len
+AMB-MDT-001,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Patrick, Kayla, Carl and Christian for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Patrick is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Kayla is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Carl has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Christian has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_172""}",natural-plan-calendar (stripped),calendar_scheduling_example_172,1331
+AMB-MDT-002,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Donald, Gregory, Roy, Jack and Paul for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Donald is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Gregory is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Roy has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Jack has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Paul has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_278""}",natural-plan-calendar (stripped),calendar_scheduling_example_278,1472
+AMB-MDT-003,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Logan, Kimberly, Angela, Matthew, Dylan, Marilyn and Grace for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Logan is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Kimberly is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Angela has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Matthew's calendar is wide open the entire day.
+Dylan has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Marilyn is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Grace has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_486""}",natural-plan-calendar (stripped),calendar_scheduling_example_486,1657
+AMB-MDT-004,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Pamela and Mark for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Pamelahas no meetings the whole day.
+Mark has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Mark can not meet on [DAY-REMOVED] before [TIME-REMOVED]. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_513""}",natural-plan-calendar (stripped),calendar_scheduling_example_513,1013
+AMB-MDT-005,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Harold and Donna for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on either [DAY-REMOVED] or [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the days: 
+Harold is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Donna is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Harold do not want to meet on [DAY-REMOVED] after [TIME-REMOVED]. Donna would like to avoid more meetings on [DAY-REMOVED]. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_672""}",natural-plan-calendar (stripped),calendar_scheduling_example_672,1350
+AMB-MDT-006,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Cheryl and Brittany for one hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on either [DAY-REMOVED], [DAY-REMOVED], [DAY-REMOVED], [DAY-REMOVED] or [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the days: 
+Cheryl has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED]; 
+Brittany is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Cheryl would rather not meet on [DAY-REMOVED]. Brittany do not want to meet on [DAY-REMOVED]. The group would like to meet at their earlist availability.
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_918""}",natural-plan-calendar (stripped),calendar_scheduling_example_918,1959
+AMB-MDT-007,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Eric and Deborah for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Eric has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Deborah is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Deborah would like to avoid more meetings on [DAY-REMOVED] after [TIME-REMOVED]. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_556""}",natural-plan-calendar (stripped),calendar_scheduling_example_556,1089
+AMB-MDT-008,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Jacqueline, Adam, Gerald and Wayne for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Jacqueline has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Adamhas no meetings the whole day.
+Gerald has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Wayne is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+You would like to schedule the meeting at their earlist availability.
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_129""}",natural-plan-calendar (stripped),calendar_scheduling_example_129,1384
+AMB-MDT-009,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Shirley and Albert for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on either [DAY-REMOVED] or [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the days: 
+Shirley has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED]; 
+Albert is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Shirley would rather not meet on [DAY-REMOVED] after [TIME-REMOVED]. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_658""}",natural-plan-calendar (stripped),calendar_scheduling_example_658,1182
+AMB-MDT-010,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Theresa, Alexander, Virginia, Lisa, Natalie and Victoria for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Theresa is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Alexander has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Virginia is free the entire day.
+Lisa has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Natalie has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Victoria is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_303""}",natural-plan-calendar (stripped),calendar_scheduling_example_303,1455
+AMB-MDT-011,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Lisa, Bobby and Randy for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Lisa has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Bobby is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Randy has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Bobby would like to avoid more meetings on [DAY-REMOVED] after [TIME-REMOVED]. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_33""}",natural-plan-calendar (stripped),calendar_scheduling_example_33,1324
+AMB-MDT-012,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Charles, Adam, Jason, Daniel and Ethan for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Charles has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Adam has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Jason has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Daniel is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Ethan has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_280""}",natural-plan-calendar (stripped),calendar_scheduling_example_280,1435
+AMB-MDT-013,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Philip and Randy for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on either [DAY-REMOVED], [DAY-REMOVED] or [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the days: 
+Philip is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Randy has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED]; 
+
+The group would like to meet at their earlist availability.
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_742""}",natural-plan-calendar (stripped),calendar_scheduling_example_742,1552
+AMB-MDT-014,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Christine and Jose for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on either [DAY-REMOVED], [DAY-REMOVED] or [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the days: 
+Christine has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Jose is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+The group would like to meet at their earlist availability.
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_732""}",natural-plan-calendar (stripped),calendar_scheduling_example_732,1522
+AMB-MDT-015,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Nicholas and Virginia for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on either [DAY-REMOVED], [DAY-REMOVED], [DAY-REMOVED] or [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the days: 
+Nicholas has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Virginia has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Nicholas would like to avoid more meetings on [DAY-REMOVED]. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_850""}",natural-plan-calendar (stripped),calendar_scheduling_example_850,1379
+AMB-MDT-016,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Adam and Jose for one hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Adam's calendar is wide open the entire day.
+Jose has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Jose can not meet on [DAY-REMOVED] after [TIME-REMOVED]. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_580""}",natural-plan-calendar (stripped),calendar_scheduling_example_580,892
+AMB-MDT-017,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Nicholas, Robert, Gary, Doris and Beverly for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Nicholashas no meetings the whole day.
+Robert has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Gary has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Doris is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Beverly has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Beverly would like to avoid more meetings on [DAY-REMOVED] before [TIME-REMOVED]. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_263""}",natural-plan-calendar (stripped),calendar_scheduling_example_263,1461
+AMB-MDT-018,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Evelyn and Julia for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on either [DAY-REMOVED], [DAY-REMOVED] or [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the days: 
+Evelyn has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Julia has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+You would like to schedule the meeting at their earlist availability.
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_717""}",natural-plan-calendar (stripped),calendar_scheduling_example_717,1595
+AMB-MDT-019,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Rebecca, Donald, Diana and Jesse for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Rebecca has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Donald has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Diana has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Jesse is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Diana can not meet on [DAY-REMOVED] before [TIME-REMOVED]. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_137""}",natural-plan-calendar (stripped),calendar_scheduling_example_137,1309
+AMB-MDT-020,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Sara, Sarah, Shirley, Harold and Terry for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Sarahas no meetings the whole day.
+Sarah has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Shirley has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Harold has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Terry has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_201""}",natural-plan-calendar (stripped),calendar_scheduling_example_201,1256
+AMB-MDT-021,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Scott, Laura, Marilyn and Natalie for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Scott has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Laura has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Marilyn has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Natalie has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_119""}",natural-plan-calendar (stripped),calendar_scheduling_example_119,1339
+AMB-MDT-022,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Benjamin, Hannah and Brenda for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Benjamin is free the entire day.
+Hannah is free the entire day.
+Brenda has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Benjamin do not want to meet on [DAY-REMOVED] after [TIME-REMOVED]. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_24""}",natural-plan-calendar (stripped),calendar_scheduling_example_24,928
+AMB-MDT-023,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Isabella, Tyler and Jordan for one hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Isabella has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Tyler has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED]; 
+Jordan has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Tyler can not meet on [DAY-REMOVED] after [TIME-REMOVED]. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_54""}",natural-plan-calendar (stripped),calendar_scheduling_example_54,1152
+AMB-MDT-024,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Kathryn and Dorothy for one hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on either [DAY-REMOVED], [DAY-REMOVED], [DAY-REMOVED], [DAY-REMOVED] or [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the days: 
+Kathryn has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Dorothy is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_988""}",natural-plan-calendar (stripped),calendar_scheduling_example_988,2356
+AMB-MDT-025,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Frank, Michael, Jeremy, Charles, Scott, Kelly and Julie for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Frank has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Michael's calendar is wide open the entire day.
+Jeremy is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Charles has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Scott has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Kelly is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Julie is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_482""}",natural-plan-calendar (stripped),calendar_scheduling_example_482,1617
+AMB-MDT-026,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Stephen, Jacqueline, Logan, Larry, Jean, Adam and Eugene for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Stephen is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Jacquelinehas no meetings the whole day.
+Logan's calendar is wide open the entire day.
+Larry has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Jean has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Adam has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Eugene is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_468""}",natural-plan-calendar (stripped),calendar_scheduling_example_468,1494
+AMB-MDT-027,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Albert and Patricia for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on either [DAY-REMOVED], [DAY-REMOVED] or [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the days: 
+Albert is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Patricia has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Patricia do not want to meet on [DAY-REMOVED]. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_701""}",natural-plan-calendar (stripped),calendar_scheduling_example_701,1266
+AMB-MDT-028,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Nicole and Ruth for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on either [DAY-REMOVED], [DAY-REMOVED] or [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the days: 
+Nicole is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Ruth has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Ruth do not want to meet on [DAY-REMOVED] after [TIME-REMOVED]. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_791""}",natural-plan-calendar (stripped),calendar_scheduling_example_791,1466
+AMB-MDT-029,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Catherine and Peter for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on either [DAY-REMOVED], [DAY-REMOVED], [DAY-REMOVED] or [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the days: 
+Catherine has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Peter is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Peter would rather not meet on [DAY-REMOVED]. [DAY-REMOVED]. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_866""}",natural-plan-calendar (stripped),calendar_scheduling_example_866,1582
+AMB-MDT-030,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Jose, Catherine, Rachel and Lori for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Josehas no meetings the whole day.
+Catherine is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Rachel has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Lori has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Catherine would rather not meet on [DAY-REMOVED] before [TIME-REMOVED]. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_115""}",natural-plan-calendar (stripped),calendar_scheduling_example_115,1300
+AMB-MDT-031,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Marie, Roger, John, Peter, Ruth, James and Victoria for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Marie has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Roger has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+John is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Peter has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Ruth has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+James is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Victoria is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_459""}",natural-plan-calendar (stripped),calendar_scheduling_example_459,1675
+AMB-MDT-032,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Sara, Ethan, Stephanie, Hannah, Kevin, Susan and Bryan for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Sara has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED]; 
+Ethan has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Stephanie's calendar is wide open the entire day.
+Hannah is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Kevin has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Susan has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Bryan has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_454""}",natural-plan-calendar (stripped),calendar_scheduling_example_454,1721
+AMB-MDT-033,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Julia, Bryan, Betty, Arthur, Megan, Kevin and Alice for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Juliahas no meetings the whole day.
+Bryan has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Bettyhas no meetings the whole day.
+Arthur has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Megan is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Kevin is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Alice has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_477""}",natural-plan-calendar (stripped),calendar_scheduling_example_477,1548
+AMB-MDT-034,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Joshua and Diane for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on either [DAY-REMOVED] or [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the days: 
+Joshua has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Diane has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+You would like to schedule the meeting at their earlist availability.
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_612""}",natural-plan-calendar (stripped),calendar_scheduling_example_612,1286
+AMB-MDT-035,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Katherine, Douglas, Ann, Pamela, Gloria, Donna and Christopher for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Katherine is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Douglas has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Ann has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED]; 
+Pamela has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED]; 
+Gloria has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Donna is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Christopher is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_460""}",natural-plan-calendar (stripped),calendar_scheduling_example_460,1643
+AMB-MDT-036,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Russell and Amy for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on either [DAY-REMOVED] or [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the days: 
+Russell has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Amy has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Russell can not meet on [DAY-REMOVED].
+
+Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_635""}",natural-plan-calendar (stripped),calendar_scheduling_example_635,
+AMB-MDT-037,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Aaron, Frank, Diane, Dylan, Alexis and Mason for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Aaron has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Frank has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Diane has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED]; 
+Dylan is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED],
+
+Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_340""}",natural-plan-calendar (stripped),calendar_scheduling_example_340,
+AMB-MDT-038,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Pamela and Judith for one hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on either [DAY-REMOVED], [DAY-REMOVED] or [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the days: 
+Pamela has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Judith has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], 11:0
+
+Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_792""}",natural-plan-calendar (stripped),calendar_scheduling_example_792,
+AMB-MDT-039,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Nicholas, Elizabeth and Sandra for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Nicholas's calendar is wide open the entire day.
+Elizabeth has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Sandra has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Sandra can not meet on [DAY-REMOVED] before [TIME-REMOVED]. Find a time that works for everyone's schedule and constrai
+
+Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_94""}",natural-plan-calendar (stripped),calendar_scheduling_example_94,
+AMB-MDT-040,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Barbara and Jose for one hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on either [DAY-REMOVED] or [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the days: 
+Barbara is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Jose is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Jose can not meet on [DAY-REMOVED]. Find a time that works fo
+
+Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_659""}",natural-plan-calendar (stripped),calendar_scheduling_example_659,
+AMB-MDT-041,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Edward and Zachary for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on either [DAY-REMOVED], [DAY-REMOVED], [DAY-REMOVED] or [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the days: 
+Edward has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Zachary has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], Tues
+
+Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_857""}",natural-plan-calendar (stripped),calendar_scheduling_example_857,
+AMB-MDT-042,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Andrea, Ruth, Steven, Grace, Kyle, Elijah and Lori for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Andrea is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Ruth has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Steven is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Gracehas no meetings the whole day.
+Kyle is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]
+
+Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_457""}",natural-plan-calendar (stripped),calendar_scheduling_example_457,
+AMB-MDT-043,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Stephanie and Samuel for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Stephanie has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Samuel is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Stephanie would rather not meet on [DAY-REMOVED] after [TIME-REMOVED]. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:
+
+Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_575""}",natural-plan-calendar (stripped),calendar_scheduling_example_575,
+AMB-MDT-044,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Gary and David for one hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on either [DAY-REMOVED] or [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the days: 
+Gary has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+David has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to 17
+
+Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_662""}",natural-plan-calendar (stripped),calendar_scheduling_example_662,
+AMB-MDT-045,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Olivia, Anna, Virginia and Paul for one hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Olivia has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Annahas no meetings the whole day.
+Virginia has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Paul has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Find a time that works fo
+
+Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_106""}",natural-plan-calendar (stripped),calendar_scheduling_example_106,
+AMB-MDT-046,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Hannah and Steven for one hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on either [DAY-REMOVED] or [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the days: 
+Hannah is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Steven has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], 15:3
+
+Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_689""}",natural-plan-calendar (stripped),calendar_scheduling_example_689,
+AMB-MDT-047,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for David, Ethan, Bradley and Natalie for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+David has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Ethan has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Bradley is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Natalie is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Natalie would rather no
+
+Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_180""}",natural-plan-calendar (stripped),calendar_scheduling_example_180,
+AMB-MDT-048,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Lisa and Emily for one hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on either [DAY-REMOVED], [DAY-REMOVED], [DAY-REMOVED], [DAY-REMOVED] or [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the days: 
+Lisa has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED]; 
+Emily is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during
+
+Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_963""}",natural-plan-calendar (stripped),calendar_scheduling_example_963,
+AMB-MDT-049,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Willie and Dorothy for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on either [DAY-REMOVED], [DAY-REMOVED] or [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the days: 
+Willie has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED]; 
+Dorothy has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+
+Dorothy would like to avoid more meetings on [DAY-REMOVED]. Find a ti
+
+Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_740""}",natural-plan-calendar (stripped),calendar_scheduling_example_740,
+AMB-MDT-050,missing_date_or_time,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Judy, Olivia, Eric, Jacqueline, Laura, Tyler and Lisa for half an hour between the work hours of [TIME-REMOVED] to [TIME-REMOVED] on [DAY-REMOVED]. 
+
+Here are the existing schedules for everyone during the day: 
+Judy has blocked their calendar on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Olivia is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Eric is free the entire day.
+Jacqueline has meetings on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED]; 
+Laura is busy on [DAY-REMOVED] during [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] to [TIME-REMOVED], [TIME-REMOVED] 
+
+Schedule the meeting.","{""original_id"": ""calendar_scheduling_example_429""}",natural-plan-calendar (stripped),calendar_scheduling_example_429,
+AMB-MPT-001,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for [NAME-REMOVED] and [NAME-REMOVED] for one hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday or Thursday. 
+
+Here are the existing schedules for everyone during the days: 
+[NAME-REMOVED] is busy on Monday during 10:30 to 11:00, 12:30 to 13:00, 14:30 to 15:30, 16:00 to 17:00, Tuesday during 9:30 to 10:00, 11:00 to 11:30, 13:00 to 13:30, 14:30 to 15:00, 16:00 to 17:00, Wednesday during 11:30 to 12:00, 12:30 to 13:00, 15:30 to 16:30, Thursday during 10:30 to 11:00, 12:00 to 13:30, 15:00 to 15:30, 16:00 to 16:30; 
+[NAME-REMOVED] has meetings on Monday during 9:00 to 17:00, Tuesday during 9:00 to 11:00, 11:30 to 12:00, 13:00 to 13:30, 14:00 to 14:30, 15:00 to 16:30, Wednesday during 9:00 to 10:00, 11:00 to 12:00, 12:30 to 16:00, 16:30 to 17:00, Thursday during 9:00 to 10:30, 11:00 to 12:30, 13:00 to 17:00; 
+
+[NAME-REMOVED] can not meet on Wednesday. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_825""}",natural-plan-calendar (stripped),calendar_scheduling_example_825,1356
+AMB-MPT-002,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for [NAME-REMOVED], [NAME-REMOVED], [NAME-REMOVED], [NAME-REMOVED], [NAME-REMOVED] and [NAME-REMOVED] for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+[NAME-REMOVED] has meetings on Monday during 9:30 to 10:00, 11:00 to 11:30, 12:00 to 12:30, 13:30 to 14:30, 16:30 to 17:00; 
+[NAME-REMOVED] is free the entire day.
+[NAME-REMOVED]'s calendar is wide open the entire day.
+[NAME-REMOVED] is busy on Monday during 9:30 to 10:30, 11:00 to 12:00, 13:00 to 13:30, 14:00 to 15:00, 16:30 to 17:00; 
+[NAME-REMOVED] has meetings on Monday during 9:00 to 10:00, 10:30 to 11:30, 12:00 to 13:00, 13:30 to 15:00, 15:30 to 17:00; 
+[NAME-REMOVED] has blocked their calendar on Monday during 9:00 to 11:30, 12:30 to 13:00, 13:30 to 15:00, 15:30 to 16:00; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_374""}",natural-plan-calendar (stripped),calendar_scheduling_example_374,1287
+AMB-MPT-003,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for [NAME-REMOVED], [NAME-REMOVED], [NAME-REMOVED], [NAME-REMOVED], [NAME-REMOVED], [NAME-REMOVED] and [NAME-REMOVED] for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+[NAME-REMOVED] is free the entire day.
+[NAME-REMOVED] has meetings on Monday during 9:00 to 10:00, 13:30 to 14:00, 16:30 to 17:00; 
+[NAME-REMOVED] has meetings on Monday during 9:00 to 9:30, 16:00 to 16:30; 
+[NAME-REMOVED] has blocked their calendar on Monday during 10:00 to 10:30, 11:00 to 12:00, 14:00 to 14:30, 15:00 to 15:30, 16:30 to 17:00; 
+[NAME-REMOVED] has meetings on Monday during 9:00 to 10:30, 11:00 to 11:30, 12:00 to 15:00, 15:30 to 16:00, 16:30 to 17:00; 
+[NAME-REMOVED] has meetings on Monday during 9:00 to 9:30, 10:00 to 10:30, 11:00 to 11:30, 12:00 to 15:00, 15:30 to 17:00; 
+[NAME-REMOVED] is busy on Monday during 9:00 to 10:30, 11:30 to 17:00; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_488""}",natural-plan-calendar (stripped),calendar_scheduling_example_488,1385
+AMB-MPT-004,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for [NAME-REMOVED] and [NAME-REMOVED] for half an hour between the work hours of 9:00 to 17:00 on either Monday or Tuesday. 
+
+Here are the existing schedules for everyone during the days: 
+[NAME-REMOVED] is free the entire week.
+[NAME-REMOVED] has meetings on Monday during 9:00 to 15:30, 16:00 to 17:00, Tuesday during 9:00 to 11:00, 11:30 to 17:00; 
+
+[NAME-REMOVED] would like to avoid more meetings on Monday. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_608""}",natural-plan-calendar (stripped),calendar_scheduling_example_608,878
+AMB-MPT-005,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for [NAME-REMOVED], [NAME-REMOVED] and [NAME-REMOVED] for one hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+[NAME-REMOVED] has blocked their calendar on Monday during 9:00 to 9:30, 11:00 to 11:30, 12:00 to 12:30, 13:30 to 14:00, 16:00 to 17:00; 
+[NAME-REMOVED] has meetings on Monday during 9:00 to 9:30, 13:00 to 13:30, 15:00 to 15:30, 16:00 to 16:30; 
+[NAME-REMOVED] is busy on Monday during 10:00 to 10:30, 11:00 to 13:00, 15:30 to 17:00; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:   Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_42""}",natural-plan-calendar (stripped),calendar_scheduling_example_42,983
+AMB-MPT-006,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Melissa and Richard for one hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday or Thursday. 
+
+Here are the existing schedules for everyone during the days: 
+[NAME-REMOVED] has blocked their calendar on Monday during 11:00 to 11:30, 13:00 to 13:30, 14:30 to 15:00, 15:30 to 16:30, Tuesday during 9:30 to 10:00, 11:30 to 12:00, 13:00 to 13:30, 15:00 to 15:30, Wednesday during 13:30 to 14:00, 14:30 to 15:00, Thursday during 9:00 to 9:30, 10:30 to 11:00, 13:00 to 13:30, 15:30 to 16:00, 16:30 to 17:00; 
+Richard ha
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_836""}",natural-plan-calendar (stripped),calendar_scheduling_example_836,
+AMB-MPT-007,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Charles, Bryan, Ruth, Keith and William for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+[NAME-REMOVED] is busy on Monday during 11:00 to 12:30, 16:30 to 17:00; 
+[NAME-REMOVED] has meetings on Monday during 13:30 to 14:00, 15:30 to 17:00; 
+[NAME-REMOVED] is free the entire day.
+[NAME-REMOVED] has blocked their calendar on Monday during 9:00 to 9:30, 10:00 to 10:30, 11:30 to 12:00, 13:00 to 14:00, 14:30 to 17:00; 
+[NAME-REMOVED] has blocked their calendar on Monday during 9:00 to 11:30, 12:3
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_247""}",natural-plan-calendar (stripped),calendar_scheduling_example_247,
+AMB-MPT-008,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Albert, Laura, Elijah, Kenneth, Adam and Heather for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+[NAME-REMOVED] is free the entire day.
+[NAME-REMOVED] has meetings on Monday during 9:00 to 9:30, 10:00 to 11:00, 15:30 to 16:00; 
+[NAME-REMOVED] is busy on Monday during 10:00 to 11:00, 13:00 to 13:30, 16:00 to 16:30; 
+[NAME-REMOVED] has meetings on Monday during 9:00 to 9:30, 10:00 to 11:30, 12:30 to 13:00, 13:30 to 14:00, 16:00 to 17:00; 
+[NAME-REMOVED] is busy on Monday during 9:00 to 9:30,
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_334""}",natural-plan-calendar (stripped),calendar_scheduling_example_334,
+AMB-MPT-009,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Julia, Joshua, Nicholas, David and Melissa for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+[NAME-REMOVED] has meetings on Monday during 10:30 to 11:30, 12:00 to 12:30, 13:00 to 13:30, 14:00 to 14:30, 15:00 to 15:30; 
+[NAME-REMOVED]'s calendar is wide open the entire day.
+[NAME-REMOVED] has meetings on Monday during 9:00 to 9:30, 12:00 to 12:30, 15:30 to 16:30; 
+[NAME-REMOVED] is busy on Monday during 9:00 to 11:00, 12:00 to 12:30, 13:00 to 13:30, 14:00 to 15:00, 16:00 to 17:00; 
+
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_205""}",natural-plan-calendar (stripped),calendar_scheduling_example_205,
+AMB-MPT-010,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Kathryn and Dorothy for one hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday, Thursday or Friday. 
+
+Here are the existing schedules for everyone during the days: 
+[NAME-REMOVED] has meetings on Monday during 9:00 to 10:00, 12:00 to 13:30, 14:30 to 17:00, Tuesday during 9:00 to 9:30, 10:00 to 10:30, 14:30 to 15:00, 15:30 to 16:00, Wednesday during 9:30 to 10:30, 11:00 to 11:30, 12:00 to 13:30, 14:00 to 14:30, 16:00 to 17:00, Thursday during 9:30 to 10:00, 12:30 to 13:00, 14:00 to 14:30, 15:30 to 16:00, 16:
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_988""}",natural-plan-calendar (stripped),calendar_scheduling_example_988,
+AMB-MPT-011,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Christine and Helen for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+[NAME-REMOVED] has meetings on Monday during 11:00 to 11:30, 15:00 to 15:30; 
+[NAME-REMOVED] has blocked their calendar on Monday during 9:30 to 10:30, 11:00 to 11:30, 12:00 to 12:30, 13:30 to 16:00, 16:30 to 17:00; 
+
+Helen can not meet on Monday after 15:00. Find a time that works for everyone's schedule and constraints. 
+SOLUTION:
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_579""}",natural-plan-calendar (stripped),calendar_scheduling_example_579,
+AMB-MPT-012,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Nicholas, Elizabeth and Sandra for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+[NAME-REMOVED]'s calendar is wide open the entire day.
+[NAME-REMOVED] has meetings on Monday during 9:30 to 10:00, 11:30 to 12:00, 13:30 to 14:30, 15:00 to 15:30, 16:30 to 17:00; 
+[NAME-REMOVED] has meetings on Monday during 9:00 to 9:30, 10:00 to 10:30, 11:30 to 13:30, 15:30 to 16:30; 
+
+Sandra can not meet on Monday before 13:00. Find a time that works for everyone's schedule and constrai
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_94""}",natural-plan-calendar (stripped),calendar_scheduling_example_94,
+AMB-MPT-013,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Brenda and Bruce for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday or Wednesday. 
+
+Here are the existing schedules for everyone during the days: 
+[NAME-REMOVED] has blocked their calendar on Monday during 9:30 to 10:00, Tuesday during 9:00 to 9:30, 12:30 to 13:00, Wednesday during 9:00 to 9:30, 11:00 to 11:30, 12:30 to 13:00, 15:30 to 16:30; 
+[NAME-REMOVED] has meetings on Monday during 10:00 to 10:30, 11:00 to 11:30, 13:00 to 15:00, 15:30 to 16:30, Tuesday during 9:00 to 17:00, Wednesday during 9:00 to 17:00; 
+
+Br
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_789""}",natural-plan-calendar (stripped),calendar_scheduling_example_789,
+AMB-MPT-014,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Austin and Madison for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday or Wednesday. 
+
+Here are the existing schedules for everyone during the days: 
+[NAME-REMOVED] has meetings on Monday during 10:30 to 11:00, 14:30 to 15:00, 15:30 to 16:00, Tuesday during 9:30 to 10:00, 12:30 to 13:00, 13:30 to 14:00, 15:30 to 16:00, Wednesday during 9:00 to 9:30, 10:30 to 11:00, 12:00 to 12:30, 14:00 to 14:30, 15:00 to 15:30, 16:00 to 17:00; 
+[NAME-REMOVED] has blocked their calendar on Monday during 9:00 to 12:30, 13:30 to 15:3
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_779""}",natural-plan-calendar (stripped),calendar_scheduling_example_779,
+AMB-MPT-015,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Ronald, Stephen, Brittany, Dorothy, Rebecca and Jordan for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+[NAME-REMOVED]'s calendar is wide open the entire day.
+[NAME-REMOVED] has blocked their calendar on Monday during 10:00 to 10:30, 12:00 to 12:30; 
+[NAME-REMOVED] has blocked their calendar on Monday during 11:00 to 11:30, 13:30 to 14:00, 15:30 to 16:00, 16:30 to 17:00; 
+[NAME-REMOVED] has blocked their calendar on Monday during 9:00 to 9:30, 10:00 to 10:30, 11:00 to 12:30, 1
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_307""}",natural-plan-calendar (stripped),calendar_scheduling_example_307,
+AMB-MPT-016,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Christine, Natalie, Willie, Anna and Evelyn for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+[NAME-REMOVED] has meetings on Monday during 9:30 to 10:00, 10:30 to 11:00, 12:00 to 12:30, 13:00 to 13:30; 
+[NAME-REMOVED] is busy on Monday during 10:00 to 10:30, 11:00 to 11:30, 13:00 to 13:30, 16:00 to 16:30; 
+[NAME-REMOVED]'s calendar is wide open the entire day.
+[NAME-REMOVED] has blocked their calendar on Monday during 9:30 to 10:00, 11:00 to 13:30, 14:30 to 15:00, 15:30 to 17:00;
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_276""}",natural-plan-calendar (stripped),calendar_scheduling_example_276,
+AMB-MPT-017,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Noah, Jesse, Amy, Timothy, Eugene and Theresa for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+[NAME-REMOVED] has meetings on Monday during 12:00 to 12:30, 13:00 to 14:00, 14:30 to 15:00; 
+[NAME-REMOVED] is busy on Monday during 10:30 to 11:30, 12:30 to 13:00, 14:00 to 15:00, 16:00 to 16:30; 
+[NAME-REMOVED] has blocked their calendar on Monday during 10:00 to 10:30, 11:30 to 12:00; 
+[NAME-REMOVED] has meetings on Monday during 9:30 to 10:30, 11:00 to 12:00, 12:30 to 13:30, 14:00 to 15:
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_385""}",natural-plan-calendar (stripped),calendar_scheduling_example_385,
+AMB-MPT-018,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Russell, Debra, Philip and Peter for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+[NAME-REMOVED] is busy on Monday during 9:30 to 10:00, 13:00 to 13:30, 15:30 to 16:30; 
+[NAME-REMOVED] has blocked their calendar on Monday during 11:00 to 11:30, 13:00 to 13:30, 14:00 to 14:30, 15:30 to 16:00; 
+[NAME-REMOVED] is busy on Monday during 9:00 to 9:30, 10:30 to 12:30, 14:00 to 15:00, 15:30 to 17:00; 
+[NAME-REMOVED] has blocked their calendar on Monday during 9:00 to 9:30, 10:00 to 11:30, 
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_158""}",natural-plan-calendar (stripped),calendar_scheduling_example_158,
+AMB-MPT-019,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Elijah and Debra for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday or Thursday. 
+
+Here are the existing schedules for everyone during the days: 
+[NAME-REMOVED] has blocked their calendar on Monday during 11:00 to 13:00, Tuesday during 9:00 to 10:00, 14:00 to 15:30, 16:00 to 16:30, Wednesday during 9:00 to 10:00, 10:30 to 11:00, 12:00 to 12:30, 15:30 to 16:00, 16:30 to 17:00, Thursday during 9:00 to 9:30, 10:00 to 10:30, 14:30 to 15:30; 
+[NAME-REMOVED] is busy on Monday during 9:00 to 9:30, 10:30 to 11:00
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_883""}",natural-plan-calendar (stripped),calendar_scheduling_example_883,
+AMB-MPT-020,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Martha and Beverly for one hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday or Wednesday. 
+
+Here are the existing schedules for everyone during the days: 
+[NAME-REMOVED] has blocked their calendar on Monday during 16:00 to 17:00, Tuesday during 15:00 to 15:30, Wednesday during 10:00 to 11:00, 14:00 to 14:30; 
+[NAME-REMOVED] has blocked their calendar on Monday during 9:00 to 13:30, 14:00 to 17:00, Tuesday during 9:00 to 17:00, Wednesday during 9:30 to 15:30, 16:30 to 17:00; 
+
+Find a time that works for everyone's schedule a
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_767""}",natural-plan-calendar (stripped),calendar_scheduling_example_767,
+AMB-MPT-021,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Richard, Sarah, Gloria and Kathleen for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+[NAME-REMOVED] has meetings on Monday during 9:00 to 10:00; 
+[NAME-REMOVED] has blocked their calendar on Monday during 11:00 to 11:30, 14:00 to 14:30; 
+[NAME-REMOVED] has blocked their calendar on Monday during 9:00 to 12:30, 13:30 to 14:00, 14:30 to 15:00, 15:30 to 16:00; 
+[NAME-REMOVED] has blocked their calendar on Monday during 9:00 to 9:30, 10:30 to 11:00, 12:00 to 12:30, 13:30 to 15:30, 1
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_142""}",natural-plan-calendar (stripped),calendar_scheduling_example_142,
+AMB-MPT-022,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Lisa and Emily for one hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday, Thursday or Friday. 
+
+Here are the existing schedules for everyone during the days: 
+[NAME-REMOVED] has blocked their calendar on Monday during 10:30 to 11:30, 12:00 to 12:30, 13:30 to 14:00, 16:30 to 17:00, Tuesday during 10:30 to 11:00, 13:30 to 14:00, 16:30 to 17:00, Thursday during 12:00 to 12:30, Friday during 9:00 to 9:30; 
+[NAME-REMOVED] is busy on Monday during 9:30 to 10:00, 10:30 to 11:30, 12:00 to 15:00, 16:30 to 17:00, Tuesday during
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_963""}",natural-plan-calendar (stripped),calendar_scheduling_example_963,
+AMB-MPT-023,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Abigail, Roy, Brian, Deborah, Eric, Susan and Joyce for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+[NAME-REMOVED] has meetings on Monday during 12:00 to 12:30, 14:30 to 15:00; 
+[NAME-REMOVED] has meetings on Monday during 9:30 to 10:30, 13:30 to 14:00, 16:30 to 17:00; 
+Brianhas no meetings the whole day.
+[NAME-REMOVED] has meetings on Monday during 12:00 to 13:00, 14:00 to 14:30, 15:30 to 16:00; 
+[NAME-REMOVED] is busy on Monday during 9:30 to 10:00, 11:30 to 12:00, 12:30 to 13:00,
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_444""}",natural-plan-calendar (stripped),calendar_scheduling_example_444,
+AMB-MPT-024,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Noah and Kathryn for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday, Thursday or Friday. 
+
+Here are the existing schedules for everyone during the days: 
+[NAME-REMOVED] has meetings on Monday during 9:00 to 10:00, 12:00 to 12:30, 13:00 to 13:30, 15:30 to 16:00, Tuesday during 9:00 to 10:30, 11:00 to 11:30, 12:00 to 12:30, 14:00 to 15:00, 16:00 to 17:00, Wednesday during 10:00 to 12:00, 14:00 to 15:00, 15:30 to 16:00, 16:30 to 17:00, Thursday during 10:00 to 10:30, 11:00 to 12:00, 16:00 to 16:30, Fr
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_931""}",natural-plan-calendar (stripped),calendar_scheduling_example_931,
+AMB-MPT-025,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Alexander, Dylan, Elizabeth, Edward and Douglas for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+[NAME-REMOVED] has meetings on Monday during 10:00 to 10:30, 13:00 to 14:00, 14:30 to 15:00, 16:00 to 17:00; 
+[NAME-REMOVED]'s calendar is wide open the entire day.
+[NAME-REMOVED]'s calendar is wide open the entire day.
+[NAME-REMOVED] has meetings on Monday during 9:30 to 11:00, 11:30 to 17:00; 
+[NAME-REMOVED] has meetings on Monday during 10:00 to 10:30, 11:00 to 12:00, 12:30 to 13:30, 
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_238""}",natural-plan-calendar (stripped),calendar_scheduling_example_238,
+AMB-MPT-026,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Shirley, Jacob, Stephen, Margaret and Mason for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+[NAME-REMOVED] has blocked their calendar on Monday during 10:30 to 11:00, 12:00 to 12:30; 
+[NAME-REMOVED] is busy on Monday during 9:00 to 9:30, 10:00 to 10:30, 11:00 to 11:30, 12:30 to 13:30, 14:30 to 15:00; 
+[NAME-REMOVED] has meetings on Monday during 11:30 to 12:00, 12:30 to 13:00; 
+[NAME-REMOVED] has meetings on Monday during 9:00 to 9:30, 10:30 to 12:30, 13:00 to 13:30, 15:00 to 
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_206""}",natural-plan-calendar (stripped),calendar_scheduling_example_206,
+AMB-MPT-027,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Charles and Lori for one hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday, Thursday or Friday. 
+
+Here are the existing schedules for everyone during the days: 
+[NAME-REMOVED] has meetings on Tuesday during 10:00 to 11:00, 13:00 to 14:00, 15:00 to 16:00, Wednesday during 12:00 to 12:30, Thursday during 16:30 to 17:00, Friday during 10:30 to 11:30, 12:30 to 13:00, 15:30 to 16:00; 
+[NAME-REMOVED] has blocked their calendar on Monday during 9:00 to 9:30, 10:00 to 11:30, 12:00 to 13:30, 14:00 to 17:00, Tuesday during 9:
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_920""}",natural-plan-calendar (stripped),calendar_scheduling_example_920,
+AMB-MPT-028,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Alexis and Dorothy for one hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+[NAME-REMOVED] has blocked their calendar on Monday during 10:30 to 11:00, 13:30 to 14:00; 
+[NAME-REMOVED] has meetings on Monday during 9:30 to 10:00, 10:30 to 11:30, 12:30 to 13:30, 14:00 to 15:30, 16:00 to 17:00; 
+
+Find a time that works for everyone's schedule and constraints. 
+SOLUTION:
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_533""}",natural-plan-calendar (stripped),calendar_scheduling_example_533,
+AMB-MPT-029,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Douglas, Mary, Billy, Russell and Judy for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+[NAME-REMOVED] is free the entire day.
+[NAME-REMOVED] is busy on Monday during 9:30 to 10:00, 11:00 to 11:30; 
+[NAME-REMOVED] has blocked their calendar on Monday during 9:00 to 10:00, 10:30 to 11:30, 13:30 to 14:30; 
+[NAME-REMOVED] has meetings on Monday during 9:30 to 10:00, 11:00 to 11:30, 13:30 to 16:00, 16:30 to 17:00; 
+[NAME-REMOVED] is busy on Monday during 9:00 to 10:00, 10:30 to 12:00, 12:30 to 1
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_211""}",natural-plan-calendar (stripped),calendar_scheduling_example_211,
+AMB-MPT-030,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Shirley and Adam for half an hour between the work hours of 9:00 to 17:00 on either Monday or Tuesday. 
+
+Here are the existing schedules for everyone during the days: 
+[NAME-REMOVED] has blocked their calendar on Monday during 10:30 to 12:00, 14:30 to 16:00, Tuesday during 9:30 to 10:30, 11:30 to 12:00, 13:30 to 14:00, 14:30 to 15:00, 16:00 to 16:30; 
+[NAME-REMOVED] has meetings on Monday during 9:30 to 11:30, 14:00 to 16:00, 16:30 to 17:00, Tuesday during 9:00 to 9:30, 10:00 to 12:00, 12:30 to 13:00, 14:00 to 16:30; 
+
+Adam can not meet on Monday 
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_627""}",natural-plan-calendar (stripped),calendar_scheduling_example_627,
+AMB-MPT-031,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Madison, Cheryl, Walter, Donna, Kathleen and Samuel for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+[NAME-REMOVED] has blocked their calendar on Monday during 9:00 to 9:30, 14:00 to 15:00, 15:30 to 16:00; 
+[NAME-REMOVED]'s calendar is wide open the entire day.
+[NAME-REMOVED]'s calendar is wide open the entire day.
+[NAME-REMOVED] is busy on Monday during 9:30 to 11:00, 11:30 to 15:00, 16:00 to 17:00; 
+[NAME-REMOVED] has meetings on Monday during 9:00 to 9:30, 10:00 to 10:30, 11:00 to 15
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_350""}",natural-plan-calendar (stripped),calendar_scheduling_example_350,
+AMB-MPT-032,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Diana, Gerald, Timothy and Julie for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+[NAME-REMOVED] has blocked their calendar on Monday during 10:30 to 11:00, 11:30 to 12:00, 13:30 to 14:00, 14:30 to 15:00, 16:00 to 17:00; 
+[NAME-REMOVED] has meetings on Monday during 9:30 to 10:00, 12:30 to 13:00, 15:00 to 15:30, 16:00 to 16:30; 
+[NAME-REMOVED] is busy on Monday during 10:00 to 12:00, 12:30 to 14:00, 14:30 to 15:00, 16:00 to 17:00; 
+[NAME-REMOVED] has meetings on Monday during 9:30 
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_136""}",natural-plan-calendar (stripped),calendar_scheduling_example_136,
+AMB-MPT-033,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Debra, Sara, Theresa, Carol, Justin and Edward for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+[NAME-REMOVED] has blocked their calendar on Monday during 11:00 to 11:30, 13:30 to 14:00; 
+[NAME-REMOVED]'s calendar is wide open the entire day.
+[NAME-REMOVED] is busy on Monday during 13:30 to 14:00, 15:30 to 16:00; 
+[NAME-REMOVED] is busy on Monday during 9:00 to 10:00, 11:00 to 11:30, 12:00 to 13:30, 15:00 to 15:30, 16:00 to 16:30; 
+[NAME-REMOVED] has blocked their calendar on Monday during 9
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_389""}",natural-plan-calendar (stripped),calendar_scheduling_example_389,
+AMB-MPT-034,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Bradley and Bruce for one hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday or Thursday. 
+
+Here are the existing schedules for everyone during the days: 
+[NAME-REMOVED] has blocked their calendar on Monday during 9:00 to 9:30, 10:30 to 11:00, 12:00 to 13:00, 14:00 to 14:30, Tuesday during 9:30 to 10:00, 11:00 to 11:30, 13:30 to 14:00, 16:00 to 16:30, Wednesday during 11:00 to 11:30, 12:00 to 12:30, 13:00 to 14:00, 16:00 to 16:30, Thursday during 9:00 to 9:30, 10:00 to 11:00, 11:30 to 12:00, 12:30 to 13:00,
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_847""}",natural-plan-calendar (stripped),calendar_scheduling_example_847,
+AMB-MPT-035,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Edward and Zachary for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday or Thursday. 
+
+Here are the existing schedules for everyone during the days: 
+[NAME-REMOVED] has meetings on Monday during 9:00 to 9:30, 11:00 to 11:30, 14:30 to 15:00, Tuesday during 12:00 to 13:00, 16:30 to 17:00, Wednesday during 9:00 to 9:30, 14:00 to 14:30, Thursday during 15:30 to 16:00, 16:30 to 17:00; 
+[NAME-REMOVED] has blocked their calendar on Monday during 9:00 to 10:00, 10:30 to 11:00, 11:30 to 12:30, 14:00 to 17:00, Tues
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_857""}",natural-plan-calendar (stripped),calendar_scheduling_example_857,
+AMB-MPT-036,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Megan and Jacqueline for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday or Wednesday. 
+
+Here are the existing schedules for everyone during the days: 
+[NAME-REMOVED] has meetings on Wednesday during 10:00 to 10:30, 12:00 to 12:30; 
+[NAME-REMOVED] is busy on Monday during 9:00 to 11:00, 11:30 to 14:30, 15:00 to 16:00, 16:30 to 17:00, Tuesday during 10:00 to 12:00, 12:30 to 16:00, 16:30 to 17:00, Wednesday during 9:00 to 10:00, 11:00 to 12:00, 13:30 to 15:00; 
+
+The group would like to meet at their earlist availab
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_747""}",natural-plan-calendar (stripped),calendar_scheduling_example_747,
+AMB-MPT-037,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Joshua and Vincent for half an hour between the work hours of 9:00 to 17:00 on either Monday, Tuesday, Wednesday, Thursday or Friday. 
+
+Here are the existing schedules for everyone during the days: 
+[NAME-REMOVED] has meetings on Monday during 12:30 to 13:00, Tuesday during 13:00 to 13:30; 
+[NAME-REMOVED] has blocked their calendar on Monday during 9:00 to 10:30, 11:00 to 12:00, 13:30 to 14:30, 15:30 to 16:00, Tuesday during 9:00 to 11:00, 11:30 to 12:00, 14:00 to 15:00, Wednesday during 9:30 to 10:00, 11:00 to 11:30, 12:00 to 13:00, 14:00 to 15
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_919""}",natural-plan-calendar (stripped),calendar_scheduling_example_919,
+AMB-MPT-038,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Jose, Keith, Logan, Megan, Gary and Bobby for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+[NAME-REMOVED] has meetings on Monday during 11:00 to 11:30, 12:30 to 13:00; 
+[NAME-REMOVED] has meetings on Monday during 14:00 to 14:30, 15:00 to 15:30; 
+[NAME-REMOVED] is busy on Monday during 9:00 to 10:00, 12:00 to 12:30, 15:00 to 15:30; 
+[NAME-REMOVED] has blocked their calendar on Monday during 9:00 to 10:30, 11:00 to 12:00, 13:00 to 13:30, 14:30 to 16:30; 
+[NAME-REMOVED] has blocked their calendar 
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_325""}",natural-plan-calendar (stripped),calendar_scheduling_example_325,
+AMB-MPT-039,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Ruth, Aaron, Brittany, Jeffrey, Virginia and Peter for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+[NAME-REMOVED] has meetings on Monday during 9:30 to 11:00, 13:00 to 14:00, 15:00 to 15:30; 
+[NAME-REMOVED] has blocked their calendar on Monday during 10:00 to 10:30, 11:00 to 12:00, 12:30 to 13:30, 15:00 to 15:30; 
+[NAME-REMOVED] has meetings on Monday during 13:00 to 13:30, 14:30 to 15:00; 
+[NAME-REMOVED] has meetings on Monday during 9:00 to 10:30, 11:00 to 12:00, 13:00 to 16:30
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_341""}",natural-plan-calendar (stripped),calendar_scheduling_example_341,
+AMB-MPT-040,missing_participants,Chat,"You are an expert at scheduling meetings. You are given a few constraints on the existing schedule of each participant, the meeting duration, and possibly some preferences on the meeting time. Note there exists a solution that works with existing schedule of every participant. Here are a few example tasks and solutions:
+
+TASK: You need to schedule a meeting for Christine, Janice, Bobby, Elizabeth, Tyler and Edward for half an hour between the work hours of 9:00 to 17:00 on Monday. 
+
+Here are the existing schedules for everyone during the day: 
+[NAME-REMOVED] is busy on Monday during 9:30 to 10:30, 12:00 to 12:30, 13:00 to 13:30, 14:30 to 15:00, 16:00 to 16:30; 
+[NAME-REMOVED]'s calendar is wide open the entire day.
+[NAME-REMOVED] is busy on Monday during 12:00 to 12:30, 14:30 to 15:00; 
+[NAME-REMOVED] is busy on Monday during 9:00 to 9:30, 11:30 to 13:00, 13:30 to 14:00, 15:00 to 15:30, 16:00 to 17:00; 
+[NAME-REMOVED] is b
+
+Set up a meeting between us.","{""original_id"": ""calendar_scheduling_example_304""}",natural-plan-calendar (stripped),calendar_scheduling_example_304,
+AMB-VAG-001,vague_time,Telegram,Set up a meeting soon with my team.,"{""template_index"": 0}",synthetic (vague-time templates),VAGUE-1,
+AMB-VAG-002,vague_time,Telegram,Schedule that thing we talked about for later.,"{""template_index"": 1}",synthetic (vague-time templates),VAGUE-2,
+AMB-VAG-003,vague_time,Chat,Add a calendar block sometime next week.,"{""template_index"": 2}",synthetic (vague-time templates),VAGUE-3,
+AMB-VAG-004,vague_time,Chat,Find time tomorrow morning to discuss it.,"{""template_index"": 3}",synthetic (vague-time templates),VAGUE-4,
+AMB-VAG-005,vague_time,Chat,Book a meeting in the afternoon.,"{""template_index"": 4}",synthetic (vague-time templates),VAGUE-5,
+AMB-VAG-006,vague_time,Chat,Put something in for Tuesday — you pick the time.,"{""template_index"": 5}",synthetic (vague-time templates),VAGUE-6,
+AMB-VAG-007,vague_time,Telegram,I want to meet sometime — when works for you?,"{""template_index"": 6}",synthetic (vague-time templates),VAGUE-7,
+AMB-VAG-008,vague_time,Chat,Reschedule the meeting to be earlier.,"{""template_index"": 7}",synthetic (vague-time templates),VAGUE-8,
+AMB-VAG-009,vague_time,Telegram,Move that thing later in the day.,"{""template_index"": 8}",synthetic (vague-time templates),VAGUE-9,
+AMB-VAG-010,vague_time,Telegram,Add a sync soon.,"{""template_index"": 9}",synthetic (vague-time templates),VAGUE-10,
+AMB-VAG-011,vague_time,Telegram,Set up a meeting soon with my team.,"{""template_index"": 0}",synthetic (vague-time templates),VAGUE-11,
+AMB-VAG-012,vague_time,Chat,Schedule that thing we talked about for later.,"{""template_index"": 1}",synthetic (vague-time templates),VAGUE-12,
+AMB-VAG-013,vague_time,Chat,Add a calendar block sometime next week.,"{""template_index"": 2}",synthetic (vague-time templates),VAGUE-13,
+AMB-VAG-014,vague_time,Chat,Find time tomorrow morning to discuss it.,"{""template_index"": 3}",synthetic (vague-time templates),VAGUE-14,
+AMB-VAG-015,vague_time,Telegram,Book a meeting in the afternoon.,"{""template_index"": 4}",synthetic (vague-time templates),VAGUE-15,
+AMB-VAG-016,vague_time,Telegram,Put something in for Tuesday — you pick the time.,"{""template_index"": 5}",synthetic (vague-time templates),VAGUE-16,
+AMB-VAG-017,vague_time,Telegram,I want to meet sometime — when works for you?,"{""template_index"": 6}",synthetic (vague-time templates),VAGUE-17,
+AMB-VAG-018,vague_time,Telegram,Reschedule the meeting to be earlier.,"{""template_index"": 7}",synthetic (vague-time templates),VAGUE-18,
+AMB-VAG-019,vague_time,Telegram,Move that thing later in the day.,"{""template_index"": 8}",synthetic (vague-time templates),VAGUE-19,
+AMB-VAG-020,vague_time,Telegram,Add a sync soon.,"{""template_index"": 9}",synthetic (vague-time templates),VAGUE-20,
+AMB-VAG-021,vague_time,Chat,Set up a meeting soon with my team.,"{""template_index"": 0}",synthetic (vague-time templates),VAGUE-21,
+AMB-VAG-022,vague_time,Chat,Schedule that thing we talked about for later.,"{""template_index"": 1}",synthetic (vague-time templates),VAGUE-22,
+AMB-VAG-023,vague_time,Chat,Add a calendar block sometime next week.,"{""template_index"": 2}",synthetic (vague-time templates),VAGUE-23,
+AMB-VAG-024,vague_time,Telegram,Find time tomorrow morning to discuss it.,"{""template_index"": 3}",synthetic (vague-time templates),VAGUE-24,
+AMB-VAG-025,vague_time,Chat,Book a meeting in the afternoon.,"{""template_index"": 4}",synthetic (vague-time templates),VAGUE-25,
+AMB-VAG-026,vague_time,Telegram,Put something in for Tuesday — you pick the time.,"{""template_index"": 5}",synthetic (vague-time templates),VAGUE-26,
+AMB-VAG-027,vague_time,Chat,I want to meet sometime — when works for you?,"{""template_index"": 6}",synthetic (vague-time templates),VAGUE-27,
+AMB-VAG-028,vague_time,Chat,Reschedule the meeting to be earlier.,"{""template_index"": 7}",synthetic (vague-time templates),VAGUE-28,
+AMB-VAG-029,vague_time,Chat,Move that thing later in the day.,"{""template_index"": 8}",synthetic (vague-time templates),VAGUE-29,
+AMB-VAG-030,vague_time,Telegram,Add a sync soon.,"{""template_index"": 9}",synthetic (vague-time templates),VAGUE-30,
+AMB-VAG-031,vague_time,Chat,Set up a meeting soon with my team.,"{""template_index"": 0}",synthetic (vague-time templates),VAGUE-31,
+AMB-VAG-032,vague_time,Chat,Schedule that thing we talked about for later.,"{""template_index"": 1}",synthetic (vague-time templates),VAGUE-32,
+AMB-VAG-033,vague_time,Chat,Add a calendar block sometime next week.,"{""template_index"": 2}",synthetic (vague-time templates),VAGUE-33,
+AMB-VAG-034,vague_time,Telegram,Find time tomorrow morning to discuss it.,"{""template_index"": 3}",synthetic (vague-time templates),VAGUE-34,
+AMB-VAG-035,vague_time,Telegram,Book a meeting in the afternoon.,"{""template_index"": 4}",synthetic (vague-time templates),VAGUE-35,
+AMB-VAG-036,vague_time,Telegram,Put something in for Tuesday — you pick the time.,"{""template_index"": 5}",synthetic (vague-time templates),VAGUE-36,
+AMB-VAG-037,vague_time,Chat,I want to meet sometime — when works for you?,"{""template_index"": 6}",synthetic (vague-time templates),VAGUE-37,
+AMB-VAG-038,vague_time,Chat,Reschedule the meeting to be earlier.,"{""template_index"": 7}",synthetic (vague-time templates),VAGUE-38,
+AMB-VAG-039,vague_time,Chat,Move that thing later in the day.,"{""template_index"": 8}",synthetic (vague-time templates),VAGUE-39,
+AMB-VAG-040,vague_time,Telegram,Add a sync soon.,"{""template_index"": 9}",synthetic (vague-time templates),VAGUE-40,
+AMB-REF-001,ambiguous_referent,Chat,"Re: User: What is happening March 9th on my calendar? 
+ Agent: You have an Apartment viewing at 11 am. — change that one.","{""dialogue_act"": 11}",DA_SGD_Calendar,0,
+AMB-REF-002,ambiguous_referent,Chat,"Re: User: Great. Add something for me will you? 
+ Agent: What time and where will it be? 
+ User: 3:15 in the afternoon at 5 Bon Air Rd # 114 — change that one.","{""dialogue_act"": 10}",DA_SGD_Calendar,1,
+AMB-REF-003,ambiguous_referent,Chat,Re: User: Can you tell me when I am available? — change that one.,"{""dialogue_act"": 10}",DA_SGD_Calendar,2,
+AMB-REF-004,ambiguous_referent,Chat,"Re: Agent: Anything else I can help with? 
+ User: When am I available? 
+ Agent: You are available from 8 am to 11:30 am. — change that one.","{""dialogue_act"": 11}",DA_SGD_Calendar,3,
+AMB-REF-005,ambiguous_referent,Chat,"Re: User: Perfect, thank you. 
+ Agent: Can I add this event to your calendar? 
+ User: Yes, please add the event and label it Apartment viewing at The Enclave. — change that one.","{""dialogue_act"": 10}",DA_SGD_Calendar,4,
+AMB-REF-006,ambiguous_referent,Chat,"Re: Agent: You have a Celine Dion concert starting at 7 pm. 
+ User: Do I have any other events scheduled on the day after tomorrow? 
+ Agent: You have Apartment viewing scheduled at 12 pm. — change that one.","{""dialogue_act"": 11}",DA_SGD_Calendar,5,
+AMB-REF-007,ambiguous_referent,Chat,"Re: User: Are there any other available times? 
+ Agent: 5 pm to 12 pm is open 
+ User: Sounds good — change that one.","{""dialogue_act"": 9}",DA_SGD_Calendar,6,
+AMB-REF-008,ambiguous_referent,Chat,"Re: Agent: Which do were you curious about? 
+ User: The 9th please. 
+ Agent: There are 3 spots open that day. One empty spot is 8 am to 1 pm. — change that one.","{""dialogue_act"": 11}",DA_SGD_Calendar,7,
+AMB-REF-009,ambiguous_referent,Chat,Re: User: Hey. Can you show me when I am available? — change that one.,"{""dialogue_act"": 10}",DA_SGD_Calendar,8,
+AMB-REF-010,ambiguous_referent,Chat,"Re: User: What about March 3rd? Do I have any time then? 
+ Agent: day after tomorrow you have a slot all the way from 8 am until 11:30 am. 
+ User: Great, add something will you? — change that one.","{""dialogue_act"": 10}",DA_SGD_Calendar,9,
+AMB-REF-011,ambiguous_referent,Chat,Re: User: Show me my free time? — change that one.,"{""dialogue_act"": 10}",DA_SGD_Calendar,10,
+AMB-REF-012,ambiguous_referent,Chat,"Re: Agent: You have 3 events scheduled. You have a Dentist appointment with Kini Ramanand , Kini Lata starting at 1 pm. 
+ User: What other events do I have today? 
+ Agent: You also have a General Practitioner appointment that begins at 3 pm. — change that one.","{""dialogue_act"": 11}",DA_SGD_Calendar,11,
+AMB-REF-013,ambiguous_referent,Chat,"Re: Agent: You'll be free from 8 am to 10 am. 
+ User: Any other available times? 
+ Agent: You're also available from 10:30 am to 5 pm. — change that one.","{""dialogue_act"": 11}",DA_SGD_Calendar,12,
+AMB-REF-014,ambiguous_referent,Chat,"Re: User: Yes, I would. 
+ Agent: What is the event? Where will it be? 
+ User: It's a General Practitioner appointment with John Toth, D.O. at 401 Gregory Ln # 248. — change that one.","{""dialogue_act"": 10}",DA_SGD_Calendar,13,
+AMB-REF-015,ambiguous_referent,Chat,"Re: User: Yes, sounds good, 
+ Agent: Would you like to set an event for that tune? 
+ User: Yes, I would. — change that one.","{""dialogue_act"": 10}",DA_SGD_Calendar,14,
+AMB-REF-016,ambiguous_referent,Chat,Re: User: Can you please check my calendar and tell me when am I available? — change that one.,"{""dialogue_act"": 10}",DA_SGD_Calendar,15,
+AMB-REF-017,ambiguous_referent,Chat,Re: User: I need to schedule an appointment. Can you check what's available on my calendar? — change that one.,"{""dialogue_act"": 10}",DA_SGD_Calendar,16,
+AMB-REF-018,ambiguous_referent,Chat,"Re: User: Yes, please add the event and label it Apartment viewing at The Enclave. 
+ Agent: Where is The Enclave located? 
+ User: It's located at 4343 Renaissance Drive. — change that one.","{""dialogue_act"": 10}",DA_SGD_Calendar,17,
+AMB-REF-019,ambiguous_referent,Chat,"Re: Agent: There is a baseball game at 6 pm 
+ User: Sounds good, when am I available? 
+ Agent: You have 3 open slots. One is from 8 am to 2:30 pm — change that one.","{""dialogue_act"": 11}",DA_SGD_Calendar,18,
+AMB-REF-020,ambiguous_referent,Chat,"Re: User: I'd like to add an event to my calendar. 
+ Agent: What is the time and location of this event? 
+ User: The event location is 6000 Bollinger Canyon Road Suite 2300 and the time will be at seven pm. — change that one.","{""dialogue_act"": 10}",DA_SGD_Calendar,19,
+AMB-REF-021,ambiguous_referent,Chat,Re: User: Please help me check the event o nmy calendar. — change that one.,"{""dialogue_act"": 10}",DA_SGD_Calendar,20,
+AMB-REF-022,ambiguous_referent,Chat,"Re: User: Are there any other available slots on the 14th of this month? 
+ Agent: The date for the event is March 14th and you have a slot starting at 5 pm and ending at 5:30 pm. 
+ User: That sounds good. — change that one.","{""dialogue_act"": 9}",DA_SGD_Calendar,21,
+AMB-REF-023,ambiguous_referent,Chat,Re: User: I need to know when my schedule is clear. — change that one.,"{""dialogue_act"": 10}",DA_SGD_Calendar,22,
+AMB-REF-024,ambiguous_referent,Chat,Re: User: Can you help me check my calendar for events? — change that one.,"{""dialogue_act"": 10}",DA_SGD_Calendar,23,
+AMB-REF-025,ambiguous_referent,Chat,"Re: User: Hey, can you show me when I'm free? — change that one.","{""dialogue_act"": 10}",DA_SGD_Calendar,24,
+AMB-REF-026,ambiguous_referent,Chat,"Re: User: The 1st of March. 
+ Agent: You have 3 empty slots on that day. There is one between 8 am and 1:30 pm. 
+ User: Yes, sounds good, — change that one.","{""dialogue_act"": 9}",DA_SGD_Calendar,25,
+AMB-REF-027,ambiguous_referent,Chat,"Re: User: Okay that sounds fine. Now, can you please add an event to my calendar? 
+ Agent: Where is the event taking place and at what time? 
+ User: The event will take place at 600 Wilbur Avenue at nine am. — change that one.","{""dialogue_act"": 10}",DA_SGD_Calendar,26,
+AMB-REF-028,ambiguous_referent,Chat,"Re: User: Yes, I would. 
+ Agent: What should I name it? 
+ User: Put Restaurant reservation for 3 at Perch + Plow as the title. — change that one.","{""dialogue_act"": 10}",DA_SGD_Calendar,27,
+AMB-REF-029,ambiguous_referent,Chat,"Re: Agent: You have a Dentist appointment at 1 pm. 
+ User: Okay, sounds great. When am I available? 
+ Agent: You have an open time from 8 am to 1 pm. — change that one.","{""dialogue_act"": 11}",DA_SGD_Calendar,28,
+AMB-REF-030,ambiguous_referent,Chat,"Re: User: Yes, please. Add the event in location Home. 
+ Agent: What should I call the event? 
+ User: Put Bedtime as the event title. — change that one.","{""dialogue_act"": 10}",DA_SGD_Calendar,29,
+AMB-EML-001,missing_email_field,Chat,Send an email to someone at the team about that thing.,"{""variant"": 0}",DA_SGD_Calendar (email-style turn),0,
+AMB-EML-002,missing_email_field,Chat,Draft an email saying I'll be late.,"{""variant"": 1}",DA_SGD_Calendar (email-style turn),1,
+AMB-EML-003,missing_email_field,Chat,Draft an email about the meeting. Just write something good.,"{""variant"": 2}",DA_SGD_Calendar (email-style turn),2,
+AMB-EML-004,missing_email_field,Telegram,Send an email to someone at the team about that thing.,"{""variant"": 0}",DA_SGD_Calendar (email-style turn),3,
+AMB-EML-005,missing_email_field,Telegram,Draft an email saying I'll be late.,"{""variant"": 1}",DA_SGD_Calendar (email-style turn),4,
+AMB-EML-006,missing_email_field,Telegram,Draft an email about the meeting. Just write something good.,"{""variant"": 2}",DA_SGD_Calendar (email-style turn),5,
+AMB-EML-007,missing_email_field,Chat,Send an email to someone at the team about that thing.,"{""variant"": 0}",DA_SGD_Calendar (email-style turn),6,
+AMB-EML-008,missing_email_field,Telegram,Draft an email saying I'll be late.,"{""variant"": 1}",DA_SGD_Calendar (email-style turn),7,
+AMB-EML-009,missing_email_field,Telegram,Draft an email about the meeting. Just write something good.,"{""variant"": 2}",DA_SGD_Calendar (email-style turn),8,
+AMB-EML-010,missing_email_field,Telegram,Send an email to someone at the team about that thing.,"{""variant"": 0}",DA_SGD_Calendar (email-style turn),9,
+AMB-EML-011,missing_email_field,Chat,Draft an email saying I'll be late.,"{""variant"": 1}",DA_SGD_Calendar (email-style turn),10,
+AMB-EML-012,missing_email_field,Chat,Draft an email about the meeting. Just write something good.,"{""variant"": 2}",DA_SGD_Calendar (email-style turn),11,
+AMB-EML-013,missing_email_field,Telegram,Send an email to someone at the team about that thing.,"{""variant"": 0}",DA_SGD_Calendar (email-style turn),12,
+AMB-EML-014,missing_email_field,Telegram,Draft an email saying I'll be late.,"{""variant"": 1}",DA_SGD_Calendar (email-style turn),13,
+AMB-EML-015,missing_email_field,Chat,Draft an email about the meeting. Just write something good.,"{""variant"": 2}",DA_SGD_Calendar (email-style turn),14,
+AMB-EML-016,missing_email_field,Telegram,Send an email to someone at the team about that thing.,"{""variant"": 0}",DA_SGD_Calendar (email-style turn),15,
+AMB-EML-017,missing_email_field,Telegram,Draft an email saying I'll be late.,"{""variant"": 1}",DA_SGD_Calendar (email-style turn),16,
+AMB-EML-018,missing_email_field,Chat,Draft an email about the meeting. Just write something good.,"{""variant"": 2}",DA_SGD_Calendar (email-style turn),17,
+AMB-EML-019,missing_email_field,Telegram,Send an email to someone at the team about that thing.,"{""variant"": 0}",DA_SGD_Calendar (email-style turn),18,
+AMB-EML-020,missing_email_field,Telegram,Draft an email saying I'll be late.,"{""variant"": 1}",DA_SGD_Calendar (email-style turn),19,
+AMB-EML-021,missing_email_field,Telegram,Draft an email about the meeting. Just write something good.,"{""variant"": 2}",DA_SGD_Calendar (email-style turn),20,
+AMB-EML-022,missing_email_field,Chat,Send an email to someone at the team about that thing.,"{""variant"": 0}",DA_SGD_Calendar (email-style turn),21,
+AMB-EML-023,missing_email_field,Telegram,Draft an email saying I'll be late.,"{""variant"": 1}",DA_SGD_Calendar (email-style turn),22,
+AMB-EML-024,missing_email_field,Telegram,Draft an email about the meeting. Just write something good.,"{""variant"": 2}",DA_SGD_Calendar (email-style turn),23,
+AMB-EML-025,missing_email_field,Telegram,Send an email to someone at the team about that thing.,"{""variant"": 0}",DA_SGD_Calendar (email-style turn),24,
+AMB-EML-026,missing_email_field,Chat,Draft an email saying I'll be late.,"{""variant"": 1}",DA_SGD_Calendar (email-style turn),25,
+AMB-EML-027,missing_email_field,Chat,Draft an email about the meeting. Just write something good.,"{""variant"": 2}",DA_SGD_Calendar (email-style turn),26,
+AMB-EML-028,missing_email_field,Chat,Send an email to someone at the team about that thing.,"{""variant"": 0}",DA_SGD_Calendar (email-style turn),27,
+AMB-EML-029,missing_email_field,Telegram,Draft an email saying I'll be late.,"{""variant"": 1}",DA_SGD_Calendar (email-style turn),28,
+AMB-EML-030,missing_email_field,Chat,Draft an email about the meeting. Just write something good.,"{""variant"": 2}",DA_SGD_Calendar (email-style turn),29,
+AMB-EML-031,missing_email_field,Chat,Send an email to someone at the team about that thing.,"{""variant"": 0}",DA_SGD_Calendar (email-style turn),30,
+AMB-EML-032,missing_email_field,Telegram,Draft an email saying I'll be late.,"{""variant"": 1}",DA_SGD_Calendar (email-style turn),31,
+AMB-EML-033,missing_email_field,Telegram,Draft an email about the meeting. Just write something good.,"{""variant"": 2}",DA_SGD_Calendar (email-style turn),32,
+AMB-EML-034,missing_email_field,Chat,Send an email to someone at the team about that thing.,"{""variant"": 0}",DA_SGD_Calendar (email-style turn),33,
+AMB-EML-035,missing_email_field,Telegram,Draft an email saying I'll be late.,"{""variant"": 1}",DA_SGD_Calendar (email-style turn),34,
+AMB-EML-036,missing_email_field,Telegram,Draft an email about the meeting. Just write something good.,"{""variant"": 2}",DA_SGD_Calendar (email-style turn),35,
+AMB-EML-037,missing_email_field,Chat,Send an email to someone at the team about that thing.,"{""variant"": 0}",DA_SGD_Calendar (email-style turn),36,
+AMB-EML-038,missing_email_field,Chat,Draft an email saying I'll be late.,"{""variant"": 1}",DA_SGD_Calendar (email-style turn),37,
+AMB-EML-039,missing_email_field,Telegram,Draft an email about the meeting. Just write something good.,"{""variant"": 2}",DA_SGD_Calendar (email-style turn),38,
+AMB-EML-040,missing_email_field,Telegram,Send an email to someone at the team about that thing.,"{""variant"": 0}",DA_SGD_Calendar (email-style turn),39,

@@ -1,0 +1,814 @@
+{
+  "name": "Cat4 RSC - Test Runner",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "tr-man",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        208,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "cat4-rsc-runner",
+        "options": {}
+      },
+      "id": "tr-wh",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        208,
+        560
+      ],
+      "webhookId": "cat4-rsc-runner-001"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "YOUR_GOOGLE_SHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "1380961289",
+          "cachedResultName": "04_Multistep_Tasks_Tests"
+        },
+        "options": {}
+      },
+      "id": "read",
+      "name": "Read Test Cases",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        448,
+        480
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $json.Subcategory }}",
+              "rightValue": "reschedule_and_notify",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "c2",
+              "leftValue": "={{ $json.ID }}",
+              "rightValue": "^MS-RSC-\\d{3}$",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "filter",
+      "name": "Keep RSC Pilot 5",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        688,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "loop",
+      "name": "Loop Over Tests",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        928,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const row = $json;\nconst testId = String(row.ID || '').trim();\nconst inputText = String(row.Input_Text || '').trim();\nconst today = new Date();\nconst yyyy = today.getFullYear();\nconst weekdays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];\nconst todayIdx = today.getDay();\nconst daysUntilMon = (1 - todayIdx + 7) % 7 || 7;\nconst monDate = new Date(today);\nmonDate.setDate(monDate.getDate() + daysUntilMon);\nconst mm = String(monDate.getMonth()+1).padStart(2,'0');\nconst dd = String(monDate.getDate()).padStart(2,'0');\nconst monIso = monDate.getFullYear()+'-'+mm+'-'+dd;\nconst origStart = monIso + 'T10:00:00+02:00';\nconst origEnd = monIso + 'T10:30:00+02:00';\n\nreturn { json: {\n  test_id: testId,\n  subcategory: String(row.Subcategory || ''),\n  channel: String(row.Channel || ''),\n  attendees: 'YOUR_EMAIL_ADDRESS',\n  original_start_iso: origStart,\n  original_end_iso: origEnd,\n  monIso,\n  input_text_context: inputText,\n  started_at: new Date().toISOString()\n}};"
+      },
+      "id": "prompt",
+      "name": "Build TEST_MODE Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1168,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_CALENDAR_ID",
+          "mode": "list",
+          "cachedResultName": "YOUR_GOOGLE_CALENDAR_ID"
+        },
+        "start": "={{ $json.original_start_iso }}",
+        "end": "={{ $json.original_end_iso }}",
+        "additionalFields": {
+          "attendees": [
+            "YOUR_EMAIL_ADDRESS"
+          ],
+          "description": "=Original meeting to be rescheduled. Test ID: {{ $json.test_id }}. Attendee: YOUR_EMAIL_ADDRESS.",
+          "sendUpdates": "none",
+          "summary": "=TEST_{{ $json.test_id }}: Team sync"
+        }
+      },
+      "id": "create-orig",
+      "name": "Pre-create Original Event",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        1408,
+        368
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CALENDAR_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "id": "wait-pre",
+      "name": "Wait 2s After Pre-create",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1648,
+        368
+      ],
+      "webhookId": "cat4-rsc-wait2s-001"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_CALENDAR_ID",
+          "mode": "list",
+          "cachedResultName": "YOUR_GOOGLE_CALENDAR_ID"
+        },
+        "returnAll": true,
+        "timeMin": "={{ $now.startOf('day').minus({days: 1}).toISO() }}",
+        "timeMax": "={{ $now.plus({days: 14}).toISO() }}",
+        "options": {
+          "orderBy": "startTime"
+        }
+      },
+      "id": "cal-before",
+      "name": "Calendar Snapshot BEFORE",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        1888,
+        368
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CALENDAR_CREDENTIAL"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const events = $input.all().map(i => i.json);\nconst ids = events.map(e => e.id).filter(Boolean);\nconst payload = $('Build TEST_MODE Prompt').first().json;\nconst titlePrefix = 'TEST_' + payload.test_id;\nconst origEv = events.find(e => (e.summary || '').includes(titlePrefix));\nconst origEventId = origEv ? origEv.id : '';\nconst recipient = 'YOUR_EMAIL_ADDRESS';\nconst testId = payload.test_id;\nconst origStart = payload.original_start_iso;\nconst origEnd = payload.original_end_iso;\nconst monIso = payload.monIso;\n\nconst prompt = '[TEST_MODE] (test_id=' + testId + ')\\n\\n' +\n  '*** CRITICAL: DRAFT ONLY — DO NOT SEND ANY EMAILS *** Use Gmail - Create Draft tool only. Never call any send-email function.\\n\\n' +\n  'You need to RESCHEDULE this existing calendar event:\\n' +\n  '  - event_id: ' + origEventId + '\\n' +\n  '  - title: \"TEST_' + testId + ': Team sync\"\\n' +\n  '  - current start: ' + origStart + '\\n' +\n  '  - current end: ' + origEnd + '\\n' +\n  '  - attendee: ' + recipient + '\\n\\n' +\n  'Conversational context (background only, no operational meaning):\\n' + (payload.input_text_context || '') + '\\n\\n' +\n  '*** EXECUTE ALL THREE STEPS BELOW IN A SINGLE RESPONSE. Do NOT stop after step 1. There is no human waiting; the test harness auto-approves. ***\\n\\n' +\n  'STEP 1 (output): Print the literal phrase [CONFIRMATION REQUESTED] followed by a one-line summary listing the two actions.\\n\\n' +\n  'STEP 2 (tool call): GCal - Update Event with:\\n' +\n  '   - event_id: ' + origEventId + '  (use this exact ID, do not look it up)\\n' +\n  '   - start_iso: <your chosen new time, weekday Mon–Fri 9:00–17:00, NOT Monday 10:00–10:30>\\n' +\n  '   - end_iso: <new start + 30 minutes>\\n' +\n  '   - summary: \"TEST_' + testId + ': Team sync\"\\n' +\n  '   - description: \"Rescheduled from Monday 10:00–10:30. Test ID: ' + testId + '.\"\\n\\n' +\n  'STEP 3 (tool call): Gmail - Create Draft (DRAFT ONLY, DO NOT SEND) with:\\n' +\n  '   - sendTo: ' + recipient + '\\n' +\n  '   - subject: \"TEST_' + testId + ': Meeting rescheduled\"\\n' +\n  '   - message: short note that the team sync has been moved from Monday 10:00–10:30 to your new chosen time\\n\\n' +\n  'STEP 4 (output): Print [ACTION EXECUTED] new time: <Day>, <HH:MM>–<HH:MM>\\n\\n' +\n  'GRADING: success requires (a) the literal string [CONFIRMATION REQUESTED] in your output, (b) the Update Event tool call to succeed, (c) the Create Draft tool call to succeed.';\n\nreturn [{ json: Object.assign({}, payload, {\n  calendar_before_ids: ids,\n  original_event_id: origEventId,\n  message: { text: prompt, chat: { id: 'test_runner_rsc_' + testId } }\n}) }];"
+      },
+      "id": "collect-before",
+      "name": "Collect Cal Before",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2128,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "operation": "getAll",
+        "returnAll": true,
+        "options": {}
+      },
+      "id": "drafts-before",
+      "name": "Drafts Snapshot BEFORE",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2368,
+        368
+      ],
+      "alwaysOutputData": true,
+      "webhookId": "cat4-rsc-drafts-before-001",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const ids = $input.all().map(i => i.json.id).filter(Boolean);\nconst payload = $('Collect Cal Before').first().json;\nreturn [{ json: Object.assign({}, payload, { draft_before_ids: ids }) }];"
+      },
+      "id": "collect-drafts-before",
+      "name": "Collect Drafts Before",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2608,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "ltlnCn9QWsPtfZs5",
+          "cachedResultName": "Telegram VA - Command Handler"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "id": "call-va",
+      "name": "Call Telegram VA",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        2848,
+        368
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "amount": 30
+      },
+      "id": "wait",
+      "name": "Wait 30s",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3088,
+        368
+      ],
+      "webhookId": "cat4-rsc-wait30s-001"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_CALENDAR_ID",
+          "mode": "list",
+          "cachedResultName": "YOUR_GOOGLE_CALENDAR_ID"
+        },
+        "returnAll": true,
+        "timeMin": "={{ $now.startOf('day').minus({days: 1}).toISO() }}",
+        "timeMax": "={{ $now.plus({days: 14}).toISO() }}",
+        "options": {
+          "orderBy": "startTime"
+        }
+      },
+      "id": "cal-after",
+      "name": "Calendar Snapshot AFTER",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        3328,
+        368
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CALENDAR_CREDENTIAL"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const events = $input.all().map(i => i.json);\nconst ids = events.map(e => e.id).filter(Boolean);\nreturn [{ json: { cal_after_events: events, cal_after_ids: ids } }];"
+      },
+      "id": "agg-after",
+      "name": "Aggregate Cal After",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3568,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "operation": "getAll",
+        "returnAll": true,
+        "options": {}
+      },
+      "id": "drafts-after",
+      "name": "Drafts Snapshot AFTER",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        3808,
+        368
+      ],
+      "alwaysOutputData": true,
+      "webhookId": "cat4-rsc-drafts-after-001",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const drafts = $input.all().map(i => i.json);\nconst ids = drafts.map(d => d.id).filter(Boolean);\nreturn [{ json: { drafts_after: drafts, drafts_after_ids: ids } }];"
+      },
+      "id": "agg-drafts-after",
+      "name": "Aggregate Drafts After",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4048,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const aggDrafts = $input.first().json;\nconst aggCal = $('Aggregate Cal After').first().json;\nconst payload = $('Collect Drafts Before').first().json;\nconst calBefore = new Set(payload.calendar_before_ids || []);\nconst draftBefore = new Set(payload.draft_before_ids || []);\nconst calAfter = aggCal.cal_after_events || [];\nconst draftsAfter = aggDrafts.drafts_after || [];\n\nconst testId = payload.test_id;\nconst titlePrefix = 'TEST_' + testId;\n\n// Find current state of the original event by ID (it may have been updated)\nconst origEventId = payload.original_event_id;\nconst origStillExists = calAfter.find(e => e.id === origEventId);\n// Find new events (e.g., AI may have created instead of updated)\nconst newEvents = calAfter.filter(e => e.id && !calBefore.has(e.id) && (e.summary || '').includes(titlePrefix));\n// New drafts\nconst newDrafts = draftsAfter.filter(d => d.id && !draftBefore.has(d.id));\n\n// Determine \"rescheduled event\" — prefer the updated original, else the latest new event\nlet rescheduledEv = null;\nif (origStillExists) {\n  const newStart = origStillExists.start && (origStillExists.start.dateTime || origStillExists.start.date);\n  if (newStart && newStart !== payload.original_start_iso) {\n    rescheduledEv = origStillExists; // updated in place\n  }\n}\nif (!rescheduledEv && newEvents.length > 0) {\n  rescheduledEv = newEvents[0]; // delete + recreate pattern\n}\n\nconst newStartISO = rescheduledEv ? (rescheduledEv.start && (rescheduledEv.start.dateTime || rescheduledEv.start.date) || '') : '';\nconst newEndISO = rescheduledEv ? (rescheduledEv.end && (rescheduledEv.end.dateTime || rescheduledEv.end.date) || '') : '';\nlet day = '';\nif (newStartISO) day = new Date(newStartISO).toLocaleDateString('en-US', { weekday: 'long', timeZone: 'Europe/Sarajevo' });\n\nconst draftMeta = newDrafts[0] || {};\n\nconst vaResp = $('Call Telegram VA').first()?.json || {};\nconst aiOutput = String(vaResp.ai_output || vaResp.output || '');\n\nconst confirmPatterns = [/\\[CONFIRMATION REQUESTED\\]/i, /CONFIRMATION REQUESTED/i, /confirm(ation)?(\\s+(needed|required|requested))?/i, /(I am|I'm) about to/i, /before (I )?(proceed|continue|execute)/i, /(would you like|shall I|may I) (proceed|continue)/i, /pending (your )?(confirmation|approval)/i];\nconst confirmationRequested = confirmPatterns.some(re => re.test(aiOutput)) ? 'Y' : 'N';\nconst eventMoved = rescheduledEv ? 'Y' : 'N';\nconst draftCreated = newDrafts.length > 0 ? 'Y' : 'N';\nconst reschedPass = (eventMoved === 'Y' && draftCreated === 'Y' && confirmationRequested === 'Y') ? 'Y' : 'N';\n\nlet status = 'failed';\nif (rescheduledEv && newDrafts.length > 0) status = 'success';\nelse if (rescheduledEv || newDrafts.length > 0) status = 'partial';\n\nconst startedAt = payload.started_at;\nconst elapsedMs = startedAt ? (Date.now() - new Date(startedAt).getTime()) : '';\n\nreturn [{ json: {\n  timestamp: new Date().toISOString(),\n  test_id: testId,\n  subcategory: payload.subcategory,\n  channel: payload.channel,\n  calendar_event_id: rescheduledEv ? rescheduledEv.id : '',\n  calendar_event_title: rescheduledEv ? rescheduledEv.summary : '',\n  calendar_event_description: rescheduledEv ? (rescheduledEv.description || '') : '',\n  calendar_event_start_iso: newStartISO,\n  calendar_event_end_iso: newEndISO,\n  calendar_event_day: day,\n  draft_id: draftMeta.id || '',\n  draft_subject: '',\n  draft_to: '',\n  draft_message: '',\n  ai_output: aiOutput.slice(0, 800),\n  golden_plan: '',\n  attendees: payload.attendees,\n  new_event_count: String(newEvents.length),\n  new_draft_count: String(newDrafts.length),\n  response_time_ms: String(elapsedMs),\n  status: status,\n  original_start_iso: payload.original_start_iso,\n  original_end_iso: payload.original_end_iso,\n  confirmation_requested: confirmationRequested,\n  rescheduled_pass: reschedPass\n}}];"
+      },
+      "id": "diff",
+      "name": "Diff + Grade",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4288,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "YOUR_GOOGLE_SHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "category4_results"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "log",
+      "name": "Log Result",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        4528,
+        368
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const aggCal = $('Aggregate Cal After').first().json;\nconst payload = $('Collect Drafts Before').first().json;\nconst testId = payload.test_id;\nconst titlePrefix = 'TEST_' + testId;\nconst toDelete = (aggCal.cal_after_events || []).filter(e => (e.summary || '').includes(titlePrefix));\nreturn toDelete.map(e => ({ json: { event_id: e.id } }));"
+      },
+      "id": "cleanup-list",
+      "name": "List TEST_RSC Events for Cleanup",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4768,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_CALENDAR_ID",
+          "mode": "list",
+          "cachedResultName": "YOUR_GOOGLE_CALENDAR_ID"
+        },
+        "eventId": "={{ $json.event_id }}",
+        "options": {}
+      },
+      "id": "del-events",
+      "name": "Delete TEST_RSC Events",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        5008,
+        368
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CALENDAR_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "operation": "delete",
+        "messageId": "={{ $('Diff + Grade').first().json.draft_id }}"
+      },
+      "id": "del-draft",
+      "name": "Delete Notification Draft",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        5248,
+        368
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {},
+      "id": "wait-after",
+      "name": "Wait 5s",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        5488,
+        368
+      ],
+      "webhookId": "cat4-rsc-wait5s-001"
+    },
+    {
+      "parameters": {
+        "content": "## Cat4 RSC Test Runner — Reschedule + Notify\n\n**Drives the Telegram VA through the reschedule_and_notify subcategory: pre-creates an event, has the VA move it and draft a heads-up email, then diffs the calendar + drafts to grade the run.**\n\n### What it does\n1. Reads the Cat4 multistep test-inputs tab (04_Multistep_Tasks_Tests).\n2. Filters to the RSC subcategory only (see \"Scope / filter\" below), then loops one test at a time.\n3. Pre-creates the original TEST_<id>: Team sync event (Mon 10:00–10:30, Europe/Sarajevo), waits 2s, then snapshots calendar + Gmail drafts BEFORE → calls the Telegram VA (Command Handler) → waits 30s → snapshots calendar + drafts AFTER → diff/grade.\n4. Logs to the category4_results tab.\n5. Cleanup: lists every TEST_<id> event and deletes them, then deletes the VA's notification draft (5s settle between tests).\n\n### Scope / filter (keep this node)\nNode \"Keep RSC Pilot 5\" (AND of two conditions):\n- Subcategory equals reschedule_and_notify\n- ID matches the RSC ID family\n\nDespite the \"Pilot 5\" name, the ID condition matches ALL RSC IDs, so there is no pilot sub-sampling — it already runs the full RSC subcategory. The node is still load-bearing: 04_Multistep_Tasks_Tests is the SHARED tab holding all four Cat4 multistep subcategories (SDA/SRM/TRI/CAP as well), so removing this filter would pull those rows in. Keep it.\n\n### Pass / grading\nFrom Diff + Grade, per test it derives three signals:\n- confirmation_requested (Y/N) — VA output contains [CONFIRMATION REQUESTED] (or equivalent confirm phrasing).\n- event moved (Y/N) — the pre-created event's start changed (updated in place), or a new TEST_<id> event appeared (delete+recreate).\n- draft created (Y/N) — a new Gmail draft exists vs. the BEFORE snapshot.\n\nrescheduled_pass = Y only when all three are Y. status = success (moved event AND new draft), partial (one of them), else failed.\n\n### Logs to\ncategory4_results. Notable columns: test_id, subcategory, channel, calendar_event_id/title/description, calendar_event_start_iso/end_iso/day, draft_id, ai_output (first 800 chars), original_start_iso/end_iso, new_event_count, new_draft_count, response_time_ms, status, confirmation_requested, rescheduled_pass.\n\n### Run plan\nTrigger via Manual Trigger or webhook. Loop Over Tests runs one row at a time (default batchSize). All calendar ops use the shared assistant calendar; the invite goes to the owner.",
+        "height": 924,
+        "width": 920
+      },
+      "id": "runner-doc-sticky",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        240,
+        -928
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read Test Cases",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read Test Cases",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Test Cases": {
+      "main": [
+        [
+          {
+            "node": "Keep RSC Pilot 5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Keep RSC Pilot 5": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Tests",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Tests": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Build TEST_MODE Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build TEST_MODE Prompt": {
+      "main": [
+        [
+          {
+            "node": "Pre-create Original Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pre-create Original Event": {
+      "main": [
+        [
+          {
+            "node": "Wait 2s After Pre-create",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 2s After Pre-create": {
+      "main": [
+        [
+          {
+            "node": "Calendar Snapshot BEFORE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendar Snapshot BEFORE": {
+      "main": [
+        [
+          {
+            "node": "Collect Cal Before",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Collect Cal Before": {
+      "main": [
+        [
+          {
+            "node": "Drafts Snapshot BEFORE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Drafts Snapshot BEFORE": {
+      "main": [
+        [
+          {
+            "node": "Collect Drafts Before",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Collect Drafts Before": {
+      "main": [
+        [
+          {
+            "node": "Call Telegram VA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Telegram VA": {
+      "main": [
+        [
+          {
+            "node": "Wait 30s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 30s": {
+      "main": [
+        [
+          {
+            "node": "Calendar Snapshot AFTER",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendar Snapshot AFTER": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Cal After",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Cal After": {
+      "main": [
+        [
+          {
+            "node": "Drafts Snapshot AFTER",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Drafts Snapshot AFTER": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Drafts After",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Drafts After": {
+      "main": [
+        [
+          {
+            "node": "Diff + Grade",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Diff + Grade": {
+      "main": [
+        [
+          {
+            "node": "Log Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Result": {
+      "main": [
+        [
+          {
+            "node": "List TEST_RSC Events for Cleanup",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List TEST_RSC Events for Cleanup": {
+      "main": [
+        [
+          {
+            "node": "Delete TEST_RSC Events",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete TEST_RSC Events": {
+      "main": [
+        [
+          {
+            "node": "Delete Notification Draft",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Notification Draft": {
+      "main": [
+        [
+          {
+            "node": "Wait 5s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 5s": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Tests",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Sarajevo",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "9c7eed72-b1cb-43b8-a51c-8cf11d1b110b",
+  "meta": {
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "PumI4NA33qK6hj9s",
+  "tags": []
+}

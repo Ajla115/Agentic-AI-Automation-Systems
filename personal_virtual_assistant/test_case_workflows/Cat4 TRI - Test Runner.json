@@ -1,0 +1,743 @@
+{
+  "name": "Cat4 TRI - Test Runner",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "tr-man",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        208,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "cat4-tri-runner",
+        "options": {}
+      },
+      "id": "tr-wh",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        208,
+        560
+      ],
+      "webhookId": "cat4-tri-runner-001"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "YOUR_GOOGLE_SHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "1380961289",
+          "cachedResultName": "04_Multistep_Tasks_Tests"
+        },
+        "options": {}
+      },
+      "id": "read",
+      "name": "Read Test Cases",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        448,
+        480
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $json.Subcategory }}",
+              "rightValue": "triple_step",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "c2",
+              "leftValue": "={{ $json.ID }}",
+              "rightValue": "^MS-TRI-0(0[6-9]|1[0-9]|20)$",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "filter",
+      "name": "Keep TRI Pilot 5",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        688,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "loop",
+      "name": "Loop Over Tests",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        928,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const row = $json;\nconst testId = String(row.ID || '').trim();\nconst inputText = String(row.Input_Text || '').trim();\nconst recipient = 'YOUR_EMAIL_ADDRESS';\n\n// Parse: \"For 'Event Name' on Friday at 03:11-03:26: 1) ... 2) ... 3) ...\"\nconst evMatch = inputText.match(/For\\s+'([^']+)'\\s+on\\s+(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\\s+at\\s+(\\d{1,2}:\\d{2})\\s*-\\s*(\\d{1,2}:\\d{2})/i);\nlet eventName = evMatch ? evMatch[1] : 'Unknown event';\nlet day = evMatch ? evMatch[2] : 'Friday';\nlet startHHMM = evMatch ? evMatch[3] : '10:00';\nlet endHHMM = evMatch ? evMatch[4] : '10:15';\n\nconst today = new Date();\nconst yyyy = today.getFullYear();\nconst weekdays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];\nconst todayIdx = today.getDay();\nconst targetIdx = weekdays.indexOf(day);\nconst daysUntil = (targetIdx - todayIdx + 7) % 7 || 7;\nconst evDate = new Date(today);\nevDate.setDate(evDate.getDate() + daysUntil);\nconst mm = String(evDate.getMonth()+1).padStart(2,'0');\nconst dd = String(evDate.getDate()).padStart(2,'0');\nconst dateIso = evDate.getFullYear()+'-'+mm+'-'+dd;\nconst startIso = dateIso + 'T' + startHHMM.padStart(5,'0') + ':00+02:00';\nconst endIso = dateIso + 'T' + endHHMM.padStart(5,'0') + ':00+02:00';\n\n// reminder: 15 min before\nfunction subtractMinutes(hhmm, minutes) {\n  const [h,m] = hhmm.split(':').map(Number);\n  let total = h*60 + m - minutes;\n  if (total < 0) total += 24*60;\n  const newH = Math.floor(total/60);\n  const newM = total % 60;\n  return String(newH).padStart(2,'0') + ':' + String(newM).padStart(2,'0');\n}\nconst remStartHHMM = subtractMinutes(startHHMM, 15);\n// Compute reminder date (might roll back a day if event starts at e.g. 00:05)\nconst startMinutes = parseInt(startHHMM.split(':')[0])*60 + parseInt(startHHMM.split(':')[1]);\nconst remDate = new Date(evDate);\nif (startMinutes < 15) {\n  remDate.setDate(remDate.getDate() - 1);\n}\nconst rmm = String(remDate.getMonth()+1).padStart(2,'0');\nconst rdd = String(remDate.getDate()).padStart(2,'0');\nconst remDateIso = remDate.getFullYear()+'-'+rmm+'-'+rdd;\nconst remStartIso = remDateIso + 'T' + remStartHHMM.padStart(5,'0') + ':00+02:00';\nconst remEndIso = startIso; // reminder ends when main event begins\n\nconst prompt = '[TEST_MODE] (test_id=' + testId + ')\\n\\n' +\n  '*** CRITICAL: DRAFT ONLY — DO NOT SEND ANY EMAILS *** Use Gmail - Create Draft tool only. Never call any send-email function.\\n\\n' +\n  'Today is ' + yyyy + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0') + ' (' + weekdays[todayIdx] + '). Year=' + yyyy + '.\\n\\n' +\n  'Task: Triple step — add event to calendar, draft invite email, set a 15-minute reminder.\\n\\n' +\n  'EVENT DETAILS (use these EXACT values):\\n' +\n  '  - title: \"TEST_' + testId + ': ' + eventName + '\"\\n' +\n  '  - start_iso: ' + startIso + '\\n' +\n  '  - end_iso: ' + endIso + '\\n' +\n  '  - day: ' + day + '\\n\\n' +\n  'REMINDER DETAILS (15 minutes BEFORE the event):\\n' +\n  '  - title: \"TEST_' + testId + ': Reminder for ' + eventName + '\"\\n' +\n  '  - start_iso: ' + remStartIso + '\\n' +\n  '  - end_iso: ' + remEndIso + '\\n\\n' +\n  '*** EXECUTE ALL FOUR STEPS IN A SINGLE RESPONSE. Test harness auto-approves. ***\\n\\n' +\n  'STEP 1 (output): Print [CONFIRMATION REQUESTED] followed by a one-line summary of the three actions.\\n\\n' +\n  'STEP 2 (tool call): GCal - Create Event with the EVENT DETAILS above (use the exact title, start_iso, end_iso). Description: \"Triple-step test: create event + draft + reminder. Test ID: ' + testId + '.\".\\n\\n' +\n  'STEP 3 (tool call): Gmail - Create Draft (DRAFT ONLY, DO NOT SEND) with:\\n' +\n  '   - sendTo: ' + recipient + '\\n' +\n  '   - subject: \"TEST_' + testId + ': Invitation — ' + eventName + '\"\\n' +\n  '   - message: short invite mentioning the event name, day, and time.\\n\\n' +\n  'STEP 4 (tool call): GCal - Create Reminder with the REMINDER DETAILS above (use the exact start_iso, end_iso, title).\\n\\n' +\n  'STEP 5 (output): Print [ACTION EXECUTED] event + draft + reminder created.';\n\nreturn { json: {\n  test_id: testId,\n  subcategory: String(row.Subcategory || ''),\n  channel: String(row.Channel || ''),\n  event_name: eventName,\n  attendees: recipient,\n  event_start_iso: startIso,\n  event_end_iso: endIso,\n  event_day: day,\n  reminder_start_iso: remStartIso,\n  reminder_end_iso: remEndIso,\n  reminder_offset_min: 15,\n  started_at: new Date().toISOString(),\n  message: { text: prompt, chat: { id: 'test_runner_tri_' + testId } }\n}};"
+      },
+      "id": "prompt",
+      "name": "Build TEST_MODE Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1168,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_CALENDAR_ID",
+          "mode": "list",
+          "cachedResultName": "YOUR_GOOGLE_CALENDAR_ID"
+        },
+        "returnAll": true,
+        "timeMin": "={{ $now.startOf('day').minus({days: 1}).toISO() }}",
+        "timeMax": "={{ $now.plus({days: 14}).toISO() }}",
+        "options": {
+          "orderBy": "startTime"
+        }
+      },
+      "id": "cal-before",
+      "name": "Calendar Snapshot BEFORE",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        1408,
+        368
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CALENDAR_CREDENTIAL"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const ids = $input.all().map(i => i.json.id).filter(Boolean);\nconst payload = $('Build TEST_MODE Prompt').first().json;\nreturn [{ json: Object.assign({}, payload, { calendar_before_ids: ids }) }];"
+      },
+      "id": "collect-cal-before",
+      "name": "Collect Cal Before",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1648,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "operation": "getAll",
+        "returnAll": true,
+        "options": {}
+      },
+      "id": "drafts-before",
+      "name": "Drafts Snapshot BEFORE",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1888,
+        368
+      ],
+      "alwaysOutputData": true,
+      "webhookId": "cat4-tri-drafts-before-001",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const ids = $input.all().map(i => i.json.id).filter(Boolean);\nconst payload = $('Collect Cal Before').first().json;\nreturn [{ json: Object.assign({}, payload, { draft_before_ids: ids }) }];"
+      },
+      "id": "collect-drafts-before",
+      "name": "Collect Drafts Before",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2128,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "ltlnCn9QWsPtfZs5",
+          "cachedResultName": "Telegram VA - Command Handler"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "id": "call-va",
+      "name": "Call Telegram VA",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        2368,
+        368
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "amount": 30
+      },
+      "id": "wait",
+      "name": "Wait 30s",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2608,
+        368
+      ],
+      "webhookId": "cat4-tri-wait30s-001"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_CALENDAR_ID",
+          "mode": "list",
+          "cachedResultName": "YOUR_GOOGLE_CALENDAR_ID"
+        },
+        "returnAll": true,
+        "timeMin": "={{ $now.startOf('day').minus({days: 1}).toISO() }}",
+        "timeMax": "={{ $now.plus({days: 14}).toISO() }}",
+        "options": {
+          "orderBy": "startTime"
+        }
+      },
+      "id": "cal-after",
+      "name": "Calendar Snapshot AFTER",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        2848,
+        368
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CALENDAR_CREDENTIAL"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const events = $input.all().map(i => i.json);\nconst ids = events.map(e => e.id).filter(Boolean);\nreturn [{ json: { cal_after_events: events, cal_after_ids: ids } }];"
+      },
+      "id": "agg-cal-after",
+      "name": "Aggregate Cal After",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3088,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "operation": "getAll",
+        "returnAll": true,
+        "options": {}
+      },
+      "id": "drafts-after",
+      "name": "Drafts Snapshot AFTER",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        3328,
+        368
+      ],
+      "alwaysOutputData": true,
+      "webhookId": "cat4-tri-drafts-after-001",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const drafts = $input.all().map(i => i.json);\nconst ids = drafts.map(d => d.id).filter(Boolean);\nreturn [{ json: { drafts_after: drafts, drafts_after_ids: ids } }];"
+      },
+      "id": "agg-drafts-after",
+      "name": "Aggregate Drafts After",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3568,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const aggDrafts = $input.first().json;\nconst aggCal = $('Aggregate Cal After').first().json;\nconst payload = $('Collect Drafts Before').first().json;\nconst calBefore = new Set(payload.calendar_before_ids || []);\nconst draftBefore = new Set(payload.draft_before_ids || []);\nconst calAfter = aggCal.cal_after_events || [];\nconst draftsAfter = aggDrafts.drafts_after || [];\n\nconst testId = payload.test_id;\nconst titlePrefix = 'TEST_' + testId;\nconst newEvents = calAfter.filter(e => e.id && !calBefore.has(e.id) && (e.summary || '').includes(titlePrefix));\nconst newDrafts = draftsAfter.filter(d => d.id && !draftBefore.has(d.id));\n\n// Identify main event vs reminder by title\nlet mainEv = null, reminderEv = null;\nfor (const e of newEvents) {\n  const t = (e.summary || '').toLowerCase();\n  if (t.includes('reminder')) reminderEv = e; else mainEv = e;\n}\nif (newEvents.length === 2 && (!mainEv || !reminderEv)) {\n  const sorted = newEvents.slice().sort((a,b) => new Date(a.start.dateTime||a.start.date) - new Date(b.start.dateTime||b.start.date));\n  reminderEv = sorted[0]; mainEv = sorted[1];\n}\n\nconst mainStartISO = mainEv ? (mainEv.start && (mainEv.start.dateTime || mainEv.start.date)) || '' : '';\nconst mainEndISO = mainEv ? (mainEv.end && (mainEv.end.dateTime || mainEv.end.date)) || '' : '';\nconst remStartISO = reminderEv ? (reminderEv.start && (reminderEv.start.dateTime || reminderEv.start.date)) || '' : '';\n\nlet reminderMinutesBefore = '';\nif (mainStartISO && remStartISO) {\n  reminderMinutesBefore = Math.round((new Date(mainStartISO) - new Date(remStartISO)) / 60000);\n}\nconst expectedOffset = payload.reminder_offset_min;\nconst reminderPass = (reminderMinutesBefore !== '' && reminderMinutesBefore === expectedOffset) ? 'Y' : 'N';\n\nlet day = '';\nif (mainStartISO) day = new Date(mainStartISO).toLocaleDateString('en-US', { weekday: 'long', timeZone: 'Europe/Sarajevo' });\n\nconst draftMeta = newDrafts[0] || {};\nconst draftCreated = newDrafts.length > 0 ? 'Y' : 'N';\nconst eventCreated = mainEv ? 'Y' : 'N';\nconst reminderCreated = reminderEv ? 'Y' : 'N';\n\nconst vaResp = $('Call Telegram VA').first()?.json || {};\nconst aiOutput = String(vaResp.ai_output || vaResp.output || '');\nconst confirmPatterns = [/\\[CONFIRMATION REQUESTED\\]/i, /CONFIRMATION REQUESTED/i, /(I am|I'm) about to/i, /before (I )?(proceed|continue|execute)/i, /(would you like|shall I|may I) (proceed|continue)/i];\nconst explicitConfirmation = confirmPatterns.some(re => re.test(aiOutput));\nconst implicitConfirmation = (eventCreated === 'Y' && reminderCreated === 'Y' && draftCreated === 'Y');\nconst confirmationRequested = (explicitConfirmation || implicitConfirmation) ? 'Y' : 'N';\n\nconst triPass = (eventCreated === 'Y' && reminderCreated === 'Y' && draftCreated === 'Y' && reminderPass === 'Y' && confirmationRequested === 'Y') ? 'Y' : 'N';\n\nlet status = 'failed';\nif (eventCreated === 'Y' && reminderCreated === 'Y' && draftCreated === 'Y') status = 'success';\nelse if (eventCreated === 'Y' || reminderCreated === 'Y' || draftCreated === 'Y') status = 'partial';\n\nconst startedAt = payload.started_at;\nconst elapsedMs = startedAt ? (Date.now() - new Date(startedAt).getTime()) : '';\n\nreturn [{ json: {\n  timestamp: new Date().toISOString(),\n  test_id: testId,\n  subcategory: payload.subcategory,\n  channel: payload.channel,\n  calendar_event_id: mainEv ? mainEv.id : '',\n  calendar_event_title: mainEv ? mainEv.summary : '',\n  calendar_event_description: mainEv ? (mainEv.description || '') : '',\n  calendar_event_start_iso: mainStartISO,\n  calendar_event_end_iso: mainEndISO,\n  calendar_event_day: day,\n  draft_id: draftMeta.id || '',\n  draft_subject: '',\n  draft_to: '',\n  draft_message: '',\n  ai_output: aiOutput.slice(0, 800),\n  golden_plan: '',\n  attendees: payload.attendees,\n  new_event_count: String(newEvents.length),\n  new_draft_count: String(newDrafts.length),\n  response_time_ms: String(elapsedMs),\n  status: status,\n  reminder_id: reminderEv ? reminderEv.id : '',\n  reminder_minutes_before: reminderMinutesBefore === '' ? '' : String(reminderMinutesBefore),\n  reminder_pass: reminderPass,\n  confirmation_requested: confirmationRequested,\n  tri_pass: triPass\n}}];"
+      },
+      "id": "diff",
+      "name": "Diff + Grade",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3808,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "YOUR_GOOGLE_SHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "category4_results"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "log",
+      "name": "Log Result",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        4048,
+        368
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_SHEETS_CREDENTIAL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const aggCal = $('Aggregate Cal After').first().json;\nconst payload = $('Collect Drafts Before').first().json;\nconst titlePrefix = 'TEST_' + payload.test_id;\nconst toDelete = (aggCal.cal_after_events || []).filter(e => (e.summary || '').includes(titlePrefix));\nif (toDelete.length === 0) return [{ json: { event_id: '', _skip: true } }];\nreturn toDelete.map(e => ({ json: { event_id: e.id } }));"
+      },
+      "id": "cleanup-list",
+      "name": "List TEST_TRI Events for Cleanup",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4288,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "calendar": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_CALENDAR_ID",
+          "mode": "list",
+          "cachedResultName": "YOUR_GOOGLE_CALENDAR_ID"
+        },
+        "eventId": "={{ $json.event_id }}",
+        "options": {}
+      },
+      "id": "del-events",
+      "name": "Delete TEST_TRI Events",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        4528,
+        368
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GOOGLE_CALENDAR_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "operation": "delete",
+        "messageId": "={{ $('Diff + Grade').first().json.draft_id }}"
+      },
+      "id": "del-draft",
+      "name": "Delete Invite Draft",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        4768,
+        368
+      ],
+      "webhookId": "PLACEHOLDER_WEBHOOK_ID",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "YOUR_GMAIL_CREDENTIAL"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {},
+      "id": "wait-after",
+      "name": "Wait 5s",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        5008,
+        368
+      ],
+      "webhookId": "cat4-tri-wait5s-001"
+    },
+    {
+      "parameters": {
+        "content": "## Cat4 TRI Test Runner — Triple Step\n\n**Runs the TRI (triple_step) pilot sub-sample: per test it adds a calendar event, drafts an invite, and sets a 15-min reminder via the Telegram VA, then snapshots/diffs/grades calendar+drafts and cleans up.**\n\n### What it does\n1. Reads the Cat4 multistep test-inputs tab (04_Multistep_Tasks_Tests). Triggers: Manual or Webhook.\n2. Keep TRI Pilot 5 filter narrows the shared multi-subcategory tab to the triple_step pilot rows; Loop Over Tests (SplitInBatches) iterates one row at a time.\n3. Per row: Build TEST_MODE Prompt → snapshot BEFORE (Calendar getAll → Collect Cal Before → Gmail drafts getAll → Collect Drafts Before, serial) → Call Telegram VA (Telegram VA - Command Handler) → Wait 30s → snapshot AFTER (Calendar getAll → Aggregate Cal After → Gmail drafts getAll → Aggregate Drafts After) → Diff + Grade compares before/after ID sets.\n4. Logs to the category4_results tab (append, autoMap).\n5. Cleanup: List TEST_TRI Events → Delete TEST_TRI Events (every event whose summary contains TEST_<id>) → Delete Invite Draft (new draft via Diff + Grade.draft_id) → Wait 5s → back to loop.\n\n### Scope / filter (keep this node)\nKeep TRI Pilot 5 is a Filter (AND, strict, case-sensitive) with two conditions:\n- Subcategory == triple_step (string equals)\n- ID matches the \"Remaining 6–20\" pilot range (MS-TRI-006..MS-TRI-020).\n\nLOAD-BEARING: the 04_Multistep_Tasks_Tests tab is SHARED across all four Cat4 multistep subcategories (SDA/SRM/RSC/CAP rows also live here). Deleting this node would pull those rows in. To run the FULL triple_step subcategory, drop ONLY the ID-range condition — never the whole node.\n\n### Pass / grading\nDiff + Grade diffs BEFORE/AFTER calendar event IDs and draft IDs (new items only; event summary must contain TEST_<id>). New events split into main vs reminder by title (\"reminder\"), else by start-time order. Flags:\n- event_created — main TEST event present.\n- reminder_created — reminder present; reminder_pass=Y only if (main start − reminder start) == 15 min.\n- draft_created — a new draft appeared.\n- confirmation_requested — explicit ([CONFIRMATION REQUESTED] in VA output) OR implicit (all three artifacts created).\n- tri_pass = Y only when event + reminder + draft all created AND reminder_pass=Y AND confirmation_requested=Y.\n- status: success (all three), partial (any one), else failed.\n\n### Logs to\ncategory4_results (append, autoMap). Notable columns: timestamp, test_id, subcategory, channel, calendar_event_id/title/start_iso/end_iso/day, draft_id, ai_output (≤800 chars), new_event_count, new_draft_count, response_time_ms, status, reminder_id, reminder_minutes_before, reminder_pass, confirmation_requested, tri_pass.\n\n### Run plan\nSplitInBatches default batchSize (1 row/iteration). Calendar ops target the shared assistant calendar; drafts via Gmail. Timezone Europe/Sarajevo.",
+        "height": 880,
+        "width": 920
+      },
+      "id": "runner-doc-sticky",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        144,
+        -624
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read Test Cases",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read Test Cases",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Test Cases": {
+      "main": [
+        [
+          {
+            "node": "Keep TRI Pilot 5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Keep TRI Pilot 5": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Tests",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Tests": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Build TEST_MODE Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build TEST_MODE Prompt": {
+      "main": [
+        [
+          {
+            "node": "Calendar Snapshot BEFORE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendar Snapshot BEFORE": {
+      "main": [
+        [
+          {
+            "node": "Collect Cal Before",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Collect Cal Before": {
+      "main": [
+        [
+          {
+            "node": "Drafts Snapshot BEFORE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Drafts Snapshot BEFORE": {
+      "main": [
+        [
+          {
+            "node": "Collect Drafts Before",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Collect Drafts Before": {
+      "main": [
+        [
+          {
+            "node": "Call Telegram VA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Telegram VA": {
+      "main": [
+        [
+          {
+            "node": "Wait 30s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 30s": {
+      "main": [
+        [
+          {
+            "node": "Calendar Snapshot AFTER",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendar Snapshot AFTER": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Cal After",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Cal After": {
+      "main": [
+        [
+          {
+            "node": "Drafts Snapshot AFTER",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Drafts Snapshot AFTER": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Drafts After",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Drafts After": {
+      "main": [
+        [
+          {
+            "node": "Diff + Grade",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Diff + Grade": {
+      "main": [
+        [
+          {
+            "node": "Log Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log Result": {
+      "main": [
+        [
+          {
+            "node": "List TEST_TRI Events for Cleanup",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List TEST_TRI Events for Cleanup": {
+      "main": [
+        [
+          {
+            "node": "Delete TEST_TRI Events",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete TEST_TRI Events": {
+      "main": [
+        [
+          {
+            "node": "Delete Invite Draft",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Invite Draft": {
+      "main": [
+        [
+          {
+            "node": "Wait 5s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 5s": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Tests",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Sarajevo",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "025b3281-2811-47bc-a9f7-867e774795ab",
+  "meta": {
+    "instanceId": "e6c7117719fd780b6b7735ebe8bf33ee5b50c0d1a756569927d323d246168b76"
+  },
+  "id": "A4vjaaF8UsSfDXL4",
+  "tags": []
+}

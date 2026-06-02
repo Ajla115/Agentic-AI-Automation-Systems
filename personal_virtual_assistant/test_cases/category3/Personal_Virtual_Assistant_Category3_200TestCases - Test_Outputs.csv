@@ -1,0 +1,827 @@
+timestamp,test_id,subcategory,ai_output,new_event_count,event_id,event_title,proposed_day,proposed_start_iso,proposed_end_iso,response_time_ms,contains_busy_or_conflict,proposes_alternatives,asks_confirmation,says_no_solution,created_unwanted_event,Pass,Pass_Reason
+2026-05-17T09:45:58.033Z,CONF-DBL-001,double_booking,"*   Today (Sunday, May 17th, 2026): 15:30 - 17:15 (Yoga class with Emily)
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,29997,FALSE,TRUE,TRUE,FALSE,FALSE,FAIL,missing busy/conflict acknowledgement
+2026-05-17T09:46:18.952Z,CONF-DBL-002,double_booking,"You already have 'Fireworks' scheduled from 12:09 to 14:09, which conflicts with 'Backstage tour VIP pass'. Here are a few alternative times for 'Backstage tour VIP pass':
+
+*   Today (Sunday, May 17th, 2026): 14:30 - 15:30
+*   Today (Sunday, May 17th, 2026): 15:30 - 16:30
+*   Today (Sunday, May 17th, 2026): 16:30 - 17:30
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,16754,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:46:40.747Z,CONF-DBL-003,double_booking,"You already have 'Web3 panel discussion' scheduled from 09:14 to 11:14, which conflicts with 'AI keynote'. Here are a few alternative times for 'AI keynote':
+
+*   Today (Sunday, May 17th, 2026): 11:14 - 13:14
+*   Today (Sunday, May 17th, 2026): 14:00 - 16:00
+*   Today (Sunday, May 17th, 2026): 16:00 - 18:00
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,18203,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:46:59.541Z,CONF-DBL-004,double_booking,"You already have 'Group study for physics test' scheduled from 11:41 to 13:41, which conflicts with 'Structural Dynamics lecture'. Here are a few alternative times for 'Structural Dynamics lecture':
+
+*   Today (Sunday, May 17th, 2026): 13:45 - 14:15
+*   Today (Sunday, May 17th, 2026): 14:15 - 14:45
+*   Today (Sunday, May 17th, 2026): 14:45 - 15:15
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,14674,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:47:16.348Z,CONF-DBL-005,double_booking,"You already have 'Web3 panel discussion' scheduled from 11:42 to 12:27, which conflicts with '3D printing workshop'. Here are a few alternative times for '3D printing workshop':
+
+*   Today (Sunday, May 17th, 2026): 12:30 - 13:30
+*   Today (Sunday, May 17th, 2026): 13:30 - 14:30
+*   Today (Sunday, May 17th, 2026): 14:30 - 15:30
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12111,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:47:32.606Z,CONF-DBL-006,double_booking,"You already have 'Researching in library' scheduled from 14:15 to 15:15, which conflicts with 'Group study for physics test'. Here are a few alternative times for 'Group study for physics test':
+
+*   Today (Sunday, May 17th, 2026): 15:15 - 15:30
+*   Today (Sunday, May 17th, 2026): 15:30 - 15:45
+*   Today (Sunday, May 17th, 2026): 15:45 - 16:00
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12726,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:47:48.688Z,CONF-DBL-007,double_booking,"You already have 'Jam session' scheduled from 16:20 to 18:05, which conflicts with 'Korean BBQ food trucks'. Here are a few alternative times for 'Korean BBQ food trucks':
+
+*   Today (Sunday, May 17th, 2026): 18:05 - 18:50
+*   Today (Sunday, May 17th, 2026): 18:50 - 19:35
+*   Today (Sunday, May 17th, 2026): 19:35 - 20:20
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12596,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:48:04.322Z,CONF-DBL-008,double_booking,"You already have 'Office hours with Prof. Chen' scheduled from 16:37 to 16:52, which conflicts with 'Study session with Sarah and Mike'. Here are a few alternative times for 'Study session with Sarah and Mike':
+
+*   Today (Sunday, May 17th, 2026): 18:15 - 19:45
+*   Today (Sunday, May 17th, 2026): 19:45 - 21:15
+*   Today (Sunday, May 17th, 2026): 21:15 - 22:45
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12057,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:48:20.417Z,CONF-DBL-009,double_booking,"You already have 'Async Python talk' scheduled from 20:29 to 21:14, which conflicts with 'Trying new VR headset'. Here are a few alternative times for 'Trying new VR headset':
+
+*   Today (Sunday, May 17th, 2026): 21:15 - 22:15
+*   Today (Sunday, May 17th, 2026): 22:15 - 23:15
+*   Tomorrow (Monday, May 18th, 2026): 08:00 - 09:00
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12500,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:48:45.551Z,CONF-DBL-010,double_booking,"You already have 'Brainstorming with Luke and Patrick' scheduled from 00:22 to 00:52, which conflicts with 'Marketing standup on Zoom'. Here are a few alternative times for 'Marketing standup on Zoom':
+
+*   Today (Sunday, May 17th, 2026): 00:52 - 02:22
+*   Today (Sunday, May 17th, 2026): 02:30 - 04:00
+*   Today (Sunday, May 17th, 2026): 04:00 - 05:30
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,21411,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:49:02.612Z,CONF-DBL-011,double_booking,"You already have 'Small Language Models talk' scheduled from 10:20 to 11:50, which conflicts with 'Digital detox meditation session'. Here are a few alternative times for 'Digital detox meditation session':
+
+*   Today (Sunday, May 17th, 2026): 11:50 - 13:05
+*   Today (Sunday, May 17th, 2026): 13:05 - 14:20
+*   Today (Sunday, May 17th, 2026): 14:20 - 15:35
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12023,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:49:21.477Z,CONF-DBL-012,double_booking,"You already have 'Live coding on Rust' scheduled from 03:52 to 05:52, which conflicts with 'Web3 panel discussion'. Here are a few alternative times for 'Web3 panel discussion':
+
+*   Today (Sunday, May 17th, 2026): 06:00 - 08:00
+*   Today (Sunday, May 17th, 2026): 08:00 - 10:00
+*   Today (Sunday, May 17th, 2026): 10:00 - 12:00
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,14313,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:49:37.608Z,CONF-DBL-013,double_booking,"You already have 'One-on-one with manager' scheduled from 00:37 to 02:07, which conflicts with 'Preparing PTO handover'. Here are a few alternative times for 'Preparing PTO handover':
+
+*   Today (Sunday, May 17th, 2026): 02:07 - 04:07
+*   Today (Sunday, May 17th, 2026): 04:07 - 06:07
+*   Today (Sunday, May 17th, 2026): 06:07 - 08:07
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12081,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:49:55.035Z,CONF-DBL-014,double_booking,"You already have 'Group study for physics test' scheduled from 13:06 to 14:51, which conflicts with 'Chemistry experiment'. Here are a few alternative times for 'Chemistry experiment':
+
+*   Today (Sunday, May 17th, 2026): 14:51 - 15:06
+*   Today (Sunday, May 17th, 2026): 15:06 - 15:21
+*   Today (Sunday, May 17th, 2026): 15:21 - 15:36
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12931,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:50:12.926Z,CONF-DBL-015,double_booking,"You already have 'Jogging at the park' scheduled from 03:34 to 05:19, which conflicts with 'Cooking pasta'. Here are a few alternative times for 'Cooking pasta':
+
+*   Today (Sunday, May 17th, 2026): 05:19 - 05:49
+*   Today (Sunday, May 17th, 2026): 05:49 - 06:19
+*   Today (Sunday, May 17th, 2026): 06:19 - 06:49
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,13906,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:50:28.789Z,CONF-DBL-016,double_booking,"You already have 'Chemistry experiment' scheduled from 01:52 to 03:07, which conflicts with 'Study session with Sarah and Mike'. Here are a few alternative times for 'Study session with Sarah and Mike':
+
+*   Today (Sunday, May 17th, 2026): 03:07 - 03:37
+*   Today (Sunday, May 17th, 2026): 03:37 - 04:07
+*   Today (Sunday, May 17th, 2026): 04:07 - 04:37
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,11855,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:50:45.448Z,CONF-DBL-017,double_booking,"You already have 'Researching in library' scheduled from 05:15 to 07:00, which conflicts with 'Structural Dynamics lecture'. Here are a few alternative times for 'Structural Dynamics lecture':
+
+*   Today (Sunday, May 17th, 2026): 07:00 - 08:00
+*   Today (Sunday, May 17th, 2026): 08:00 - 09:00
+*   Today (Sunday, May 17th, 2026): 09:00 - 10:00
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12435,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:51:04.716Z,CONF-DBL-018,double_booking,"You already have 'Group study for physics test' scheduled from 09:44 to 10:29, which conflicts with 'Chemistry experiment'. Here are a few alternative times for 'Chemistry experiment':
+
+*   Today (Sunday, May 17th, 2026): 10:29 - 11:14
+*   Today (Sunday, May 17th, 2026): 11:15 - 12:00
+*   Today (Sunday, May 17th, 2026): 12:00 - 12:45
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,14731,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:51:20.791Z,CONF-DBL-019,double_booking,"You already have 'AI keynote' scheduled from 13:30 to 14:30, which conflicts with 'Networking with engineers'. Here are a few alternative times for 'Networking with engineers':
+
+*   Today (Sunday, May 17th, 2026): 14:30 - 16:00
+*   Today (Sunday, May 17th, 2026): 16:00 - 17:30
+*   Today (Sunday, May 17th, 2026): 17:30 - 19:00
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12042,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:51:38.747Z,CONF-DBL-020,double_booking,"You already have 'Meeting with Lisa at café' scheduled from 03:05 to 04:20, which conflicts with 'Preparing PTO handover'. Here are a few alternative times for 'Preparing PTO handover':
+
+*   Today (Sunday, May 17th, 2026): 04:20 - 05:05
+*   Today (Sunday, May 17th, 2026): 05:05 - 05:50
+*   Today (Sunday, May 17th, 2026): 05:50 - 06:35
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,14444,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:51:56.001Z,CONF-DBL-021,double_booking,"You already have 'Calculus lecture with Prof. Adams' scheduled from 12:20 to 14:05, which conflicts with 'Chemistry experiment'. Here are a few alternative times for 'Chemistry experiment':
+
+*   Today (Sunday, May 17th, 2026): 14:05 - 14:35
+*   Today (Sunday, May 17th, 2026): 14:35 - 15:05
+*   Today (Sunday, May 17th, 2026): 15:05 - 15:35
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12748,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:52:12.621Z,CONF-DBL-022,double_booking,"You already have 'AI keynote' scheduled from 08:07 to 09:52, which conflicts with 'Live coding on Rust'. Here are a few alternative times for 'Live coding on Rust':
+
+*   Today (Sunday, May 17th, 2026): 09:52 - 10:07
+*   Today (Sunday, May 17th, 2026): 10:07 - 10:22
+*   Today (Sunday, May 17th, 2026): 10:22 - 10:37
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12670,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:52:29.038Z,CONF-DBL-023,double_booking,"You already have 'Updating website content' scheduled from 03:04 to 04:04, which conflicts with 'Preparing PTO handover'. Here are a few alternative times for 'Preparing PTO handover':
+
+*   Today (Sunday, May 17th, 2026): 05:19 - 07:04
+*   Today (Sunday, May 17th, 2026): 07:04 - 08:49
+*   Today (Sunday, May 17th, 2026): 08:49 - 10:34
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12392,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:52:46.600Z,CONF-DBL-024,double_booking,"You already have 'Chemistry experiment' scheduled from 15:47 to 17:17, which conflicts with 'Researching in library'. Here are a few alternative times for 'Researching in library':
+
+*   Today (Sunday, May 17th, 2026): 17:17 - 17:32
+*   Today (Sunday, May 17th, 2026): 17:32 - 17:47
+*   Today (Sunday, May 17th, 2026): 17:47 - 18:02
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,13537,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:53:02.267Z,CONF-DBL-025,double_booking,"You already have 'Drone building hackathon' scheduled from 19:57 to 20:42, which conflicts with 'Digital detox meditation session'. Here are a few alternative times for 'Digital detox meditation session':
+
+*   Today (Sunday, May 17th, 2026): 21:44 - 23:29
+*   Today (Sunday, May 17th, 2026): 23:29 - 01:14 (May 18th)
+*   Tomorrow (Monday, May 18th, 2026): 01:14 - 02:59
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12187,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:53:19.231Z,CONF-DBL-026,double_booking,"You already have 'Networking with engineers' scheduled from 10:44 to 10:59, which conflicts with 'Small Language Models talk'. Here are a few alternative times for 'Small Language Models talk':
+
+*   Today (Sunday, May 17th, 2026): 12:38 - 14:23
+*   Today (Sunday, May 17th, 2026): 14:23 - 16:08
+*   Today (Sunday, May 17th, 2026): 16:08 - 17:53
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12502,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:53:35.413Z,CONF-DBL-027,double_booking,"You already have 'Sum 41 concert' scheduled from 02:44 to 03:29, which conflicts with 'David Bowie tribute concert'. Here are a few alternative times for 'David Bowie tribute concert':
+
+*   Today (Sunday, May 17th, 2026): 04:02 - 04:47
+*   Today (Sunday, May 17th, 2026): 04:47 - 05:32
+*   Today (Sunday, May 17th, 2026): 05:32 - 06:17
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12057,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:53:50.858Z,CONF-DBL-028,double_booking,"You already have 'Async Python talk' scheduled from 01:52 to 03:07, which conflicts with 'Small Language Models talk'. Here are a few alternative times for 'Small Language Models talk':
+
+*   Today (Sunday, May 17th, 2026): 03:18 - 03:33
+*   Today (Sunday, May 17th, 2026): 03:33 - 03:48
+*   Today (Sunday, May 17th, 2026): 03:48 - 04:03
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,11922,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:54:08.830Z,CONF-DBL-029,double_booking,"You already have 'Chess with Daniel' scheduled from 12:55 to 13:40, which conflicts with 'Researching in library'. Here are a few alternative times for 'Researching in library':
+
+*   Today (Sunday, May 17th, 2026): 13:40 - 14:25
+*   Today (Sunday, May 17th, 2026): 14:25 - 15:10
+*   Today (Sunday, May 17th, 2026): 15:10 - 15:55
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,13930,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:54:24.722Z,CONF-DBL-030,double_booking,"You already have 'Researching in library' scheduled from 01:53 to 02:23, which conflicts with 'Office hours with Prof. Chen'. Here are a few alternative times for 'Office hours with Prof. Chen':
+
+*   Today (Sunday, May 17th, 2026): 03:28 - 04:58
+*   Today (Sunday, May 17th, 2026): 04:58 - 06:28
+*   Today (Sunday, May 17th, 2026): 06:28 - 07:58
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,11835,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:54:42.808Z,CONF-DBL-031,double_booking,"You already have 'Group study for physics test' scheduled from 16:05 to 17:50, which conflicts with 'Chemistry experiment'. Here are a few alternative times for 'Chemistry experiment':
+
+*   Today (Sunday, May 17th, 2026): 17:50 - 18:20
+*   Today (Sunday, May 17th, 2026): 18:20 - 18:50
+*   Today (Sunday, May 17th, 2026): 18:50 - 19:20
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,14117,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:54:58.980Z,CONF-DBL-032,double_booking,"You already have 'Jam session' scheduled from 02:48 to 03:33, which conflicts with 'Korean BBQ food trucks'. Here are a few alternative times for 'Korean BBQ food trucks':
+
+*   Today (Sunday, May 17th, 2026): 03:43 - 03:58
+*   Today (Sunday, May 17th, 2026): 03:58 - 04:13
+*   Today (Sunday, May 17th, 2026): 04:13 - 04:28
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12108,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:55:15.186Z,CONF-DBL-033,double_booking,"You already have 'Structural Dynamics lecture' scheduled from 12:31 to 14:31, which conflicts with 'Calculus lecture with Prof. Adams'. Here are a few alternative times for 'Calculus lecture with Prof. Adams':
+
+*   Today (Sunday, May 17th, 2026): 14:31 - 15:16
+*   Today (Sunday, May 17th, 2026): 15:16 - 16:01
+*   Today (Sunday, May 17th, 2026): 16:01 - 16:46
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12105,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:55:32.123Z,CONF-DBL-034,double_booking,"You already have 'The Killers concert' scheduled from 00:48 to 01:48, which conflicts with 'David Bowie tribute concert'. Here are a few alternative times for 'David Bowie tribute concert':
+
+*   Today (Sunday, May 17th, 2026): 01:48 - 03:33
+*   Today (Sunday, May 17th, 2026): 03:33 - 05:18
+*   Today (Sunday, May 17th, 2026): 05:18 - 07:03
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,13459,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:55:50.893Z,CONF-DBL-035,double_booking,"You already have 'AI keynote' scheduled from 01:11 to 02:41, which conflicts with 'Digital detox meditation session'. Here are a few alternative times for 'Digital detox meditation session':
+
+*   Today (Sunday, May 17th, 2026): 02:41 - 04:41
+*   Today (Sunday, May 17th, 2026): 04:41 - 06:41
+*   Today (Sunday, May 17th, 2026): 06:41 - 08:41
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,15089,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:56:06.416Z,CONF-DBL-036,double_booking,"You already have 'Networking with engineers' scheduled from 05:39 to 06:09, which conflicts with 'AI keynote'. Here are a few alternative times for 'AI keynote':
+
+*   Today (Sunday, May 17th, 2026): 06:09 - 08:09
+*   Today (Sunday, May 17th, 2026): 08:09 - 10:09
+*   Today (Sunday, May 17th, 2026): 10:09 - 12:09
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12066,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:56:22.860Z,CONF-DBL-037,double_booking,"You already have 'Live coding on Rust' scheduled from 07:54 to 08:54, which conflicts with 'Trying new VR headset'. Here are a few alternative times for 'Trying new VR headset':
+
+*   Today (Sunday, May 17th, 2026): 08:54 - 10:54
+*   Today (Sunday, May 17th, 2026): 10:54 - 12:54
+*   Today (Sunday, May 17th, 2026): 12:54 - 14:54
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,11913,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:56:40.126Z,CONF-DBL-038,double_booking,"You already have 'Analyzing product performance' scheduled from 19:26 to 20:26, which conflicts with 'Client call with Acme Corp'. Here are a few alternative times for 'Client call with Acme Corp':
+
+*   Today (Sunday, May 17th, 2026): 20:26 - 21:11
+*   Today (Sunday, May 17th, 2026): 21:11 - 21:56
+*   Today (Sunday, May 17th, 2026): 21:56 - 22:41
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,13740,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:56:59.034Z,CONF-DBL-039,double_booking,"You already have 'Meeting with Lisa at café' scheduled from 04:32 to 06:17, which conflicts with 'Preparing PTO handover'. Here are a few alternative times for 'Preparing PTO handover':
+
+*   Today (Sunday, May 17th, 2026): 06:17 - 07:47
+*   Today (Sunday, May 17th, 2026): 07:47 - 09:17
+*   Today (Sunday, May 17th, 2026): 09:17 - 10:47
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,14846,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:57:14.947Z,CONF-DBL-040,double_booking,"You already have 'Live coding on Rust' scheduled from 02:21 to 03:51, which conflicts with '3D printing workshop'. Here are a few alternative times for '3D printing workshop':
+
+*   Today (Sunday, May 17th, 2026): 03:51 - 04:51
+*   Today (Sunday, May 17th, 2026): 04:51 - 05:51
+*   Today (Sunday, May 17th, 2026): 05:51 - 06:51
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12336,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:57:30.514Z,CONF-DBL-041,double_booking,"You already have 'Q1 revenue report writing' scheduled from 09:17 to 10:02, which conflicts with 'Analyzing product performance'. Here are a few alternative times for 'Analyzing product performance':
+
+*   Today (Sunday, May 17th, 2026): 10:02 - 10:17
+*   Today (Sunday, May 17th, 2026): 10:17 - 10:32
+*   Today (Sunday, May 17th, 2026): 10:32 - 10:47
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,11935,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:57:46.969Z,CONF-DBL-042,double_booking,"You already have 'Web3 panel discussion' scheduled from 16:30 to 18:15, which conflicts with 'Live coding on Rust'. Here are a few alternative times for 'Live coding on Rust':
+
+*   Today (Sunday, May 17th, 2026): 18:15 - 20:15
+*   Today (Sunday, May 17th, 2026): 20:15 - 22:15
+*   Today (Sunday, May 17th, 2026): 22:15 - 00:15
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12433,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:58:03.834Z,CONF-DBL-043,double_booking,"You already have 'Meeting with Lisa at café' scheduled from 00:10 to 02:10, which conflicts with 'Q1 revenue report writing'. Here are a few alternative times for 'Q1 revenue report writing':
+
+*   Today (Sunday, May 17th, 2026): 02:10 - 03:40
+*   Today (Sunday, May 17th, 2026): 03:40 - 05:10
+*   Today (Sunday, May 17th, 2026): 05:10 - 06:40
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,13340,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:58:20.202Z,CONF-DBL-044,double_booking,"You already have 'One-on-one with manager' scheduled from 02:30 to 04:15, which conflicts with 'Replying to emails'. Here are a few alternative times for 'Replying to emails':
+
+*   Today (Sunday, May 17th, 2026): 04:15 - 05:00
+*   Today (Sunday, May 17th, 2026): 05:00 - 05:45
+*   Today (Sunday, May 17th, 2026): 05:45 - 06:30
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12832,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:58:37.608Z,CONF-DBL-045,double_booking,"You already have 'AI keynote' scheduled from 10:57 to 12:42, which conflicts with 'Live coding on Rust'. Here are a few alternative times for 'Live coding on Rust':
+
+*   Today (Sunday, May 17th, 2026): 12:42 - 14:12
+*   Today (Sunday, May 17th, 2026): 14:12 - 15:42
+*   Today (Sunday, May 17th, 2026): 15:42 - 17:12
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,13837,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:58:53.105Z,CONF-DBL-046,double_booking,"You already have 'Jogging at the park' scheduled from 05:10 to 05:25, which conflicts with 'Planting flowers in the garden'. Here are a few alternative times for 'Planting flowers in the garden':
+
+*   Today (Sunday, May 17th, 2026): 05:25 - 05:40
+*   Today (Sunday, May 17th, 2026): 05:40 - 05:55
+*   Today (Sunday, May 17th, 2026): 05:55 - 06:10
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,11927,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:59:08.995Z,CONF-DBL-047,double_booking,"You already have 'Live coding on Rust' scheduled from 10:14 to 10:44, which conflicts with 'Async Python talk'. Here are a few alternative times for 'Async Python talk':
+
+*   Today (Sunday, May 17th, 2026): 10:44 - 11:29
+*   Today (Sunday, May 17th, 2026): 11:29 - 12:14
+*   Today (Sunday, May 17th, 2026): 12:14 - 12:59
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,11817,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:59:25.313Z,CONF-DBL-048,double_booking,"You already have 'David Guetta DJ set' scheduled from 03:13 to 03:58, which conflicts with 'Avril Lavigne concert'. Here are a few alternative times for 'Avril Lavigne concert':
+
+*   Today (Sunday, May 17th, 2026): 03:58 - 05:28
+*   Today (Sunday, May 17th, 2026): 05:28 - 06:58
+*   Today (Sunday, May 17th, 2026): 06:58 - 08:28
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12195,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:59:43.293Z,CONF-DBL-049,double_booking,"You already have 'Chess with Daniel' scheduled from 13:45 to 14:30, which conflicts with 'Office hours with Prof. Chen'. Here are a few alternative times for 'Office hours with Prof. Chen':
+
+*   Today (Sunday, May 17th, 2026): 14:30 - 15:30
+*   Today (Sunday, May 17th, 2026): 15:30 - 16:30
+*   Today (Sunday, May 17th, 2026): 16:30 - 17:30
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,14456,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T09:59:59.117Z,CONF-DBL-050,double_booking,"You already have 'Small Language Models talk' scheduled from 15:57 to 17:12, which conflicts with '3D printing workshop'. Here are a few alternative times for '3D printing workshop':
+
+*   Today (Sunday, May 17th, 2026): 17:12 - 18:57
+*   Today (Sunday, May 17th, 2026): 18:57 - 20:42
+*   Today (Sunday, May 17th, 2026): 20:42 - 22:27
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12291,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T10:00:14.846Z,CONF-DBL-051,double_booking,"You already have 'Group study for physics test' scheduled from 10:13 to 11:13, which conflicts with 'Meeting with Emma and Jake'. Here are a few alternative times for 'Meeting with Emma and Jake':
+
+*   Today (Sunday, May 17th, 2026): 11:13 - 11:58
+*   Today (Sunday, May 17th, 2026): 11:58 - 12:43
+*   Today (Sunday, May 17th, 2026): 12:43 - 13:28
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12147,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T10:00:32.561Z,CONF-DBL-052,double_booking,"You already have 'Meeting with Emma and Jake' scheduled from 04:55 to 06:55, which conflicts with 'Office hours with Prof. Chen'. Here are a few alternative times for 'Office hours with Prof. Chen':
+
+*   Today (Sunday, May 17th, 2026): 06:55 - 07:10
+*   Today (Sunday, May 17th, 2026): 07:10 - 07:25
+*   Today (Sunday, May 17th, 2026): 07:25 - 07:40
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,13671,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T10:00:49.199Z,CONF-DBL-053,double_booking,"You already have 'Shopping at farmer's market' scheduled from 05:35 to 06:50, which conflicts with 'Watching 'Inception''. Here are a few alternative times for 'Watching 'Inception'':
+
+*   Today (Sunday, May 17th, 2026): 06:50 - 07:20
+*   Today (Sunday, May 17th, 2026): 07:20 - 07:50
+*   Today (Sunday, May 17th, 2026): 07:50 - 08:20
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12854,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T10:01:05.795Z,CONF-DBL-054,double_booking,"You already have 'Walking with Bella' scheduled from 03:05 to 04:35, which conflicts with 'Yoga class with Emily'. Here are a few alternative times for 'Yoga class with Emily':
+
+*   Today (Sunday, May 17th, 2026): 04:35 - 05:35
+*   Today (Sunday, May 17th, 2026): 05:35 - 06:35
+*   Today (Sunday, May 17th, 2026): 06:35 - 07:35
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12525,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T10:01:23.603Z,CONF-DBL-055,double_booking,"You already have 'Reading 'Dune'' scheduled from 12:38 to 13:38, which conflicts with 'Cooking pasta'. Here are a few alternative times for 'Cooking pasta':
+
+*   Today (Sunday, May 17th, 2026): 13:38 - 14:23
+*   Today (Sunday, May 17th, 2026): 14:23 - 15:08
+*   Today (Sunday, May 17th, 2026): 15:08 - 15:53
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,13868,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T10:01:40.080Z,CONF-DBL-056,double_booking,"You already have 'Preparing PTO handover' scheduled from 03:13 to 03:43, which conflicts with 'Updating website content'. Here are a few alternative times for 'Updating website content':
+
+*   Today (Sunday, May 17th, 2026): 03:43 - 05:43
+*   Today (Sunday, May 17th, 2026): 05:43 - 07:43
+*   Today (Sunday, May 17th, 2026): 07:43 - 09:43
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12429,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T10:01:55.984Z,CONF-DBL-057,double_booking,"You already have 'Korean BBQ food trucks' scheduled from 15:39 to 17:09, which conflicts with 'The Killers concert'. Here are a few alternative times for 'The Killers concert':
+
+*   Today (Sunday, May 17th, 2026): 17:09 - 19:09
+*   Today (Sunday, May 17th, 2026): 19:09 - 21:09
+*   Today (Sunday, May 17th, 2026): 21:09 - 23:09
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12398,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T10:02:11.897Z,CONF-DBL-058,double_booking,"You already have 'AI keynote' scheduled from 13:40 to 15:40, which conflicts with '3D printing workshop'. Here are a few alternative times for '3D printing workshop':
+
+*   Today (Sunday, May 17th, 2026): 15:40 - 17:10
+*   Today (Sunday, May 17th, 2026): 17:10 - 18:40
+*   Today (Sunday, May 17th, 2026): 18:40 - 20:10
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12412,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T10:02:27.575Z,CONF-DBL-059,double_booking,"You already have 'Korean BBQ food trucks' scheduled from 20:40 to 21:10, which conflicts with 'Jam session'. Here are a few alternative times for 'Jam session':
+
+*   Today (Sunday, May 17th, 2026): 21:10 - 21:25
+*   Today (Sunday, May 17th, 2026): 21:25 - 21:40
+*   Today (Sunday, May 17th, 2026): 21:40 - 21:55
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,12170,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T10:02:44.469Z,CONF-DBL-060,double_booking,"You already have 'David Guetta DJ set' scheduled from 06:23 to 08:23, which conflicts with 'Sum 41 concert'. Here are a few alternative times for 'Sum 41 concert':
+
+*   Today (Sunday, May 17th, 2026): 08:23 - 09:23
+*   Today (Sunday, May 17th, 2026): 09:23 - 10:23
+*   Today (Sunday, May 17th, 2026): 10:23 - 11:23
+
+Would you like to schedule it for one of these times, or would you like to explore other options?",0,,,,,,13442,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T20:52:43.876Z,CONF-PRI-001,overlap_priority,"I can help resolve the conflict by rescheduling 'Calling Mom and Dad' and 'Cooking pasta' on Monday, 2026-05-18.
+
+*   'Reading 'Dune'' (high-priority) will remain at 16:12 - 16:27.
+*   'Walking with Bella' will remain at 09:36 - 10:36.
+*   'Calling Mom and Dad' (1h 30m) could be moved to 10:36 - 12:06.
+*   'Cooking pasta' (45m) could be moved to 12:06 - 12:51.
+
+[CONFIRMATION REQUESTED] Do you confirm these changes?",0,,,,,,43968,TRUE,TRUE,TRUE,FALSE,FALSE,FAIL,did not state that no conflict exists
+2026-05-17T20:53:02.398Z,CONF-PRI-002,overlap_priority,There is no conflict between your high-priority 'Marketing standup on Zoom' (11:43-12:13) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,14175,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T20:53:19.392Z,CONF-PRI-003,overlap_priority,There is no conflict between your high-priority 'The Killers concert' (09:40-11:10) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,12633,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T20:53:38.006Z,CONF-PRI-004,overlap_priority,"I can help resolve the conflict by rescheduling 'Client call with Acme Corp' on Monday, 2026-05-18.
+
+*   'Q1 revenue report writing' (high-priority) will remain at 17:51 - 18:21.
+*   'Marketing standup on Zoom' will remain at 04:25 - 05:10.
+*   'Brainstorming with Luke and Patrick' will remain at 16:34 - 17:34.
+*   'Client call with Acme Corp' (1h 45m) could be moved to 18:21 - 20:06.
+
+[CONFIRMATION REQUESTED] Do you confirm these changes?",0,,,,,,14310,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T20:53:53.996Z,CONF-PRI-005,overlap_priority,"I can help resolve the conflict by rescheduling 'Group study for physics test' on Monday, 2026-05-18.
+
+*   'Meeting with Emma and Jake' (high-priority) will remain at 02:33 - 02:48.
+*   'Calculus lecture with Prof. Adams' will remain at 11:19 - 11:49.
+*   'Study session with Sarah and Mike' will remain at 13:28 - 15:28.
+*   'Group study for physics test' (45m) could be moved to 02:48 - 03:33.
+
+[CONFIRMATION REQUESTED] Do you confirm these changes?",0,,,,,,11749,TRUE,TRUE,TRUE,FALSE,FALSE,FAIL,did not state that no conflict exists
+2026-05-17T20:54:12.031Z,CONF-PRI-006,overlap_priority,There is no conflict between your high-priority 'Walking with Bella' (13:18-15:18) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,13788,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T20:54:33.848Z,CONF-PRI-007,overlap_priority,"I can help resolve the conflict by rescheduling 'Networking with engineers' on Monday, 2026-05-18.
+
+*   'Small Language Models talk' (high-priority) will remain at 03:27 - 04:57.
+*   'Async Python talk' will remain at 06:12 - 08:12.
+*   '3D printing workshop' will remain at 08:30 - 09:00.
+*   'Networking with engineers' (15m) could be moved to 04:57 - 05:12.
+
+[CONFIRMATION REQUESTED] Do you confirm these changes?",0,,,,,,17572,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T20:54:52.606Z,CONF-PRI-008,overlap_priority,"I can help resolve the conflict by rescheduling 'Researching in library' and 'Office hours with Prof. Chen' on Monday, 2026-05-18.
+
+*   'Structural Dynamics lecture' (high-priority) will remain at 06:38 - 07:38.
+*   'Calculus lecture with Prof. Adams' will remain at 02:35 - 04:05.
+*   'Researching in library' (1h 45m) could be moved to 07:38 - 09:23.
+*   'Office hours with Prof. Chen' (1h 45m) could be moved to 09:23 - 11:08.
+
+[CONFIRMATION REQUESTED] Do you confirm these changes?",0,,,,,,14563,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T20:55:10.235Z,CONF-PRI-009,overlap_priority,"I can help resolve the conflict by rescheduling 'Networking with engineers' on Monday, 2026-05-18.
+
+*   'Small Language Models talk' (high-priority) will remain at 05:24 - 06:39.
+*   'Trying new VR headset' will remain at 10:03 - 10:48.
+*   'AI keynote' will remain at 12:39 - 14:09.
+*   'Networking with engineers' (1h 15m) could be moved to 06:39 - 07:54.
+
+[CONFIRMATION REQUESTED] Do you confirm these changes?",0,,,,,,13831,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T20:55:28.900Z,CONF-PRI-010,overlap_priority,"I can help resolve the conflict by rescheduling 'Researching in library' on Monday, 2026-05-18.
+
+*   'Group study for physics test' (high-priority) will remain at 14:34 - 14:49.
+*   'Chess with Daniel' will remain at 02:55 - 04:25.
+*   'Meeting with Emma and Jake' will remain at 19:03 - 19:18.
+*   'Researching in library' (1h) could be moved to 14:49 - 15:49.
+
+[CONFIRMATION REQUESTED] Do you confirm these changes?",0,,,,,,14391,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T20:55:45.103Z,CONF-PRI-011,overlap_priority,"I can help resolve the conflict by rescheduling 'Q1 revenue report writing' on Monday, 2026-05-18.
+
+*   'Marketing standup on Zoom' (high-priority) will remain at 14:51 - 15:51.
+*   'Analyzing product performance' will remain at 01:11 - 01:56.
+*   'Client call with Acme Corp' will remain at 06:34 - 07:19.
+*   'Q1 revenue report writing' (45m) could be moved to 15:51 - 16:36.
+
+[CONFIRMATION REQUESTED] Do you confirm these changes?",0,,,,,,12894,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T20:56:02.692Z,CONF-PRI-012,overlap_priority,"I can help resolve the conflict by rescheduling 'Deep cleaning the kitchen' on Monday, 2026-05-18.
+
+*   'Walking with Bella' (high-priority) will remain at 04:37 - 05:22.
+*   'Reading 'Dune'' will remain at 07:11 - 08:41.
+*   'Planting flowers in the garden' will remain at 11:00 - 12:30.
+*   'Deep cleaning the kitchen' (2h) could be moved to 05:22 - 07:22.
+
+[CONFIRMATION REQUESTED] Do you confirm these changes?",0,,,,,,13295,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T20:56:19.856Z,CONF-PRI-013,overlap_priority,There is no conflict between your high-priority 'Networking with engineers' (09:53-10:53) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,13412,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T20:56:38.101Z,CONF-PRI-014,overlap_priority,There is no conflict between your high-priority 'Async Python talk' (18:07-20:07) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,14026,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T20:56:56.209Z,CONF-PRI-015,overlap_priority,There is no conflict between your high-priority 'Client call with Acme Corp' (19:40-20:25) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,14331,TRUE,TRUE,FALSE,TRUE,FALSE,FAIL,did not ask confirmation
+2026-05-17T20:57:14.717Z,CONF-PRI-016,overlap_priority,"I can help resolve the conflict by rescheduling 'Backstage tour VIP pass' on Monday, 2026-05-18.
+
+*   'Fireworks' (high-priority) will remain at 08:16 - 09:16.
+*   'David Bowie tribute concert' will remain at 05:15 - 05:45.
+*   'Korean BBQ food trucks' will remain at 11:37 - 12:37.
+*   'Backstage tour VIP pass' (1h) could be moved to 09:16 - 10:16.
+
+[CONFIRMATION REQUESTED] Do you confirm these changes?",0,,,,,,14266,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T20:57:32.303Z,CONF-PRI-017,overlap_priority,There is no conflict between your high-priority 'Cooking pasta' (12:35-13:20) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,13834,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T20:57:48.199Z,CONF-PRI-018,overlap_priority,There is no conflict between your high-priority 'Live coding on Rust' (11:23-12:23) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,12166,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T20:58:03.580Z,CONF-PRI-019,overlap_priority,There is no conflict between your high-priority 'Async Python talk' (01:33-03:03) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,11698,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T20:58:22.626Z,CONF-PRI-020,overlap_priority,"I can help resolve the conflict by rescheduling 'Marketing standup on Zoom' on Monday, 2026-05-18.
+
+*   'Updating website content' (high-priority) will remain at 10:51 - 12:21.
+*   'Client call with Acme Corp' will remain at 00:40 - 02:40.
+*   'Brainstorming with Luke and Patrick' will remain at 03:04 - 03:19.
+*   'Marketing standup on Zoom' (45m) could be moved to 12:21 - 13:06.
+
+[CONFIRMATION REQUESTED] Do you confirm these changes?",0,,,,,,14557,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T20:58:39.730Z,CONF-PRI-021,overlap_priority,There is no conflict between your high-priority 'Networking with engineers' (06:11-06:56) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,12858,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T20:58:57.831Z,CONF-PRI-022,overlap_priority,There is no conflict between your high-priority 'Jam session' (16:10-17:55) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,13452,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T20:59:14.266Z,CONF-PRI-023,overlap_priority,There is no conflict between your high-priority 'Drone building hackathon' (19:32-21:17) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,12163,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T20:59:31.415Z,CONF-PRI-024,overlap_priority,There is no conflict between your high-priority 'One-on-one with manager' (05:41-06:11) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,12891,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T20:59:47.571Z,CONF-PRI-025,overlap_priority,There is no conflict between your high-priority 'Fireworks' (18:48-19:48) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,12427,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T21:00:03.983Z,CONF-PRI-026,overlap_priority,There is no conflict between your high-priority 'Group study for physics test' (01:11-01:41) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,12660,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T21:00:19.820Z,CONF-PRI-027,overlap_priority,There is no conflict between your high-priority 'Calculus lecture with Prof. Adams' (12:20-14:05) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,11596,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T21:00:36.659Z,CONF-PRI-028,overlap_priority,"I can help resolve the conflict by rescheduling 'Backstage tour VIP pass' on Monday, 2026-05-18.
+
+*   'Avril Lavigne concert' (high-priority) will remain at 00:55 - 01:10.
+*   'Backstage tour VIP pass' (30m) could be moved to 01:10 - 01:40.
+*   'Korean BBQ food trucks' will remain at 16:24 - 16:54.
+*   'Sum 41 concert' will remain at 18:23 - 19:53.
+
+[CONFIRMATION REQUESTED] Do you confirm these changes?",0,,,,,,12597,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T21:00:52.947Z,CONF-PRI-029,overlap_priority,There is no conflict between your high-priority 'Cooking pasta' (08:43-10:28) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,12569,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T21:01:09.711Z,CONF-PRI-030,overlap_priority,There is no conflict between your high-priority 'Trying new VR headset' (09:47-10:47) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,12489,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T21:01:24.905Z,CONF-PRI-031,overlap_priority,There is no conflict between your high-priority 'David Bowie tribute concert' (15:26-17:26) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,11416,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T21:01:43.113Z,CONF-PRI-032,overlap_priority,There is no conflict between your high-priority 'Cooking pasta' (18:13-19:28) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,14025,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T21:01:58.896Z,CONF-PRI-033,overlap_priority,There is no conflict between your high-priority 'Fireworks' (10:30-11:30) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,12023,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T21:02:19.942Z,CONF-PRI-034,overlap_priority,There is no conflict between your high-priority 'Yoga class with Emily' (14:30-15:15) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,17287,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T21:02:36.402Z,CONF-PRI-035,overlap_priority,There is no conflict between your high-priority 'Jam session' (11:56-13:41) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,12702,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T21:02:57.307Z,CONF-PRI-036,overlap_priority,"I can help resolve the conflict by rescheduling 'Live coding on Rust' on Monday, 2026-05-18.
+
+*   'Async Python talk' (high-priority) will remain at 20:12 - 20:27.
+*   'Live coding on Rust' (15m) could be moved to 20:27 - 20:42.
+*   'Networking with engineers' will remain at 06:52 - 07:22.
+*   'AI keynote' will remain at 06:54 - 07:39.
+
+[CONFIRMATION REQUESTED] Do you confirm these changes?",0,,,,,,17190,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T21:03:18.538Z,CONF-PRI-037,overlap_priority,"I can help resolve the conflict by rescheduling 'Async Python talk' on Monday, 2026-05-18.
+
+*   '3D printing workshop' (high-priority) will remain at 14:24 - 14:54.
+*   'Async Python talk' (1h 30m) could be moved to 14:54 - 16:24.
+*   'AI keynote' will remain at 03:44 - 04:29.
+*   'Web3 panel discussion' will remain at 04:43 - 06:43.
+
+[CONFIRMATION REQUESTED] Do you confirm these changes?",0,,,,,,17367,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T21:03:35.651Z,CONF-PRI-038,overlap_priority,There is no conflict between your high-priority 'Researching in library' (03:12-04:27) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,13734,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T21:03:52.718Z,CONF-PRI-039,overlap_priority,There is no conflict between your high-priority 'Silent disco party' (15:18-16:03) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,12828,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T21:04:07.916Z,CONF-PRI-040,overlap_priority,There is no conflict between your high-priority 'Fireworks' (08:28-08:58) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,11959,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T21:04:24.384Z,CONF-PRI-041,overlap_priority,There is no conflict between your high-priority 'Live coding on Rust' (11:23-13:23) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,12762,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T21:04:41.405Z,CONF-PRI-042,overlap_priority,There is no conflict between your high-priority 'Structural Dynamics lecture' (14:03-14:33) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,13208,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T21:04:57.604Z,CONF-PRI-043,overlap_priority,"I can help resolve the conflict by rescheduling 'Reading 'Dune'' and 'Shopping at farmer's market' on Monday, 2026-05-18.
+
+*   'Deep cleaning the kitchen' (high-priority) will remain at 03:58 - 05:28.
+*   'Reading 'Dune'' (45m) could be moved to 05:28 - 06:13.
+*   'Shopping at farmer's market' (2h) could be moved to 06:13 - 08:13.
+*   'Planting flowers in the garden' will remain at 15:29 - 16:44.
+
+[CONFIRMATION REQUESTED] Do you confirm these changes?",0,,,,,,12418,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T21:05:12.832Z,CONF-PRI-044,overlap_priority,There is no conflict between your high-priority 'Client call with Acme Corp' (15:01-16:16) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,11465,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T21:05:31.872Z,CONF-PRI-045,overlap_priority,"I can help resolve the conflict by rescheduling 'Backstage tour VIP pass' on Monday, 2026-05-18.
+
+*   'Silent disco party' (high-priority) will remain at 00:13 - 01:58.
+*   'Backstage tour VIP pass' (1h) could be moved to 01:58 - 02:58.
+*   'Sum 41 concert' will remain at 04:41 - 05:41.
+*   'Jam session' will remain at 21:05 - 23:05.
+
+[CONFIRMATION REQUESTED] Do you confirm these changes?",0,,,,,,15253,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T21:05:49.181Z,CONF-PRI-046,overlap_priority,There is no conflict between your high-priority 'Sum 41 concert' (12:56-14:41) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,13110,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T21:06:04.664Z,CONF-PRI-047,overlap_priority,There is no conflict between your high-priority 'Web3 panel discussion' (05:34-05:49) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,12235,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T21:06:21.405Z,CONF-PRI-048,overlap_priority,There is no conflict between your high-priority 'Shopping at farmer's market' (02:13-02:58) and the other listed events. All events can remain in their current slots. No rescheduling is needed.,0,,,,,,12495,TRUE,TRUE,FALSE,TRUE,FALSE,PASS,(no real overlap - AI correctly identified)
+2026-05-17T21:06:40.731Z,CONF-PRI-049,overlap_priority,"I can help resolve the conflict by rescheduling 'Deep cleaning the kitchen' on Monday, 2026-05-18.
+
+*   'Reading 'Dune'' (high-priority) will remain at 10:44 - 12:29.
+*   'Deep cleaning the kitchen' (1h 15m) could be moved to 12:29 - 13:44.
+*   'Calling Mom and Dad' will remain at 00:34 - 01:34.
+*   'Watching 'Inception'' will remain at 03:38 - 04:23.
+
+[CONFIRMATION REQUESTED] Do you confirm these changes?",0,,,,,,15066,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T21:07:01.778Z,CONF-PRI-050,overlap_priority,"I can help resolve the conflict by rescheduling 'Meeting with Emma and Jake' on Monday, 2026-05-18.
+
+*   'Chemistry experiment' (high-priority) will remain at 10:16 - 11:01.
+*   'Meeting with Emma and Jake' (1h 45m) could be moved to 11:01 - 12:46.
+*   'Study session with Sarah and Mike' will remain at 15:06 - 16:21.
+*   'Chess with Daniel' will remain at 21:30 - 23:15.
+
+[CONFIRMATION REQUESTED] Do you confirm these changes?",0,,,,,,17326,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T10:17:12.878Z,CONF-NVT-001,no_valid_time,"[ACTION EXECUTED] Thursday, 13:00 - 13:30",1,05cmnoi82qgecdg6h2q24uv0lg,TEST_CONF-NVT-001: Meeting with Sean and Michelle,Thursday,2026-05-21T13:00:00+02:00,2026-05-21T13:30:00+02:00,25466,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:17:34.675Z,CONF-NVT-002,no_valid_time,"[ACTION EXECUTED] Monday, 15:00 - 15:30",1,7shk581n7ogts0g71u28gngd14,"TEST_CONF-NVT-002: Meeting with Alexander, Elizabeth, and Walter",Monday,2026-05-18T15:00:00+02:00,2026-05-18T15:30:00+02:00,17983,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:17:57.016Z,CONF-NVT-003,no_valid_time,"I couldn't find a 30-minute slot for Andrew, Dennis, Nancy, and Alexander on 2026-05-18 (Monday) between 9:00 and 17:00 where everyone is available. All participants have overlapping commitments throughout the day, making it impossible to schedule the meeting with the given constraints.",0,,,,,,18484,TRUE,TRUE,FALSE,TRUE,FALSE,FAIL,"claimed no solution, but solution exists"
+2026-05-17T10:18:35.749Z,CONF-NVT-004,no_valid_time,"[ACTION EXECUTED] Monday, 16:30 - 17:00",1,024vcng6cfoeleh8eh0krfet4k,"TEST_CONF-NVT-004: Meeting with Andrew, Sandra, Lawrence, Olivia, Bruce, Joyce",Monday,2026-05-18T16:30:00+02:00,2026-05-18T17:00:00+02:00,35198,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:18:59.974Z,CONF-NVT-005,no_valid_time,"[ACTION EXECUTED] Wednesday, 09:00 - 09:30",1,n8jmfuk3g9big87qbmm1g7gpls,TEST_CONF-NVT-005: Meeting with Rachel and Carolyn,Wednesday,2026-05-20T09:00:00+02:00,2026-05-20T09:30:00+02:00,19854,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:19:44.658Z,CONF-NVT-006,no_valid_time,"[ACTION EXECUTED] Tuesday, 09:30 - 10:30",1,1nihd3dibmlt7d2fbefgu307vc,TEST_CONF-NVT-006: Meeting with Brian and Julia,Tuesday,2026-05-19T09:30:00+02:00,2026-05-19T10:30:00+02:00,40901,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:20:13.433Z,CONF-NVT-007,no_valid_time,"[ACTION EXECUTED] Wednesday, 09:30 - 10:00",1,uc4uj0p2cvpe9c858viu2b5su8,TEST_CONF-NVT-007: Meeting with Natalie and Stephen,Wednesday,2026-05-20T09:30:00+02:00,2026-05-20T10:00:00+02:00,24795,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:20:47.438Z,CONF-NVT-008,no_valid_time,"[ACTION EXECUTED] Monday, 14:30 - 15:00",1,7ns261l0r0ssvin8ovm7363b4s,"TEST_CONF-NVT-008: Meeting with Logan, Kimberly, Angela, Matthew, Dylan, Marilyn, Grace",Monday,2026-05-18T14:30:00+02:00,2026-05-18T15:00:00+02:00,29672,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:21:30.517Z,CONF-NVT-009,no_valid_time,"[ACTION EXECUTED] Monday, 11:30 - 12:00",1,sdu7e1b1f5bnp9ihbqa81v3huo,TEST_CONF-NVT-009: Meeting with Jean and Doris,Monday,2026-05-18T11:30:00+02:00,2026-05-18T12:00:00+02:00,39015,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:21:54.347Z,CONF-NVT-010,no_valid_time,"[ACTION EXECUTED] Monday, 13:00 - 14:00",1,ukin25j618pi37s6qv99f9q7uk,"TEST_CONF-NVT-010: Meeting with Jessica, Elijah, Ann, Marie, Kathryn, Albert and Nicole",Monday,2026-05-18T13:00:00+02:00,2026-05-18T14:00:00+02:00,19836,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:22:27.301Z,CONF-NVT-011,no_valid_time,"[ACTION EXECUTED] Monday, 13:30 - 14:00",1,icqtjt2agtbkhuqfosmm9p82q0,"TEST_CONF-NVT-011: Meeting with Larry, Harold, Elijah, Willie, and Patrick",Monday,2026-05-18T13:30:00+02:00,2026-05-18T14:00:00+02:00,28990,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:22:49.522Z,CONF-NVT-012,no_valid_time,"[ACTION EXECUTED] Monday, 09:00 - 09:30",1,calirvj84095kor4f53reilmnk,"TEST_CONF-NVT-012: Meeting with Elijah, Janet, Brian, Carl, Timothy",Monday,2026-05-18T09:00:00+02:00,2026-05-18T09:30:00+02:00,18237,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:23:15.812Z,CONF-NVT-013,no_valid_time,"I couldn't find a 30-minute slot for Logan, Kimberly, Angela, Matthew, Dylan, Marilyn, and Grace on 2026-05-18 (Monday) between 9:00 and 17:00 where everyone is available. All participants have overlapping commitments throughout the day, making it impossible to schedule the meeting with the given constraints.",0,,,,,,22145,TRUE,TRUE,FALSE,TRUE,FALSE,FAIL,"claimed no solution, but solution exists"
+2026-05-17T10:23:39.424Z,CONF-NVT-014,no_valid_time,"[ACTION EXECUTED] Monday, 12:30 - 13:00",1,j55kfte98a97s1626cnrbbltn8,"TEST_CONF-NVT-014: Meeting with Walter, Danielle, Julia, Samuel, and Lori",Monday,2026-05-18T12:30:00+02:00,2026-05-18T13:00:00+02:00,20044,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:24:09.890Z,CONF-NVT-015,no_valid_time,"[ACTION EXECUTED] Monday, 12:00 - 12:30",1,bv2q2ufuvrc94nklikdb9btf58,"TEST_CONF-NVT-015: Meeting with Sharon, Ryan, Isabella, Anna, and Vincent",Monday,2026-05-18T12:00:00+02:00,2026-05-18T12:30:00+02:00,26584,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:24:36.026Z,CONF-NVT-016,no_valid_time,"[ACTION EXECUTED] Tuesday, 14:00 - 15:00",1,c49u8p3rk7e3r5476c45fhtkgg,TEST_CONF-NVT-016: Meeting with Diana and Rachel,Tuesday,2026-05-19T14:00:00+02:00,2026-05-19T15:00:00+02:00,22185,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:25:06.999Z,CONF-NVT-017,no_valid_time,"I couldn't find a 30-minute slot for Lawrence, Shirley, Alexander, Brian, Kathryn, Aaron, and Janice on 2026-05-18 (Monday) between 9:00 and 17:00 where everyone is available. All participants have overlapping commitments throughout the day, making it impossible to schedule the meeting with the given constraints.",0,,,,,,27153,TRUE,TRUE,FALSE,TRUE,FALSE,FAIL,"claimed no solution, but solution exists"
+2026-05-17T10:25:37.105Z,CONF-NVT-018,no_valid_time,"[ACTION EXECUTED] Tuesday, 16:00 - 16:30",1,4nuh07vgohjmk0ci7ui7c7nd4o,TEST_CONF-NVT-018: Meeting with Wayne and Janet,Tuesday,2026-05-19T16:00:00+02:00,2026-05-19T16:30:00+02:00,26321,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:26:01.631Z,CONF-NVT-019,no_valid_time,"[ACTION EXECUTED] Monday, 16:00 - 16:30",1,cp8ihtq4j7nhmaipjpeotuvja4,"TEST_CONF-NVT-019: Meeting with Peter, Judith, Keith, Evelyn",Monday,2026-05-18T16:00:00+02:00,2026-05-18T16:30:00+02:00,20653,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:26:24.080Z,CONF-NVT-020,no_valid_time,"[ACTION EXECUTED] Monday, 09:00 - 10:00",1,j4l3v42lt32v3hgvlrcv8oop9s,"TEST_CONF-NVT-020: Meeting with Amy, Emma, and John",Monday,2026-05-18T09:00:00+02:00,2026-05-18T10:00:00+02:00,18304,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:26:55.885Z,CONF-NVT-021,no_valid_time,"[ACTION EXECUTED] Thursday, 11:30 - 12:00",1,94n4675eej7r62itn1cjtgft5k,TEST_CONF-NVT-021: Meeting with Jeremy and Anna,Thursday,2026-05-21T11:30:00+02:00,2026-05-21T12:00:00+02:00,27879,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:27:25.340Z,CONF-NVT-022,no_valid_time,"[ACTION EXECUTED] Monday, 16:30 - 17:00",1,l99ib6sufqesgd17tq523gtji0,"TEST_CONF-NVT-022: Meeting with Nicholas, Robert, Gary, Doris and Beverly",Monday,2026-05-18T16:30:00+02:00,2026-05-18T17:00:00+02:00,25545,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:27:53.972Z,CONF-NVT-023,no_valid_time,"[ACTION EXECUTED] Monday, 12:00 - 12:30",1,mmattimffo251c2isdmi4ijl1c,"TEST_CONF-NVT-023: Meeting with Tyler, Kelly, Stephanie, Hannah, Joe, Diana, and Deborah",Monday,2026-05-18T12:00:00+02:00,2026-05-18T12:30:00+02:00,24753,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:28:26.130Z,CONF-NVT-024,no_valid_time,"[ACTION EXECUTED] Monday, 14:00 - 14:30",1,honsv1t72595bob582kv8uaf9k,"TEST_CONF-NVT-024: Meeting with George, Jesse, Emma, Christian, Ashley, Jose and Charles",Monday,2026-05-18T14:00:00+02:00,2026-05-18T14:30:00+02:00,28297,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:28:48.580Z,CONF-NVT-025,no_valid_time,"[ACTION EXECUTED] Monday, 16:30 - 17:00",1,mhj8lgr49nb9anlr7v2o0qdkdo,TEST_CONF-NVT-025: Meeting with Melissa and Diane,Monday,2026-05-18T16:30:00+02:00,2026-05-18T17:00:00+02:00,18428,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:29:12.371Z,CONF-NVT-026,no_valid_time,"I couldn't find a 30-minute slot for Jeffrey, Benjamin, Denise, Alexis, Shirley, and Philip on 2026-05-18 (Monday) between 9:00 and 17:00 where everyone is available. All participants have overlapping commitments throughout the day, making it impossible to schedule the meeting with the given constraints.",0,,,,,,19921,TRUE,TRUE,FALSE,TRUE,FALSE,FAIL,"claimed no solution, but solution exists"
+2026-05-17T10:29:38.891Z,CONF-NVT-027,no_valid_time,"[ACTION EXECUTED] Monday, 12:00 - 12:30",1,thpm3huv7gsukbpu5ead822gnk,"TEST_CONF-NVT-027: Meeting with Margaret, Donna and Helen",Monday,2026-05-18T12:00:00+02:00,2026-05-18T12:30:00+02:00,22960,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:30:01.757Z,CONF-NVT-028,no_valid_time,"[ACTION EXECUTED] Monday, 11:00 - 11:30",1,1klm92p79a2galset7t9138qu4,"TEST_CONF-NVT-028: Meeting with John, Frank, Randy, Larry and Beverly",Monday,2026-05-18T11:00:00+02:00,2026-05-18T11:30:00+02:00,18400,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:30:26.149Z,CONF-NVT-029,no_valid_time,"[ACTION EXECUTED] Monday, 16:00 - 16:30",1,dnhd3m7fj265d9i1ca4u68slok,"TEST_CONF-NVT-029: Meeting with Aaron, Frank, Diane, Dylan, Alexis, Mason",Monday,2026-05-18T16:00:00+02:00,2026-05-18T16:30:00+02:00,20462,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:30:50.666Z,CONF-NVT-030,no_valid_time,"[ACTION EXECUTED] Monday, 16:00 - 16:30",1,9977hgb994p47d7gqmic5smaks,TEST_CONF-NVT-030: Meeting with Jeremy and Denise,Monday,2026-05-18T16:00:00+02:00,2026-05-18T16:30:00+02:00,20565,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:31:16.561Z,CONF-NVT-031,no_valid_time,"[ACTION EXECUTED] Monday, 09:00 - 09:30",1,876ts4i2buh664fhb5bpipoug0,TEST_CONF-NVT-031: Meeting with Christian and Abigail,Monday,2026-05-18T09:00:00+02:00,2026-05-18T09:30:00+02:00,21470,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:31:37.419Z,CONF-NVT-032,no_valid_time,"[ACTION EXECUTED] Monday, 10:30 - 11:30",1,n1ge5utf0je3ki3duojl09vlv8,"TEST_CONF-NVT-032: Meeting with Keith, Christine, Cynthia",Monday,2026-05-18T10:30:00+02:00,2026-05-18T11:30:00+02:00,16873,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:32:01.974Z,CONF-NVT-033,no_valid_time,"[ACTION EXECUTED] Monday, 10:30 - 11:30",1,r06vp2b9i9t20k3eschgd3gajg,"TEST_CONF-NVT-033: Meeting with Theresa, Charles and Betty",Monday,2026-05-18T10:30:00+02:00,2026-05-18T11:30:00+02:00,20531,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:32:28.541Z,CONF-NVT-034,no_valid_time,"[ACTION EXECUTED] Wednesday, 09:00 - 10:00",1,fhn2inem64atm1git11tad7vn0,TEST_CONF-NVT-034: Meeting with Ann and Sharon,Wednesday,2026-05-20T09:00:00+02:00,2026-05-20T10:00:00+02:00,22411,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:32:54.891Z,CONF-NVT-035,no_valid_time,"[ACTION EXECUTED] Monday, 12:00 - 12:30",1,lbf4utumdm08umf7hnv7d9ogag,TEST_CONF-NVT-035: Meeting with Andrea and Abigail,Monday,2026-05-18T12:00:00+02:00,2026-05-18T12:30:00+02:00,21924,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:33:19.072Z,CONF-NVT-036,no_valid_time,"[ACTION EXECUTED] Monday, 16:00 - 16:30",1,a8bspkjtp4cibnonq0ckkrvirc,"TEST_CONF-NVT-036: Meeting with Albert, Gregory, and Benjamin",Monday,2026-05-18T16:00:00+02:00,2026-05-18T16:30:00+02:00,19962,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:33:40.600Z,CONF-NVT-037,no_valid_time,"[ACTION EXECUTED] Monday, 10:30 - 11:00",1,iao4rcg501v87l0o7btqn0lgns,TEST_CONF-NVT-037: Meeting with Ryan and Kenneth,Monday,2026-05-18T10:30:00+02:00,2026-05-18T11:00:00+02:00,17618,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:34:02.935Z,CONF-NVT-038,no_valid_time,"[ACTION EXECUTED] Monday, 10:00 - 10:30",1,bh8blhoa1mcpu0o0egduu2j348,"TEST_CONF-NVT-038: Meeting with Nicole, John and Ethan",Monday,2026-05-18T10:00:00+02:00,2026-05-18T10:30:00+02:00,18403,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:34:29.528Z,CONF-NVT-039,no_valid_time,"[ACTION EXECUTED] Monday, 11:30 - 12:00",1,h9v0agc837cqsj6ujcnmfig9hg,"TEST_CONF-NVT-039: Meeting with Jennifer, Gregory, Stephanie, Lori and Jessica",Monday,2026-05-18T11:30:00+02:00,2026-05-18T12:00:00+02:00,21995,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T10:34:59.883Z,CONF-NVT-040,no_valid_time,"[ACTION EXECUTED] Tuesday, 09:00 - 09:30",1,ceck46f4457jlc00l7bkhjovsk,TEST_CONF-NVT-040: Meeting with Joe and Walter,Tuesday,2026-05-19T09:00:00+02:00,2026-05-19T09:30:00+02:00,26487,FALSE,TRUE,FALSE,FALSE,TRUE,PASS,(golden_plan mislabeled - solution exists; AI correctly scheduled)
+2026-05-17T13:22:07.165Z,CONF-EXC-001,existing_event_conflict,"There is a conflict with ""Quantum computing guest talk"" at the requested time. I cannot create the event. Would you like to schedule 'Deep cleaning the kitchen' at one of these times instead:
+* 2026-05-20, 14:19 - 15:34
+* 2026-05-20, 10:00 - 11:15",0,,,,,,26715,TRUE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:23:10.847Z,CONF-EXC-002,existing_event_conflict,Agent stopped due to max iterations.,0,,,,,,57199,FALSE,FALSE,FALSE,FALSE,FALSE,FAIL,did not acknowledge slot was taken; no alternatives proposed
+2026-05-17T13:23:59.816Z,CONF-EXC-003,existing_event_conflict,"The requested time slot for 'Brainstorming with Luke and Patrick' (2026-05-20, 02:36 - 03:06) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 09:30
+* 2026-05-21, 10:00 - 10:30
+* 2026-05-21, 11:00 - 11:30",0,,,,,,42923,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:24:36.137Z,CONF-EXC-004,existing_event_conflict,"The requested time slot for 'Sum 41 concert' (2026-05-20, 21:05 - 23:05) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 11:00
+* 2026-05-21, 12:00 - 14:00",0,,,,,,29540,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:24:57.132Z,CONF-EXC-005,existing_event_conflict,"The requested time slot for 'Backstage tour VIP pass' (2026-05-20, 09:44 - 11:44) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 11:00
+* 2026-05-21, 12:00 - 14:00",0,,,,,,14439,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:25:23.273Z,CONF-EXC-006,existing_event_conflict,"The requested time slot for 'Planting flowers in the garden' (2026-05-20, 17:35 - 19:35) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 11:00
+* 2026-05-21, 12:00 - 14:00
+* 2026-05-21, 15:00 - 17:00",0,,,,,,20572,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:25:50.957Z,CONF-EXC-007,existing_event_conflict,"The requested time slot for 'Jogging at the park' (2026-05-20, 06:33 - 07:33) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 10:00
+* 2026-05-21, 10:00 - 11:00
+* 2026-05-21, 11:00 - 12:00",0,,,,,,21013,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:26:09.753Z,CONF-EXC-008,existing_event_conflict,"The requested time slot for 'Marketing standup on Zoom' (2026-05-20, 06:11 - 06:41) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 09:30
+* 2026-05-21, 10:00 - 10:30
+* 2026-05-21, 11:00 - 11:30",0,,,,,,13252,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:26:30.384Z,CONF-EXC-009,existing_event_conflict,"The requested time slot for 'Silent disco party' (2026-05-20, 08:59 - 10:29) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 10:30
+* 2026-05-21, 11:00 - 12:30
+* 2026-05-21, 13:00 - 14:30",0,,,,,,14617,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:26:54.794Z,CONF-EXC-010,existing_event_conflict,"The requested time slot for 'Updating website content' (2026-05-20, 01:06 - 01:51) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 09:45
+* 2026-05-21, 10:00 - 10:45
+* 2026-05-21, 11:00 - 11:45",0,,,,,,17924,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:27:14.921Z,CONF-EXC-011,existing_event_conflict,"The requested time slot for 'Calculus lecture with Prof. Adams' (2026-05-20, 13:01 - 13:46) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 09:45
+* 2026-05-21, 10:00 - 10:45
+* 2026-05-21, 11:00 - 11:45",0,,,,,,15010,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:27:34.501Z,CONF-EXC-012,existing_event_conflict,"The requested time slot for 'Brainstorming with Luke and Patrick' (2026-05-20, 19:37 - 21:37) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 11:00
+* 2026-05-21, 12:00 - 14:00
+* 2026-05-21, 15:00 - 17:00",0,,,,,,14525,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:27:58.376Z,CONF-EXC-013,existing_event_conflict,"The requested time slot for 'Updating website content' (2026-05-20, 00:26 - 00:56) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 09:30
+* 2026-05-21, 10:00 - 10:30
+* 2026-05-21, 11:00 - 11:30",0,,,,,,17793,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:28:18.085Z,CONF-EXC-014,existing_event_conflict,"The requested time slot for 'Preparing PTO handover' (2026-05-20, 20:22 - 20:37) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 09:15
+* 2026-05-21, 10:00 - 10:15
+* 2026-05-21, 11:00 - 11:15",0,,,,,,13613,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:28:43.673Z,CONF-EXC-015,existing_event_conflict,"The requested time slot for 'Trying new VR headset' (2026-05-20, 21:13 - 21:28) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 09:15
+* 2026-05-21, 10:00 - 10:15
+* 2026-05-21, 11:00 - 11:15",0,,,,,,19555,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:29:03.242Z,CONF-EXC-016,existing_event_conflict,"The requested time slot for 'Chemistry experiment' (2026-05-20, 08:38 - 09:53) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 10:15
+* 2026-05-21, 10:30 - 11:45
+* 2026-05-21, 12:00 - 13:15",0,,,,,,13139,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:29:23.951Z,CONF-EXC-017,existing_event_conflict,"The requested time slot for 'Marketing standup on Zoom' (2026-05-20, 10:26 - 12:26) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 11:00
+* 2026-05-21, 11:00 - 13:00
+* 2026-05-21, 13:00 - 15:00",0,,,,,,14666,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:29:43.224Z,CONF-EXC-018,existing_event_conflict,"The requested time slot for 'The Killers concert' (2026-05-20, 08:29 - 09:14) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 09:45
+* 2026-05-21, 10:00 - 10:45
+* 2026-05-21, 11:00 - 11:45",0,,,,,,13826,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:30:00.701Z,CONF-EXC-019,existing_event_conflict,"The requested time slot for 'Marketing standup on Zoom' (2026-05-20, 16:29 - 16:44) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 09:15
+* 2026-05-21, 10:00 - 10:15
+* 2026-05-21, 11:00 - 11:15",0,,,,,,12895,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:30:20.887Z,CONF-EXC-020,existing_event_conflict,"The requested time slot for 'Calling Mom and Dad' (2026-05-20, 09:18 - 10:48) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 10:30
+* 2026-05-21, 10:30 - 12:00
+* 2026-05-21, 12:30 - 14:00",0,,,,,,14632,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:30:45.118Z,CONF-EXC-021,existing_event_conflict,"The requested time slot for 'Group study for physics test' (2026-05-20, 14:29 - 14:59) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 09:30
+* 2026-05-21, 10:00 - 10:30
+* 2026-05-21, 11:00 - 11:30",0,,,,,,17948,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:31:02.041Z,CONF-EXC-022,existing_event_conflict,"The requested time slot for 'Replying to emails' (2026-05-20, 12:34 - 14:04) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 10:30
+* 2026-05-21, 10:30 - 12:00
+* 2026-05-21, 12:00 - 13:30",0,,,,,,12340,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:31:26.621Z,CONF-EXC-023,existing_event_conflict,"The requested time slot for 'Preparing PTO handover' (2026-05-20, 03:04 - 04:04) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 10:00
+* 2026-05-21, 10:00 - 11:00
+* 2026-05-21, 11:00 - 12:00",0,,,,,,19053,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:31:49.462Z,CONF-EXC-024,existing_event_conflict,"The requested time slot for 'Quantum computing guest talk' (2026-05-20, 02:10 - 02:55) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 09:45
+* 2026-05-21, 10:00 - 10:45
+* 2026-05-21, 11:00 - 11:45",0,,,,,,17330,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:32:12.640Z,CONF-EXC-025,existing_event_conflict,"The requested time slot for 'Study session with Sarah and Mike' (2026-05-20, 01:13 - 01:43) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 09:30
+* 2026-05-21, 10:00 - 10:30
+* 2026-05-21, 11:00 - 11:30",0,,,,,,17180,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:32:35.543Z,CONF-EXC-026,existing_event_conflict,"The requested time slot for 'Jam session' (2026-05-20, 13:53 - 15:08) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 10:15
+* 2026-05-21, 10:30 - 11:45
+* 2026-05-21, 12:00 - 13:15",0,,,,,,17913,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:33:02.771Z,CONF-EXC-027,existing_event_conflict,"The requested time slot for 'Brainstorming with Luke and Patrick' (2026-05-20, 21:11 - 22:26) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 10:15
+* 2026-05-21, 10:30 - 11:45
+* 2026-05-21, 12:00 - 13:15",0,,,,,,22236,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:33:28.650Z,CONF-EXC-028,existing_event_conflict,"The requested time slot for 'Researching in library' (2026-05-20, 14:51 - 15:21) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 09:30
+* 2026-05-21, 10:00 - 10:30
+* 2026-05-21, 11:00 - 11:30",0,,,,,,20326,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:33:52.341Z,CONF-EXC-029,existing_event_conflict,"The requested time slot for 'Structural Dynamics lecture' (2026-05-20, 05:19 - 07:04) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 10:45
+* 2026-05-21, 11:00 - 12:45
+* 2026-05-21, 13:00 - 14:45",0,,,,,,17633,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:34:17.525Z,CONF-EXC-030,existing_event_conflict,"The requested time slot for 'Chemistry experiment' (2026-05-20, 12:20 - 14:05) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 10:45
+* 2026-05-21, 10:45 - 12:30
+* 2026-05-21, 12:30 - 14:15",0,,,,,,20138,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:34:37.065Z,CONF-EXC-031,existing_event_conflict,"The requested time slot for 'Group study for physics test' (2026-05-20, 14:15 - 15:15) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 10:00
+* 2026-05-21, 10:00 - 11:00
+* 2026-05-21, 11:00 - 12:00",0,,,,,,14509,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:35:07.354Z,CONF-EXC-032,existing_event_conflict,"The requested time slot for 'Fireworks' (2026-05-20, 01:27 - 02:57) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 10:30
+* 2026-05-21, 10:30 - 12:00
+* 2026-05-21, 12:00 - 13:30",0,,,,,,24730,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:35:29.840Z,CONF-EXC-033,existing_event_conflict,"The requested time slot for 'Office hours with Prof. Chen' (2026-05-20, 04:55 - 06:55) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 11:00
+* 2026-05-21, 11:00 - 13:00
+* 2026-05-21, 13:00 - 15:00",0,,,,,,16914,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:35:48.870Z,CONF-EXC-034,existing_event_conflict,"The requested time slot for 'Deep cleaning the kitchen' (2026-05-20, 04:37 - 05:22) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 09:45
+* 2026-05-21, 10:00 - 10:45
+* 2026-05-21, 11:00 - 11:45",0,,,,,,14313,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:36:14.819Z,CONF-EXC-035,existing_event_conflict,"The requested time slot for 'Structural Dynamics lecture' (2026-05-20, 05:15 - 07:00) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 10:45
+* 2026-05-21, 11:00 - 12:45
+* 2026-05-21, 13:00 - 14:45",0,,,,,,20331,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:36:37.646Z,CONF-EXC-036,existing_event_conflict,"The requested time slot for 'AI keynote' (2026-05-20, 14:46 - 16:16) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 10:30
+* 2026-05-21, 10:30 - 12:00
+* 2026-05-21, 12:00 - 13:30",0,,,,,,17593,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:37:10.660Z,CONF-EXC-037,existing_event_conflict,"The requested time slot for 'Web3 panel discussion' (2026-05-20, 17:53 - 18:08) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 09:15
+* 2026-05-21, 09:30 - 09:45
+* 2026-05-21, 10:00 - 10:15",0,,,,,,28436,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:37:28.503Z,CONF-EXC-038,existing_event_conflict,"The requested time slot for 'Walking with Bella' (2026-05-20, 18:48 - 19:18) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 09:30
+* 2026-05-21, 10:00 - 10:30
+* 2026-05-21, 11:00 - 11:30",0,,,,,,13209,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:37:47.978Z,CONF-EXC-039,existing_event_conflict,"The requested time slot for 'Cooking pasta' (2026-05-20, 19:18 - 20:03) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 09:45
+* 2026-05-21, 10:00 - 10:45
+* 2026-05-21, 11:00 - 11:45",0,,,,,,14909,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:38:10.928Z,CONF-EXC-040,existing_event_conflict,"The requested time slot for 'Async Python talk' (2026-05-20, 03:30 - 04:45) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 10:15
+* 2026-05-21, 10:30 - 11:45
+* 2026-05-21, 12:00 - 13:15",0,,,,,,17888,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:38:30.639Z,CONF-EXC-041,existing_event_conflict,"The requested time slot for 'Chemistry experiment' (2026-05-20, 16:05 - 17:50) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 10:45
+* 2026-05-21, 11:00 - 12:45
+* 2026-05-21, 13:00 - 14:45",0,,,,,,14157,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:38:55.488Z,CONF-EXC-042,existing_event_conflict,"The requested time slot for 'Networking with engineers' (2026-05-20, 13:25 - 14:40) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 10:15
+* 2026-05-21, 10:30 - 11:45
+* 2026-05-21, 12:00 - 13:15",0,,,,,,20289,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:39:12.986Z,CONF-EXC-043,existing_event_conflict,"The requested time slot for 'Chess with Daniel' (2026-05-20, 14:54 - 16:09) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 10:15
+* 2026-05-21, 10:30 - 11:45
+* 2026-05-21, 12:00 - 13:15",0,,,,,,12526,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:39:38.698Z,CONF-EXC-044,existing_event_conflict,"The requested time slot for 'Analyzing product performance' (2026-05-20, 13:12 - 14:57) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 10:45
+* 2026-05-21, 11:00 - 12:45
+* 2026-05-21, 13:00 - 14:45",0,,,,,,20637,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:40:01.335Z,CONF-EXC-045,existing_event_conflict,"The requested time slot for 'Korean BBQ food trucks' (2026-05-20, 00:24 - 01:24) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 10:00
+* 2026-05-21, 10:00 - 11:00
+* 2026-05-21, 11:00 - 12:00",0,,,,,,17548,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:40:20.367Z,CONF-EXC-046,existing_event_conflict,"The requested time slot for 'Planting flowers in the garden' (2026-05-20, 20:02 - 20:17) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 09:15
+* 2026-05-21, 09:30 - 09:45
+* 2026-05-21, 10:00 - 10:15",0,,,,,,14436,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:40:43.271Z,CONF-EXC-047,existing_event_conflict,"The requested time slot for 'Shopping at farmer\'s market' (2026-05-20, 02:12 - 02:27) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 09:15
+* 2026-05-21, 09:30 - 09:45
+* 2026-05-21, 10:00 - 10:15",0,,,,,,18333,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:41:02.655Z,CONF-EXC-048,existing_event_conflict,"The requested time slot for 'Drone building hackathon' (2026-05-20, 06:49 - 07:34) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 09:45
+* 2026-05-21, 10:00 - 10:45
+* 2026-05-21, 11:00 - 11:45",0,,,,,,14109,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:41:26.993Z,CONF-EXC-049,existing_event_conflict,"The requested time slot for 'Calculus lecture with Prof. Adams' (2026-05-20, 05:20 - 05:35) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 09:15
+* 2026-05-21, 09:30 - 09:45
+* 2026-05-21, 10:00 - 10:15",0,,,,,,19169,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met
+2026-05-17T13:41:52.292Z,CONF-EXC-050,existing_event_conflict,"The requested time slot for 'Live coding on Rust' (2026-05-20, 08:07 - 09:52) is not available. Would you like to schedule it at one of these times instead:
+* 2026-05-21, 09:00 - 10:45
+* 2026-05-21, 11:00 - 12:45
+* 2026-05-21, 13:00 - 14:45",0,,,,,,19657,FALSE,TRUE,TRUE,FALSE,FALSE,PASS,all conditions met

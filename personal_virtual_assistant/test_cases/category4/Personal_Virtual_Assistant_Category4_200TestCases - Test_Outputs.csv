@@ -1,0 +1,1088 @@
+timestamp,test_id,subcategory,channel,calendar_event_id,calendar_event_title,calendar_event_description,calendar_event_start_iso,calendar_event_end_iso,calendar_event_day,draft_id,draft_subject,draft_to,draft_message,ai_output,golden_plan,attendees,new_event_count,new_draft_count,response_time_ms,status,actions_pass,metadata_pass,recipient_pass,time_pass,time_diff_minutes,strict_pass,lenient_pass,notes,reminder_id,reminder_minutes_before,reminder_pass,original_start_iso,original_end_iso,confirmation_requested,rescheduled_pass,proposed_alt_1,proposed_alt_2,cap_pass,tri_pass
+2026-05-18T09:21:13.918Z,MS-SDA-001,schedule_plus_email,Telegram,m78jfvjls1modhiv2o53jf6kpo,"TEST_MS-SDA-001: Meeting with Susan, Sandra","Participants: Susan, Sandra
+Duration: 30 minutes
+Test ID: MS-SDA-001",2026-05-18T13:00:00+02:00,2026-05-18T13:30:00+02:00,Monday,r-513381732004918784,Subject: TEST_MS-SDA-001: Meeting agenda confirmation,"To: susan@example.com, sandra@example.com","Hi Susan and Sandra,
+
+This email confirms our sync meeting scheduled for 2026-05-18 at 13:00 - 13:30 (Sarajevo time).
+
+Attendees: Susan, Sandra
+
+Agenda:
+- Review recent progress
+- Discuss upcoming tasks
+- Address any blockers
+","[ACTION EXECUTED] Monday, 13:00 - 13:30","{""golden_plan"": ""Here is the proposed time: Monday, 15:00 - 15:30""}","Susan, Sandra",1,1,78335,success,Y,Y,Y,N,-120,N,Y,time: actual Monday 13:00 vs golden Monday 15:00,,,,,,,,,,,
+2026-05-19T14:11:08.702Z,MS-SDA-002,schedule_plus_email,Telegram,hveifecass17f3c158sg3vg8p0,"TEST_MS-SDA-002: Meeting with Albert, Laura, Elijah, Kenneth, Adam, Heather","Participants: Albert, Laura, Elijah, Kenneth, Adam, Heather. Duration: 30 minutes. Test ID: MS-SDA-002.",2026-05-25T09:30:00+02:00,2026-05-25T10:00:00+02:00,Monday,r6894007414762234380,Subject: TEST_MS-SDA-002: Meeting agenda confirmation,"To: albert@example.com, laura@example.com, elijah@example.com,
+ kenneth@example.com, adam@example.com, heather@example.com","Hi everyone,
+
+This email confirms our sync meeting scheduled for Monday, May 25, 2026, from 09:30 to 10:00 (Sarajevo time).
+
+Attendees: Albert, Laura, Elijah, Kenneth, Adam, Heather.
+
+Agenda:
+*   Review project progress
+*   Discuss next steps
+*   Open discussion/Q&A
+
+See you then,
+[Your Name/Assistant]
+","[ACTION EXECUTED] Monday, 09:30 - 10:00","{""golden_plan"": ""Here is the proposed time: Monday, 9:30 - 10:00""}","Albert, Laura, Elijah, Kenneth, Adam, Heather",1,1,187491,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T14:17:25.507Z,MS-SDA-004,schedule_plus_email,Chat,egukrddnuv9t9qn5mt03ii7l88,"TEST_MS-SDA-004: Meeting with Abigail, Charlotte","Participants: Abigail, Charlotte.
+Duration: 30 minutes.
+Test ID: MS-SDA-004.",2026-05-25T09:30:00+02:00,2026-05-25T10:00:00+02:00,Monday,r3873697322192565129,Subject: TEST_MS-SDA-004: Meeting agenda confirmation,"To: abigail@example.com, charlotte@example.com","Hi Abigail and Charlotte, 
+
+This email confirms our meeting scheduled for Monday, May 25, 2026, from 09:30 to 10:00.
+
+Agenda:
+* Review recent progress
+* Discuss upcoming tasks
+* Q&A
+","[ACTION EXECUTED] 2026-05-25 (Monday), 09:30 - 10:00","{""golden_plan"": ""Here is the proposed time: Wednesday, 11:30 - 12:00""}","Abigail, Charlotte",1,1,181686,success,,,,,,,,,,,,,,,,,,,
+2026-05-18T09:27:16.285Z,MS-SDA-005,schedule_plus_email,Telegram,53bpo2c0ivdjeimmpt0cvuo0n8,"TEST_MS-SDA-005: Meeting with Kyle, Kathleen, Ashley, Christian, Matthew","Participants: Kyle, Kathleen, Ashley, Christian, Matthew.
+Duration: 30 minutes.
+Test ID: MS-SDA-005.",2026-05-18T13:00:00+02:00,2026-05-18T13:30:00+02:00,Monday,r-5125832797060715576,Subject: TEST_MS-SDA-005: Meeting agenda confirmation,"To: kyle@example.com, kathleen@example.com, ashley@example.com,
+ christian@example.com, matthew@example.com","Hi team,
+
+This email confirms our meeting on 2026-05-18 (Monday) from 13:00 to 13:30.
+Attendees: Kyle, Kathleen, Ashley, Christian, Matthew.
+
+Agenda:
+- Quick sync on project progress
+- Review action items
+- Next steps
+
+Looking forward to it!
+","[ACTION EXECUTED] Monday, 13:00 - 13:30","{""golden_plan"": ""Here is the proposed time: Monday, 13:00 - 13:30""}","Kyle, Kathleen, Ashley, Christian, Matthew",1,1,93089,success,Y,Y,Y,Y,0,Y,Y,,,,,,,,,,,,
+2026-05-19T14:20:31.171Z,MS-SDA-006,schedule_plus_email,Telegram,vcr4cd7sr4qak6dnnr054f71q4,"TEST_MS-SDA-006: Meeting with Noah, Teresa, Bradley, Philip, Joyce, Ryan, Aaron","Participants: Noah, Teresa, Bradley, Philip, Joyce, Ryan, Aaron. This is a 30-minute meeting. Test ID: MS-SDA-006.",2026-05-25T09:30:00+02:00,2026-05-25T10:00:00+02:00,Monday,r7343802140762152373,Subject: TEST_MS-SDA-006: Meeting agenda confirmation,"To: noah@example.com, teresa@example.com, bradley@example.com,
+ philip@example.com, joyce@example.com, ryan@example.com, aaron@example.com","Hi everyone,
+
+This email confirms our meeting on Monday, May 25, 2026, from 09:30 AM to 10:00 AM.
+
+Attendees: Noah, Teresa, Bradley, Philip, Joyce, Ryan, Aaron
+
+Agenda:
+*   Quick updates from everyone
+*   Review ongoing tasks
+*   Next steps and action items
+","[ACTION EXECUTED] Monday, 09:30 - 10:00","{""golden_plan"": ""Here is the proposed time: Monday, 13:00 - 13:30""}","Noah, Teresa, Bradley, Philip, Joyce, Ryan, Aaron",1,1,178171,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T14:23:37.046Z,MS-SDA-007,schedule_plus_email,Telegram,iibmppoj63l953inq04griuols,"TEST_MS-SDA-007: Meeting with Mary, Alexis","Participants: Mary, Alexis
+Duration: 30 minutes
+Test ID: MS-SDA-007",2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Monday,r-2681091769534913040,Subject: TEST_MS-SDA-007: Meeting agenda confirmation,"To: mary@example.com, alexis@example.com","Hi Mary and Alexis,
+
+This email confirms our sync meeting scheduled for 2026-05-25 (Monday) from 10:00 to 10:30.
+
+Attendees: Mary, Alexis
+
+Agenda:
+- Review recent progress
+- Discuss upcoming tasks
+- Address any blockers
+","[ACTION EXECUTED] Monday, 10:00 - 10:30","{""golden_plan"": ""Here is the proposed time: Monday, 10:00 - 10:30""}","Mary, Alexis",1,1,178677,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T14:26:44.866Z,MS-SDA-008,schedule_plus_email,Telegram,71748crgh3f6nd64euiihvmgco,"TEST_MS-SDA-008: Meeting with Nicholas, Elizabeth, Sandra","Participants: Nicholas, Elizabeth, Sandra. This is a 30-minute meeting scheduled as part of test_id MS-SDA-008.",2026-05-25T10:30:00+02:00,2026-05-25T11:00:00+02:00,Monday,r-8957278472196918292,Subject: TEST_MS-SDA-008: Meeting agenda confirmation,"To: nicholas@example.com, elizabeth@example.com, sandra@example.com","Hi Nicholas, Elizabeth, and Sandra,
+
+This email confirms our meeting on Monday, 2026-05-25, from 10:30 to 11:00.
+
+Agenda:
+- Review project updates
+- Discuss next steps
+- Q&A session
+
+Looking forward to it!
+","[ACTION EXECUTED] Monday, 10:30 - 11:00","{""golden_plan"": ""Here is the proposed time: Monday, 14:30 - 15:00""}","Nicholas, Elizabeth, Sandra",1,1,179345,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T14:29:50.065Z,MS-SDA-009,schedule_plus_email,Telegram,t6g00u7nuc8qrrunic5o051esc,"TEST_MS-SDA-009: Meeting with Albert, Rebecca, Ronald, Pamela, Noah, Diana, Jacqueline","Participants: Albert, Rebecca, Ronald, Pamela, Noah, Diana, Jacqueline
+Duration: 30 minutes
+Test ID: MS-SDA-009",2026-05-25T09:00:00+02:00,2026-05-25T09:30:00+02:00,Monday,r-6326681129188691734,Subject: TEST_MS-SDA-009: Meeting agenda confirmation,"To: albert@example.com, rebecca@example.com, ronald@example.com,
+ pamela@example.com, noah@example.com, diana@example.com,
+ jacqueline@example.com","Hi everyone,
+
+This email confirms our meeting on Monday, May 25, 2026, from 09:00 to 09:30.
+
+Attendees: Albert, Rebecca, Ronald, Pamela, Noah, Diana, Jacqueline
+
+Agenda:
+- Review project status
+- Discuss next steps
+- Q&A
+","[ACTION EXECUTED] Monday, 09:00 - 09:30","{""golden_plan"": ""Here is the proposed time: Monday, 15:30 - 16:00""}","Albert, Rebecca, Ronald, Pamela, Noah, Diana, Jacqueline",1,1,178206,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T14:35:52.767Z,MS-SDA-011,schedule_plus_email,Chat,,,,,,,,,,,,"{""golden_plan"": ""Here is the proposed time: Monday, 9:00 - 9:30""}","Benjamin, Hannah, Brenda",0,0,168707,failed,,,,,,,,,,,,,,,,,,,
+2026-05-19T14:39:04.220Z,MS-SDA-012,schedule_plus_email,Chat,69lnr713tglf2pvl4htn4i9esc,"TEST_MS-SDA-012: Meeting with Anthony, Zachary, Russell, Gary, Helen","Participants: Anthony, Zachary, Russell, Gary, Helen.
+Duration: 30 minutes.
+Test ID: MS-SDA-012.",2026-05-25T11:00:00+02:00,2026-05-25T11:30:00+02:00,Monday,r7435140303379922626,Subject: TEST_MS-SDA-012: Meeting agenda confirmation,"To: anthony@example.com, zachary@example.com, russell@example.com,
+ gary@example.com, helen@example.com","Hi all,
+
+This email confirms our meeting on Monday, May 25, 2026, from 11:00 to 11:30. Attendees: Anthony, Zachary, Russell, Gary, Helen.
+
+Agenda:
+- Review project status
+- Discuss next steps
+- Q&A
+","[ACTION EXECUTED] Monday, 11:00 - 11:30","{""golden_plan"": ""Here is the proposed time: Monday, 16:00 - 16:30""}","Anthony, Zachary, Russell, Gary, Helen",1,1,184054,success,,,,,,,,,,,,,,,,,,,
+2026-05-18T10:26:19.797Z,MS-SDA-013,schedule_plus_email,Chat,1fpad0t47fkg80ip60nrmrrcvc,"TEST_MS-SDA-013: Meeting with Jean, Amanda","Meeting with Jean and Amanda.
+Duration: 1 hour. Test ID: MS-SDA-013.",2026-05-18T14:00:00+02:00,2026-05-18T15:00:00+02:00,Monday,r-993229077486521124,Subject: TEST_MS-SDA-013: Meeting agenda confirmation,"To: jean@example.com, amanda@example.com","Hi Jean and Amanda,
+
+This email confirms our meeting on 2026-05-18 from 14:00 to 15:00. Below is a brief agenda:
+
+*   Review recent project updates
+*   Discuss upcoming tasks
+*   Action items and next steps
+
+See you then,
+[Your Name]
+","[ACTION EXECUTED] 2026-05-18, 14:00 - 15:00","{""golden_plan"": ""Here is the proposed time: Monday, 14:00 - 15:00""}","Jean, Amanda",1,1,79506,success,Y,Y,Y,Y,0,Y,Y,,,,,,,,,,,,
+2026-05-19T14:42:34.474Z,MS-SDA-014,schedule_plus_email,Chat,ai3sl65it8l6v3a95olje309ks,"TEST_MS-SDA-014: Meeting with Jean, Jennifer","Meeting for Jean and Jennifer.
+Duration: 30 minutes.
+Test ID: MS-SDA-014.",2026-05-25T09:00:00+02:00,2026-05-25T09:30:00+02:00,Monday,r-7828202004596493899,Subject: TEST_MS-SDA-014: Meeting agenda confirmation,"To: jean@example.com, jennifer@example.com","Hi Jean and Jennifer,
+
+Confirming our meeting scheduled for Monday, May 25, 2026, from 09:00 - 09:30.
+
+Attendees: Jean, Jennifer
+
+Agenda:
+- Quick sync on current tasks
+- Discuss upcoming priorities
+- Q&A
+
+Best regards,
+","[ACTION EXECUTED] Monday, 09:00 - 09:30","{""golden_plan"": ""Here is the proposed time: Thursday, 9:00 - 9:30""}","Jean, Jennifer",1,1,202991,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T14:45:43.369Z,MS-SDA-015,schedule_plus_email,Telegram,n63umq21krpehimp04bt5s1vkg,"TEST_MS-SDA-015: Meeting with Jesse, Robert","Participants: Jesse, Robert
+Duration: 1 hour
+Test ID: MS-SDA-015",2026-05-25T10:00:00+02:00,2026-05-25T11:00:00+02:00,Monday,r6371510157718655551,Subject: TEST_MS-SDA-015: Meeting agenda confirmation,"To: jesse@example.com, robert@example.com","Hi Jesse and Robert,
+
+This email confirms our meeting on Monday, May 25, 2026, from 10:00 AM to 11:00 AM.
+
+Agenda:
+*   Review recent progress
+*   Discuss upcoming tasks
+*   Address any blockers
+
+Looking forward to it!
+","[ACTION EXECUTED] Monday, 10:00 - 11:00","{""golden_plan"": ""Here is the proposed time: Monday, 16:00 - 17:00""}","Jesse, Robert",1,1,180881,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T14:48:54.422Z,MS-SDA-016,schedule_plus_email,Telegram,moij99nh8a7cdoale6pom8vj7g,"TEST_MS-SDA-016: Meeting with Donna, Albert, Jeremy, Grace, Matthew, Jean, Dylan","Participants: Donna, Albert, Jeremy, Grace, Matthew, Jean, Dylan. This is a 30-minute meeting for test_id MS-SDA-016.",2026-05-25T12:30:00+02:00,2026-05-25T13:00:00+02:00,Monday,r-1274589649551848278,Subject: TEST_MS-SDA-016: Meeting agenda confirmation,"To: donna@example.com, albert@example.com, jeremy@example.com,
+ grace@example.com, matthew@example.com, jean@example.com,
+ dylan@example.com","Hi team,
+
+This email confirms our meeting on Monday, May 25, 2026, from 12:30 PM to 1:00 PM.
+
+Attendees: Donna, Albert, Jeremy, Grace, Matthew, Jean, Dylan
+
+Agenda:
+*   Quick sync on current projects
+*   Review of action items
+*   Upcoming priorities
+
+Looking forward to our discussion.
+","[ACTION EXECUTED] Monday, 12:30 - 13:00","{""golden_plan"": ""Here is the proposed time: Monday, 10:30 - 11:00""}","Donna, Albert, Jeremy, Grace, Matthew, Jean, Dylan",1,1,183180,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T14:52:12.215Z,MS-SDA-017,schedule_plus_email,Chat,l14rfbeggsu5djqbag5ae270p0,"TEST_MS-SDA-017: Meeting with Jesse, Alan, Elijah, Amy","Participants: Jesse, Alan, Elijah, Amy.
+This is a 30-minute sync meeting for test_id MS-SDA-017.",2026-05-25T12:00:00+02:00,2026-05-25T12:30:00+02:00,Monday,r-4901510494007411617,Subject: TEST_MS-SDA-017: Meeting agenda confirmation,"To: jesse@example.com, alan@example.com, elijah@example.com,
+ amy@example.com","Hi everyone,
+
+Confirming our meeting on Monday, May 25, 2026, from 12:00 to 12:30.
+
+Attendees: Jesse, Alan, Elijah, Amy
+
+Agenda:
+* Quick project sync
+* Next steps discussion
+* Action items review
+","[ACTION EXECUTED] Monday, 12:00 - 12:30","{""golden_plan"": ""Here is the proposed time: Monday, 13:30 - 14:00""}","Jesse, Alan, Elijah, Amy",1,1,190427,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T15:01:55.665Z,MS-SDA-020,schedule_plus_email,Telegram,1g7a031amvoct421k96et6j534,"TEST_MS-SDA-020: Meeting with Joan, Nicole","Participants: Joan, Nicole.
+Duration: 30 minutes.
+Test ID: MS-SDA-020.",2026-05-25T09:00:00+02:00,2026-05-25T09:30:00+02:00,Monday,r-1859413534998995950,Subject: TEST_MS-SDA-020: Meeting agenda confirmation,"To: joan@example.com, nicole@example.com","Hi Joan and Nicole,
+
+Confirming our meeting on Monday, May 25, 2026, from 09:00 to 09:30.
+
+Agenda:
+*   Review project updates
+*   Discuss next steps
+*   Q&A session
+","[ACTION EXECUTED] Monday, 2026-05-25, 09:00 - 09:30","{""golden_plan"": ""Here is the proposed time: Thursday, 9:00 - 9:30""}","Joan, Nicole",1,1,189065,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T15:05:11.543Z,MS-SDA-022,schedule_plus_email,Telegram,459ceatmscuiqi52e1petngnmk,"TEST_MS-SDA-022: Meeting with John, Jennifer","This is a 30-minute meeting for John and Jennifer.
+Participants: John, Jennifer.
+Test ID: MS-SDA-022.",2026-05-25T11:00:00+02:00,2026-05-25T11:30:00+02:00,Monday,r5658597417943672201,Subject: TEST_MS-SDA-022: Meeting agenda confirmation,"To: john@example.com, jennifer@example.com","Hi John and Jennifer,
+
+This email confirms our meeting on Monday, May 25, 2026, from 11:00 AM to 11:30 AM.
+
+Agenda:
+* Review recent progress
+* Discuss upcoming tasks
+* Q&A
+
+Looking forward to it!
+","[ACTION EXECUTED] Monday, 11:00 - 11:30","{""golden_plan"": ""Here is the proposed time: Monday, 13:00 - 13:30""}","John, Jennifer",1,1,188838,success,,,,,,,,,,,,,,,,,,,
+2026-05-18T10:41:23.744Z,MS-SDA-023,schedule_plus_email,Chat,2lupaf8ljbgug5or88fuceg9ps,"TEST_MS-SDA-023: Meeting with Robert, Frances","Participants: Robert, Frances
+Duration: 1 hour
+Test ID: MS-SDA-023",2026-05-18T11:30:00+02:00,2026-05-18T12:30:00+02:00,Monday,r-1560090942008176686,Subject: TEST_MS-SDA-023: Meeting agenda confirmation,"To: robert@example.com, frances@example.com","Hi Robert and Frances,
+
+This email confirms our meeting scheduled for Monday, May 18, 2026, from 11:30 to 12:30.
+
+Attendees: Robert, Frances
+
+Agenda:
+* Project status update
+* Next steps
+* Open discussion
+","[ACTION EXECUTED] Monday, 11:30 - 12:30","{""golden_plan"": ""Here is the proposed time: Monday, 11:30 - 12:30""}","Robert, Frances",1,1,83442,success,Y,Y,Y,Y,0,Y,Y,,,,,,,,,,,,
+2026-05-19T15:08:29.454Z,MS-SDA-024,schedule_plus_email,Chat,fmoiakjphei1o98mesbtp2o4k0,"TEST_MS-SDA-024: Meeting with Larry, Kenneth","Meeting with Larry and Kenneth.
+This is a 30-minute sync meeting for test_id MS-SDA-024.",2026-05-25T12:00:00+02:00,2026-05-25T12:30:00+02:00,Monday,r6292580616917222139,Subject: TEST_MS-SDA-024: Meeting agenda confirmation,"To: larry@example.com, kenneth@example.com","Hi Larry and Kenneth,
+
+This email confirms our meeting on 2026-05-25 from 12:00 to 12:30. 
+
+Agenda:
+* Quick sync on ongoing tasks
+* Discuss any roadblocks
+* Plan next steps
+
+Looking forward to it!
+
+Best,
+[Your Name]
+","[ACTION EXECUTED] Monday, 12:00 - 12:30","{""golden_plan"": ""Here is the proposed time: Wednesday, 11:00 - 11:30""}","Larry, Kenneth",1,1,190154,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T15:11:52.812Z,MS-SDA-025,schedule_plus_email,Telegram,s21gso00chcq2q1fbr4adq651o,"TEST_MS-SDA-025: Meeting with Natalie, William","Meeting with Natalie and William.
+Duration: 1 hour.
+Test ID: MS-SDA-025.",2026-05-20T09:00:00+02:00,2026-05-20T10:00:00+02:00,Wednesday,r-6760028046241679920,Subject: TEST_MS-SDA-025: Meeting agenda confirmation,"To: natalie@example.com, william@example.com","Hi Natalie and William,
+
+This email confirms our meeting on Wednesday, May 20, 2026, from 9:00 AM to 10:00 AM.
+
+Attendees:
+- Natalie
+- William
+
+Agenda:
+- Review project status
+- Discuss upcoming milestones
+- Q&A
+
+Looking forward to it!
+
+Best regards,
+[Your Name]
+","[ACTION EXECUTED] Wednesday, 09:00 - 10:00","{""golden_plan"": ""Here is the proposed time: Wednesday, 14:30 - 15:30""}","Natalie, William",1,1,196226,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T15:15:11.804Z,MS-SDA-026,schedule_plus_email,Telegram,773ptj16vj1frk2r5dfnr7m36s,"TEST_MS-SDA-026: Meeting with Megan, Emily","Participants: Megan, Emily.
+Duration: 1 hour.
+Test ID: MS-SDA-026.",2026-05-25T14:30:00+02:00,2026-05-25T15:30:00+02:00,Monday,r8790412729916138003,Subject: TEST_MS-SDA-026: Meeting agenda confirmation,"To: megan@example.com, emily@example.com","Hi Megan and Emily,
+
+This is to confirm our meeting on Monday, May 25, 2026, from 14:30 - 15:30.
+
+Agenda:
+* Review project progress
+* Discuss next steps
+* Q&A
+","[ACTION EXECUTED] Monday, 14:30 - 15:30","{""golden_plan"": ""Here is the proposed time: Monday, 14:30 - 15:30""}","Megan, Emily",2,2,192306,success,,,,,,,,,,,,,,,,,,,
+2026-05-18T10:47:39.819Z,MS-SDA-027,schedule_plus_email,Chat,mlbimg80rft8n6mu89rnq07af0,"TEST_MS-SDA-027: Meeting with Anthony, Pamela, Zachary","Participants: Anthony, Pamela, Zachary. Duration: 1 hour. Test ID: MS-SDA-027.",2026-05-18T13:30:00+02:00,2026-05-18T14:30:00+02:00,Monday,r148316183721022538,Subject: TEST_MS-SDA-027: Meeting agenda confirmation,"To: anthony@example.com, pamela@example.com, zachary@example.com","Hi team,
+
+This email confirms our meeting on 2026-05-18 (Monday) from 13:30 to 14:30.
+
+Attendees: Anthony, Pamela, Zachary
+
+Agenda:
+* Review of current projects
+* Upcoming priorities
+* Open discussion / Q&A
+
+Looking forward to our discussion.
+","[ACTION EXECUTED] Monday, 13:30 - 14:30","{""golden_plan"": ""Here is the proposed time: Monday, 13:30 - 14:30""}","Anthony, Pamela, Zachary",1,1,86611,success,Y,Y,Y,Y,0,Y,Y,,,,,,,,,,,,
+2026-05-19T15:18:46.144Z,MS-SDA-028,schedule_plus_email,Telegram,gbkbbn476mc6c9gjam36tji4vk,"TEST_MS-SDA-028: Meeting with Jean, Susan, Beverly, Denise, Jeffrey, Mary, Joseph","Meeting for Jean, Susan, Beverly, Denise, Jeffrey, Mary, Joseph.
+Duration: 30 minutes.
+Test ID: MS-SDA-028.",2026-05-25T09:00:00+02:00,2026-05-25T09:30:00+02:00,Monday,r8873477847528956670,Subject: TEST_MS-SDA-028: Meeting agenda confirmation,"To: jean@example.com, susan@example.com, beverly@example.com,
+ denise@example.com, jeffrey@example.com, mary@example.com,
+ joseph@example.com","Dear Team,
+
+This email confirms our meeting on Monday, 2026-05-25 from 09:00 to 09:30.
+
+Attendees: Jean, Susan, Beverly, Denise, Jeffrey, Mary, Joseph
+
+Agenda:
+* Review current project status
+* Discuss upcoming tasks
+* Q&A
+
+See you there,
+[Your Name/Assistant]
+","[ACTION EXECUTED] Monday, 09:00 - 09:30","{""golden_plan"": ""Here is the proposed time: Monday, 13:00 - 13:30""}","Jean, Susan, Beverly, Denise, Jeffrey, Mary, Joseph",1,1,206335,success,,,,,,,,,,,,,,,,,,,
+2026-05-18T10:51:54.652Z,MS-SDA-029,schedule_plus_email,Telegram,o56r5hfrv7nj8fpf05e094smt0,"TEST_MS-SDA-029: Meeting with Scott, Jeffrey","Participants: Scott, Jeffrey
+Meeting duration: 30 minutes (as per test instructions)
+Test ID: MS-SDA-029",2026-05-18T13:00:00+02:00,2026-05-18T14:00:00+02:00,Monday,r7544846800063927336,Subject: TEST_MS-SDA-029: Meeting agenda confirmation,"To: scott@example.com, jeffrey@example.com","Hi Scott and Jeffrey,
+
+This email confirms our sync meeting scheduled for Monday, May 18, 2026, from 13:00 to 14:00.
+
+Attendees:
+- Scott
+- Jeffrey
+
+Agenda:
+- Quick project updates
+- Discuss next steps
+- Open Q&A
+
+Looking forward to it!
+","[ACTION EXECUTED] Monday, 13:00 - 14:00","{""golden_plan"": ""Here is the proposed time: Monday, 13:00 - 14:00""}","Scott, Jeffrey",1,1,90316,success,Y,Y,Y,Y,0,Y,Y,,,,,,,,,,,,
+2026-05-19T15:25:57.213Z,MS-SDA-031,schedule_plus_email,Chat,dlnf37nva6tjadpgpsjg9apq8k,"TEST_MS-SDA-031: Meeting with Albert, George","Participants: Albert, George.
+Duration: 1 hour.
+Test ID: MS-SDA-031.",2026-05-25T09:00:00+02:00,2026-05-25T10:00:00+02:00,Monday,r-6833457483923527099,Subject: TEST_MS-SDA-031: Meeting agenda confirmation,"To: albert@example.com, george@example.com","Hi Albert and George,
+
+This email confirms our meeting on Monday, May 25, 2026, from 9:00 AM to 10:00 AM.
+
+Attendees: Albert, George
+
+Agenda:
+- Review project status
+- Discuss next steps
+- Q&A
+","[ACTION EXECUTED] Monday, 09:00 - 10:00","{""golden_plan"": ""Here is the proposed time: Tuesday, 16:00 - 17:00""}","Albert, George",1,1,199638,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T15:32:52.140Z,MS-SDA-033,schedule_plus_email,Telegram,m27obhatuarojcaql14qvf3gag,"TEST_MS-SDA-033: Meeting with Jack, Gerald","Participants: Jack, Gerald.
+Duration: 30 minutes.
+Test ID: MS-SDA-033.
+Sync meeting to discuss project updates.",2026-05-25T09:00:00+02:00,2026-05-25T09:30:00+02:00,Monday,r-6349487786463573645,Subject: TEST_MS-SDA-033: Meeting agenda confirmation,"To: jack@example.com, gerald@example.com","Hi Jack and Gerald,
+
+Confirming our meeting on Monday, 2026-05-25 at 09:00 - 09:30 (Europe/Sarajevo).
+
+Attendees: Jack, Gerald
+
+Agenda:
+*   Project status updates
+*   Next steps discussion
+*   Action items review
+
+Looking forward to our discussion.
+","[ACTION EXECUTED] Monday, 09:00 - 09:30","{""golden_plan"": ""Here is the proposed time: Monday, 10:30 - 11:00""}","Jack, Gerald",1,1,208946,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T15:36:15.535Z,MS-SDA-034,schedule_plus_email,Chat,r0avtrhvvorqiqee995ucuck7k,"TEST_MS-SDA-034: Meeting with Marilyn, Virginia, Diana, Lawrence, Angela","Participants: Marilyn, Virginia, Diana, Lawrence, Angela. This is a 30-minute sync meeting for test_id MS-SDA-034.",2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Monday,r-929096799252907061,Subject: TEST_MS-SDA-034: Meeting agenda confirmation,"To: marilyn@example.com, virginia@example.com, diana@example.com,
+ lawrence@example.com, angela@example.com","Hi everyone,
+
+This is to confirm our sync meeting scheduled for 2026-05-25 (Monday) from 10:00 - 10:30.
+
+Attendees: Marilyn, Virginia, Diana, Lawrence, Angela.
+
+Agenda:
+- Quick updates
+- Discuss current priorities
+- Next steps
+","[ACTION EXECUTED] Monday, 10:00 - 10:30","{""golden_plan"": ""Here is the proposed time: Monday, 13:00 - 13:30""}","Marilyn, Virginia, Diana, Lawrence, Angela",1,1,196542,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T15:41:39.270Z,MS-SDA-035,schedule_plus_email,Chat,8d1a9qgj1vsp553ut5poak1jj8,"TEST_MS-SDA-035: Meeting with Brittany, Gloria, Lisa, Paul, Justin, Diana","Participants: Brittany, Gloria, Lisa, Paul, Justin, Diana
+Duration: 30 minutes
+Test ID: MS-SDA-035",2026-05-25T13:30:00+02:00,2026-05-25T14:00:00+02:00,Monday,r1909220347381776230,Subject: TEST_MS-SDA-035: Meeting agenda confirmation,"To: brittany@example.com, gloria@example.com, lisa@example.com,
+ paul@example.com, justin@example.com, diana@example.com","Hi everyone,
+
+This email confirms our meeting on Monday, May 25, 2026, from 13:30 - 14:00.
+
+Attendees: Brittany, Gloria, Lisa, Paul, Justin, Diana
+
+Agenda:
+- Review project progress
+- Discuss upcoming milestones
+- Address any blockers
+","[ACTION EXECUTED] Monday, 13:30 - 14:00","{""golden_plan"": ""Here is the proposed time: Monday, 14:30 - 15:00""}","Brittany, Gloria, Lisa, Paul, Justin, Diana",1,1,316209,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T15:45:06.081Z,MS-SDA-036,schedule_plus_email,Chat,qlvber0tjarsjsu97jbakk00o0,"TEST_MS-SDA-036: Meeting with Jacqueline, Lauren, Billy, Mark, Teresa","This is a 30-minute sync meeting for Jacqueline, Lauren, Billy, Mark, and Teresa. Test ID: MS-SDA-036.",2026-05-25T09:30:00+02:00,2026-05-25T10:00:00+02:00,Monday,r-403737702152430899,Subject: TEST_MS-SDA-036: Meeting agenda confirmation,"To: jacqueline@example.com, lauren@example.com, billy@example.com,
+ mark@example.com, teresa@example.com","Hi everyone,
+
+This email confirms our sync meeting for TEST_MS-SDA-036.
+
+Attendees: Jacqueline, Lauren, Billy, Mark, Teresa
+Date: Monday, May 25, 2026
+Time: 09:30 - 10:00 (Sarajevo Time)
+
+Agenda:
+*   Quick updates
+*   Upcoming tasks
+*   Open discussion
+
+Looking forward to it!
+","[ACTION EXECUTED] Monday, 09:30 - 10:00","{""golden_plan"": ""Here is the proposed time: Monday, 16:00 - 16:30""}","Jacqueline, Lauren, Billy, Mark, Teresa",1,1,199466,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T15:48:34.979Z,MS-SDA-037,schedule_plus_email,Chat,ouqc764o6veksqnt1gav01ge3g,"TEST_MS-SDA-037: Meeting with Bradley, Teresa, Elizabeth, Christian","Participants: Bradley, Teresa, Elizabeth, Christian. This is a 30-minute sync meeting for test_id MS-SDA-037.",2026-05-25T09:00:00+02:00,2026-05-25T09:30:00+02:00,Monday,r5494232392667117663,Subject: TEST_MS-SDA-037: Meeting agenda confirmation,"To: bradley@example.com, teresa@example.com, elizabeth@example.com,
+ christian@example.com","Hi everyone,
+
+This email confirms our meeting on Monday, May 25, 2026, from 9:00 AM to 9:30 AM.
+
+Attendees: Bradley, Teresa, Elizabeth, Christian
+
+Agenda:
+*   Quick sync on current tasks
+*   Discuss any blockers
+*   Next steps
+
+Looking forward to it!
+
+Best regards,
+","[ACTION EXECUTED] Monday, 09:00 - 09:30","{""golden_plan"": ""Here is the proposed time: Monday, 10:00 - 10:30""}","Bradley, Teresa, Elizabeth, Christian",1,1,200854,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T15:52:11.176Z,MS-SDA-038,schedule_plus_email,Telegram,lr66qhvqej6ba5emgjt62rg05o,"TEST_MS-SDA-038: Meeting with Rachel, Brandon","Participants: Rachel, Brandon
+Duration: 30 minutes
+Test ID: MS-SDA-038",2026-05-19T09:30:00+02:00,2026-05-19T10:00:00+02:00,Tuesday,r2537319533874992576,Subject: TEST_MS-SDA-038: Meeting agenda confirmation,"To: rachel@example.com, brandon@example.com","Hi Rachel and Brandon,
+
+Confirming our meeting on Tuesday, May 19, 2026, from 9:30 AM to 10:00 AM.
+
+Agenda:
+* Quick sync on project progress
+* Discuss next steps
+* Address any blockers
+","[ACTION EXECUTED] Tuesday, 09:30 - 10:00","{""golden_plan"": ""Here is the proposed time: Monday, 14:30 - 15:00""}","Rachel, Brandon",1,1,209395,success,,,,,,,,,,,,,,,,,,,
+2026-05-18T11:08:17.187Z,MS-SDA-039,schedule_plus_email,Chat,mat9qqvuqe880id785jmtsodbo,"TEST_MS-SDA-039: Meeting with Julie, Catherine","Participants: Julie, Catherine.
+Duration: 1 hour.
+Test ID: MS-SDA-039.",2026-05-18T16:00:00+02:00,2026-05-18T17:00:00+02:00,Monday,r-2278120802065943758,Subject: TEST_MS-SDA-039: Meeting agenda confirmation,"To: julie@example.com, catherine@example.com","Hi Julie and Catherine,
+
+This email confirms our meeting scheduled for Monday, May 18, 2026, from 4:00 PM to 5:00 PM.
+
+Attendees: Julie, Catherine
+
+Agenda:
+- Review project status
+- Discuss next steps
+- Q&A
+","[ACTION EXECUTED] Monday, 16:00 - 17:00","{""golden_plan"": ""Here is the proposed time: Monday, 16:00 - 17:00""}","Julie, Catherine",1,1,89296,success,Y,Y,Y,Y,0,Y,Y,,,,,,,,,,,,
+2026-05-19T15:55:32.417Z,MS-SDA-040,schedule_plus_email,Telegram,0b6h9llgbmlfi3i6v5rhvo0eo0,"TEST_MS-SDA-040: Meeting with Lisa, Dorothy, Raymond","Participants: Lisa, Dorothy, Raymond.
+Duration: 30 minutes.
+Test ID: MS-SDA-040.",2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Monday,r555922433448201769,Subject: TEST_MS-SDA-040: Meeting agenda confirmation,"To: lisa@example.com, dorothy@example.com, raymond@example.com","Hi Lisa, Dorothy, and Raymond,
+
+This email confirms our meeting on Monday, May 25, 2026, from 10:00 AM to 10:30 AM.
+
+Agenda:
+- Review recent progress
+- Discuss upcoming tasks
+- Address any open questions
+
+See you then!
+
+Best regards,
+","[ACTION EXECUTED] Monday, 10:00 - 10:30","{""golden_plan"": ""Here is the proposed time: Monday, 10:00 - 10:30""}","Lisa, Dorothy, Raymond",1,1,194274,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T15:58:55.816Z,MS-SDA-041,schedule_plus_email,Chat,hpm1itp9c8g6mrn9l2r58pj8b8,"TEST_MS-SDA-041: Meeting with Martha, Carol","Participants: Martha, Carol.
+Duration: 30 minutes.
+Test ID: MS-SDA-041.
+Sync meeting.",2026-05-25T09:00:00+02:00,2026-05-25T09:30:00+02:00,Monday,r-6493302316965380695,Subject: TEST_MS-SDA-041: Meeting agenda confirmation,"To: martha@example.com, carol@example.com","Hi Martha and Carol,
+
+Confirming our sync meeting on 2026-05-25 (Monday) from 09:00 - 09:30.
+
+Agenda:
+- Review recent progress
+- Discuss upcoming tasks
+- AOB
+
+Best regards,
+","[ACTION EXECUTED] Monday, 09:00 - 09:30","{""golden_plan"": ""Here is the proposed time: Monday, 9:00 - 9:30""}","Martha, Carol",1,1,196540,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T16:05:53.220Z,MS-SDA-043,schedule_plus_email,Telegram,rsqf5ivs02v4fba3lv37dkrac0,"TEST_MS-SDA-043: Meeting with Jennifer, Denise","Participants: Jennifer, Denise.
+Duration: 30 minutes.
+Test ID: MS-SDA-043.",2026-05-25T09:30:00+02:00,2026-05-25T10:00:00+02:00,Monday,r2481660617966882966,Subject: TEST_MS-SDA-043: Meeting agenda confirmation,"To: jennifer@example.com, denise@example.com","Hi Jennifer and Denise,
+
+This email confirms our sync meeting scheduled for 2026-05-25 at 09:30 - 10:00.
+
+Attendees: Jennifer, Denise
+
+Agenda:
+*   Review current progress
+*   Discuss next steps
+*   Address any blockers
+
+Looking forward to it!
+","[ACTION EXECUTED] Monday, 09:30 - 10:00","{""golden_plan"": ""Here is the proposed time: Tuesday, 10:00 - 11:00""}","Jennifer, Denise",1,1,206037,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T16:09:20.576Z,MS-SDA-044,schedule_plus_email,Chat,3fv3n12er4ao1v6fo8osdsqptk,"TEST_MS-SDA-044: Meeting with Brittany, Bruce","Participants: Brittany, Bruce
+Duration: 30 minutes
+Test ID: MS-SDA-044",2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Monday,r-3375375242625665220,Subject: TEST_MS-SDA-044: Meeting agenda confirmation,"To: brittany@example.com, bruce@example.com","Hi Brittany and Bruce,
+
+This email confirms our meeting on 2026-05-25 at 10:00 - 10:30. Attendees include Brittany and Bruce.
+
+Agenda:
+*   Quick sync on project status
+*   Discuss upcoming tasks
+*   Address any blockers
+
+Looking forward to it!
+
+Best regards,
+","[ACTION EXECUTED] Monday, 10:00 - 10:30","{""golden_plan"": ""Here is the proposed time: Monday, 10:00 - 10:30""}","Brittany, Bruce",1,1,200026,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T16:12:48.339Z,MS-SDA-045,schedule_plus_email,Chat,2sjmb46fn5i7bkok0dq66qh1sg,"TEST_MS-SDA-045: Meeting with Ryan, Adam","Meeting with Ryan and Adam.
+Duration: 30 minutes.
+Test ID: MS-SDA-045.",2026-05-25T10:30:00+02:00,2026-05-25T11:00:00+02:00,Monday,r-8357310655522719382,Subject: TEST_MS-SDA-045: Meeting agenda confirmation,"To: ryan@example.com, adam@example.com","Hi Ryan and Adam,
+
+Confirming our meeting scheduled for Monday, May 25th, 2026, from 10:30 AM to 11:00 AM.
+
+Here's a brief agenda:
+*   Review project updates
+*   Discuss next steps
+*   Q&A session
+
+Looking forward to it!
+
+Best,
+[Your Name/Assistant]
+","[ACTION EXECUTED] Monday, 10:30 - 11:00","{""golden_plan"": ""Here is the proposed time: Monday, 16:00 - 16:30""}","Ryan, Adam",1,1,200017,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T16:16:13.154Z,MS-SDA-046,schedule_plus_email,Telegram,vqjn0u7afvj0turinmlrh2a588,"TEST_MS-SDA-046: Meeting with Debra, Maria","Attendees: Debra, Maria.
+Duration: 1 hour.
+Purpose: Sync meeting.
+Test ID: MS-SDA-046.",2026-05-19T09:00:00+02:00,2026-05-19T10:00:00+02:00,Tuesday,r735741728225829448,Subject: TEST_MS-SDA-046: Meeting agenda confirmation,"To: debra@example.com, maria@example.com","Hi Debra and Maria,
+
+Confirming our meeting on Tuesday, 2026-05-19 from 9:00 to 10:00.
+
+Agenda:
+* Review recent progress
+* Discuss upcoming tasks
+* Q&A
+
+See you then,
+[Your Name]
+","[ACTION EXECUTED] Tuesday, 09:00 - 10:00","{""golden_plan"": ""Here is the proposed time: Tuesday, 11:30 - 12:30""}","Debra, Maria",1,1,197999,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T16:25:28.475Z,MS-SDA-048,schedule_plus_email,Chat,73k6of4fjn9ubh1s173ndn0pcc,"TEST_MS-SDA-048: Meeting with George, Carl","This is a 30-minute sync meeting for George and Carl, as per test_id MS-SDA-048.",2026-05-25T09:00:00+02:00,2026-05-25T09:30:00+02:00,Monday,r6314491359440137284,Subject: TEST_MS-SDA-048: Meeting agenda confirmation,"To: george@example.com, carl@example.com","Hi George and Carl,
+
+Confirming our 30-minute meeting scheduled for:
+Date: Monday, May 25, 2026
+Time: 09:00 - 09:30 (Europe/Sarajevo time)
+
+Attendees: George, Carl
+
+Agenda:
+*   Quick sync on current projects
+*   Discuss next steps
+*   Any open questions
+
+Looking forward to it,
+[Your Name/Assistant]
+","[ACTION EXECUTED] 2026-05-25 (Monday), 09:00 - 09:30","{""golden_plan"": ""Here is the proposed time: Monday, 11:00 - 11:30""}","George, Carl",1,1,200897,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T16:28:52.501Z,MS-SDA-049,schedule_plus_email,Telegram,9030p6ntlph0eouj57v6ko3h3g,"TEST_MS-SDA-049: Meeting with Catherine, Andrea","Participants: Catherine, Andrea. This is a 30-minute sync meeting for test_id MS-SDA-049.",2026-05-25T09:30:00+02:00,2026-05-25T10:00:00+02:00,Monday,r-2172677493002487333,Subject: TEST_MS-SDA-049: Meeting agenda confirmation,"To: catherine@example.com, andrea@example.com","Hi Catherine and Andrea,
+
+This email confirms our meeting on 2026-05-25 at 09:30 - 10:00.
+
+Attendees: Catherine, Andrea
+
+Agenda:
+*   Review current tasks
+*   Discuss project updates
+*   Plan next steps
+
+See you then!
+",,"{""golden_plan"": ""Here is the proposed time: Monday, 11:30 - 12:00""}","Catherine, Andrea",1,1,196404,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T16:32:18.288Z,MS-SDA-050,schedule_plus_email,Chat,s6cidfegbv73l3k2i1m9if6p9g,"TEST_MS-SDA-050: Meeting with Stephanie, Mark, Scott","Participants: Stephanie, Mark, Scott.
+Duration: 1-hour meeting.
+Test ID: MS-SDA-050.",2026-05-25T10:00:00+02:00,2026-05-25T11:00:00+02:00,Monday,r2006431761429933651,Subject: TEST_MS-SDA-050: Meeting agenda confirmation,"To: stephanie@example.com, mark@example.com, scott@example.com","Hi Stephanie, Mark, and Scott,
+
+This email is to confirm our meeting on Monday, May 25, 2026, from 10:00 - 11:00.
+
+Here's a short agenda for our sync:
+* Review project status
+* Discuss next steps
+* Address any blockers
+
+Looking forward to it!
+","[ACTION EXECUTED] Monday, 10:00 - 11:00","{""golden_plan"": ""Here is the proposed time: Monday, 15:00 - 16:00""}","Stephanie, Mark, Scott",1,1,198631,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T16:35:44.572Z,MS-SDA-051,schedule_plus_email,Telegram,e8vfb7slhjil2i0mc21gppqtk0,"TEST_MS-SDA-051: Meeting with Adam, Karen","Participants: Adam, Karen
+Duration: 30 minutes
+Test ID: MS-SDA-051",2026-05-25T09:00:00+02:00,2026-05-25T09:30:00+02:00,Monday,r-4523429291490196336,Subject: TEST_MS-SDA-051: Meeting agenda confirmation,"To: adam@example.com, karen@example.com","Hi Adam and Karen,
+
+This email confirms our meeting on 2026-05-25 (Monday) from 09:00 to 09:30. 
+
+Here's a brief agenda:
+* Review current project status
+* Discuss next steps
+* Address any immediate concerns
+
+Looking forward to it!
+
+Best,
+[Your Name]
+","[ACTION EXECUTED] Monday, 09:00 - 09:30","{""golden_plan"": ""Here is the proposed time: Tuesday, 9:00 - 9:30""}","Adam, Karen",1,1,199013,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T16:39:13.009Z,MS-SDA-052,schedule_plus_email,Telegram,9vp5lgifp30obq47olkbsp2ric,"TEST_MS-SDA-052: Meeting with Kathryn, Janet, Alexander, Alan, Henry","Participants: Kathryn, Janet, Alexander, Alan, Henry.
+Duration: 30 minutes.
+Test ID: MS-SDA-052.",2026-05-25T09:00:00+02:00,2026-05-25T09:30:00+02:00,Monday,r4846393244474113564,Subject: TEST_MS-SDA-052: Meeting agenda confirmation,"To: kathryn@example.com, janet@example.com, alexander@example.com,
+ alan@example.com, henry@example.com","Hi team,
+
+This email confirms our meeting scheduled for Monday, May 25th, 2026, from 09:00 AM to 09:30 AM.
+
+Attendees: Kathryn, Janet, Alexander, Alan, Henry.
+
+Agenda:
+- Quick sync on current priorities
+- Review of ongoing tasks
+- Discussion of next steps
+
+Best regards,
+","[ACTION EXECUTED] Monday, 09:00 - 09:30","{""golden_plan"": ""Here is the proposed time: Monday, 14:00 - 14:30""}","Kathryn, Janet, Alexander, Alan, Henry",1,1,200994,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T16:42:45.427Z,MS-SDA-053,schedule_plus_email,Chat,jistckqkhgbgmis59f4llprqkc,"TEST_MS-SDA-053: Meeting with Donald, Emily","Participants: Donald, Emily
+Duration: 1 hour
+Test ID: MS-SDA-053",2026-05-19T09:00:00+02:00,2026-05-19T10:00:00+02:00,Tuesday,r-3109816135522339323,Subject: TEST_MS-SDA-053: Meeting agenda confirmation,"To: donald@example.com, emily@example.com","Hi Donald and Emily,
+
+This email confirms our meeting on 2026-05-19 from 09:00 to 10:00.
+
+Attendees: Donald, Emily
+
+Agenda:
+- Review project status
+- Discuss next steps
+- Q&A
+","[ACTION EXECUTED] Tuesday, 09:00 - 10:00","{""golden_plan"": ""Here is the proposed time: Friday, 12:30 - 13:30""}","Donald, Emily",1,1,205563,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T16:46:13.622Z,MS-SDA-054,schedule_plus_email,Chat,c3frhagi9ted8gh7u7gc1ab62k,"TEST_MS-SDA-054: Meeting with Willie, Richard, Noah","Meeting with Willie, Richard, and Noah.
+Duration: 1 hour.
+Test ID: MS-SDA-054.",2026-05-25T09:00:00+02:00,2026-05-25T10:00:00+02:00,Monday,r-5378033693039554666,Subject: TEST_MS-SDA-054: Meeting agenda confirmation,"To: willie@example.com, richard@example.com, noah@example.com","Hi team,
+
+This email confirms our meeting on Monday, 2026-05-25, from 09:00 to 10:00.
+Attendees: Willie, Richard, Noah.
+
+Agenda:
+* Review recent progress
+* Discuss upcoming tasks
+* Q&A
+
+Looking forward to it!
+","[ACTION EXECUTED] Monday, 09:00 - 10:00","{""golden_plan"": ""Here is the proposed time: Monday, 9:00 - 10:00""}","Willie, Richard, Noah",1,1,201140,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T16:49:45.199Z,MS-SDA-055,schedule_plus_email,Chat,2qv7orkssag2j11e25bfs5b33k,"TEST_MS-SDA-055: Meeting with Noah, Alice, Arthur","Participants: Noah, Alice, Arthur.
+Duration: 1 hour.
+Test ID: MS-SDA-055.",2026-05-25T15:30:00+02:00,2026-05-25T16:30:00+02:00,Monday,r7164206448567568647,Subject: TEST_MS-SDA-055: Meeting agenda confirmation,"To: noah@example.com, alice@example.com, arthur@example.com","Hi Noah, Alice, and Arthur,
+
+This email is to confirm our meeting on 2026-05-25 (Monday) from 15:30 to 16:30.
+
+Attendees: Noah, Alice, Arthur.
+
+Agenda:
+*   Review project status
+*   Discuss next steps
+*   Action item assignments
+
+Looking forward to our discussion.
+
+Best regards,
+","[ACTION EXECUTED] Monday, 15:30 - 16:30","{""golden_plan"": ""Here is the proposed time: Monday, 15:30 - 16:30""}","Noah, Alice, Arthur",1,1,204900,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T16:53:19.473Z,MS-SDA-056,schedule_plus_email,Telegram,sttvb3mb0dlngl7cgo38veq5t8,"TEST_MS-SDA-056: Meeting with Natalie, Evelyn, Andrea, Kimberly, Dennis, Larry","Participants: Natalie, Evelyn, Andrea, Kimberly, Dennis, Larry. Duration: 30 minutes. Test ID: MS-SDA-056.",2026-05-25T12:00:00+02:00,2026-05-25T12:30:00+02:00,Monday,r2247960304893598216,Subject: TEST_MS-SDA-056: Meeting agenda confirmation,"To: natalie@example.com, evelyn@example.com, andrea@example.com,
+ kimberly@example.com, dennis@example.com, larry@example.com","Hi everyone,
+
+This email confirms our meeting scheduled for Monday, May 25, 2026, from 12:00 PM to 12:30 PM.
+
+Attendees: Natalie, Evelyn, Andrea, Kimberly, Dennis, Larry.
+
+Agenda:
+* Quick sync on ongoing projects
+* Discuss action items
+* Next steps
+
+Looking forward to it!
+","[ACTION EXECUTED] Monday, 12:00 - 12:30","{""golden_plan"": ""Here is the proposed time: Monday, 11:30 - 12:00""}","Natalie, Evelyn, Andrea, Kimberly, Dennis, Larry",1,1,207273,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T16:56:54.073Z,MS-SDA-057,schedule_plus_email,Telegram,6cmralgst994vcavkvh6jk3b58,"TEST_MS-SDA-057: Meeting with David, Mark","Meeting for David and Mark.
+Duration: 30 minutes.
+Test ID: MS-SDA-057.",2026-05-25T09:00:00+02:00,2026-05-25T09:30:00+02:00,Monday,r-3395904760739685962,Subject: TEST_MS-SDA-057: Meeting agenda confirmation,"To: david@example.com, mark@example.com","Hi David and Mark,
+
+Confirming our meeting scheduled for Monday, 2026-05-25 at 9:00 - 9:30 AM.
+
+Agenda:
+* Review recent progress
+* Discuss upcoming tasks
+* Address any blockers
+
+Looking forward to our discussion.
+","[ACTION EXECUTED] Monday, 09:00 - 09:30","{""golden_plan"": ""Here is the proposed time: Wednesday, 14:30 - 15:00""}","David, Mark",1,1,207702,success,,,,,,,,,,,,,,,,,,,
+2026-05-19T17:07:35.825Z,MS-SDA-060,schedule_plus_email,Telegram,65tpqgalag007gk7hge0t1pf80,"TEST_MS-SDA-060: Meeting with Emily, Elizabeth","Meeting with Emily and Elizabeth.
+Duration: 30 minutes.
+Test ID: MS-SDA-060.",2026-05-25T09:00:00+02:00,2026-05-25T09:30:00+02:00,Monday,r-6033428793410257622,Subject: TEST_MS-SDA-060: Meeting agenda confirmation,"To: emily@example.com, elizabeth@example.com","Hi Emily and Elizabeth,
+
+This email confirms our sync meeting scheduled for Monday, May 25, 2026, from 9:00 AM to 9:30 AM (Europe/Sarajevo time).
+
+Attendees: Emily, Elizabeth
+
+Here's a brief agenda for our call:
+*   Review project status
+*   Discuss next steps
+*   Address any blockers
+
+Looking forward to our meeting.
+
+Best regards,
+","[ACTION EXECUTED] Monday, 09:00 - 09:30","{""golden_plan"": ""Here is the proposed time: Tuesday, 13:30 - 14:30""}","Emily, Elizabeth",1,1,210648,success,,,,,,,,,,,,,,,,,,,
+2026-05-23T12:57:03.742Z,MS-SDA-004,schedule_plus_email,Chat,3i5pijdkphkk1g134e2mtje2s8,"TEST_MS-SDA-004: Meeting with Abigail, Charlotte","Participants: Abigail, Charlotte
+Duration: 30 minutes
+Test ID: MS-SDA-004",2026-05-27T11:30:00+02:00,2026-05-27T12:00:00+02:00,Wednesday,r-3917884409800693776,Subject: TEST_MS-SDA-004: Meeting agenda confirmation,"To: abigail@example.com, charlotte@example.com","Hi Abigail and Charlotte,
+
+This email confirms our meeting on 2026-05-27 from 11:30 to 12:00.
+
+Agenda:
+* Review project status
+* Discuss next steps
+* AOB
+
+Looking forward to it,
+[Your Name]
+","[ACTION EXECUTED] Wednesday, 11:30 - 12:00","{""golden_plan"":""Here is the proposed time: Wednesday, 11:30 - 12:00""}","Abigail, Charlotte",1,1,210937,success,,,,,,,,,,,,,,,,,,,
+2026-05-23T13:00:30.902Z,MS-SDA-011,schedule_plus_email,Chat,dd50q1chvoj37pcf4okh4ubv3s,"TEST_MS-SDA-011: Meeting with Benjamin, Hannah, Brenda","Attendees: Benjamin, Hannah, Brenda. Duration: 30 minutes. This is for test_id MS-SDA-011.",2026-05-25T09:00:00+02:00,2026-05-25T09:30:00+02:00,Monday,r7882129422605692177,Subject: TEST_MS-SDA-011: Meeting agenda confirmation,"To: benjamin@example.com, hannah@example.com, brenda@example.com","Hi everyone,
+
+This email confirms our sync meeting for TEST_MS-SDA-011.
+
+Attendees: Benjamin, Hannah, Brenda
+Date: Monday, 2026-05-25
+Time: 09:00 - 09:30 (Sarajevo time)
+
+Agenda:
+- Quick updates
+- Discuss next steps
+- Q&A
+
+Looking forward to our meeting!
+","[ACTION EXECUTED] Monday, 09:00 - 09:30","{""golden_plan"":""Here is the proposed time: Monday, 9:00 - 9:30""}","Benjamin, Hannah, Brenda",1,1,199918,success,,,,,,,,,,,,,,,,,,,
+2026-05-23T13:04:03.168Z,MS-SDA-019,schedule_plus_email,Telegram,q71avbjcg0le7g156vadggjqeo,"TEST_MS-SDA-019: Meeting with Sean, Carol","Participants: Sean, Carol
+Duration: 1 hour
+Test ID: MS-SDA-019",2026-05-26T11:30:00+02:00,2026-05-26T12:30:00+02:00,Tuesday,r-5232532722350914139,Subject: TEST_MS-SDA-019: Meeting agenda confirmation,"To: sean@example.com, carol@example.com","Hi Sean and Carol,
+
+This email confirms our meeting on 2026-05-26 (Tuesday) from 11:30 - 12:30.
+
+Attendees: Sean, Carol
+
+Agenda:
+* Review project status
+* Discuss next steps
+* AOB
+","[ACTION EXECUTED] Tuesday, 11:30 - 12:30","{""golden_plan"":""Here is the proposed time: Tuesday, 11:30 - 12:30""}","Sean, Carol",1,1,205475,success,,,,,,,,,,,,,,,,,,,
+2026-05-23T13:07:34.315Z,MS-SDA-020,schedule_plus_email,Telegram,6re3id4sp34l0snbjgr32s98vk,"TEST_MS-SDA-020: Meeting with Joan, Nicole","Participants: Joan, Nicole
+Duration: 30 minutes
+Test ID: MS-SDA-020",2026-05-28T09:00:00+02:00,2026-05-28T09:30:00+02:00,Thursday,r3338401026327027647,Subject: TEST_MS-SDA-020: Meeting agenda confirmation,"To: joan@example.com, nicole@example.com","Hi Joan and Nicole,
+
+Confirming our meeting on 2026-05-28 from 09:00 - 09:30.
+
+Agenda:
+* Quick sync on project progress
+* Discuss next steps
+* Address any blockers
+","[ACTION EXECUTED] Thursday, 09:00 - 09:30","{""golden_plan"":""Here is the proposed time: Thursday, 9:00 - 9:30""}","Joan, Nicole",1,1,203561,success,,,,,,,,,,,,,,,,,,,
+2026-05-23T13:11:02.291Z,MS-SDA-022,schedule_plus_email,Telegram,snliso9muaghkd66lm70d6gi8k,"TEST_MS-SDA-022: Meeting with John, Jennifer","Participants: John, Jennifer.
+Duration: 30 minutes.
+Test ID: MS-SDA-022.",2026-05-25T11:00:00+02:00,2026-05-25T11:30:00+02:00,Monday,r-3831133334512222095,Subject: TEST_MS-SDA-022: Meeting agenda confirmation,"To: john@example.com, jennifer@example.com","Hi John and Jennifer,
+
+This email confirms our meeting on Monday, May 25, 2026, from 11:00 AM to 11:30 AM.
+
+Here's a brief agenda:
+*   Review recent progress
+*   Discuss next steps
+*   Q&A
+
+See you then,
+[Your Name/Assistant]
+","[ACTION EXECUTED] Monday, 11:00 - 11:30","{""golden_plan"":""Here is the proposed time: Monday, 13:00 - 13:30""}","John, Jennifer",1,1,200972,success,,,,,,,,,,,,,,,,,,,
+2026-05-23T13:14:35.702Z,MS-SDA-031,schedule_plus_email,Chat,85h1td78u1lnucfn08mnmi1opg,"TEST_MS-SDA-031: Meeting with Albert, George","Meeting with Albert and George. This is a one-hour sync meeting.
+Test ID: MS-SDA-031.",2026-05-26T16:00:00+02:00,2026-05-26T17:00:00+02:00,Tuesday,r4481305340195160599,Subject: TEST_MS-SDA-031: Meeting agenda confirmation,"To: albert@example.com, george@example.com","Hi Albert and George,
+
+This email confirms our meeting on 2026-05-26 (Tuesday) from 16:00 to 17:00.
+
+Attendees: Albert, George
+
+Agenda:
+*   Review project status
+*   Discuss upcoming tasks
+*   Action items and next steps
+","[ACTION EXECUTED] 2026-05-26 (Tuesday), 16:00 - 17:00","{""golden_plan"":""Here is the proposed time: Tuesday, 16:00 - 17:00""}","Albert, George",1,1,206190,success,,,,,,,,,,,,,,,,,,,
+2026-05-23T13:18:06.525Z,MS-SDA-033,schedule_plus_email,Telegram,2djkftnesqp87m76hdcgpsei08,"TEST_MS-SDA-033: Meeting with Jack, Gerald","Participants: Jack, Gerald
+Duration: 30 minutes
+Test ID: MS-SDA-033",2026-05-25T10:30:00+02:00,2026-05-25T11:00:00+02:00,Monday,r890560250781920121,Subject: TEST_MS-SDA-033: Meeting agenda confirmation,"To: jack@example.com, gerald@example.com","Hi Jack and Gerald,
+
+This email confirms our meeting on Monday, 2026-05-25 at 10:30 - 11:00.
+
+Agenda:
+*   Review recent progress
+*   Discuss upcoming tasks
+*   Address any blockers
+","[ACTION EXECUTED] Monday, 10:30 - 11:00","{""golden_plan"":""Here is the proposed time: Monday, 10:30 - 11:00""}","Jack, Gerald",1,1,202028,success,,,,,,,,,,,,,,,,,,,
+2026-05-23T13:21:37.091Z,MS-SDA-043,schedule_plus_email,Telegram,8pno3v0kcrsnts8nde7g1jv5b0,"TEST_MS-SDA-043: Meeting with Jennifer, Denise","Participants: Jennifer, Denise
+Duration: 1 hour
+Test ID: MS-SDA-043",2026-05-26T10:00:00+02:00,2026-05-26T11:00:00+02:00,Tuesday,r2918003390835407161,Subject: TEST_MS-SDA-043: Meeting agenda confirmation,"To: jennifer@example.com, denise@example.com","Hi Jennifer and Denise,
+
+This email confirms our meeting on 2026-05-26 (Tuesday) from 10:00 to 11:00.
+
+Agenda:
+* Sync on project status
+* Discuss next steps
+* Q&A
+
+Looking forward to it!
+
+Best,
+[Your Name]
+","[ACTION EXECUTED] Tuesday, 10:00 - 11:00","{""golden_plan"":""Here is the proposed time: Tuesday, 10:00 - 11:00""}","Jennifer, Denise",1,1,202874,success,,,,,,,,,,,,,,,,,,,
+2026-05-23T13:25:08.297Z,MS-SDA-048,schedule_plus_email,Chat,lkb83jaa5ct8ots9cd5bc9tsjc,"TEST_MS-SDA-048: Meeting with George, Carl","This is a 30-minute meeting for George and Carl, as per test_id MS-SDA-048. Participants: George, Carl.",2026-05-25T09:00:00+02:00,2026-05-25T09:30:00+02:00,Monday,r1477888006147499087,Subject: TEST_MS-SDA-048: Meeting agenda confirmation,"To: george@example.com, carl@example.com","Hi George and Carl,
+
+This email confirms our meeting on Monday, May 25, 2026, from 9:00 AM to 9:30 AM.
+
+Attendees:
+- George
+- Carl
+
+Agenda:
+- Quick sync on ongoing tasks
+- Discuss next steps
+- Q&A
+
+Looking forward to it!
+","[ACTION EXECUTED] Monday, 09:00 - 09:30","{""golden_plan"":""Here is the proposed time: Monday, 11:00 - 11:30""}","George, Carl",1,1,204295,success,,,,,,,,,,,,,,,,,,,
+2026-05-23T13:28:44.548Z,MS-SDA-059,schedule_plus_email,Chat,faqg2eoodjq0f7e28bifibgu8c,"TEST_MS-SDA-059: Meeting with Amy, Pamela","Participants: Amy, Pamela.
+Duration: 30 minutes.
+Test ID: MS-SDA-059.
+Sync meeting.",2026-05-25T16:30:00+02:00,2026-05-25T17:00:00+02:00,Monday,r-8361528876118881935,Subject: TEST_MS-SDA-059: Meeting agenda confirmation,"To: amy@example.com, pamela@example.com","Hi Amy and Pamela, 
+
+This email confirms our meeting on Monday, 2026-05-25 from 16:30 to 17:00. 
+
+Agenda: 
+- Review project status 
+- Discuss next steps 
+- Q&A 
+
+Looking forward to it! 
+
+Best regards,
+","[ACTION EXECUTED] Monday, 16:30 - 17:00","{""golden_plan"":""Here is the proposed time: Wednesday, 16:30 - 17:00""}","Amy, Pamela",1,1,209616,success,,,,,,,,,,,,,,,,,,,
+2026-05-23T13:32:18.744Z,MS-SDA-060,schedule_plus_email,Telegram,gjof1gtl5tv04j7rs1tipc2ofk,"TEST_MS-SDA-060: Meeting with Emily, Elizabeth","Meeting with Emily and Elizabeth.
+Duration: 1 hour.
+Test ID: MS-SDA-060.",2026-05-26T13:30:00+02:00,2026-05-26T14:30:00+02:00,Tuesday,r-7436701550068429148,Subject: TEST_MS-SDA-060: Meeting agenda confirmation,"To: emily@example.com, elizabeth@example.com","Hi Emily and Elizabeth,
+
+Confirming our meeting on 2026-05-26 (Tuesday) from 13:30 to 14:30.
+
+Agenda:
+*   Review recent progress
+*   Discuss upcoming tasks
+*   Action items
+","[ACTION EXECUTED] Tuesday, 13:30 - 14:30","{""golden_plan"":""Here is the proposed time: Tuesday, 13:30 - 14:30""}","Emily, Elizabeth",1,1,207088,success,,,,,,,,,,,,,,,,,,,
+2026-05-23T17:49:32.602Z,MS-SRM-001,schedule_plus_reminder,Telegram,s35utb1dfmmjsr7dnovfkt0nfs,"TEST_MS-SRM-001: Meeting with Frank, Diana","Participants: Frank, Diana. Duration: 30 minutes. Test ID: MS-SRM-001.",2026-05-25T11:30:00+02:00,2026-05-25T12:00:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 11:30 - 12:00","{""reminder_offset_min"":30,""golden_plan"":""Here is the proposed time: Monday, 11:30 - 12:00""}","Frank, Diana",2,,42036,success,,,,,,,,,q7jn4beclrt268k57pbtaaljbk,30,Y,,,,,,,,
+2026-05-23T17:50:25.493Z,MS-SRM-002,schedule_plus_reminder,Telegram,sr63rr66fta9o36jtrv3jrh1so,"TEST_MS-SRM-002: Meeting with Cheryl, Juan, Alan, Christina, Grace","Participants: Cheryl, Juan, Alan, Christina, Grace
+Duration: 30 minutes
+Test ID: MS-SRM-002",2026-05-25T14:30:00+02:00,2026-05-25T15:00:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 14:30 - 15:00","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 14:30 - 15:00""}","Cheryl, Juan, Alan, Christina, Grace",2,,45542,success,,,,,,,,,4ashetkpf0rsbbeqtee35eh178,10,Y,,,,,,,,
+2026-05-23T17:51:13.265Z,MS-SRM-003,schedule_plus_reminder,Telegram,nj9ihj4qtp087ao96k5u5nntsg,"TEST_MS-SRM-003: Meeting with Shirley, Adam","Participants: Shirley, Adam.
+Duration: 30 minutes.
+Test ID: MS-SRM-003.",2026-05-25T09:00:00+02:00,2026-05-25T09:30:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 09:00 - 09:30","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 9:00 - 9:30""}","Shirley, Adam",2,,40251,success,,,,,,,,,8in8voqpem9bch06te2kl0b7ks,10,Y,,,,,,,,
+2026-05-23T17:52:03.632Z,MS-SRM-004,schedule_plus_reminder,Telegram,va6l77qk2oglbdu2etm5tog1is,"TEST_MS-SRM-004: Meeting with Cynthia, Megan, Christopher, Philip, Ryan, Lauren","Participants: Cynthia, Megan, Christopher, Philip, Ryan, Lauren. Duration: 30 minutes. Test ID: MS-SRM-004.",2026-05-25T11:30:00+02:00,2026-05-25T12:00:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 11:30 - 12:00","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 11:30 - 12:00""}","Cynthia, Megan, Christopher, Philip, Ryan, Lauren",2,,42637,success,,,,,,,,,vs3bigtdl8t297r7dnrcm2kit8,10,Y,,,,,,,,
+2026-05-23T17:52:55.002Z,MS-SRM-005,schedule_plus_reminder,Telegram,nv3fags5898hm0rjcjro4mh048,"TEST_MS-SRM-005: Meeting with Walter, Cynthia, Ann, Catherine, Kyle","Participants: Walter, Cynthia, Ann, Catherine, Kyle. Duration: 30 minutes. Test ID: MS-SRM-005.",2026-05-25T11:30:00+02:00,2026-05-25T12:00:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 11:30 - 12:00","{""reminder_offset_min"":60,""golden_plan"":""Here is the proposed time: Monday, 11:30 - 12:00""}","Walter, Cynthia, Ann, Catherine, Kyle",2,,43899,success,,,,,,,,,53mggqks0sld0jmn2eg87gv1bg,60,Y,,,,,,,,
+2026-05-23T17:53:46.678Z,MS-SRM-006,schedule_plus_reminder,Telegram,ie7vv8f2f9nnneumpaofvup7ls,"TEST_MS-SRM-006: Meeting with Raymond, Gerald","Participants: Raymond, Gerald. Duration: 30 minutes. Test ID: MS-SRM-006.",2026-05-25T10:30:00+02:00,2026-05-25T11:00:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 10:30 - 11:00","{""reminder_offset_min"":30,""golden_plan"":""Here is the proposed time: Monday, 10:30 - 11:00""}","Raymond, Gerald",2,,43646,success,,,,,,,,,b0oaoc1chsq1pg5qrhh8spibgg,30,Y,,,,,,,,
+2026-05-23T17:54:37.455Z,MS-SRM-007,schedule_plus_reminder,Telegram,rmpkp081uq9v74k12v3i4th2l4,"TEST_MS-SRM-007: Meeting with Jeffrey, Harold","Participants: Jeffrey, Harold
+Duration: 30 minutes
+Test ID: MS-SRM-007",2026-05-26T15:30:00+02:00,2026-05-26T16:00:00+02:00,Tuesday,,,,,"[ACTION EXECUTED] Tuesday, 15:30 - 16:00","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Tuesday, 15:30 - 16:00""}","Jeffrey, Harold",2,,43429,success,,,,,,,,,lh29i8i8n4sipkb296hkiabb90,10,Y,,,,,,,,
+2026-05-23T17:55:27.739Z,MS-SRM-008,schedule_plus_reminder,Telegram,7v6bhqd6rbqa825nl5kj6mdatk,"TEST_MS-SRM-008: Meeting with Emma, Henry","Participants: Emma, Henry. Duration: 30 minutes. Test ID: MS-SRM-008.",2026-05-25T13:00:00+02:00,2026-05-25T13:30:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 13:00 - 13:30","{""reminder_offset_min"":15,""golden_plan"":""Here is the proposed time: Monday, 13:00 - 13:30""}","Emma, Henry",2,,42389,success,,,,,,,,,5ei9i12flmha5h8fiibloeldt8,15,Y,,,,,,,,
+2026-05-23T17:56:22.695Z,MS-SRM-009,schedule_plus_reminder,Telegram,qo75p5r7er5a40n3tv53mbba0o,"TEST_MS-SRM-009: Meeting with Debra, Eugene","Participants: Debra, Eugene.
+Duration: 30 minutes.
+Test ID: MS-SRM-009.",2026-05-26T10:00:00+02:00,2026-05-26T10:30:00+02:00,Tuesday,,,,,"[ACTION EXECUTED] Tuesday, 10:00 - 10:30","{""reminder_offset_min"":15,""golden_plan"":""Here is the proposed time: Tuesday, 10:00 - 10:30""}","Debra, Eugene",2,,47506,success,,,,,,,,,dpoc7esuqet9uiiubg06rdb4q0,15,Y,,,,,,,,
+2026-05-23T17:57:13.968Z,MS-SRM-010,schedule_plus_reminder,Telegram,rdujnleaao0qtkfpgaphjhkf6g,"TEST_MS-SRM-010: Meeting with Joe, Elijah","Meeting with Joe and Elijah.
+Duration: 30 minutes.
+Test ID: MS-SRM-010.",2026-05-25T13:00:00+02:00,2026-05-25T13:30:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 13:00 - 13:30","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 13:00 - 13:30""}","Joe, Elijah",2,,43873,success,,,,,,,,,3805dqqadpdog1du6aj3t8s6n0,10,Y,,,,,,,,
+2026-05-23T17:58:04.575Z,MS-SRM-011,schedule_plus_reminder,Telegram,e0kg8ek05k6hpeogjjg2d6dbq0,"TEST_MS-SRM-011: Meeting with Jacqueline, Harold, Arthur, Kelly","Participants: Jacqueline, Harold, Arthur, Kelly.
+Duration: 30 minutes.
+Test ID: MS-SRM-011.",2026-05-25T09:30:00+02:00,2026-05-25T10:00:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 09:30 - 10:00","{""reminder_offset_min"":60,""golden_plan"":""Here is the proposed time: Monday, 9:30 - 10:00""}","Jacqueline, Harold, Arthur, Kelly",2,,43284,success,,,,,,,,,tm9i2cmqtmfkt9dovbe2kt5uas,60,Y,,,,,,,,
+2026-05-23T17:58:53.804Z,MS-SRM-012,schedule_plus_reminder,Telegram,4kjdeja6q2d5sjgs9or4l01tck,"TEST_MS-SRM-012: Meeting with Janet, Larry","Participants: Janet, Larry. Duration: 60 minutes. Test ID: MS-SRM-012.",2026-05-26T12:30:00+02:00,2026-05-26T13:30:00+02:00,Tuesday,,,,,"[ACTION EXECUTED] Tuesday, 12:30 - 13:30","{""reminder_offset_min"":30,""golden_plan"":""Here is the proposed time: Tuesday, 12:30 - 13:30""}","Janet, Larry",2,,41223,success,,,,,,,,,35f7s9nm8pmta5gobngk30vr8k,30,Y,,,,,,,,
+2026-05-23T17:59:45.081Z,MS-SRM-013,schedule_plus_reminder,Telegram,du74mgj2k4khi8mt6g0vc1a6l0,"TEST_MS-SRM-013: Meeting with Sophia, Laura","Participants: Sophia, Laura.
+Duration: 60 minutes.
+Test ID: MS-SRM-013.",2026-05-25T15:00:00+02:00,2026-05-25T16:00:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 15:00 - 16:00","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 15:00 - 16:00""}","Sophia, Laura",2,,43470,success,,,,,,,,,3qvaer2kgeenbndamqihd3fenk,10,Y,,,,,,,,
+2026-05-23T18:00:34.794Z,MS-SRM-014,schedule_plus_reminder,Telegram,ls8bi80a8ht4n33f62m15m82o0,"TEST_MS-SRM-014: Meeting with Alan, Nancy, Patricia","Participants: Alan, Nancy, Patricia. Duration: 30 minutes. Test ID: MS-SRM-014.",2026-05-25T16:00:00+02:00,2026-05-25T16:30:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 16:00 - 16:30","{""reminder_offset_min"":15,""golden_plan"":""Here is the proposed time: Monday, 16:00 - 16:30""}","Alan, Nancy, Patricia",2,,42284,success,,,,,,,,,f1thot3nmdu2onh291noe5a9fo,15,Y,,,,,,,,
+2026-05-23T18:01:23.788Z,MS-SRM-015,schedule_plus_reminder,Telegram,7oqr6a1ovi41a0g4uh932kinj4,"TEST_MS-SRM-015: Meeting with Bryan, Lori, Kimberly, Beverly, Dennis","Participants: Bryan, Lori, Kimberly, Beverly, Dennis.
+Duration: 30 minutes.
+Test ID: MS-SRM-015.",2026-05-25T11:30:00+02:00,2026-05-25T12:00:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 11:30 - 12:00","{""reminder_offset_min"":60,""golden_plan"":""Here is the proposed time: Monday, 11:30 - 12:00""}","Bryan, Lori, Kimberly, Beverly, Dennis",2,,41732,success,,,,,,,,,nfnut167orb9b23r27h383h8l0,60,Y,,,,,,,,
+2026-05-23T18:02:19.193Z,MS-SRM-016,schedule_plus_reminder,Telegram,gi716carcvd2jqquk20v8m61ak,"TEST_MS-SRM-016: Meeting with Albert, Denise","Participants: Albert, Denise. Duration: 30 minutes. Test ID: MS-SRM-016.",2026-05-25T09:30:00+02:00,2026-05-25T10:00:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 09:30 - 10:00","{""reminder_offset_min"":60,""golden_plan"":""Here is the proposed time: Monday, 9:30 - 10:00""}","Albert, Denise",2,,47539,success,,,,,,,,,tomc1lph6g4hhta96dk333bq50,60,Y,,,,,,,,
+2026-05-23T18:03:12.309Z,MS-SRM-017,schedule_plus_reminder,Telegram,jboht6ekgeiv6jm5qsoq54kpm4,"TEST_MS-SRM-017: Meeting with Diane, Jack, Eugene, Patricia","Participants: Diane, Jack, Eugene, Patricia.
+Duration: 30 minutes.
+Test ID: MS-SRM-017.",2026-05-25T16:30:00+02:00,2026-05-25T17:00:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 16:30 - 17:00","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 16:30 - 17:00""}","Diane, Jack, Eugene, Patricia",2,,45729,success,,,,,,,,,9636mtn6pehpp9egalhfkr5h08,10,Y,,,,,,,,
+2026-05-23T18:04:03.882Z,MS-SRM-018,schedule_plus_reminder,Telegram,3t18u96hn9fu6mgvq2g9oumffc,"TEST_MS-SRM-018: Meeting with Christine, Helen","Participants: Christine, Helen. Duration: 30 minutes. Test ID: MS-SRM-018.",2026-05-25T09:00:00+02:00,2026-05-25T09:30:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 09:00 - 09:30","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 12:30 - 13:00""}","Christine, Helen",2,,44115,success,,,,,,,,,gsd0gmv0hlsvuq9qt4ao9m6b3g,10,Y,,,,,,,,
+2026-05-23T18:04:52.099Z,MS-SRM-019,schedule_plus_reminder,Telegram,80kh13b50oer96l65c7sak72kk,"TEST_MS-SRM-019: Meeting with Scott, Jeffrey","Participants: Scott, Jeffrey
+Duration: 60 minutes
+Test ID: MS-SRM-019",2026-05-25T13:00:00+02:00,2026-05-25T14:00:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 13:00 - 14:00","{""reminder_offset_min"":60,""golden_plan"":""Here is the proposed time: Monday, 13:00 - 14:00""}","Scott, Jeffrey",2,,40938,success,,,,,,,,,e9v265c10hb8q931ijlqnekbbc,60,Y,,,,,,,,
+2026-05-23T18:05:44.790Z,MS-SRM-020,schedule_plus_reminder,Telegram,t2n1ubpu9brbt87qsoigb9ki2s,"TEST_MS-SRM-020: Meeting with Roy, Kayla, Alexis, Eugene, Matthew, Alice, Frank","Participants: Roy, Kayla, Alexis, Eugene, Matthew, Alice, Frank.
+Duration: 30 minutes.
+Test ID: MS-SRM-020.",2026-05-25T13:00:00+02:00,2026-05-25T13:30:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 13:00 - 13:30","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 13:00 - 13:30""}","Roy, Kayla, Alexis, Eugene, Matthew, Alice, Frank",2,,45243,success,,,,,,,,,lhuqdj9ejm3eoavrhna99d66j0,10,Y,,,,,,,,
+2026-05-23T18:06:35.860Z,MS-SRM-021,schedule_plus_reminder,Telegram,sucvemmmlin0mu4fjljc9ae1ig,"TEST_MS-SRM-021: Meeting with Eric, Henry","Participants: Eric, Henry.
+Duration: 30 minutes.
+Test ID: MS-SRM-021.",2026-05-25T09:00:00+02:00,2026-05-25T09:30:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 09:00 - 09:30","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 9:00 - 9:30""}","Eric, Henry",2,,43652,success,,,,,,,,,h08dm3d5h96iavl5ks0cdmfb4s,10,Y,,,,,,,,
+2026-05-23T18:07:24.376Z,MS-SRM-022,schedule_plus_reminder,Telegram,k6ah1kra52glks2tdl23o94lfo,"TEST_MS-SRM-022: Meeting with Mary, Catherine",Meeting for Mary and Catherine regarding MS-SRM-022. Duration: 30 minutes.,2026-05-25T09:00:00+02:00,2026-05-25T09:30:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 09:00 - 09:30","{""reminder_offset_min"":60,""golden_plan"":""Here is the proposed time: Monday, 9:00 - 9:30""}","Mary, Catherine",2,,41281,success,,,,,,,,,qv75fpqr4264vjr3v9fcg1tmk0,60,Y,,,,,,,,
+2026-05-23T18:08:19.886Z,MS-SRM-023,schedule_plus_reminder,Telegram,r38qkrc0kbk5ge9v1t097plh14,"TEST_MS-SRM-023: Meeting with Michelle, Joshua","Participants: Michelle, Joshua. Duration: 60 minutes. Test ID: MS-SRM-023.",2026-05-27T10:30:00+02:00,2026-05-27T11:30:00+02:00,Wednesday,,,,,"[ACTION EXECUTED] Wednesday, 10:30 - 11:30","{""reminder_offset_min"":15,""golden_plan"":""Here is the proposed time: Wednesday, 10:30 - 11:30""}","Michelle, Joshua",2,,48084,success,,,,,,,,,lv9lv8bfhplg6rm5qhvtu9aokg,15,Y,,,,,,,,
+2026-05-23T18:09:11.455Z,MS-SRM-024,schedule_plus_reminder,Telegram,89imaklpts5mss11juq9ev5fvk,"TEST_MS-SRM-024: Meeting with Andrea, Abigail","Participants: Andrea, Abigail
+Duration: 30 minutes
+Test ID: MS-SRM-024",2026-05-25T12:00:00+02:00,2026-05-25T12:30:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 12:00 - 12:30","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 12:00 - 12:30""}","Andrea, Abigail",2,,43951,success,,,,,,,,,ur29tdhaat1r79khfooiokbolc,10,Y,,,,,,,,
+2026-05-23T18:10:05.933Z,MS-SRM-025,schedule_plus_reminder,Telegram,qt31jfoibu2r0lkt23jhfan33k,"TEST_MS-SRM-025: Meeting with Emily, Zachary",Meeting with Emily and Zachary. Duration: 30 minutes. Test ID: MS-SRM-025.,2026-05-25T11:00:00+02:00,2026-05-25T11:30:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 11:00 - 11:30","{""reminder_offset_min"":60,""golden_plan"":""Here is the proposed time: Monday, 11:00 - 11:30""}","Emily, Zachary",2,,47200,success,,,,,,,,,4gq18gkuit4nmfo8c3kj56snqg,60,Y,,,,,,,,
+2026-05-23T18:10:56.880Z,MS-SRM-026,schedule_plus_reminder,Telegram,58d1cfbkpqtottvjl156d7v2vk,"TEST_MS-SRM-026: Meeting with Jonathan, Matthew, Carl, Ryan, Albert, Danielle","Participants: Jonathan, Matthew, Carl, Ryan, Albert, Danielle. Duration: 30 minutes. Test ID: MS-SRM-026.",2026-05-25T16:30:00+02:00,2026-05-25T17:00:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 16:30 - 17:00","{""reminder_offset_min"":60,""golden_plan"":""Here is the proposed time: Monday, 16:30 - 17:00""}","Jonathan, Matthew, Carl, Ryan, Albert, Danielle",2,,43601,success,,,,,,,,,gpc73eceos0c72viga81bjfdas,60,Y,,,,,,,,
+2026-05-23T18:11:53.688Z,MS-SRM-027,schedule_plus_reminder,Telegram,k61hr955o659f38237rqk7vor8,"TEST_MS-SRM-027: Meeting with Benjamin, Vincent","Participants: Benjamin, Vincent
+Duration: 60 minutes
+Test ID: MS-SRM-027",2026-05-26T09:00:00+02:00,2026-05-26T10:00:00+02:00,Tuesday,,,,,"[ACTION EXECUTED] Tuesday, 09:00 - 10:00","{""reminder_offset_min"":60,""golden_plan"":""Here is the proposed time: Tuesday, 9:00 - 10:00""}","Benjamin, Vincent",2,,49336,success,,,,,,,,,gsdd9ghn1brid9bdtuedrrbt7o,60,Y,,,,,,,,
+2026-05-23T18:12:42.750Z,MS-SRM-028,schedule_plus_reminder,Telegram,9n8hnalloq2anun11bil8c2kks,"TEST_MS-SRM-028: Meeting with Christine, Donna","Participants: Christine, Donna. Duration: 30 minutes. Test ID: MS-SRM-028.",2026-05-25T14:00:00+02:00,2026-05-25T14:30:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 14:00 - 14:30","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 14:00 - 14:30""}","Christine, Donna",2,,41818,success,,,,,,,,,72ku18v19sqfgsjrk5entvi2m4,10,Y,,,,,,,,
+2026-05-23T18:13:35.962Z,MS-SRM-029,schedule_plus_reminder,Telegram,6tjafs73kh19qscigjli75bck4,"TEST_MS-SRM-029: Meeting with Eric, Deborah","Participants: Eric, Deborah. Duration: 30 minutes. Test ID: MS-SRM-029.",2026-05-25T10:30:00+02:00,2026-05-25T11:00:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 10:30 - 11:00","{""reminder_offset_min"":60,""golden_plan"":""Here is the proposed time: Monday, 14:30 - 15:00""}","Eric, Deborah",2,,45833,success,,,,,,,,,lukp3et3ad5720de69fi4e6kjo,60,Y,,,,,,,,
+2026-05-23T18:15:21.092Z,MS-SRM-031,schedule_plus_reminder,Telegram,1hvmubus7045529c72ut5eth2k,"TEST_MS-SRM-031: Meeting with Ronald, Stephen, Brittany, Dorothy, Rebecca, Jordan","Participants: Ronald, Stephen, Brittany, Dorothy, Rebecca, Jordan.
+Duration: 30 minutes.
+Test ID: MS-SRM-031.",2026-05-25T09:00:00+02:00,2026-05-25T09:30:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 09:00 - 09:30","{""reminder_offset_min"": 30, ""golden_plan"": ""Here is the proposed time: Monday, 12:30 - 13:00""}","Ronald, Stephen, Brittany, Dorothy, Rebecca, Jordan",2,,41270,success,,,,,,,,,0hmq3r9ncihn8j01dh028ip85k,30,Y,,,,,,,,
+2026-05-23T18:17:08.974Z,MS-SRM-033,schedule_plus_reminder,Telegram,8jb60vh5o5m441vq0disl962q8,"TEST_MS-SRM-033: Meeting with Dorothy, Kenneth, Madison, Brandon, Judith","Participants: Dorothy, Kenneth, Madison, Brandon, Judith.
+Duration: 30 minutes.
+Test ID: MS-SRM-033.",2026-05-25T09:00:00+02:00,2026-05-25T09:30:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 09:00 - 09:30","{""reminder_offset_min"": 30, ""golden_plan"": ""Here is the proposed time: Monday, 10:30 - 11:00""}","Dorothy, Kenneth, Madison, Brandon, Judith",2,,44219,success,,,,,,,,,lt7j7huv61vvfqcjj5unevrtjo,30,Y,,,,,,,,
+2026-05-23T18:18:44.039Z,MS-SRM-035,schedule_plus_reminder,Telegram,hufac1fsf2cad9ecn6etp38j3o,"TEST_MS-SRM-035: Meeting with Matthew, Randy","Participants: Matthew, Randy.
+Duration: 30 minutes.
+Test ID: MS-SRM-035.",2026-05-25T09:30:00+02:00,2026-05-25T10:00:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 09:30 - 10:00","{""reminder_offset_min"": 10, ""golden_plan"": ""Here is the proposed time: Tuesday, 9:00 - 9:30""}","Matthew, Randy",2,,40337,success,,,,,,,,,7lplc4qbarbjrknegdkhl7c6hc,10,Y,,,,,,,,
+2026-05-23T18:19:33.724Z,MS-SRM-036,schedule_plus_reminder,Telegram,h7kph9gth0iiitdr9cliln7eq8,"TEST_MS-SRM-036: Meeting with Carolyn, Russell, Emma, Maria, Mason, Hannah","Participants: Carolyn, Russell, Emma, Maria, Mason, Hannah.
+Duration: 30 minutes.
+Test ID: MS-SRM-036.",2026-05-25T09:00:00+02:00,2026-05-25T09:30:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 09:00 - 09:30","{""reminder_offset_min"": 30, ""golden_plan"": ""Here is the proposed time: Monday, 9:00 - 9:30""}","Carolyn, Russell, Emma, Maria, Mason, Hannah",2,,42207,success,,,,,,,,,k5r6f0ip0cvk2clidsn9mm3jfk,30,Y,,,,,,,,
+2026-05-23T18:21:21.055Z,MS-SRM-038,schedule_plus_reminder,Telegram,ioktpt5vscmv4c2p1fet8j222g,"TEST_MS-SRM-038: Meeting with Peter, Patricia, Megan, Amber","Participants: Peter, Patricia, Megan, Amber. Duration: 30 minutes. Test ID: MS-SRM-038.",2026-05-25T10:30:00+02:00,2026-05-25T11:00:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 10:30 - 11:00","{""reminder_offset_min"": 30, ""golden_plan"": ""Here is the proposed time: Monday, 16:30 - 17:00""}","Peter, Patricia, Megan, Amber",2,,45798,success,,,,,,,,,fcp2kdj0re89t55cokn7e5amco,30,Y,,,,,,,,
+2026-05-23T18:24:39.781Z,MS-SRM-042,schedule_plus_reminder,Telegram,aerqv2q9bvvtrhfc5oqn2hoi8o,"TEST_MS-SRM-042: Meeting with Jordan, Michael","Participants: Jordan, Michael
+Duration: 60 minutes
+Test ID: MS-SRM-042",2026-05-26T11:00:00+02:00,2026-05-26T12:00:00+02:00,Tuesday,,,,,"[ACTION EXECUTED] Tuesday, 11:00 - 12:00","{""reminder_offset_min"": 15, ""golden_plan"": ""Here is the proposed time: Tuesday, 14:00 - 15:00""}","Jordan, Michael",2,,44274,success,,,,,,,,,nvsnk8ufh8cfg51bmt92edjsvk,15,Y,,,,,,,,
+2026-05-23T18:25:30.639Z,MS-SRM-043,schedule_plus_reminder,Telegram,v1nufvt6kv0vsnirgtmo51ai24,"TEST_MS-SRM-043: Meeting with Kayla, Sandra, Ryan, Kathleen, Walter, Arthur, Heather","Participants: Kayla, Sandra, Ryan, Kathleen, Walter, Arthur, Heather. This is a 60-minute meeting. Test ID: MS-SRM-043.",2026-05-25T13:00:00+02:00,2026-05-25T14:00:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 13:00 - 14:00","{""reminder_offset_min"": 30, ""golden_plan"": ""Here is the proposed time: Monday, 13:00 - 14:00""}","Kayla, Sandra, Ryan, Kathleen, Walter, Arthur, Heather",2,,43607,success,,,,,,,,,cohg1hnlad95g6kg0m13k8vvrg,30,Y,,,,,,,,
+2026-05-23T18:29:51.045Z,MS-SRM-048,schedule_plus_reminder,Telegram,q0laqkdt14sq8e2nt6fgueb270,"TEST_MS-SRM-048: Meeting with Willie, Scott, Jordan, Austin, Kimberly, Teresa, Dylan","Meeting with Willie, Scott, Jordan, Austin, Kimberly, Teresa, Dylan. 30 minutes duration. test_id MS-SRM-048.",2026-05-25T11:00:00+02:00,2026-05-25T11:30:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 11:00 - 11:30","{""reminder_offset_min"": 15, ""golden_plan"": ""Here is the proposed time: Monday, 16:00 - 16:30""}","Willie, Scott, Jordan, Austin, Kimberly, Teresa, Dylan",2,,45444,success,,,,,,,,,oudhjbf2bmik8vd9nsm33fhm14,15,Y,,,,,,,,
+2026-05-23T18:30:43.453Z,MS-SRM-049,schedule_plus_reminder,Telegram,3ilq7rbrknj84pfp9nav75m9lo,"TEST_MS-SRM-049: Meeting with Jacob, Gabriel, Matthew","Participants: Jacob, Gabriel, Matthew. Duration: 60 minutes. Test ID: MS-SRM-049.",2026-05-25T14:00:00+02:00,2026-05-25T15:00:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 14:00 - 15:00","{""reminder_offset_min"": 10, ""golden_plan"": ""Here is the proposed time: Monday, 14:00 - 15:00""}","Jacob, Gabriel, Matthew",2,,45142,success,,,,,,,,,mhu4rm38qf4ab451cev2n0mn0o,10,Y,,,,,,,,
+2026-05-23T18:31:35.497Z,MS-SRM-050,schedule_plus_reminder,Telegram,1gtme0un4bhgju0it67nq7jg5c,"TEST_MS-SRM-050: Meeting with Lisa, Carolyn","Participants: Lisa, Carolyn. Duration: 60 minutes. Test ID: MS-SRM-050.",2026-05-25T09:00:00+02:00,2026-05-25T10:00:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 09:00 - 10:00","{""reminder_offset_min"": 10, ""golden_plan"": ""Here is the proposed time: Monday, 9:00 - 10:00""}","Lisa, Carolyn",2,,44710,success,,,,,,,,,q7qjdokhddm8njoir58kmu8ut0,10,Y,,,,,,,,
+2026-05-23T18:55:17.713Z,MS-SRM-031,schedule_plus_reminder,Telegram,24lhkqtd4nbg1t3pgahj4krpa4,"TEST_MS-SRM-031: Meeting with Ronald, Stephen, Brittany, Dorothy, Rebecca, Jordan","Participants: Ronald, Stephen, Brittany, Dorothy, Rebecca, Jordan.
+Duration: 30 minutes.
+Test ID: MS-SRM-031.",2026-05-25T12:30:00+02:00,2026-05-25T13:00:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 12:30 - 13:00","{""reminder_offset_min"":30,""golden_plan"":""Here is the proposed time: Monday, 12:30 - 13:00""}","Ronald, Stephen, Brittany, Dorothy, Rebecca, Jordan",2,,45255,success,,,,,,,,,ots8nvn4tt4gikoo0o2f1i40m8,30,Y,,,,,,,,
+2026-05-23T18:56:10.328Z,MS-SRM-033,schedule_plus_reminder,Telegram,dbg1q11n5jrhg5pru5ns0hp7uc,"TEST_MS-SRM-033: Meeting with Dorothy, Kenneth, Madison, Brandon, Judith","Participants: Dorothy, Kenneth, Madison, Brandon, Judith.
+Duration: 30 minutes.
+Test ID: MS-SRM-033.",2026-05-25T10:30:00+02:00,2026-05-25T11:00:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 10:30 - 11:00","{""reminder_offset_min"":30,""golden_plan"":""Here is the proposed time: Monday, 10:30 - 11:00""}","Dorothy, Kenneth, Madison, Brandon, Judith",2,,44618,success,,,,,,,,,dnphcjgjjernm45c25qsdlm9fg,30,Y,,,,,,,,
+2026-05-23T18:57:01.108Z,MS-SRM-035,schedule_plus_reminder,Telegram,3hv1gcvigjo2nl4gpquddeqdnk,"TEST_MS-SRM-035: Meeting with Matthew, Randy","Meeting with Matthew and Randy.
+Duration: 30 minutes.
+Test ID: MS-SRM-035.",2026-05-26T09:00:00+02:00,2026-05-26T09:30:00+02:00,Tuesday,,,,,"[ACTION EXECUTED] Tuesday, 09:00 - 09:30","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Tuesday, 9:00 - 9:30""}","Matthew, Randy",2,,43301,success,,,,,,,,,5h1vk0u7d2vpcmk7r5nos00tco,10,Y,,,,,,,,
+2026-05-23T18:57:55.404Z,MS-SRM-038,schedule_plus_reminder,Telegram,r2h62a3p543g8skn9gbkdfhd5c,"TEST_MS-SRM-038: Meeting with Peter, Patricia, Megan, Amber","Participants: Peter, Patricia, Megan, Amber. Duration: 30 minutes. Test ID: MS-SRM-038.",2026-05-25T16:30:00+02:00,2026-05-25T17:00:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 16:30 - 17:00","{""reminder_offset_min"":30,""golden_plan"":""Here is the proposed time: Monday, 16:30 - 17:00""}","Peter, Patricia, Megan, Amber",2,,46589,success,,,,,,,,,omv0rs77uq4p56e6n0eipirei8,30,Y,,,,,,,,
+2026-05-23T18:58:50.251Z,MS-SRM-040,schedule_plus_reminder,Telegram,q6ethsot8ee6f7m551qokbp0s4,"TEST_MS-SRM-040: Meeting with Walter, Jessica, Robert, Nicole, Dorothy, Gabriel","Participants: Walter, Jessica, Robert, Nicole, Dorothy, Gabriel
+Duration: 30 minutes
+Test ID: MS-SRM-040",2026-05-25T16:30:00+02:00,2026-05-25T17:00:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 16:30 - 17:00","{""reminder_offset_min"":15,""golden_plan"":""Here is the proposed time: Monday, 16:30 - 17:00""}","Walter, Jessica, Robert, Nicole, Dorothy, Gabriel",2,,46829,success,,,,,,,,,i13249of7co9ehl13n0bm11eu4,15,Y,,,,,,,,
+2026-05-23T18:59:43.383Z,MS-SRM-041,schedule_plus_reminder,Telegram,3dmefa5agfogtb6l9q8m1qok2s,"TEST_MS-SRM-041: Meeting with Edward, Zachary","Participants: Edward, Zachary.
+Duration: 30 minutes.
+Test ID: MS-SRM-041.",2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 10:00 - 10:30","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 10:00 - 10:30""}","Edward, Zachary",2,,44905,success,,,,,,,,,mf0t8mvpi9sk80cjcjqamf3rig,10,Y,,,,,,,,
+2026-05-23T19:00:44.279Z,MS-SRM-042,schedule_plus_reminder,Telegram,cnequp1fce4uedt75k8c0h7b30,"TEST_MS-SRM-042: Meeting with Jordan, Michael","Participants: Jordan, Michael.
+Duration: 60 minutes.
+Test ID: MS-SRM-042.",2026-05-26T14:00:00+02:00,2026-05-26T15:00:00+02:00,Tuesday,,,,,"[ACTION EXECUTED] Tuesday, 14:00 - 15:00","{""reminder_offset_min"":15,""golden_plan"":""Here is the proposed time: Tuesday, 14:00 - 15:00""}","Jordan, Michael",2,,53531,success,,,,,,,,,4603na7psgnghuudpta3rpgvnc,15,Y,,,,,,,,
+2026-05-23T19:01:35.622Z,MS-SRM-045,schedule_plus_reminder,Telegram,a6m1uibrl22fa0v7of4cstrle8,"TEST_MS-SRM-045: Meeting with Dylan, William, Douglas, Kimberly, Emma, Alan, Philip","Participants: Dylan, William, Douglas, Kimberly, Emma, Alan, Philip.
+Duration: 30 minutes.
+Test ID: MS-SRM-045.",2026-05-25T10:30:00+02:00,2026-05-25T11:00:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 10:30 - 11:00","{""reminder_offset_min"":15,""golden_plan"":""Here is the proposed time: Monday, 10:30 - 11:00""}","Dylan, William, Douglas, Kimberly, Emma, Alan, Philip",2,,43814,success,,,,,,,,,1r839qi1e9972om2s5rgtbrigk,15,Y,,,,,,,,
+2026-05-23T19:02:27.430Z,MS-SRM-046,schedule_plus_reminder,Telegram,ii9a7csnm23qbrpmbsgjrcmcp4,"TEST_MS-SRM-046: Meeting with Jason, Lori","Participants: Jason, Lori
+Duration: 30 minutes
+Test ID: MS-SRM-046",2026-05-25T11:00:00+02:00,2026-05-25T11:30:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 11:00 - 11:30","{""reminder_offset_min"":15,""golden_plan"":""Here is the proposed time: Monday, 11:00 - 11:30""}","Jason, Lori",2,,44669,success,,,,,,,,,g3a8rt97jp9l3438edobovh8kg,15,Y,,,,,,,,
+2026-05-23T19:03:19.213Z,MS-SRM-047,schedule_plus_reminder,Telegram,rumoj59i4qjmj873cdgsa01ti4,"TEST_MS-SRM-047: Meeting with Terry, Justin, Grace, Bruce, Diane, Bryan, Beverly","Participants: Terry, Justin, Grace, Bruce, Diane, Bryan, Beverly.
+Duration: 30 minutes.
+Test ID: MS-SRM-047.",2026-05-25T10:30:00+02:00,2026-05-25T11:00:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 10:30 - 11:00","{""reminder_offset_min"":10,""golden_plan"":""Here is the proposed time: Monday, 10:30 - 11:00""}","Terry, Justin, Grace, Bruce, Diane, Bryan, Beverly",2,,43974,success,,,,,,,,,s6huoc19rpakvog5hur8c06gl4,10,Y,,,,,,,,
+2026-05-23T19:04:12.404Z,MS-SRM-048,schedule_plus_reminder,Telegram,meas2g63noqbckprrjtfti98d0,"TEST_MS-SRM-048: Meeting with Willie, Scott, Jordan, Austin, Kimberly, Teresa, Dylan","Meeting with Willie, Scott, Jordan, Austin, Kimberly, Teresa, Dylan.
+Duration: 30 minutes.
+Test ID: MS-SRM-048.",2026-05-25T16:00:00+02:00,2026-05-25T16:30:00+02:00,Monday,,,,,"[ACTION EXECUTED] Monday, 16:00 - 16:30","{""reminder_offset_min"":15,""golden_plan"":""Here is the proposed time: Monday, 16:00 - 16:30""}","Willie, Scott, Jordan, Austin, Kimberly, Teresa, Dylan",2,,45596,success,,,,,,,,,idhkvk41dc0r9oim8ubbu208a8,15,Y,,,,,,,,
+2026-05-23T20:04:24.711Z,MS-RSC-001,reschedule_and_notify,Chat,q9cpqr1jeii7dpg2i0j0p7m3as,TEST_MS-RSC-001: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-001.,2026-05-25T09:00:00+02:00,2026-05-25T09:30:00+02:00,Monday,r-3840584905264749832,,,,"[ACTION EXECUTED] new time: Monday, 09:00–09:30",,YOUR_EMAIL_ADDRESS,0,1,113879,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:06:23.860Z,MS-RSC-002,reschedule_and_notify,Chat,qptit8tj4qt5q8o52kuvf3kf74,TEST_MS-RSC-002: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-002.,2026-05-25T10:30:00+02:00,2026-05-25T11:00:00+02:00,Monday,r3178907387811457388,,,,"[ACTION EXECUTED] new time: Monday, 10:30–11:00",,YOUR_EMAIL_ADDRESS,0,1,111409,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:08:14.438Z,MS-RSC-003,reschedule_and_notify,Chat,,,,,,,,,,,,,YOUR_EMAIL_ADDRESS,0,0,103156,failed,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,N,N,,,,
+2026-05-23T20:10:14.823Z,MS-RSC-004,reschedule_and_notify,Chat,f9hdva5riuhsoq1oj0bcfeouhk,TEST_MS-RSC-004: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-004.,2026-05-25T09:00:00+02:00,2026-05-25T09:30:00+02:00,Monday,r7956028341577236831,,,,"[ACTION EXECUTED] new time: Monday, 09:00–09:30",,YOUR_EMAIL_ADDRESS,0,1,112976,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:12:13.693Z,MS-RSC-005,reschedule_and_notify,Chat,7dg0ehf9vq8o51t45nugdc0kq8,TEST_MS-RSC-005: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-005.,2026-05-25T09:00:00+02:00,2026-05-25T09:30:00+02:00,Monday,r-4395780060141252778,,,,"[ACTION EXECUTED] new time: Monday, 09:00–09:30",,YOUR_EMAIL_ADDRESS,0,1,111501,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:14:15.113Z,MS-RSC-006,reschedule_and_notify,Chat,e9l0pr5q8svgur4na7n8157oks,TEST_MS-RSC-006: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-006.,2026-05-26T10:00:00+02:00,2026-05-26T10:30:00+02:00,Tuesday,r-6868741461491185781,,,,"[ACTION EXECUTED] new time: Tuesday, 10:00–10:30",,YOUR_EMAIL_ADDRESS,0,1,114349,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:16:16.863Z,MS-RSC-007,reschedule_and_notify,Chat,tnn0d5k5qs2hjm4iam7d65fjk8,TEST_MS-RSC-007: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-007.,2026-05-26T10:00:00+02:00,2026-05-26T10:30:00+02:00,Tuesday,r6048874060991061578,,,,"[ACTION EXECUTED] new time: Tuesday, 10:00–10:30",,YOUR_EMAIL_ADDRESS,0,1,114220,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:18:14.723Z,MS-RSC-008,reschedule_and_notify,Chat,6uun2s4cs2ko4n80m7eseg2920,TEST_MS-RSC-008: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-008.,2026-05-26T10:00:00+02:00,2026-05-26T10:30:00+02:00,Tuesday,r-1127846288089609903,,,,"[ACTION EXECUTED] new time: Tuesday, 10:00–10:30",,YOUR_EMAIL_ADDRESS,0,1,110602,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:20:13.311Z,MS-RSC-009,reschedule_and_notify,Chat,ocpp7p52b9l7qlgm9cbh6k9u84,TEST_MS-RSC-009: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-009.,2026-05-26T10:00:00+02:00,2026-05-26T10:30:00+02:00,Tuesday,r7910016233719682964,,,,"[ACTION EXECUTED] new time: Tuesday, 10:00–10:30",,YOUR_EMAIL_ADDRESS,0,1,111430,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:22:11.614Z,MS-RSC-010,reschedule_and_notify,Chat,28m6dvsn6f8ahlmhev2j9eq9j4,TEST_MS-RSC-010: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-010.,2026-05-26T10:00:00+02:00,2026-05-26T10:30:00+02:00,Tuesday,r672691765929153851,,,,"[ACTION EXECUTED] new time: Tuesday, 10:00–10:30",,YOUR_EMAIL_ADDRESS,0,1,111239,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:24:14.015Z,MS-RSC-011,reschedule_and_notify,Chat,odv7bqpplfh9g1e2siubp14fuc,TEST_MS-RSC-011: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-011.,2026-05-26T11:00:00+02:00,2026-05-26T11:30:00+02:00,Tuesday,r2234984787065477561,,,,"[ACTION EXECUTED] new time: Tuesday, 11:00–11:30",,YOUR_EMAIL_ADDRESS,0,1,115112,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:26:09.632Z,MS-RSC-012,reschedule_and_notify,Chat,vei1navts0hgkiokj9v863fohg,TEST_MS-RSC-012: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-012.,2026-05-25T11:00:00+02:00,2026-05-25T11:30:00+02:00,Monday,r-2946291706527453142,,,,"[ACTION EXECUTED] new time: Monday, 11:00–11:30",,YOUR_EMAIL_ADDRESS,0,1,108148,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:28:06.791Z,MS-RSC-013,reschedule_and_notify,Chat,amfvn18rsvpi0e1g3endansvp0,TEST_MS-RSC-013: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-013.,2026-05-26T10:00:00+02:00,2026-05-26T10:30:00+02:00,Tuesday,r-3488990380027968689,,,,"[ACTION EXECUTED] new time: Tuesday, 10:00–10:30",,YOUR_EMAIL_ADDRESS,0,1,109314,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:30:05.269Z,MS-RSC-014,reschedule_and_notify,Chat,n8gcae5jqsetism10ghp8iblcg,TEST_MS-RSC-014: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-014.,2026-05-26T10:00:00+02:00,2026-05-26T10:30:00+02:00,Tuesday,r-1498703487008394590,,,,"[ACTION EXECUTED] new time: Tuesday, 10:00–10:30",,YOUR_EMAIL_ADDRESS,0,1,111244,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:32:06.123Z,MS-RSC-015,reschedule_and_notify,Chat,6bduv58fdkakqd5mjh18umq9f8,TEST_MS-RSC-015: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-015.,2026-05-26T11:00:00+02:00,2026-05-26T11:30:00+02:00,Tuesday,r6135741368604811334,,,,"[ACTION EXECUTED] new time: Tuesday, 11:00–11:30",,YOUR_EMAIL_ADDRESS,0,1,109066,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:34:04.061Z,MS-RSC-016,reschedule_and_notify,Chat,aoeo9lvguf093l099d9510ba04,TEST_MS-RSC-016: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-016.,2026-05-26T10:00:00+02:00,2026-05-26T10:30:00+02:00,Tuesday,r2983693555322462726,,,,"[ACTION EXECUTED] new time: Tuesday, 10:00–10:30",,YOUR_EMAIL_ADDRESS,0,1,110386,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:36:03.091Z,MS-RSC-017,reschedule_and_notify,Chat,u9dsi4kun5u0j2hghrb6a0ni9k,TEST_MS-RSC-017: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-017.,2026-05-26T10:00:00+02:00,2026-05-26T10:30:00+02:00,Tuesday,r-5856787021251936466,,,,"[ACTION EXECUTED] new time: Tuesday, 10:00–10:30",,YOUR_EMAIL_ADDRESS,0,1,111922,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:38:02.952Z,MS-RSC-018,reschedule_and_notify,Chat,465rbiuc218u3ata4am1119rl0,TEST_MS-RSC-018: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-018.,2026-05-26T10:00:00+02:00,2026-05-26T10:30:00+02:00,Tuesday,r6877827411789173261,,,,"[ACTION EXECUTED] new time: Tuesday, 10:00–10:30",,YOUR_EMAIL_ADDRESS,0,1,112580,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:40:00.011Z,MS-RSC-019,reschedule_and_notify,Chat,9ekr8nkbeipl4qd22sv3mnlq2g,TEST_MS-RSC-019: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-019.,2026-05-26T10:00:00+02:00,2026-05-26T10:30:00+02:00,Tuesday,r-718360846670849318,,,,"[ACTION EXECUTED] new time: Tuesday, 10:00–10:30",,YOUR_EMAIL_ADDRESS,0,1,109925,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:42:01.076Z,MS-RSC-020,reschedule_and_notify,Chat,kf5qr67gb6jc0qor0kpvoc3okc,TEST_MS-RSC-020: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-020.,2026-05-27T14:00:00+02:00,2026-05-27T14:30:00+02:00,Wednesday,r-5015726288920555684,,,,"[ACTION EXECUTED] new time: Wednesday, 14:00–14:30",,YOUR_EMAIL_ADDRESS,0,1,113806,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:43:58.951Z,MS-RSC-021,reschedule_and_notify,Chat,g7iik3araai440nmj9oe5dioe4,TEST_MS-RSC-021: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-021.,2026-05-26T14:00:00+02:00,2026-05-26T14:30:00+02:00,Tuesday,r2235238944366230284,,,,"[ACTION EXECUTED] new time: Tuesday, 14:00–14:30",,YOUR_EMAIL_ADDRESS,0,1,110660,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:45:57.504Z,MS-RSC-022,reschedule_and_notify,Chat,d40k7a6nl3fl56c6jnrcahoq3s,TEST_MS-RSC-022: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-022.,2026-05-26T11:00:00+02:00,2026-05-26T11:30:00+02:00,Tuesday,r3465670220705246919,,,,"[ACTION EXECUTED] new time: Tuesday, 11:00–11:30",,YOUR_EMAIL_ADDRESS,0,1,110527,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:47:54.335Z,MS-RSC-023,reschedule_and_notify,Chat,4p79an714ft64dhjs9ce999o8g,TEST_MS-RSC-023: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-023.,2026-05-26T10:00:00+02:00,2026-05-26T10:30:00+02:00,Tuesday,r-6253884052783791377,,,,"[ACTION EXECUTED] new time: Tuesday, 10:00–10:30",,YOUR_EMAIL_ADDRESS,0,1,109763,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:49:54.847Z,MS-RSC-024,reschedule_and_notify,Chat,vrhq4dh43eun4sepktrenglnls,TEST_MS-RSC-024: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-024.,2026-05-26T10:00:00+02:00,2026-05-26T10:30:00+02:00,Tuesday,r3614550301060185671,,,,"[ACTION EXECUTED] new time: Tuesday, 10:00–10:30",,YOUR_EMAIL_ADDRESS,0,1,113232,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:51:53.541Z,MS-RSC-025,reschedule_and_notify,Chat,nvim2fph4jm2evsrv52fo62h7c,TEST_MS-RSC-025: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-025.,2026-05-26T10:00:00+02:00,2026-05-26T10:30:00+02:00,Tuesday,r1262046598060220888,,,,"[ACTION EXECUTED] new time: Tuesday, 10:00–10:30",,YOUR_EMAIL_ADDRESS,0,1,111393,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:53:50.094Z,MS-RSC-026,reschedule_and_notify,Chat,hfnro6sm1mdbtos9fih2krvicc,TEST_MS-RSC-026: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-026.,2026-05-26T10:00:00+02:00,2026-05-26T10:30:00+02:00,Tuesday,r3852556110415547794,,,,"[ACTION EXECUTED] new time: Tuesday, 10:00–10:30",,YOUR_EMAIL_ADDRESS,0,1,109400,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:55:50.053Z,MS-RSC-027,reschedule_and_notify,Chat,o26sm8gb1kd1s7jbd9j8tsp268,TEST_MS-RSC-027: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-027.,2026-05-26T10:00:00+02:00,2026-05-26T10:30:00+02:00,Tuesday,r-3424626603532518215,,,,"[ACTION EXECUTED] new time: Tuesday, 10:00–10:30",,YOUR_EMAIL_ADDRESS,0,1,112152,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:57:47.831Z,MS-RSC-028,reschedule_and_notify,Chat,67dh706vm2bhtjc0n81h8sknmg,TEST_MS-RSC-028: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-028.,2026-05-26T11:00:00+02:00,2026-05-26T11:30:00+02:00,Tuesday,r6191339332209673919,,,,"[ACTION EXECUTED] new time: Tuesday, 11:00–11:30",,YOUR_EMAIL_ADDRESS,0,1,110613,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T20:59:43.408Z,MS-RSC-029,reschedule_and_notify,Chat,7rptcb9o9l2vcfkpi7luhgd9hg,TEST_MS-RSC-029: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-029.,2026-05-26T14:00:00+02:00,2026-05-26T14:30:00+02:00,Tuesday,r5938550644592312386,,,,"[ACTION EXECUTED] new time: Tuesday, 14:00–14:30",,YOUR_EMAIL_ADDRESS,0,1,108239,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T21:01:41.950Z,MS-RSC-030,reschedule_and_notify,Chat,4tk3dqa89c2psbibjp8q4fip7s,TEST_MS-RSC-030: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-030.,2026-05-26T10:00:00+02:00,2026-05-26T10:30:00+02:00,Tuesday,r7500880276961311765,,,,"[ACTION EXECUTED] new time: Tuesday, 10:00–10:30",,YOUR_EMAIL_ADDRESS,0,1,111101,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T21:03:39.834Z,MS-RSC-031,reschedule_and_notify,Chat,m15sivu89peoj39dccafma370c,TEST_MS-RSC-031: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-031.,2026-05-26T10:00:00+02:00,2026-05-26T10:30:00+02:00,Tuesday,r6807411558447871431,,,,"[ACTION EXECUTED] Tuesday, 10:00–10:30",,YOUR_EMAIL_ADDRESS,0,1,110543,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T21:05:37.243Z,MS-RSC-032,reschedule_and_notify,Chat,4g6kh2r1qd5mngggrrj2v4pibs,TEST_MS-RSC-032: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-032.,2026-05-25T13:00:00+02:00,2026-05-25T13:30:00+02:00,Monday,r4762676582961089579,,,,"[ACTION EXECUTED] new time: Monday, 13:00–13:30",,YOUR_EMAIL_ADDRESS,0,1,110048,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T21:07:33.741Z,MS-RSC-033,reschedule_and_notify,Chat,7ku4q5j5qrnos15bqdiakckcag,TEST_MS-RSC-033: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-033.,2026-05-26T10:00:00+02:00,2026-05-26T10:30:00+02:00,Tuesday,r8083821092435378995,,,,"[ACTION EXECUTED] new time: Tuesday, 10:00–10:30",,YOUR_EMAIL_ADDRESS,0,1,109143,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T21:09:30.691Z,MS-RSC-034,reschedule_and_notify,Chat,ha4uan8edcggq6gijph3fnm28k,TEST_MS-RSC-034: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-034.,2026-05-26T10:00:00+02:00,2026-05-26T10:30:00+02:00,Tuesday,r9166783859648284569,,,,"[ACTION EXECUTED] new time: Tuesday, 10:00–10:30",,YOUR_EMAIL_ADDRESS,0,1,109638,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T21:11:27.558Z,MS-RSC-035,reschedule_and_notify,Chat,l3n0csrsp645284vtgu4ibg9oo,TEST_MS-RSC-035: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-035.,2026-05-26T10:00:00+02:00,2026-05-26T10:30:00+02:00,Tuesday,r8296958618004901556,,,,"[ACTION EXECUTED] new time: Tuesday, 10:00–10:30",,YOUR_EMAIL_ADDRESS,0,1,108638,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T21:13:25.716Z,MS-RSC-036,reschedule_and_notify,Chat,3c1f2r33pri6sldlfscsftbslo,TEST_MS-RSC-036: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-036.,2026-05-28T15:30:00+02:00,2026-05-28T16:00:00+02:00,Thursday,r7178552310965006447,,,,"[ACTION EXECUTED] new time: Thursday, 15:30–16:00",,YOUR_EMAIL_ADDRESS,0,1,110641,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T21:15:23.440Z,MS-RSC-037,reschedule_and_notify,Chat,g1sneo4a11sj5bj15d39rpvc28,TEST_MS-RSC-037: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-037.,2026-05-26T10:00:00+02:00,2026-05-26T10:30:00+02:00,Tuesday,r6558986224004280551,,,,"[ACTION EXECUTED] new time: Tuesday, 10:00–10:30",,YOUR_EMAIL_ADDRESS,0,1,110306,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T21:17:20.348Z,MS-RSC-038,reschedule_and_notify,Chat,975g0is9afg692lqsk49oo4khg,TEST_MS-RSC-038: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-038.,2026-05-26T11:00:00+02:00,2026-05-26T11:30:00+02:00,Tuesday,r-2079057454601723890,,,,"[ACTION EXECUTED] new time: Tuesday, 11:00–11:30",,YOUR_EMAIL_ADDRESS,0,1,109611,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T21:19:17.905Z,MS-RSC-039,reschedule_and_notify,Chat,5nep455707gv64r1ldjla5s7gc,TEST_MS-RSC-039: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-039.,2026-05-26T10:00:00+02:00,2026-05-26T10:30:00+02:00,Tuesday,r4173005898266237389,,,,"[ACTION EXECUTED] new time: Tuesday, 10:00–10:30",,YOUR_EMAIL_ADDRESS,0,1,109916,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-23T21:21:16.421Z,MS-RSC-040,reschedule_and_notify,Chat,bkoasoank386g5a7okdqm2ijd0,TEST_MS-RSC-040: Team sync,Rescheduled from Monday 10:00–10:30. Test ID: MS-RSC-040.,2026-05-26T09:00:00+02:00,2026-05-26T09:30:00+02:00,Tuesday,r-915555691457415422,,,,"[ACTION EXECUTED] new time: Tuesday, 09:00–09:30",,YOUR_EMAIL_ADDRESS,0,1,111124,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,Y,,,,
+2026-05-24T10:52:33.273Z,MS-CAP-001,cancel_apology_propose,Chat,cb8e9pi2i1qdttvpmbilpv791k,TEST_MS-CAP-001: Team sync,,,,,r-7274162362719910534,,,,"Alternate 1: Tuesday, 10:00–10:30
+Alternate 2: Wednesday, 14:00–14:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,112554,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Tuesday, 10:00–10:30","Wednesday, 14:00–14:30",Y,
+2026-05-24T10:54:33.515Z,MS-CAP-002,cancel_apology_propose,Chat,t6t3nmr1q3j5pjkbtnlq5bt5fc,TEST_MS-CAP-002: Team sync,,,,,r-2044118080523827849,,,,"Alternate 1: Tuesday, 10:00–10:30
+Alternate 2: Wednesday, 14:00–14:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,113279,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Tuesday, 10:00–10:30","Wednesday, 14:00–14:30",Y,
+2026-05-24T10:56:29.796Z,MS-CAP-003,cancel_apology_propose,Chat,ke5pcgc2ibhkrsd6duulsihi7k,TEST_MS-CAP-003: Team sync,,,,,r-8753553086488297834,,,,"Alternate 1: Monday, 09:00–09:30
+Alternate 2: Tuesday, 10:00–10:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,109162,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Monday, 09:00–09:30","Tuesday, 10:00–10:30",Y,
+2026-05-24T10:58:31.078Z,MS-CAP-004,cancel_apology_propose,Chat,7uhl6fra9mj5qfrh792mh50p30,TEST_MS-CAP-004: Team sync,,,,,r4110851022485699196,,,,"Alternate 1: Tuesday, 10:00–10:30
+Alternate 2: Wednesday, 11:00–11:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,114356,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Tuesday, 10:00–10:30","Wednesday, 11:00–11:30",Y,
+2026-05-24T11:00:28.732Z,MS-CAP-005,cancel_apology_propose,Chat,16mur2cfbb4ha1713gik5v6is0,TEST_MS-CAP-005: Team sync,,,,,r-166021078413461184,,,,"Alternate 1: Tuesday, 10:00–10:30
+Alternate 2: Wednesday, 11:00–11:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,110763,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Tuesday, 10:00–10:30","Wednesday, 11:00–11:30",Y,
+2026-05-24T11:02:25.757Z,MS-CAP-006,cancel_apology_propose,Chat,0jnghcihq96e0ahmcsq7rf5scc,TEST_MS-CAP-006: Team sync,,,,,r-8524943763637431260,,,,"Alternate 1: Tuesday, 10:00–10:30
+Alternate 2: Wednesday, 14:00–14:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,109912,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Tuesday, 10:00–10:30","Wednesday, 14:00–14:30",Y,
+2026-05-24T11:04:26.971Z,MS-CAP-007,cancel_apology_propose,Chat,cd2otk5h6hun11c9q73e9401ps,TEST_MS-CAP-007: Team sync,,,,,r5169502056966980500,,,,"Alternate 1: Tuesday, 10:00–10:30
+Alternate 2: Wednesday, 11:00–11:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,114289,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Tuesday, 10:00–10:30","Wednesday, 11:00–11:30",Y,
+2026-05-24T11:06:27.546Z,MS-CAP-008,cancel_apology_propose,Chat,elcagtvtce0c431k9ol6hg0btc,TEST_MS-CAP-008: Team sync,,,,,r8742737599337913121,,,,"Alternate 1: Tuesday, 10:00–10:30
+Alternate 2: Wednesday, 14:00–14:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,112766,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Tuesday, 10:00–10:30","Wednesday, 14:00–14:30",Y,
+2026-05-24T11:08:24.645Z,MS-CAP-009,cancel_apology_propose,Chat,na9lnlrvdjgncva516ejm7na6o,TEST_MS-CAP-009: Team sync,,,,,r-3071300945902120519,,,,"Alternate 1: Tuesday, 2026-05-26, 11:00–11:30
+Alternate 2: Wednesday, 2026-05-27, 14:00–14:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,110220,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Tuesday, 2026-05-26, 11:00–11:30","Wednesday, 2026-05-27, 14:00–14:30",Y,
+2026-05-24T11:10:25.998Z,MS-CAP-010,cancel_apology_propose,Chat,m5dvrjtf2lvb0ove9lg4qva7a0,TEST_MS-CAP-010: Team sync,,,,,r1753939955462567930,,,,"Alternate 1: Monday, 09:00–09:30
+Alternate 2: Tuesday, 14:00–14:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,114538,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Monday, 09:00–09:30","Tuesday, 14:00–14:30",Y,
+2026-05-24T11:12:26.092Z,MS-CAP-011,cancel_apology_propose,Chat,kibu3g509v2v7me94c6krhdhbk,TEST_MS-CAP-011: Team sync,,,,,r5173891710383910250,,,,"Alternate 1: Tuesday, 10:00–10:30
+Alternate 2: Wednesday, 10:00–10:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,112883,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Tuesday, 10:00–10:30","Wednesday, 10:00–10:30",Y,
+2026-05-24T11:14:24.616Z,MS-CAP-012,cancel_apology_propose,Chat,fihpnq8mpj6b0qi0ccsckseov4,TEST_MS-CAP-012: Team sync,,,,,r8288693892501233073,,,,"Alternate 1: Monday, 09:00–09:30
+Alternate 2: Tuesday, 14:00–14:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,111678,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Monday, 09:00–09:30","Tuesday, 14:00–14:30",Y,
+2026-05-24T11:16:24.042Z,MS-CAP-013,cancel_apology_propose,Chat,v62lrl3kadq823pi5foqal1t1g,TEST_MS-CAP-013: Team sync,,,,,r-8930057478708508350,,,,"Alternate 1: Monday, 10:30–11:00
+Alternate 2: Tuesday, 10:00–10:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,112574,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Monday, 10:30–11:00","Tuesday, 10:00–10:30",Y,
+2026-05-24T11:18:24.789Z,MS-CAP-014,cancel_apology_propose,Chat,t0qclhcqss9mbbrgkamt44l2m8,TEST_MS-CAP-014: Team sync,,,,,r-8461885408784669289,,,,"Alternate 1: Tuesday, 2026-06-02, 09:00–09:30
+Alternate 2: Wednesday, 2026-06-03, 14:00–14:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,113583,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Tuesday, 2026-06-02, 09:00–09:30","Wednesday, 2026-06-03, 14:00–14:30",Y,
+2026-05-24T11:20:22.374Z,MS-CAP-015,cancel_apology_propose,Chat,or2hf5tbnsuj0ife4sa43regus,TEST_MS-CAP-015: Team sync,,,,,r7755269615808766398,,,,"Alternate 1: Monday, 09:00–09:30
+Alternate 2: Tuesday, 11:00–11:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,110654,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Monday, 09:00–09:30","Tuesday, 11:00–11:30",Y,
+2026-05-24T11:22:23.079Z,MS-CAP-016,cancel_apology_propose,Chat,lqb5954tc6bcaddp4s5rh30968,TEST_MS-CAP-016: Team sync,,,,,r-7332119801012647796,,,,"Alternate 1: Tuesday, 10:00–10:30
+Alternate 2: Wednesday, 10:00–10:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,113526,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Tuesday, 10:00–10:30","Wednesday, 10:00–10:30",Y,
+2026-05-24T11:24:22.798Z,MS-CAP-017,cancel_apology_propose,Chat,33hcuicjicfhbric347glkoq0c,TEST_MS-CAP-017: Team sync,,,,,r-671220578096491780,,,,"Alternate 1: Tuesday, 10:00–10:30
+Alternate 2: Wednesday, 14:00–14:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,112624,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Tuesday, 10:00–10:30","Wednesday, 14:00–14:30",Y,
+2026-05-24T11:26:22.490Z,MS-CAP-018,cancel_apology_propose,Chat,lvi81rju6u53ou2tr6o3ekam84,TEST_MS-CAP-018: Team sync,,,,,r-6423525194537583408,,,,"Alternate 1: Tuesday, 10:00–10:30
+Alternate 2: Wednesday, 14:00–14:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,112617,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Tuesday, 10:00–10:30","Wednesday, 14:00–14:30",Y,
+2026-05-24T11:28:20.430Z,MS-CAP-019,cancel_apology_propose,Chat,9sfq67c0bbe31pa8ftddbg52pk,TEST_MS-CAP-019: Team sync,,,,,r9038932656545728307,,,,"Alternate 1: Tuesday, 11:00–11:30
+Alternate 2: Wednesday, 14:00–14:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,110838,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Tuesday, 11:00–11:30","Wednesday, 14:00–14:30",Y,
+2026-05-24T11:30:18.554Z,MS-CAP-020,cancel_apology_propose,Chat,q8gmkf9sdiu1rlr8ltmdjr9qvc,TEST_MS-CAP-020: Team sync,,,,,r1976751925360427857,,,,"Alternate 1: Tuesday, 10:00–10:30
+Alternate 2: Wednesday, 14:00–14:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,111219,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Tuesday, 10:00–10:30","Wednesday, 14:00–14:30",Y,
+2026-05-24T11:32:16.550Z,MS-CAP-021,cancel_apology_propose,Chat,0n355joggr88h8b6fpkq99daq0,TEST_MS-CAP-021: Team sync,,,,,r-8484302188272458300,,,,"Alternate 1: Tuesday, 10:00–10:30
+Alternate 2: Wednesday, 11:00–11:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,110733,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Tuesday, 10:00–10:30","Wednesday, 11:00–11:30",Y,
+2026-05-24T11:34:17.329Z,MS-CAP-022,cancel_apology_propose,Chat,dfhlava983f32d2rk6qcraup88,TEST_MS-CAP-022: Team sync,,,,,r-2266018760103655681,,,,"Alternate 1: Tuesday, 09:30–10:00
+Alternate 2: Wednesday, 14:00–14:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,113800,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Tuesday, 09:30–10:00","Wednesday, 14:00–14:30",Y,
+2026-05-24T11:36:23.233Z,MS-CAP-023,cancel_apology_propose,Chat,1lqvrfuf6gurujou7r4746av4c,TEST_MS-CAP-023: Team sync,,,,,r-867236285832779078,,,,"Alternate 1: Tuesday, 10:00–10:30
+Alternate 2: Wednesday, 11:00–11:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,118833,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Tuesday, 10:00–10:30","Wednesday, 11:00–11:30",Y,
+2026-05-24T11:38:23.772Z,MS-CAP-024,cancel_apology_propose,Chat,486oe7brl2038bci32jr4sr71s,TEST_MS-CAP-024: Team sync,,,,,r311885764535958499,,,,"Alternate 1: Tuesday, 09:30–10:00
+Alternate 2: Wednesday, 14:00–14:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,113445,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Tuesday, 09:30–10:00","Wednesday, 14:00–14:30",Y,
+2026-05-24T11:40:26.128Z,MS-CAP-025,cancel_apology_propose,Chat,348ci8muia46tmioee1i4ffc60,TEST_MS-CAP-025: Team sync,,,,,r2081701877059304728,,,,"Alternate 1: Monday, 09:00–09:30
+Alternate 2: Tuesday, 10:00–10:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,115339,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Monday, 09:00–09:30","Tuesday, 10:00–10:30",Y,
+2026-05-24T11:42:25.653Z,MS-CAP-026,cancel_apology_propose,Chat,9kachotkbcj5ho9mq24v49gc6g,TEST_MS-CAP-026: Team sync,,,,,r8717905724436038565,,,,"Alternate 1: Tuesday, 10:00–10:30
+Alternate 2: Wednesday, 11:00–11:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,112274,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Tuesday, 10:00–10:30","Wednesday, 11:00–11:30",Y,
+2026-05-24T11:44:26.210Z,MS-CAP-027,cancel_apology_propose,Chat,vlfr454luqc978bqurritgh66o,TEST_MS-CAP-027: Team sync,,,,,r-4613558590824264219,,,,"Alternate 1: Tuesday, 10:00–10:30
+Alternate 2: Wednesday, 14:00–14:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,113502,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Tuesday, 10:00–10:30","Wednesday, 14:00–14:30",Y,
+2026-05-24T11:46:26.732Z,MS-CAP-028,cancel_apology_propose,Chat,6lmlbo05f4htk3a021pb3u6770,TEST_MS-CAP-028: Team sync,,,,,r-9153807126219851181,,,,"Alternate 1: Tuesday, 10:00–10:30
+Alternate 2: Wednesday, 14:00–14:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,112973,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Tuesday, 10:00–10:30","Wednesday, 14:00–14:30",Y,
+2026-05-24T11:48:25.865Z,MS-CAP-029,cancel_apology_propose,Chat,3u3jrffsf9mnid7hf06e1327ac,TEST_MS-CAP-029: Team sync,,,,,r6402291895543750572,,,,"Alternate 1: Tuesday, 10:00–10:30
+Alternate 2: Wednesday, 10:00–10:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,111916,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Tuesday, 10:00–10:30","Wednesday, 10:00–10:30",Y,
+2026-05-24T11:50:25.978Z,MS-CAP-030,cancel_apology_propose,Chat,d34eciogpq3ohhb6hklr1751n0,TEST_MS-CAP-030: Team sync,,,,,r5964734624936513042,,,,"Alternate 1: Tuesday, 10:00–10:30
+Alternate 2: Wednesday, 14:00–14:30
+[ACTION EXECUTED] cancelled and proposed alternates.",,YOUR_EMAIL_ADDRESS,0,1,113031,success,,,,,,,,,,,,2026-05-25T10:00:00+02:00,2026-05-25T10:30:00+02:00,Y,,"Tuesday, 10:00–10:30","Wednesday, 14:00–14:30",Y,
+2026-05-24T12:01:50.349Z,MS-TRI-001,triple_step,Telegram,i0el199i1t1rer69g0ip374eag,TEST_MS-TRI-001: Planting flowers in the garden,Triple-step test: create event + draft + reminder. Test ID: MS-TRI-001.,2026-05-29T03:11:00+02:00,2026-05-29T03:26:00+02:00,Friday,r-8185263465814472435,,,,[ACTION EXECUTED] event + draft + reminder created.,,YOUR_EMAIL_ADDRESS,2,1,113589,success,,,,,,,,,othj75e7uui2043s44mv9hcatc,15,Y,,,Y,,,,,Y
+2026-05-24T12:03:51.446Z,MS-TRI-002,triple_step,Telegram,dm9mnrriibspddu5cmj5mnacfk,TEST_MS-TRI-002: Chess with Daniel,Triple-step test: create event + draft + reminder. Test ID: MS-TRI-002.,2026-05-29T01:55:00+02:00,2026-05-29T02:55:00+02:00,Friday,r-8760316052099161397,,,,[ACTION EXECUTED] event + draft + reminder created.,,YOUR_EMAIL_ADDRESS,2,1,112659,success,,,,,,,,,toc7t24naflkfhq31o2ea1snjk,15,Y,,,Y,,,,,Y
+2026-05-24T12:05:51.402Z,MS-TRI-003,triple_step,Telegram,oh91htmqfclm14aajlq9ioi2ko,TEST_MS-TRI-003: Silent disco party,Triple-step test: create event + draft + reminder. Test ID: MS-TRI-003.,2026-05-29T01:44:00+02:00,2026-05-29T02:44:00+02:00,Friday,r9088361919639675833,,,,[ACTION EXECUTED] event + draft + reminder created.,,YOUR_EMAIL_ADDRESS,2,1,111498,success,,,,,,,,,fb5f8v5p97fflaad33eoklsqjg,15,Y,,,Y,,,,,Y
+2026-05-24T12:07:48.825Z,MS-TRI-004,triple_step,Telegram,9t39ng88p118bk1dkvcbu2eisk,TEST_MS-TRI-004: Networking with engineers,Triple-step test: create event + draft + reminder. Test ID: MS-TRI-004.,2026-05-29T06:11:00+02:00,2026-05-29T06:56:00+02:00,Friday,r2239338100282281889,,,,[ACTION EXECUTED] event + draft + reminder created.,,YOUR_EMAIL_ADDRESS,2,1,109264,success,,,,,,,,,6ofif0qbk5jgq7d73baas0b274,15,Y,,,Y,,,,,Y
+2026-05-24T12:09:46.056Z,MS-TRI-005,triple_step,Telegram,1hctb5sv532j1fij1vpb25s6b4,TEST_MS-TRI-005: Silent disco party,Triple-step test: create event + draft + reminder. Test ID: MS-TRI-005.,2026-05-29T01:38:00+02:00,2026-05-29T02:08:00+02:00,Friday,r4492132021384318441,,,,[ACTION EXECUTED] event + draft + reminder created.,,YOUR_EMAIL_ADDRESS,2,1,109207,success,,,,,,,,,fo5e68lal0qfmkn34kro182d0g,15,Y,,,Y,,,,,Y
+2026-05-24T12:15:01.254Z,MS-TRI-006,triple_step,Telegram,vkvc74q7h8kf5f19rblcbdjg5o,TEST_MS-TRI-006: Meeting with Emma and Jake,Triple-step test: create event + draft + reminder. Test ID: MS-TRI-006.,2026-05-29T05:54:00+02:00,2026-05-29T07:54:00+02:00,Friday,r1405980597433615405,,,,"[ACTION EXECUTED] event + draft + reminder created.
+",,YOUR_EMAIL_ADDRESS,2,1,110411,success,,,,,,,,,jin538brrn1jglhlrjm1rp0ku4,15,Y,,,Y,,,,,Y
+2026-05-24T12:16:58.792Z,MS-TRI-007,triple_step,Telegram,es1hvh1ue2slt54il5ih9up0ag,TEST_MS-TRI-007: Web3 panel discussion,Triple-step test: create event + draft + reminder. Test ID: MS-TRI-007.,2026-05-29T00:40:00+02:00,2026-05-29T01:55:00+02:00,Friday,r-5713510968450415834,,,,[ACTION EXECUTED] event + draft + reminder created.,,YOUR_EMAIL_ADDRESS,2,1,109393,success,,,,,,,,,89geo86049vp5hqih4g4l4jsq4,15,Y,,,Y,,,,,Y
+2026-05-24T12:18:57.163Z,MS-TRI-008,triple_step,Telegram,3rn16ed389c2imulo0l9m0p1p0,TEST_MS-TRI-008: Web3 panel discussion,Triple-step test: create event + draft + reminder. Test ID: MS-TRI-008.,2026-05-29T05:55:00+02:00,2026-05-29T06:55:00+02:00,Friday,r5625325665655943078,,,,[ACTION EXECUTED] event + draft + reminder created.,,YOUR_EMAIL_ADDRESS,2,1,110099,success,,,,,,,,,157r2q73fm8mo3hortkkql79as,15,Y,,,Y,,,,,Y
+2026-05-24T12:20:56.342Z,MS-TRI-009,triple_step,Telegram,5e7qgugh71766f06efa4usv4js,TEST_MS-TRI-009: David Bowie tribute concert,Triple-step test: create event + draft + reminder. Test ID: MS-TRI-009.,2026-05-29T01:36:00+02:00,2026-05-29T02:36:00+02:00,Friday,r5949701946950004231,,,,[ACTION EXECUTED] event + draft + reminder created.,,YOUR_EMAIL_ADDRESS,2,1,110918,success,,,,,,,,,pmqcpvhl8hcoajdkig5i5nq4do,15,Y,,,Y,,,,,Y
+2026-05-24T12:22:55.904Z,MS-TRI-010,triple_step,Telegram,7dm9vml05ji5lj485g1jtdclos,TEST_MS-TRI-010: Trying new VR headset,Triple-step test: create event + draft + reminder. Test ID: MS-TRI-010.,2026-05-29T07:36:00+02:00,2026-05-29T09:36:00+02:00,Friday,r2236078399651418898,,,,[ACTION EXECUTED] event + draft + reminder created.,,YOUR_EMAIL_ADDRESS,2,1,111151,success,,,,,,,,,0lp6v0dg9im238m68qcgp32dl0,15,Y,,,Y,,,,,Y
+2026-05-24T12:24:56.410Z,MS-TRI-011,triple_step,Telegram,1tpmlth8u32r5imikdm878ddec,TEST_MS-TRI-011: Chess with Daniel,Triple-step test: create event + draft + reminder. Test ID: MS-TRI-011.,2026-05-29T02:19:00+02:00,2026-05-29T03:04:00+02:00,Friday,r6170226419027262972,,,,[ACTION EXECUTED] event + draft + reminder created.,,YOUR_EMAIL_ADDRESS,2,1,112494,success,,,,,,,,,1c2qh4blq2ucrtv1gedta424q4,15,Y,,,Y,,,,,Y
+2026-05-24T12:26:56.477Z,MS-TRI-012,triple_step,Telegram,3vbuk7lg61g5mvr1gfltcp5pmg,TEST_MS-TRI-012: Avril Lavigne concert,Triple-step test: create event + draft + reminder. Test ID: MS-TRI-012.,2026-05-29T07:42:00+02:00,2026-05-29T08:42:00+02:00,Friday,r8899964826989752921,,,,[ACTION EXECUTED] event + draft + reminder created.,,YOUR_EMAIL_ADDRESS,2,1,112020,success,,,,,,,,,607ufs206l7ldies30qtr0otnk,15,Y,,,Y,,,,,Y
+2026-05-24T12:28:57.865Z,MS-TRI-013,triple_step,Telegram,hk54dc6c148r52pir3bc3edquo,TEST_MS-TRI-013: Async Python talk,Triple-step test: create event + draft + reminder. Test ID: MS-TRI-013.,2026-05-29T01:33:00+02:00,2026-05-29T03:03:00+02:00,Friday,r3639212999377743095,,,,[ACTION EXECUTED] event + draft + reminder created.,,YOUR_EMAIL_ADDRESS,2,1,113279,success,,,,,,,,,kuflikos39jsmr98vu60nc7ado,15,Y,,,Y,,,,,Y
+2026-05-24T12:30:58.792Z,MS-TRI-014,triple_step,Telegram,5et62g4mu9bidjnk8t6cv486nc,TEST_MS-TRI-014: Chemistry experiment,Triple-step test: create event + draft + reminder. Test ID: MS-TRI-014.,2026-05-29T03:43:00+02:00,2026-05-29T04:43:00+02:00,Friday,r7858179985109766500,,,,[ACTION EXECUTED] event + draft + reminder created.,,YOUR_EMAIL_ADDRESS,2,1,113030,success,,,,,,,,,itm18g9hj91tnvdd8gtkfcisqg,15,Y,,,Y,,,,,Y
+2026-05-24T12:33:00.596Z,MS-TRI-015,triple_step,Telegram,m4b83j9n83qe7jpvgk9p6vtrfc,TEST_MS-TRI-015: Small Language Models talk,Triple-step test: create event + draft + reminder. Test ID: MS-TRI-015.,2026-05-29T07:45:00+02:00,2026-05-29T09:15:00+02:00,Friday,r-4764834241214723166,,,,[ACTION EXECUTED] event + draft + reminder created.,,YOUR_EMAIL_ADDRESS,2,1,113480,success,,,,,,,,,jj9hv943siu4alenecvmsrcbpc,15,Y,,,Y,,,,,Y
+2026-05-24T12:35:01.051Z,MS-TRI-016,triple_step,Telegram,urojqpr8ecp2n9ngq6f4u3g55g,TEST_MS-TRI-016: 3D printing workshop,Triple-step test: create event + draft + reminder. Test ID: MS-TRI-016.,2026-05-29T04:39:00+02:00,2026-05-29T05:09:00+02:00,Friday,r1100704625180397335,,,,[ACTION EXECUTED] event + draft + reminder created.,,YOUR_EMAIL_ADDRESS,2,1,112605,success,,,,,,,,,9srrl7mu48b1vf83dgj2gip8u4,15,Y,,,Y,,,,,Y
+2026-05-24T12:37:00.640Z,MS-TRI-017,triple_step,Telegram,97082te9m5bs9h0t228bbk6m2o,TEST_MS-TRI-017: Meeting with Lisa at café,Triple-step test: create event + draft + reminder. Test ID: MS-TRI-017.,2026-05-29T02:40:00+02:00,2026-05-29T04:40:00+02:00,Friday,r-1112413873504962523,,,,[ACTION EXECUTED] event + draft + reminder created.,,YOUR_EMAIL_ADDRESS,2,1,111170,success,,,,,,,,,j1rv4dp1b26n09gudoh54t8i98,15,Y,,,Y,,,,,Y
+2026-05-24T12:38:59.874Z,MS-TRI-018,triple_step,Telegram,9ngapqah9enpa0u9krs8e1ldl8,TEST_MS-TRI-018: Planting flowers in the garden,Triple-step test: create event + draft + reminder. Test ID: MS-TRI-018.,2026-05-29T02:13:00+02:00,2026-05-29T02:43:00+02:00,Friday,r-6786234271123342010,,,,[ACTION EXECUTED] event + draft + reminder created.,,YOUR_EMAIL_ADDRESS,2,1,111106,success,,,,,,,,,i1jeq94220ntdoep29ps9hj568,15,Y,,,Y,,,,,Y
+2026-05-24T12:40:59.871Z,MS-TRI-019,triple_step,Telegram,5qbv3sh9oic0e6s9cslatnucjg,TEST_MS-TRI-019: Preparing PTO handover,Triple-step test: create event + draft + reminder. Test ID: MS-TRI-019.,2026-05-29T00:02:00+02:00,2026-05-29T02:02:00+02:00,Friday,r787806373163148968,,,,[ACTION EXECUTED] event + draft + reminder created.,,YOUR_EMAIL_ADDRESS,2,1,111867,success,,,,,,,,,td1t8dnq6khp9n5hk6qmj322ek,15,Y,,,Y,,,,,Y
+2026-05-24T12:43:02.930Z,MS-TRI-020,triple_step,Telegram,55590jft7guf0nbvk1hm5hqf2g,TEST_MS-TRI-020: Unknown event,Triple-step test: create event + draft + reminder. Test ID: MS-TRI-020.,2026-05-29T10:00:00+02:00,2026-05-29T10:15:00+02:00,Friday,r1053979607457996339,,,,[ACTION EXECUTED] event + draft + reminder created.,,YOUR_EMAIL_ADDRESS,2,1,114720,success,,,,,,,,,ilna1upogs8vgflc7d0anqp8ds,15,Y,,,Y,,,,,Y
